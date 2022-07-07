@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:sizer/sizer.dart';
@@ -63,7 +65,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 1.h,
+                        height: 18.h,
                       ),
                       // Lottie.asset(
                       //   'lib/assets/asset/53616-shopping-list.json',
@@ -81,6 +83,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       // Lottie.asset(
                       //   'assets/LottieLogo1.json',
                       // ),
+
                       Container(
                         height: 29.h,
                         width: 72.w,
@@ -107,6 +110,10 @@ class _WelcomePageState extends State<WelcomePage> {
                         const CircularProgressIndicator(
                           color: Colors.white,
                         ),
+
+                      SizedBox(
+                        height: 3.h,
+                      ),
                     ],
                   ),
                 ),
@@ -116,5 +123,10 @@ class _WelcomePageState extends State<WelcomePage> {
         ],
       ),
     );
+  }
+
+  signupButtonClickHandler() {
+    print("Signup Button Clicked");
+    Get.to(() => LoginPage());
   }
 }

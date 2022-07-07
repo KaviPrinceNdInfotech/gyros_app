@@ -18,7 +18,7 @@ class CustomButtom extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * 0.7,
+      width: size.width * 0.8,
       child: ClipRRect(
         //borderRadius: BorderRadius.circular(50),
         child: ElevatedButton(
@@ -26,7 +26,7 @@ class CustomButtom extends StatelessWidget {
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
               padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 10, horizontal: 10)),
+                  EdgeInsets.symmetric(vertical: 12, horizontal: 10)),
               backgroundColor: MaterialStateProperty.all(buttonColor)),
           onPressed: () {
             handleButtonClick();

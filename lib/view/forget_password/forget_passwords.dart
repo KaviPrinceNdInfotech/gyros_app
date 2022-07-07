@@ -1,36 +1,24 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
-import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/forget_password/forget_passwords.dart';
-import 'package:gyros_app/view/signup/signup_page.dart';
-import 'package:gyros_app/widgets/password_field.dart';
+import 'package:gyros_app/view/reset_password/reset_password.dart';
 import 'package:gyros_app/widgets/text_field_decorator.dart';
 import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
 
-class LoginMainPage extends StatelessWidget {
+class Forgetpasswords extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
-  TextEditingController useridController = TextEditingController();
-  TextEditingController passController = TextEditingController();
-
-  // String userIdErrorText = 'User Id Can not found';
-  // String userIdHinttext = 'Enter User Id';
-  // Color UserIdHintTextColor = AppColors.themecolors;
-  // IconData useridTextFieldPrefixicon = Icons.person;
-  // Color userIdErrorTextColor = AppColors.themecolors;
-  // Color useridTextFieldPrefixIconColor = AppColors.themecolors;
-  LoginMainPage({Key? key}) : super(key: key);
+  TextEditingController emailController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
+  Forgetpasswords({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Form(
         key: _formkey,
         child: SingleChildScrollView(
@@ -41,7 +29,11 @@ class LoginMainPage extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(
-                          'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+                        'https://images.pexels.com/photos/7267050/pexels-photo-7267050.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+                          //'https://images.pexels.com/photos/6280388/pexels-photo-6280388.jpeg?auto=compress&cs=tinysrgb&w=600'
+                          //'https://images.pexels.com/photos/6674392/pexels-photo-6674392.jpeg?auto=compress&cs=tinysrgb&w=600'
+                          //'https://images.pexels.com/photos/4258186/pexels-photo-4258186.jpeg?auto=compress&cs=tinysrgb&w=600',
+                          //'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                           //'https://img.freepik.com/free-photo/fresh-vegetables-with-price-tags-shelf-grocery-store-supermarket_342744-1397.jpg?w=1800&t=st=1656765079~exp=1656765679~hmac=960f81d4a643d71d68c26c50e5b182ce5cee8ee12935b54cbf72f66ea89c3425'
                           //'https://images.unsplash.com/photo-1608686207856-001b95cf60ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80'
                           //'https://img.freepik.com/free-photo/woman-with-tablet-buying-healthy-food-supermarket-grocery-store_342744-1110.jpg?t=st=1656747606~exp=1656748206~hmac=cad4fcedf9befb2991319f1634acc32b038e0757fc8cb569c84777d87febd9be&w=1800'
@@ -80,6 +72,7 @@ class LoginMainPage extends StatelessWidget {
                   //   //reverse: false,
                   //   //animate: false,
                   // ),
+
                   SizedBox(
                     height: 12.h,
                   ),
@@ -87,39 +80,30 @@ class LoginMainPage extends StatelessWidget {
                   TextFieldDecorator(
                     child: UserIdTextField(
                       // useridTextFieldPrefixicon
-                      useridController: useridController,
-                      userIdErrorText: 'User Id Can not found',
-                      userIdHintText: 'Enter User Id',
+                      useridController: emailController,
+                      userIdErrorText: 'Email can not be empty',
+                      userIdHintText: 'Enter Email',
                       userIdHintTextColor: AppColors.themecolors,
                       userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.person,
+                      useridTextFieldPrefixIcon: Icons.email,
                       useridTextFieldPrefixIconColor: AppColors.themecolors,
 
                       onUseridValueChange: (value) {},
                     ),
                   ),
 
-                  SizedBox(
-                    height: 0.h,
-                  ),
-
                   TextFieldDecorator(
-                    child: UserPassTextField(
+                    child: UserIdTextField(
                       // useridTextFieldPrefixicon
-                      userPassController: passController,
-                      userPassErrorText: 'passwordCan not be empty',
-                      userPassHintText: 'Enter Password ',
-                      userPassHintTextColor: AppColors.themecolors,
-                      userPassErrorTextColor: AppColors.themecolors,
-                      userPassTextFieldPrefixIcon: Icons.lock,
+                      useridController: otpController,
+                      userIdErrorText: 'Pin can not be empty',
+                      userIdHintText: 'Enter Your Pin',
+                      userIdHintTextColor: AppColors.themecolors,
+                      userIdErrorTextColor: AppColors.themecolors,
+                      useridTextFieldPrefixIcon: Icons.pin,
+                      useridTextFieldPrefixIconColor: AppColors.themecolors,
 
-                      userPassTextFieldSufixIcon: Icons.visibility_off,
-                      userPassTextFieldSufixIconColor: AppColors.themecolors,
-                      userPassTextFieldPrefixIconColor: AppColors.themecolors,
-
-                      onUserPassValueChange: (value) {
-                        print('Pass Value $value');
-                      },
+                      onUseridValueChange: (value) {},
                     ),
                   ),
 
@@ -129,58 +113,14 @@ class LoginMainPage extends StatelessWidget {
 
                   CustomButtom(
                     buttonColor: MyTheme.loginbuttonColor,
-                    buttontext: 'LOGIN',
+                    buttontext: 'Continue',
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     handleButtonClick: () {
-                      Get.to(() => NavBar());
+                      Get.to(() => ResetPasswords());
                     },
                   ),
                   SizedBox(
                     height: 1.h,
-                  ),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => Forgetpasswords());
-                        },
-                        child: Text(
-                          'Forgot Password',
-                          style: TextStyle(
-                            //background: AppColors.themecolors,
-                            //backgroundColor: Colors.grey.shade700,
-                            color: AppColors.themecolors,
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        'Don\'t have account ?',
-                        style: TextStyle(
-                          //backgroundColor: Colors.grey.shade700,
-                          color: Colors.black,
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => SignUp());
-                        },
-                        child: Text(
-                          ' Sign Up',
-                          style: TextStyle(
-                            //backgroundColor: Colors.grey.shade700,
-                            color: AppColors.themecolors,
-                            fontSize: 10.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
 
                   // Align(

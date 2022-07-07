@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class AppColors {
   static var themecolors =
       //Color(0xff25D366);
-      Color(0xff9bbb4c);
+      //Color(0xff9bbb4c);
+      Color(0xff27ae61);
 
   static var golden = Color(0xffDDB37B);
 

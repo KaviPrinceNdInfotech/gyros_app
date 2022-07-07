@@ -5,6 +5,7 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
+import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatelessWidget {
@@ -85,5 +86,6 @@ class LoginPage extends StatelessWidget {
 
   signupButtonClickHandler() {
     print("Signup Button Clicked");
+    Get.to(SignUp());
   }
 }
