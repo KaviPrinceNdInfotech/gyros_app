@@ -140,7 +140,7 @@ class OnboardingPage extends StatelessWidget {
                   ),
                   child: FloatingActionButton(
                     highlightElevation: 5,
-                    heroTag: 'next',
+                    heroTag: 'Skip',
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),

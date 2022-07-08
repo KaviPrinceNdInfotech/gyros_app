@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
 
@@ -35,7 +36,9 @@ class IntroVideo extends StatelessWidget {
                   children: [
                     Container(
                         width: 100.w,
-                        color: Colors.grey,
+                        decoration: BoxDecoration(
+                          gradient: MyTheme.gradient1,
+                        ),
                         child: Obx(() {
                           if (_introVideoBoxController.isLoader.value ==
                                   false &&

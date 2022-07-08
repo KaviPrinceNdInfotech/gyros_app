@@ -8,6 +8,9 @@ class IntroVideoBoxController extends GetxController {
   RxBool isLoader = true.obs;
   @override
   void onInit() {
+    super.onInit();
+    Get.delete<VideoPlayerController>();
+
     controller =
         // VideoPlayerController.network(
         //     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4")
@@ -19,10 +22,10 @@ class IntroVideoBoxController extends GetxController {
             update();
             isLoader.value = false;
           });
-    super.onInit();
 
     @override
     void dispose() {
+      // Get.delete<controller>();
       super.dispose();
       controller?.dispose();
     }
