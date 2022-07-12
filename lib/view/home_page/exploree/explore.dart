@@ -109,16 +109,14 @@ class ExploreView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: 12.w,
+                          width: 22.w,
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 4.w),
-                          child: Expanded(
-                            child: Icon(
-                              Icons.edit,
-                              size: 15.sp,
-                              color: Colors.black,
-                            ),
+                        Expanded(
+                          flex: 1,
+                          child: Icon(
+                            Icons.edit,
+                            size: 15.sp,
+                            color: Colors.black,
                           ),
                         ),
                       ],

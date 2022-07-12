@@ -747,9 +747,10 @@ class HomePage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 // color: MyTheme.ContainerUnSelectedColor,
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIeHgSTEFLx2PAxGUuvAqqdkdIMCon2BYqtQ&usqp=CAU'),
-                                    fit: BoxFit.fitWidth),
+                                  image: NetworkImage(
+                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIeHgSTEFLx2PAxGUuvAqqdkdIMCon2BYqtQ&usqp=CAU'),
+                                  fit: BoxFit.fitWidth,
+                                ),
                               ),
                             ),
                           ),
