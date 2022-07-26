@@ -2,10 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:gyros_app/home_page/slider_crusial.dart';
+import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/home_page/drower/drower.dart';
+import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:sizer/sizer.dart';
 
-import '../view/custom_widgets/my_theme.dart';
 import 'home_page_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -86,8 +88,55 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> _key = GlobalKey();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
+      key: _key,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Image.asset(
+          'lib/assets/asset/guser_logo.png',
+          color: AppColors.themecolors,
+          height: 14.h,
+          width: 35.w,
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 3.w),
+            child: Icon(
+              Icons.shopping_cart,
+              color: AppColors.themecolors,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 3.w),
+            child: Icon(
+              Icons.search,
+              color: AppColors.themecolors,
+            ),
+          ),
+        ],
+        // Text(
+        //   'Gyrus',
+        //   style: TextStyle(
+        //     color: Colors.black,
+        //     fontWeight: FontWeight.bold,
+        //     fontSize: 16.sp,
+        //   ),
+        // ),
+        leading: InkWell(
+            onTap: () {
+              _key.currentState!.openDrawer();
+            },
+            child: Icon(
+              Icons.menu,
+              color: AppColors.themecolors,
+            )),
+      ),
+      drawer: MainDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [

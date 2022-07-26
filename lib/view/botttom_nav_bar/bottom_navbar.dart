@@ -7,9 +7,10 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
-import 'package:gyros_app/home_page/exploree/explore.dart';
-import 'package:gyros_app/home_page/exploree/my_cart/my_carts_page.dart';
-import 'package:gyros_app/home_page/home_pages.dart';
+import 'package:gyros_app/view/home_page/exploree/explore.dart';
+import 'package:gyros_app/view/home_page/exploree/my_cart/my_carts_page.dart';
+import 'package:gyros_app/view/home_page/home_pages.dart';
+import 'package:gyros_app/view/home_page/profile/profile_page.dart';
 import 'package:sizer/sizer.dart';
 
 import 'bottom_nav_bar_controller.dart';
@@ -28,6 +29,9 @@ class NavBar extends StatelessWidget {
     print(height);
     print(width);
     return Scaffold(
+      // appBar: AppBar(
+      //   title: ,
+      // ),
       bottomNavigationBar: Obx(() => SizedBox(
             height: 8.h,
             child: Container(
@@ -105,7 +109,7 @@ class NavBar extends StatelessWidget {
                               height: 3.8.h,
                               width: 6.w,
                               child: Icon(
-                                Icons.search,
+                                Icons.shopping_bag,
                                 size: 20.sp,
                                 color: _navController.tabindex.value == 1
                                     ? AppColors.themecolors
@@ -120,7 +124,7 @@ class NavBar extends StatelessWidget {
                               //   fit: BoxFit.fill,
                               // ),
                             ),
-                            Text("Explore",
+                            Text("Shop",
                                 style: GoogleFonts.poppins(
                                     color: _navController.tabindex.value == 1
                                         ? AppColors.themecolors
@@ -151,7 +155,7 @@ class NavBar extends StatelessWidget {
                               height: 3.8.h,
                               width: 6.w,
                               child: Icon(
-                                Icons.add_shopping_cart,
+                                Icons.shopping_cart_rounded,
                                 size: 20.sp,
                                 color: _navController.tabindex.value == 2
                                     ? AppColors.themecolors
@@ -166,7 +170,7 @@ class NavBar extends StatelessWidget {
                               //   fit: BoxFit.fill,
                               // ),
                             ),
-                            Text("My Cart",
+                            Text("Cart",
                                 style: GoogleFonts.poppins(
                                     color: _navController.tabindex.value == 2
                                         ? AppColors.themecolors
@@ -194,7 +198,7 @@ class NavBar extends StatelessWidget {
                               height: 3.8.h,
                               width: 6.w,
                               child: Icon(
-                                Icons.account_circle_outlined,
+                                Icons.local_offer,
                                 size: 20.sp,
                                 color: _navController.tabindex.value == 3
                                     ? AppColors.themecolors
@@ -209,9 +213,52 @@ class NavBar extends StatelessWidget {
                               //   fit: BoxFit.fill,
                               // ),
                             ),
-                            Text("My Profile",
+                            Text("Deals",
                                 style: GoogleFonts.poppins(
                                     color: _navController.tabindex.value == 3
+                                        ? AppColors.themecolors
+                                        : Colors.grey.shade600,
+                                    fontSize: 9.sp,
+                                    fontWeight: FontWeight.w600)
+                                //style: TextStyle(color:_bottomController.tabindex.value==0?Colors.orange:Color(0xFF110d39),fontSize: 13)
+                                // TextStyles(12.sp, FontWeight.w400, TextDecoration.none,
+                                //     textcolor
+                                // ),
+                                ),
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          print('call');
+                          _navController.changeTabIndex(4);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 3.8.h,
+                              width: 6.w,
+                              child: Icon(
+                                Icons.read_more_rounded,
+                                size: 20.sp,
+                                color: _navController.tabindex.value == 4
+                                    ? AppColors.themecolors
+                                    : Colors.grey.shade600,
+                              ),
+
+                              // Image.asset(
+                              //   'lib/assets/home2.png',
+                              //   color: _bottomController.tabindex.value == 0
+                              //       ? Colors.black
+                              //       : Colors.grey.shade600,
+                              //   fit: BoxFit.fill,
+                              // ),
+                            ),
+                            Text("More",
+                                style: GoogleFonts.poppins(
+                                    color: _navController.tabindex.value == 4
                                         ? AppColors.themecolors
                                         : Colors.grey.shade600,
                                     fontSize: 9.sp,
@@ -241,10 +288,8 @@ class NavBar extends StatelessWidget {
                 //WishListPage(),
                 MyCartPage(),
                 //Explorepage(),
-                Container(
-                  height: 100.w,
-                  color: Colors.orange,
-                ),
+                ProfilePages(),
+                ProfilePages(),
                 //Profile(),
                 //WithdrowPage(),
               ],

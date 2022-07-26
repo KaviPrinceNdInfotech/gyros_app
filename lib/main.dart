@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gyros_app/controllers/binding_controllers/binding_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/intro_screen/intro_video/intro_video_view.dart';
 import 'package:gyros_app/view/onboardonds/onboarding_screens.dart';
@@ -14,12 +16,14 @@ void main() async {
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((_) async {
     await GetStorage.init();
-    runApp(const MyApp());
+    runApp(MyApp());
   });
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  // CartNewController _cartNewController = Get.put(CartNewController());
+  // FavCounterController _favCounterController = Get.put(FavCounterController());
+  MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -40,9 +44,9 @@ class MyApp extends StatelessWidget {
     );
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
+        initialBinding: ControllerBinding(),
         //getPages: AppPages.routs,
         //initialRoute: Routs.INITIAL,
-
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.system,
         //title: 'Book Appointment',

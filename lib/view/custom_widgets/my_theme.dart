@@ -10,6 +10,7 @@ class MyTheme {
   static Color loginPageBoxColor = Colors.grey.shade300;
   static Color ContainerUnSelectedColor = Color(0xffeff8f5);
   static Color ThemeColors = Color(0xff27ae61);
+  static double defaultPading = 15.0;
 
   static LinearGradient gradient1 = const LinearGradient(
     colors: <Color>[
