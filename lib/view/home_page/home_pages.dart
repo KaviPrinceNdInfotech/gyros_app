@@ -5,9 +5,19 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/honey_catagary.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/oil_catagary.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/vagitable_catagary.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:sizer/sizer.dart';
 
+import 'all_catagary/best_deal.dart';
+import 'drower/drower_page/all_product_sub_catagary/cow_ghee.dart';
+import 'drower/drower_page/all_product_sub_catagary/fruits_catagary.dart';
+import 'drower/drower_page/all_product_sub_catagary/jaggery_catagary.dart';
+import 'drower/drower_page/all_product_sub_catagary/spices_catagary.dart';
+import 'drower/drower_page/all_product_sub_catagary/sweets_catagary.dart';
 import 'home_page_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -165,39 +175,39 @@ class HomePage extends StatelessWidget {
                           onTap: () {
                             _homePageController.toggle(index);
                             if (index == 0) {
-                              //Get.to(() => IntroPage());
+                              Get.to(() => AllProducts());
                               //Get.to(() => BestSeller());
                               //Get.to(() => WaterTracking());
                             } else if (index == 1) {
-                              //Get.to(() => ManPage());
+                              Get.to(() => BestDeal());
                             } else if (index == 2) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => CowGhee());
                               //Get.to(() => WalkTracking());
                             } else if (index == 3) {
-                              //Get.to(() => WalkTracking());
+                              Get.to(() => Oil());
                             } else if (index == 4) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => Spices());
                               //Get.to(() => WalkTracking());
                             } else if (index == 5) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => Honey());
                               //Get.to(() => WalkTracking());
                             } else if (index == 6) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => Jeggary());
                               //Get.to(() => WalkTracking());
                             } else if (index == 7) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => Sweets());
                               //Get.to(() => WalkTracking());
                             } else if (index == 8) {
-                              //Get.to(() => BestSeller());
                               //Get.to(() => WalkTracking());
                             } else if (index == 9) {
                               //Get.to(() => BestSeller());
                               //Get.to(() => WalkTracking());
                             } else if (index == 10) {
+                              Get.to(() => Fruitsss());
                               //Get.to(() => BestSeller());
                               //Get.to(() => WalkTracking());
                             } else if (index == 11) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => Vegitablesss());
                               //Get.to(() => WalkTracking());
                             }
                           },

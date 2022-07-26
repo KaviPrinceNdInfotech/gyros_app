@@ -7,11 +7,14 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
-import 'package:gyros_app/view/home_page/exploree/explore.dart';
+import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
+import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/exploree/my_cart/my_carts_page.dart';
 import 'package:gyros_app/view/home_page/home_pages.dart';
 import 'package:gyros_app/view/home_page/profile/profile_page.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'bottom_nav_bar_controller.dart';
 
@@ -48,7 +51,6 @@ class NavBar extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-                          print('call');
                           _navController.changeTabIndex(0);
                         },
                         child: Column(
@@ -282,13 +284,14 @@ class NavBar extends StatelessWidget {
               index: _navController.tabindex.value,
               children: [
                 HomePage(),
-                ExploreView(),
+                AllProducts(),
+                // ExploreView(),
 //     //StudioPage(),
 //     //const Page4(),
                 //WishListPage(),
                 MyCartPage(),
                 //Explorepage(),
-                ProfilePages(),
+                BestDeal(),
                 ProfilePages(),
                 //Profile(),
                 //WithdrowPage(),
@@ -297,8 +300,77 @@ class NavBar extends StatelessWidget {
           ),
         ),
       ),
+
+      floatingActionButton: SizedBox(
+        height: 6.h,
+        width: 12.w,
+        child: FloatingActionButton(
+          onPressed: () {
+            print('whats app me');
+            Navigator.of(context).push(_createRoute());
+
+            //_launchWhatsapp();
+            // Add your onPressed code here!
+          },
+          backgroundColor: AppColors.themecolors,
+          child: Padding(
+            padding: const EdgeInsets.all(7.0),
+            child: Image.asset(
+              'lib/assets/asset/whatsapp3.png',
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
     );
     // drawer: DrawerWidget(),
+  }
+
+  ///todo from here whats app launch in flutter
+
+  _launchWhatsapp() async {
+    var whatsapp = "+919716412565";
+    var whatsappAndroid =
+        Uri.parse("whatsapp://send?phone=$whatsapp&text=hello Prince");
+    if (await canLaunchUrl(whatsappAndroid)) {
+      await launchUrl(whatsappAndroid);
+    } else {
+      Get.snackbar(
+        "Whats App not installed ",
+        "Please install the what's app Prince",
+        colorText: Colors.red.shade400,
+        backgroundColor: Colors.white10,
+        icon: Icon(Icons.person, color: Colors.red),
+        snackPosition: SnackPosition.TOP,
+      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text("WhatsApp is not installed on the device"),
+      //   ),
+      // );
+    }
+  }
+
+  ///todo from here you have to animated in rout in flutter,
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          WhatsAppTrackOrder(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    );
   }
 }
 

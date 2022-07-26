@@ -65,62 +65,57 @@ class AllProducts extends StatelessWidget {
         height: size.height,
         width: double.infinity,
         color: Colors.white,
-        child: Expanded(
-          child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: images.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: InkWell(
-                    onTap: () {
-                      if (index == 0) {
-                        Get.to(() => CowGhee());
-                      } else if (index == 1) {
-                        Get.to(() => Oil());
-                      } else if (index == 2) {
-                        Get.to(() => Honey());
-                      } else if (index == 3) {
-                        Get.to(() => Jeggary());
-                      } else if (index == 4) {
-                        Get.to(() => Spices());
-                      } else if (index == 5) {
-                        Get.to(() => Sattu());
-                      } else if (index == 6) {
-                        Get.to(() => Sweets());
-                      }
-                    },
-                    child: Hero(
-                      tag: 'imageHero',
-                      child: Container(
-                        height: size.height * 0.25,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: AppColors.themecolors, width: 2),
-                            image: DecorationImage(
-                              image: NetworkImage(images[index]),
-                              fit: BoxFit.cover,
-                            )),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            text[index],
-                            style: GoogleFonts.abhayaLibre(
-                              backgroundColor: Colors.white70,
-                              fontStyle: FontStyle.italic,
-                              color: AppColors.themecolors,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: images.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: InkWell(
+                  onTap: () {
+                    if (index == 0) {
+                      Get.to(() => CowGhee());
+                    } else if (index == 1) {
+                      Get.to(() => Oil());
+                    } else if (index == 2) {
+                      Get.to(() => Honey());
+                    } else if (index == 3) {
+                      Get.to(() => Jeggary());
+                    } else if (index == 4) {
+                      Get.to(() => Spices());
+                    } else if (index == 5) {
+                      Get.to(() => Sattu());
+                    } else if (index == 6) {
+                      Get.to(() => Sweets());
+                    }
+                  },
+                  child: Container(
+                    height: size.height * 0.25,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        border:
+                            Border.all(color: AppColors.themecolors, width: 2),
+                        image: DecorationImage(
+                          image: NetworkImage(images[index]),
+                          fit: BoxFit.cover,
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        text[index],
+                        style: GoogleFonts.abhayaLibre(
+                          backgroundColor: Colors.white70,
+                          fontStyle: FontStyle.italic,
+                          color: AppColors.themecolors,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
                   ),
-                );
-              }),
-        ),
+                ),
+              );
+            }),
       ),
     );
   }
