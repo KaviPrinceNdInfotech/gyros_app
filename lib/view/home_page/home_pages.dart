@@ -9,6 +9,8 @@ import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_cata
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/oil_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/vagitable_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
+import 'package:gyros_app/view/home_page/exploree/explore.dart';
+import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:sizer/sizer.dart';
 
@@ -47,12 +49,12 @@ class HomePage extends StatelessWidget {
     'https://img.icons8.com/carbon-copy/344/honey.png',
     // 'https://img.icons8.com/external-bearicons-detailed-outline-bearicons/2x/external-All-miscellany-texts-and-badges-bearicons-detailed-outline-bearicons.png',
     'https://img.icons8.com/external-others-pike-picture/2x/external-Seeds-gardening-others-pike-picture-2.png',
-    'https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/2x/external-leaf-ecology-vitaliy-gorbachev-lineal-vitaly-gorbachev.png',
+    'https://img.icons8.com/carbon-copy/2x/pepitas.png',
     'https://img.icons8.com/ios/72/discount--v1.png',
     //'https://img.icons8.com/external-bearicons-detailed-outline-bearicons/2x/external-All-miscellany-texts-and-badges-bearicons-detailed-outline-bearicons.png',
     'https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/2x/external-gift-box-ecommerce-kiranshastry-lineal-kiranshastry.png',
-    'https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/2x/external-fruits-restaurant-photo3ideastudio-lineal-photo3ideastudio.png',
-    'https://img.icons8.com/external-justicon-lineal-justicon/2x/external-vegetables-healthy-food-and-vegan-justicon-lineal-justicon.png',
+    'https://img.icons8.com/external-icongeek26-outline-icongeek26/2x/external-sweets-baking-and-bakery-icongeek26-outline-icongeek26.png',
+    'https://img.icons8.com/external-icongeek26-outline-icongeek26/2x/external-Jaggery-pongal-icongeek26-outline-icongeek26.png',
   ];
 
   final List<String> text1 = [
@@ -62,38 +64,46 @@ class HomePage extends StatelessWidget {
     'Oil',
     'Spices',
     'Honey',
-    'Seeds',
-    'Superfoods',
+    'Pulses',
+    'Sattu',
     'Combos',
     'Gift Boxes',
-    'Fruits',
-    'Vegetables',
+    'Sweet',
+    'Jaggery',
   ];
   final List<String> image1 = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTsDT88bkQkAH1tQiuYRL3yactUGJy4qVZw&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0zdemwPYldWU6XsVGa2Ik_Bz5_1jtqJsP7A&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrfScAJM3MU-f7T5SOMJ1muAuEqOZ-LEc9SVJDA3QFWKRq7AHJwtT1Xl081tBqoMJeDE&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSM9HMCouNO87-gUHjQIkjBL8hPtnYUA1Hxg&usqp=CAU',
+    'lib/assets/asset/ghee3.jpeg',
+    'lib/assets/asset/oil_1.jpeg',
+    'lib/assets/asset/spices4.webp',
+    'lib/assets/asset/honey3.jpeg',
   ];
 
   final List<String> image2 = [
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZFWvbpHgQ52duSVJbtvK3C2T2OfrCv8TN3g&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDrYFTzUD-kkj18aNDkGKzt-ZVXWVusHViOQ&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjkQ7OvBH1-S-hFZGbc_kxXwgBjkrzDt7vHg&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSP1Ukf5MU84Wpni0y1-NIrKGOm-GXOBvqwjg&usqp=CAU',
+    'lib/assets/asset/ jagary3.jpeg',
+    'lib/assets/asset/sattu2.jpeg',
+    'lib/assets/asset/sweet4.jpeg',
+    'lib/assets/asset/dal7.webp',
+    'lib/assets/asset/ghee3.jpeg',
+    'lib/assets/asset/oil_1.jpeg',
+    'lib/assets/asset/spices4.webp',
+    'lib/assets/asset/honey3.jpeg',
   ];
 
   final List<String> text2 = [
-    'Mangoes',
+    'Ghee',
     'Oil',
-    "cabage",
+    "Spices",
     'Honey',
   ];
   final List<String> text3 = [
-    'Fruits',
-    'Oil',
-    "Vegetables",
+    'Jaggery',
+    "Sattu",
+    'Sweet',
+    'Pulse',
     'Ghee',
+    'Oil',
+    "Spices",
+    'Honey',
   ];
 
   @override
@@ -123,9 +133,15 @@ class HomePage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),
-            child: Icon(
-              Icons.search,
-              color: AppColors.themecolors,
+            child: InkWell(
+              onTap: () {
+                Get.to(()=>SearchPage());
+                //Get.to(() => ExploreView());
+              },
+              child: Icon(
+                Icons.search,
+                color: AppColors.themecolors,
+              ),
             ),
           ),
         ],
@@ -265,14 +281,19 @@ class HomePage extends StatelessWidget {
               child: Container(
                 height: size.height * 0.034,
                 width: double.infinity,
-                color: MyTheme.loginPageBoxColor,
+                decoration: BoxDecoration(
+                  gradient: MyTheme.gradient2,
+                ),
+                //color: MyTheme.loginPageBoxColor,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w),
                   child: Text(
                     'Flash Sale',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+
+                      //color: Theme.of(context).colorScheme.onPrimary,
+                      fontWeight: FontWeight.w300,
                       fontSize: 11.sp,
                     ),
                   ),
@@ -306,27 +327,6 @@ class HomePage extends StatelessWidget {
                               } else if (index == 4) {
                                 //Get.to(() => BestSeller());
                                 //Get.to(() => WalkTracking());
-                              } else if (index == 5) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 6) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 7) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 8) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 9) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 10) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 11) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
                               }
                             },
                             child: PhysicalModel(
@@ -369,15 +369,31 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Image.network(
-                                      image1[index],
-                                      height: size.height * 0.15,
-                                      width: 26.w,
-                                      //color: Colors.transparent
+                                    SizedBox(
+                                      height: 0.6.h,
+                                    ),
+                                    PhysicalModel(
+                                      shadowColor: Colors.green,
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(5),
+                                      elevation: 5,
+                                      child: Container(
+                                        height: size.height * 0.15,
+                                        width: size.width * 0.32,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          // border: Border.all(
+                                          //     color: AppColors.themecolors),
+                                          image: DecorationImage(
+                                              image: AssetImage(image1[index]),
+                                              fit: BoxFit.cover),
+                                        ),
+                                      ),
                                     ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 2.w),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 1.7.w),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -390,10 +406,13 @@ class HomePage extends StatelessWidget {
                                               color: Colors.black,
                                             ),
                                           ),
-                                          Icon(
-                                            Icons.add_shopping_cart_outlined,
-                                            size: 15.sp,
-                                            color: Colors.redAccent,
+                                          Text(
+                                            'Save 30%',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 10.sp,
+                                              color: Colors.red.shade300,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -418,7 +437,7 @@ class HomePage extends StatelessWidget {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 25.w,
+                                          width: 23.w,
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 2.w),
@@ -445,22 +464,43 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        Container(
-                                          height: 3.5.h,
-                                          width: 20.w,
-                                          decoration: BoxDecoration(
-                                              color: MyTheme.loginbuttonColor,
-                                              borderRadius: BorderRadius.only(
-                                                bottomRight: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5),
-                                              )),
-                                          child: Center(
-                                            child: Text(
-                                              'Save 3%',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 9.sp,
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            height: 3.3.h,
+                                            width: 23.9.w,
+                                            decoration: BoxDecoration(
+                                                color: MyTheme.loginbuttonColor,
+                                                borderRadius: BorderRadius.only(
+                                                  bottomRight:
+                                                      Radius.circular(5),
+                                                  bottomLeft:
+                                                      Radius.circular(5),
+                                                )),
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Add To Cart',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 8.sp,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 1.w,
+                                                  ),
+                                                  Icon(
+                                                    Icons
+                                                        .add_shopping_cart_outlined,
+                                                    size: 13.sp,
+                                                    color: Colors.redAccent,
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
@@ -483,14 +523,19 @@ class HomePage extends StatelessWidget {
               child: Container(
                 height: size.height * 0.034,
                 width: double.infinity,
-                color: MyTheme.loginPageBoxColor,
+                decoration: BoxDecoration(
+                  gradient: MyTheme.gradient2,
+                ),
+                //color: MyTheme.loginPageBoxColor,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w),
                   child: Text(
                     'Purchase your first product',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+
+                      //color: Theme.of(context).colorScheme.onPrimary,
+                      fontWeight: FontWeight.w300,
                       fontSize: 11.sp,
                     ),
                   ),
@@ -498,7 +543,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-                height: size.height * 0.15,
+                height: size.height * 0.19,
                 //width: double.infinity,
                 child: ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
@@ -523,15 +568,15 @@ class HomePage extends StatelessWidget {
                                     : Color(0xffeff8f5),
                             elevation: 0.1,
                             child: Container(
-                              height: 10.h,
+                              height: 23.h,
                               width: 100.w, //size.width * 0.99,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(0),
                                 color: MyTheme.ContainerUnSelectedColor,
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://www.pngplay.com/wp-content/uploads/6/Coupon-Icon-Background-PNG-Image.png'),
-                                    fit: BoxFit.fitWidth),
+                                    image: AssetImage(
+                                        'lib/assets/asset/Organic.gif'),
+                                    fit: BoxFit.fill),
                               ),
                             ),
                           ),
@@ -539,21 +584,26 @@ class HomePage extends StatelessWidget {
                       );
                     })),
             SizedBox(
-              height: 01.h,
+              height: 0.h,
             ),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
                 height: size.height * 0.034,
                 width: double.infinity,
-                color: MyTheme.loginPageBoxColor,
+                decoration: BoxDecoration(
+                  gradient: MyTheme.gradient2,
+                ),
+                //color: MyTheme.loginPageBoxColor,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w),
                   child: Text(
                     'Our Products',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+
+                      //color: Theme.of(context).colorScheme.onPrimary,
+                      fontWeight: FontWeight.w300,
                       fontSize: 11.sp,
                     ),
                   ),
@@ -587,27 +637,6 @@ class HomePage extends StatelessWidget {
                               } else if (index == 4) {
                                 //Get.to(() => BestSeller());
                                 //Get.to(() => WalkTracking());
-                              } else if (index == 5) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 6) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 7) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 8) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 9) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 10) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 11) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
                               }
                             },
                             child: PhysicalModel(
@@ -627,39 +656,31 @@ class HomePage extends StatelessWidget {
                                 child: Column(
                                   //mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Align(
-                                      alignment: Alignment.centerLeft,
+                                    SizedBox(
+                                      height: 3.6.h,
+                                    ),
+                                    PhysicalModel(
+                                      shadowColor: Colors.green,
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(5),
+                                      elevation: 5,
                                       child: Container(
-                                        height: 3.5.h,
-                                        width: 22.w,
+                                        height: size.height * 0.15,
+                                        width: size.width * 0.32,
                                         decoration: BoxDecoration(
-                                            color: Colors.yellow,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(5),
-                                              bottomRight: Radius.circular(20),
-                                            )),
-                                        child: Center(
-                                          child: Text(
-                                            'Best Saller',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 9.sp,
-                                            ),
-                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          // border: Border.all(
+                                          //     color: AppColors.themecolors),
+                                          image: DecorationImage(
+                                              image: AssetImage(image2[index]),
+                                              fit: BoxFit.cover),
                                         ),
                                       ),
                                     ),
-                                    Image.network(
-                                      image2[index],
-                                      width: 30.w,
-                                      //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrfScAJM3MU-f7T5SOMJ1muAuEqOZ-LEc9SVJDA3QFWKRq7AHJwtT1Xl081tBqoMJeDE&usqp=CAU',
-                                      height: size.height * 0.15,
-                                      //color: Colors.transparent
-                                    ),
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 2.w),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 1.7.w),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -672,10 +693,13 @@ class HomePage extends StatelessWidget {
                                               color: Colors.black,
                                             ),
                                           ),
-                                          Icon(
-                                            Icons.add_shopping_cart_outlined,
-                                            size: 15.sp,
-                                            color: Colors.redAccent,
+                                          Text(
+                                            'Save 30%',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 10.sp,
+                                              color: Colors.red.shade300,
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -700,7 +724,7 @@ class HomePage extends StatelessWidget {
                                     Row(
                                       children: [
                                         SizedBox(
-                                          width: 25.w,
+                                          width: 23.w,
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 2.w),
@@ -727,22 +751,43 @@ class HomePage extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        Container(
-                                          height: 3.5.h,
-                                          width: 20.w,
-                                          decoration: BoxDecoration(
-                                              color: MyTheme.loginbuttonColor,
-                                              borderRadius: BorderRadius.only(
-                                                bottomRight: Radius.circular(5),
-                                                bottomLeft: Radius.circular(5),
-                                              )),
-                                          child: Center(
-                                            child: Text(
-                                              'Save 3%',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 9.sp,
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            height: 3.3.h,
+                                            width: 23.9.w,
+                                            decoration: BoxDecoration(
+                                                color: MyTheme.loginbuttonColor,
+                                                borderRadius: BorderRadius.only(
+                                                  bottomRight:
+                                                      Radius.circular(5),
+                                                  bottomLeft:
+                                                      Radius.circular(5),
+                                                )),
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Add To Cart',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 8.sp,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 1.w,
+                                                  ),
+                                                  Icon(
+                                                    Icons
+                                                        .add_shopping_cart_outlined,
+                                                    size: 13.sp,
+                                                    color: Colors.redAccent,
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
@@ -762,14 +807,19 @@ class HomePage extends StatelessWidget {
               child: Container(
                 height: size.height * 0.034,
                 width: double.infinity,
-                color: MyTheme.loginPageBoxColor,
+                decoration: BoxDecoration(
+                  gradient: MyTheme.gradient2,
+                ),
+                //color: MyTheme.loginPageBoxColor,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w),
                   child: Text(
                     'Our Offers',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+
+                      //color: Theme.of(context).colorScheme.onPrimary,
+                      fontWeight: FontWeight.w300,
                       fontSize: 11.sp,
                     ),
                   ),
@@ -800,15 +850,15 @@ class HomePage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Container(
-                              height: 12.h,
-                              width: 94.w, //size.width * 0.99,
+                              height: 15.h,
+                              width: 95.w, //size.width * 0.99,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 // color: MyTheme.ContainerUnSelectedColor,
                                 image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIeHgSTEFLx2PAxGUuvAqqdkdIMCon2BYqtQ&usqp=CAU'),
-                                  fit: BoxFit.fitWidth,
+                                  image: AssetImage(
+                                      'lib/assets/asset/Organic.png'),
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),

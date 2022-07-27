@@ -7,6 +7,7 @@ import 'package:gyros_app/view/cart_new_section/product_details/product_detail_c
 import 'package:gyros_app/view/cart_new_section/product_details/product_detail_color/product_description.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detail_title_price/product_detail_title_price.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:sizer/sizer.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   ProductDetailsBody({Key? key, required this.product}) : super(key: key);
@@ -20,11 +21,14 @@ class ProductDetailsBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
+            height: 2.h,
+          ),
+          SizedBox(
             height: size.height,
             child: Stack(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
+                  margin: EdgeInsets.only(top: size.height * 0.29),
                   height: size.height * 0.7,
                   decoration: BoxDecoration(
                       color: Colors.white,

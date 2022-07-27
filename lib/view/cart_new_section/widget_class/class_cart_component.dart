@@ -44,14 +44,14 @@ class ItemCard extends StatelessWidget {
                   horizontal: MyTheme.defaultPading),
               child: Text(
                 currentProduct.name.toString(),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 3.w),
               child: Text(
                 " ₹ ${currentProduct.price.toString()}",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
               ),
             ),
           ],

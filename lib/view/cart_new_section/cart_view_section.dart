@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detailss.dart';
-import 'package:gyros_app/view/cart_new_section/widget_class/catagary_widgets.dart';
 import 'package:gyros_app/view/cart_new_section/widget_class/class_cart_component.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 
@@ -20,22 +19,38 @@ class CartPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white10,
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          'Product',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+          // style: Theme.of(context)
+          //     .textTheme
+          //     .headline5!
+          //     .copyWith(color: Theme.of(context).colorScheme.primary),
+        ),
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Theme.of(context).colorScheme.onPrimary,
+        color: Colors.white,
+        //Theme.of(context).colorScheme.onPrimary,
         child: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Product',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(color: Theme.of(context).colorScheme.primary),
-              ),
-              CategoryClass(),
+              // Text(
+              //   'Product',
+              //   style: Theme.of(context)
+              //       .textTheme
+              //       .headline5!
+              //       .copyWith(color: Theme.of(context).colorScheme.primary),
+              // ),
+              //CategoryClass(),
               Obx(() => _productController.isDataloadingCompleated.value == true
                   ? Expanded(
                       child: Padding(

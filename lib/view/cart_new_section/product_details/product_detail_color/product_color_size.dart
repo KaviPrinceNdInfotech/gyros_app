@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gyros_app/cart_modell/product_model.dart';
-import 'package:gyros_app/view/cart_new_section/product_details/product_detail_color/product_detail_color_dot.dart';
 import 'package:sizer/sizer.dart';
 
 class ProductColorSize extends StatelessWidget {
@@ -12,60 +11,62 @@ class ProductColorSize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.only(top: 44),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 2.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Color',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-                Row(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    ProductDetailColorDot(
-                      color: Color(int.parse(product.color.toString())),
-                      isSelected: true,
-                    ),
-                    ProductDetailColorDot(
-                      color: Colors.orange,
-                    ),
-                    ProductDetailColorDot(
-                      color: Colors.grey,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 2.h,
+
+                ///todo from here you have color of project in raw.
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Text(
+              //     'Color',
+              //     style: TextStyle(fontSize: 25),
+              //   ),
+              // ),
+              // Row(
+              //   // crossAxisAlignment: CrossAxisAlignment.end,
+              //   children: [
+              //     ProductDetailColorDot(
+              //       color: Color(int.parse(product.color.toString())),
+              //       isSelected: true,
+              //     ),
+              //     ProductDetailColorDot(
+              //       color: Colors.orange,
+              //     ),
+              //     ProductDetailColorDot(
+              //       color: Colors.grey,
+              //     ),
+              //   ],
+              // ),
+            ],
           ),
           // Spacer(),
-          Expanded(
-              child: RichText(
-            text: TextSpan(children: [
-              TextSpan(
-                  text: 'Weight\n',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16,
-                  )),
-              TextSpan(
-                  text: "${product.size} gm",
-                  style: Theme.of(context).textTheme.headline5!.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-            ]),
-          ))
+          Align(
+            alignment: Alignment.centerLeft,
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                    text: 'Weight\n',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    )),
+                TextSpan(
+                    text: "${product.size} gm",
+                    style: Theme.of(context).textTheme.headline5!.copyWith(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        )),
+              ]),
+            ),
+          )
         ],
       ),
     );

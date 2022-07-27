@@ -7,6 +7,10 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+final Uri _url = Uri.parse('https://www.instagram.com/anveshan.farms/');
+final Uri _url2 = Uri.parse('https://www.facebook.com/anveshan.farm/');
+final Uri _url3 = Uri.parse('https://twitter.com/Anveshan_farms');
+
 class WhatsAppTrackOrder extends StatelessWidget {
   const WhatsAppTrackOrder({Key? key}) : super(key: key);
 
@@ -97,25 +101,40 @@ class WhatsAppTrackOrder extends StatelessWidget {
                                   horizontal: 4.w, vertical: 2.h),
                               child: Row(
                                 children: [
-                                  Image.asset(
-                                    'lib/assets/asset/instagram.png',
-                                    height: 4.h,
-                                    width: 8.w,
-                                    color: Colors.white,
-                                  ),
-                                  Expanded(
+                                  InkWell(
+                                    onTap: () {
+                                      _launchUrl();
+                                    },
                                     child: Image.asset(
-                                      'lib/assets/asset/facebook.png',
+                                      'lib/assets/asset/instagram.png',
                                       height: 4.h,
                                       width: 8.w,
                                       color: Colors.white,
                                     ),
                                   ),
-                                  Image.asset(
-                                    'lib/assets/asset/twitter.png',
-                                    height: 4.h,
-                                    width: 8.w,
-                                    color: Colors.white,
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        _launchUrl2();
+                                      },
+                                      child: Image.asset(
+                                        'lib/assets/asset/facebook.png',
+                                        height: 4.h,
+                                        width: 8.w,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      _launchUrl3();
+                                    },
+                                    child: Image.asset(
+                                      'lib/assets/asset/twitter.png',
+                                      height: 4.h,
+                                      width: 8.w,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -302,5 +321,23 @@ class WhatsAppTrackOrder extends StatelessWidget {
       //   ),
       // );
     }
+  }
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw 'Could not launch $_url';
+  }
+}
+
+Future<void> _launchUrl2() async {
+  if (!await launchUrl(_url2)) {
+    throw 'Could not launch $_url';
+  }
+}
+
+Future<void> _launchUrl3() async {
+  if (!await launchUrl(_url3)) {
+    throw 'Could not launch $_url';
   }
 }

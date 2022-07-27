@@ -8,9 +8,9 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
+import 'package:gyros_app/view/cart_new_section/cart_view_section.dart';
 import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
-import 'package:gyros_app/view/home_page/exploree/my_cart/my_carts_page.dart';
 import 'package:gyros_app/view/home_page/home_pages.dart';
 import 'package:gyros_app/view/home_page/profile/profile_page.dart';
 import 'package:sizer/sizer.dart';
@@ -289,7 +289,8 @@ class NavBar extends StatelessWidget {
 //     //StudioPage(),
 //     //const Page4(),
                 //WishListPage(),
-                MyCartPage(),
+                //MyCartPage(),
+                CartPageView(),
                 //Explorepage(),
                 BestDeal(),
                 ProfilePages(),

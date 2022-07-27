@@ -20,14 +20,14 @@ class MySlider extends StatelessWidget {
   ];
 
   final List<String> images = [
-    'https://wallpaperaccess.com/full/2792340.jpg',
-    'https://wallpaperaccess.com/full/2792350.jpg',
-    'https://wallpaperaccess.com/full/2792347.jpg',
-    'https://wallpaperaccess.com/full/2792432.jpg',
-    'https://wallpaperaccess.com/full/2614545.jpg',
-    'https://wallpaperaccess.com/full/2792584.jpg',
-    'https://wallpaperaccess.com/full/2792583.jpg',
-    'https://wallpaperaccess.com/full/2792492.jpg',
+    'lib/assets/asset/ghee5.jpeg',
+    'lib/assets/asset/oil_1.jpeg',
+    'lib/assets/asset/honey2.jpeg',
+    'lib/assets/asset/gaggery4.jpeg',
+    'lib/assets/asset/spice1.jpeg',
+    'lib/assets/asset/sattu6.jpeg',
+    'lib/assets/asset/sweet3.jpeg',
+    'lib/assets/asset/dal4.jpeg',
   ];
   final bool _isPlaying = true;
 
@@ -39,6 +39,7 @@ class MySlider extends StatelessWidget {
       body: SizedBox(
         height: 26.h,
         child: ListView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             Container(
               height: 26.h,
@@ -54,8 +55,7 @@ class MySlider extends StatelessWidget {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: NetworkImage(images[index]),
-                          fit: BoxFit.cover),
+                          image: AssetImage(images[index]), fit: BoxFit.fill),
                     ),
                     //color: colors[index],
                     // child: Text(
