@@ -6,48 +6,49 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 
-class BestDeal extends StatelessWidget {
-  const BestDeal({Key? key}) : super(key: key);
+class GiftBox extends StatelessWidget {
+  const GiftBox({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final List<String> text1 = [
+      'New',
+      'New',
       'BestSeller',
       'BestSeller',
-      'BestSeller',
-      'BestSeller',
-      'BestSeller',
-      'BestSeller',
+      'New',
+      'New',
       'BestSeller',
       'BestSeller',
     ];
     final List<String> text2 = [
-      'Sweets',
-      'Ghee',
-      "Spices",
-      'Gaggery',
-      'Honey',
-      'Pulses',
-      "Ghee",
-      'Sweets',
+      'Gift 1',
+      'Gift 2',
+      "Gift 3",
+      'Gift 4',
+      'Gift 5',
+      'Gift 6',
+      "Gift 7",
+      'Gift 8',
     ];
 
     final List<String> image1 = [
-      'lib/assets/asset/sweet4.png',
-      'lib/assets/asset/gheee1.webp',
-      'lib/assets/asset/spices3.jpeg',
-      'lib/assets/asset/gaggery2.jpeg',
-      'lib/assets/asset/honey2.jpeg',
-      'lib/assets/asset/dal7.webp',
-      'lib/assets/asset/sweet4.png',
-      'lib/assets/asset/gheee1.webp',
+      'lib/assets/asset/gft11.jpeg',
+      'lib/assets/asset/gft33.jpeg',
+      'lib/assets/asset/gft44.jpeg',
+      'lib/assets/asset/gft66.jpeg',
+      'lib/assets/asset/gft11.jpeg',
+      'lib/assets/asset/gft33.jpeg',
+      'lib/assets/asset/gft44.jpeg',
+      'lib/assets/asset/gft66.jpeg',
     ];
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         title: Text(
-          'Best Deal',
+          'Gift Box',
           style: TextStyle(
               color: AppColors.themecolors, fontWeight: FontWeight.bold),
         ),
@@ -64,8 +65,20 @@ class BestDeal extends StatelessWidget {
       ),
       body: Container(
         height: size.height,
+        width: size.width,
         child: Column(
           children: [
+            Container(
+              height: size.height * 0.03,
+              width: size.width,
+              color: Colors.green,
+              child: Center(
+                child: Text(
+                  'Buy from range of premium and healthy gift Box',
+                  style: TextStyle(fontSize: 10.sp, color: Colors.white),
+                ),
+              ),
+            ),
             Expanded(
               child: GridView.builder(
                   shrinkWrap: true,
@@ -106,7 +119,7 @@ class BestDeal extends StatelessWidget {
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
-                                    'lib/assets/asset/background4.jpeg',
+                                    'lib/assets/asset/background1.jpeg',
                                   ),
                                   fit: BoxFit.fill),
                               borderRadius: BorderRadius.circular(5),
@@ -213,9 +226,9 @@ class BestDeal extends StatelessWidget {
                                             Text(
                                               '₹ 30',
                                               style: TextStyle(
-                                                fontWeight: FontWeight.w900,
+                                                fontWeight: FontWeight.w400,
                                                 fontSize: 8.sp,
-                                                color: Colors.yellowAccent,
+                                                color: MyTheme.loginbuttonColor,
                                               ),
                                             ),
                                             Text(

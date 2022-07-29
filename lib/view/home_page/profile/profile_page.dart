@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gyros_app/privecy_policy/privecy_policyyy.dart';
+import 'package:gyros_app/shiping_policy/shipping_policyyy.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
-import 'package:gyros_app/view/cart_new_section/cart_view_section.dart';
 import 'package:gyros_app/view/cart_page_practice/shoping_page_practice.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
 
 //import 'main_screen_details.dart';
@@ -79,10 +81,10 @@ class ProfilePages extends StatelessWidget {
                 visualDensity: VisualDensity(horizontal: 0, vertical: 3),
                 leading: Padding(
                   padding: EdgeInsets.all(9.0),
-                  child: Icon(Icons.shopping_bag),
+                  child: Icon(Icons.policy),
                 ),
                 title: Text(
-                  'Shop',
+                  'Refund Policy',
                   style: GoogleFonts.raleway(
                       color: Colors.black,
                       fontSize: 10.sp,
@@ -94,6 +96,7 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  Get.to(() => RefundPolicy());
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(
@@ -110,10 +113,10 @@ class ProfilePages extends StatelessWidget {
                 visualDensity: VisualDensity(horizontal: 0, vertical: 3),
                 leading: Padding(
                   padding: EdgeInsets.all(9.0),
-                  child: Icon(Icons.card_travel),
+                  child: Icon(Icons.local_shipping_rounded),
                 ),
                 title: Text(
-                  'Cart',
+                  'Shipping Policy',
                   style: GoogleFonts.raleway(
                       color: Colors.black,
                       fontSize: 10.sp,
@@ -125,7 +128,40 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
-                  Get.to(() => CartPageView());
+                  Get.to(() => ShippingPolicy());
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) =>
+                  //         //ProductScreen()));
+                  //         AllProduct()));
+                }, //PersonalDetails
+              ),
+
+              ListTile(
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                dense: true,
+                visualDensity: VisualDensity(horizontal: 0, vertical: 3),
+                leading: Padding(
+                  padding: EdgeInsets.all(9.0),
+                  child: Icon(Icons.privacy_tip_rounded),
+                ),
+                title: Text(
+                  'Privacy Policy',
+                  style: GoogleFonts.raleway(
+                      color: Colors.black,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+                trailing: Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  size: 9.sp,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Get.to(() => PrivecyPolicy());
+                  //Get.to(() => CartPageView());
                   // Navigator.push(
                   //     context,
                   //     MaterialPageRoute(

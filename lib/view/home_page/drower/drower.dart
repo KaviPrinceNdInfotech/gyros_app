@@ -4,9 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
 import 'package:sizer/sizer.dart';
 
 import 'drower_page/all_products.dart';
+import 'drower_page/trackingss/tracking.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -90,12 +94,12 @@ class MainDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
               tileColor:
-                  Get.currentRoute == '/ProfilePage' ? Colors.grey[300] : null,
+                  Get.currentRoute == '/BestDeal' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                //Get.to(() => ProfilePage());
-                Get.offNamed('/ProfilePage');
+                Get.to(() => BestDeal());
+                Get.offNamed('/BestDeal');
               },
             ),
             ListTile(
@@ -117,14 +121,13 @@ class MainDrawer extends StatelessWidget {
                 'Gift Boxes',
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
-              tileColor: Get.currentRoute == '/MyHolidayPage'
-                  ? Colors.grey[300]
-                  : null,
+              tileColor:
+                  Get.currentRoute == '/GiftBox' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                //Get.to(() => MyHolidayPage());
-                Get.offNamed('/MyHolidayPage');
+                Get.to(() => GiftBox());
+                Get.offNamed('/GiftBox');
               },
             ),
             ListTile(
@@ -146,14 +149,13 @@ class MainDrawer extends StatelessWidget {
                 'Our Story',
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
-              tileColor: Get.currentRoute == '/AssociatePage'
-                  ? Colors.grey[300]
-                  : null,
+              tileColor:
+                  Get.currentRoute == '/OurStory' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                //Get.to(() => AssociatePage());
-                Get.offNamed('/AssociatePage');
+                Get.to(() => OurStory());
+                Get.offNamed('/OurStory');
               },
             ),
             ListTile(
@@ -232,12 +234,12 @@ class MainDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
               tileColor:
-                  Get.currentRoute == '/ContactUs' ? Colors.grey[300] : null,
+                  Get.currentRoute == '/Tracking' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                //Get.to(() => ContactUs());
-                Get.offNamed('/ContactUs');
+                Get.to(() => Tracking());
+                Get.offNamed('/Tracking');
               },
             ),
             ListTile(

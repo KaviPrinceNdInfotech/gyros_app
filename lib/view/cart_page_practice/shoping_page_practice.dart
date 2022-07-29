@@ -159,7 +159,9 @@ class ShoppingPage extends StatelessWidget {
                       //       image: AssetImage('lib/assets/asset/guser_logo.png')
                       //   ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.back();
+                          },
                           icon: Icon(
                             Icons.dashboard_outlined,
                             size: 18.sp,
