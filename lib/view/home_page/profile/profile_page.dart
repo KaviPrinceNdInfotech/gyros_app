@@ -9,6 +9,7 @@ import 'package:gyros_app/shiping_policy/shipping_policyyy.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/cart_page_practice/shoping_page_practice.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/home_page/drower/drower_page/contact_us/help_supportss.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
 
@@ -274,6 +275,7 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  Get.to(() => HelpSuport());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => HelpSuport()));
                 }, //PersonalDetails

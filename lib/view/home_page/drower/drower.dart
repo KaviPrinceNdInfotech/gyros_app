@@ -4,12 +4,14 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
 import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
 import 'package:sizer/sizer.dart';
 
 import 'drower_page/all_products.dart';
+import 'drower_page/profile_page_personal/personal_profile_page.dart';
 import 'drower_page/trackingss/tracking.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -205,13 +207,14 @@ class MainDrawer extends StatelessWidget {
                 'Website',
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
-              tileColor:
-                  Get.currentRoute == '/WebsitePage' ? Colors.grey[300] : null,
+              tileColor: Get.currentRoute == '/WhatsAppTrackOrder'
+                  ? Colors.grey[300]
+                  : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                //Get.to(() => WebsitePage());
-                Get.offNamed('/WebsitePage');
+                Get.to(() => WhatsAppTrackOrder());
+                Get.offNamed('/WhatsAppTrackOrder');
               },
             ),
             ListTile(
@@ -261,13 +264,14 @@ class MainDrawer extends StatelessWidget {
                 'Profile',
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
-              tileColor:
-                  Get.currentRoute == '/ContactUs' ? Colors.grey[300] : null,
+              tileColor: Get.currentRoute == '/PersonalProfile'
+                  ? Colors.grey[300]
+                  : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                //Get.to(() => ContactUs());
-                Get.offNamed('/ContactUs');
+                Get.to(() => PersonalProfile());
+                Get.offNamed('/PersonalProfile');
               },
             ),
             ListTile(
