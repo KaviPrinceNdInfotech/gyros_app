@@ -21,11 +21,20 @@ class CartPageView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white10,
       appBar: AppBar(
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: MyTheme.ThemeColors,
+          ),
+        ),
         elevation: 0,
         title: Text(
           'Product',
           style: TextStyle(
-            color: Colors.black,
+            color: MyTheme.ThemeColors,
             fontWeight: FontWeight.bold,
           ),
           // style: Theme.of(context)

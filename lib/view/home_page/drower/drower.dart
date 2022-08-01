@@ -8,6 +8,8 @@ import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
 import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
+import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
+import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
 import 'drower_page/all_products.dart';
@@ -296,7 +298,7 @@ class MainDrawer extends StatelessWidget {
               tileColor: Get.currentRoute == '/home' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
-                Get.back();
+                Get.to(() => LoginMainPage());
                 Get.offNamed('/home');
               },
             ),
@@ -319,11 +321,12 @@ class MainDrawer extends StatelessWidget {
                 'Create Account',
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
-              tileColor: Get.currentRoute == '/home' ? Colors.grey[300] : null,
+              tileColor:
+                  Get.currentRoute == '/SignUp' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
-                Get.back();
-                Get.offNamed('/home');
+                Get.to(() => SignUp());
+                Get.offNamed('/SignUp');
               },
             ),
           ],

@@ -10,8 +10,12 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/cart_page_practice/shoping_page_practice.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/contact_us/help_supportss.dart';
+import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
+
+import 'cuppons_page.dart';
+import 'orders/my_orders.dart';
 
 //import 'main_screen_details.dart';
 
@@ -308,32 +312,32 @@ class ProfilePages extends StatelessWidget {
               //   }, //PersonalDetails
               // ),
 
-              ListTile(
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 0.5, horizontal: 10),
-                dense: true,
-                visualDensity: VisualDensity(horizontal: 0, vertical: 3),
-                leading: Padding(
-                  padding: EdgeInsets.all(9.0),
-                  child: Icon(Icons.map_rounded),
-                ),
-                title: Text(
-                  'Start Selling',
-                  style: GoogleFonts.raleway(
-                      color: Colors.black,
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  size: 9.sp,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => Wollet()));
-                }, //PersonalDetails
-              ),
+              // ListTile(
+              //   contentPadding:
+              //       EdgeInsets.symmetric(vertical: 0.5, horizontal: 10),
+              //   dense: true,
+              //   visualDensity: VisualDensity(horizontal: 0, vertical: 3),
+              //   leading: Padding(
+              //     padding: EdgeInsets.all(9.0),
+              //     child: Icon(Icons.map_rounded),
+              //   ),
+              //   title: Text(
+              //     'Start Selling',
+              //     style: GoogleFonts.raleway(
+              //         color: Colors.black,
+              //         fontSize: 10.sp,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              //   trailing: Icon(
+              //     Icons.arrow_forward_ios_sharp,
+              //     size: 9.sp,
+              //     color: Colors.black,
+              //   ),
+              //   onTap: () {
+              //     // Navigator.push(context,
+              //     //     MaterialPageRoute(builder: (context) => Wollet()));
+              //   }, //PersonalDetails
+              // ),
 
               ListTile(
                 contentPadding:
@@ -357,6 +361,7 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  Get.to(() => OrderPage());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => Wollet()));
                 }, //PersonalDetails
@@ -384,6 +389,7 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  Get.to(() => CupponsPage());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => Wollet()));
                 }, //PersonalDetails
@@ -411,6 +417,7 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  Get.to(() => LoginMainPage());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => Wollet()));
                 }, //PersonalDetails

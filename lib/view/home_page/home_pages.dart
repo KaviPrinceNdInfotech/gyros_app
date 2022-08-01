@@ -9,7 +9,6 @@ import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_cata
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/oil_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/vagitable_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
-import 'package:gyros_app/view/home_page/exploree/explore.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:sizer/sizer.dart';
@@ -135,7 +134,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: InkWell(
               onTap: () {
-                Get.to(()=>SearchPage());
+                Get.to(() => SearchPage());
                 //Get.to(() => ExploreView());
               },
               child: Icon(

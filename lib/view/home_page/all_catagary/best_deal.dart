@@ -73,7 +73,7 @@ class BestDeal extends StatelessWidget {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 4 / 3,
-                      mainAxisExtent: 200,
+                      mainAxisExtent: 215,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0),
                   itemCount: text2.length,
@@ -101,7 +101,7 @@ class BestDeal extends StatelessWidget {
                           color: MyTheme.ThemeColors,
                           elevation: 0.1,
                           child: Container(
-                            height: 55.h,
+                            height: size.height * 55,
                             width: size.width * 0.48,
                             decoration: BoxDecoration(
                               image: DecorationImage(
