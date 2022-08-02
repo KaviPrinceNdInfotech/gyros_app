@@ -34,6 +34,7 @@ class CowGhee extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Cow Ghee',

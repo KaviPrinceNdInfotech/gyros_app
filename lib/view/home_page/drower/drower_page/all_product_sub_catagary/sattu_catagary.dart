@@ -34,6 +34,7 @@ class Sattu extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Sattu',
@@ -77,145 +78,140 @@ class Sattu extends StatelessWidget {
                           color: Colors.yellow,
                           //color: Color(0xffeff8f5),
                           elevation: 0.1,
-                          child: Hero(
-                            tag: 'imageHero',
-                            child: Container(
-                              height: 55.h,
-                              width: size.width * 0.98,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Color(0xffFFFACD),
-                              ),
-                              child: Column(
-                                //mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 3.h,
-                                  ),
-                                  // Align(
-                                  //   alignment: Alignment.centerLeft,
-                                  //   child: Container(
-                                  //     height: 3.5.h,
-                                  //     width: 22.w,
-                                  //     decoration: BoxDecoration(
-                                  //         color: Colors.yellow,
-                                  //         borderRadius: BorderRadius.only(
-                                  //           topLeft: Radius.circular(5),
-                                  //           bottomRight: Radius.circular(20),
-                                  //         )),
-                                  //     child: Center(
-                                  //       child: Text(
-                                  //         'Best Saller',
-                                  //         style: TextStyle(
-                                  //           color: Colors.white,
-                                  //           fontWeight: FontWeight.w500,
-                                  //           fontSize: 9.sp,
-                                  //         ),
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  Image.network(
-                                    'https://pureecoindia.in/wp-content/uploads/2019/11/Sattu-1024x614.png',
-                                    width: 30.w,
-                                    //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrfScAJM3MU-f7T5SOMJ1muAuEqOZ-LEc9SVJDA3QFWKRq7AHJwtT1Xl081tBqoMJeDE&usqp=CAU',
-                                    height: size.height * 0.15,
-                                    //color: Colors.transparent
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 2.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          text3[index],
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 11.sp,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        Icon(
-                                          Icons.add_shopping_cart_outlined,
-                                          size: 15.sp,
-                                          color: Colors.redAccent,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 2.w),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        '₹ 50',
-                                        style: TextStyle(
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 7.sp,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Row(
+                          child: Container(
+                            height: 55.h,
+                            width: size.width * 0.98,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Color(0xffFFFACD),
+                            ),
+                            child: Column(
+                              //mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 3.h,
+                                ),
+                                // Align(
+                                //   alignment: Alignment.centerLeft,
+                                //   child: Container(
+                                //     height: 3.5.h,
+                                //     width: 22.w,
+                                //     decoration: BoxDecoration(
+                                //         color: Colors.yellow,
+                                //         borderRadius: BorderRadius.only(
+                                //           topLeft: Radius.circular(5),
+                                //           bottomRight: Radius.circular(20),
+                                //         )),
+                                //     child: Center(
+                                //       child: Text(
+                                //         'Best Saller',
+                                //         style: TextStyle(
+                                //           color: Colors.white,
+                                //           fontWeight: FontWeight.w500,
+                                //           fontSize: 9.sp,
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ),
+                                // ),
+                                Image.network(
+                                  'https://pureecoindia.in/wp-content/uploads/2019/11/Sattu-1024x614.png',
+                                  width: 30.w,
+                                  //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrfScAJM3MU-f7T5SOMJ1muAuEqOZ-LEc9SVJDA3QFWKRq7AHJwtT1Xl081tBqoMJeDE&usqp=CAU',
+                                  height: size.height * 0.15,
+                                  //color: Colors.transparent
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 2.w),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      SizedBox(
-                                        width: 25.w,
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 2.w),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                '₹ 30',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 8.sp,
-                                                  color:
-                                                      MyTheme.loginbuttonColor,
-                                                ),
-                                              ),
-                                              Text(
-                                                ' /500 gm',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 5.sp,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                      Text(
+                                        text3[index],
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 11.sp,
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Container(
-                                        height: 3.5.h,
-                                        width: 20.w,
-                                        decoration: BoxDecoration(
-                                            color: MyTheme.loginbuttonColor,
-                                            borderRadius: BorderRadius.only(
-                                              bottomRight: Radius.circular(5),
-                                              bottomLeft: Radius.circular(5),
-                                            )),
-                                        child: Center(
-                                          child: Text(
-                                            'Save 3%',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 9.sp,
-                                            ),
-                                          ),
-                                        ),
+                                      Icon(
+                                        Icons.add_shopping_cart_outlined,
+                                        size: 15.sp,
+                                        color: Colors.redAccent,
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
+                                ),
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 2.w),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      '₹ 50',
+                                      style: TextStyle(
+                                        decoration: TextDecoration.lineThrough,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 7.sp,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 25.w,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 2.w),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              '₹ 30',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 8.sp,
+                                                color: MyTheme.loginbuttonColor,
+                                              ),
+                                            ),
+                                            Text(
+                                              ' /500 gm',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 5.sp,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 3.5.h,
+                                      width: 20.w,
+                                      decoration: BoxDecoration(
+                                          color: MyTheme.loginbuttonColor,
+                                          borderRadius: BorderRadius.only(
+                                            bottomRight: Radius.circular(5),
+                                            bottomLeft: Radius.circular(5),
+                                          )),
+                                      child: Center(
+                                        child: Text(
+                                          'Save 3%',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 9.sp,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                         ),

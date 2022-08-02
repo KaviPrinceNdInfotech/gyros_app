@@ -46,6 +46,7 @@ class GiftBox extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Gift Box',
@@ -85,8 +86,8 @@ class GiftBox extends StatelessWidget {
                   //physics: NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 4 / 3,
-                      mainAxisExtent: 200,
+                      childAspectRatio: 3 / 2,
+                      mainAxisExtent: 210,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0),
                   itemCount: text2.length,
@@ -114,7 +115,7 @@ class GiftBox extends StatelessWidget {
                           color: MyTheme.ThemeColors,
                           elevation: 0.1,
                           child: Container(
-                            height: 55.h,
+                            height: size.height * 55,
                             width: size.width * 0.48,
                             decoration: BoxDecoration(
                               image: DecorationImage(

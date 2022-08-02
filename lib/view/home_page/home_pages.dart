@@ -7,18 +7,20 @@ import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/honey_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/oil_catagary.dart';
-import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/vagitable_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
+import 'package:gyros_app/view/home_page/profile/cuppons_page.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:sizer/sizer.dart';
 
 import 'all_catagary/best_deal.dart';
 import 'drower/drower_page/all_product_sub_catagary/cow_ghee.dart';
-import 'drower/drower_page/all_product_sub_catagary/fruits_catagary.dart';
 import 'drower/drower_page/all_product_sub_catagary/jaggery_catagary.dart';
+import 'drower/drower_page/all_product_sub_catagary/pulsess.dart';
+import 'drower/drower_page/all_product_sub_catagary/sattu_catagary.dart';
 import 'drower/drower_page/all_product_sub_catagary/spices_catagary.dart';
 import 'drower/drower_page/all_product_sub_catagary/sweets_catagary.dart';
+import 'drower/drower_page/gift_box.dart';
 import 'home_page_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -119,15 +121,20 @@ class HomePage extends StatelessWidget {
         title: Image.asset(
           'lib/assets/asset/guser_logo.png',
           color: AppColors.themecolors,
-          height: 14.h,
+          height: 13.h,
           width: 35.w,
         ),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),
-            child: Icon(
-              Icons.shopping_cart,
-              color: AppColors.themecolors,
+            child: InkWell(
+              onTap: () {
+                //Get.to(() => Register());
+              },
+              child: Icon(
+                Icons.shopping_cart,
+                color: AppColors.themecolors,
+              ),
             ),
           ),
           Padding(
@@ -207,22 +214,23 @@ class HomePage extends StatelessWidget {
                               Get.to(() => Honey());
                               //Get.to(() => WalkTracking());
                             } else if (index == 6) {
-                              Get.to(() => Jeggary());
+                              Get.to(() => Pulses());
                               //Get.to(() => WalkTracking());
                             } else if (index == 7) {
-                              Get.to(() => Sweets());
+                              Get.to(() => Sattu());
                               //Get.to(() => WalkTracking());
                             } else if (index == 8) {
-                              //Get.to(() => WalkTracking());
+                              Get.to(() => CupponsPage());
                             } else if (index == 9) {
-                              //Get.to(() => BestSeller());
+                              Get.to(() => GiftBox());
+
                               //Get.to(() => WalkTracking());
                             } else if (index == 10) {
-                              Get.to(() => Fruitsss());
+                              Get.to(() => Sweets());
                               //Get.to(() => BestSeller());
                               //Get.to(() => WalkTracking());
                             } else if (index == 11) {
-                              Get.to(() => Vegitablesss());
+                              Get.to(() => Jeggary());
                               //Get.to(() => WalkTracking());
                             }
                           },

@@ -43,6 +43,7 @@ class AllProducts extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'All Products',

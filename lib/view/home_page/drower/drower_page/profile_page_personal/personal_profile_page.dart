@@ -16,6 +16,7 @@ class PersonalProfile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        backgroundColor: Colors.white,
         title: Text(
           'Personal Detail',
           style: TextStyle(

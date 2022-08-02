@@ -8,6 +8,8 @@ import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart'
 import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
+import 'login_otp/login_mobile.dart';
+
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -55,11 +57,22 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
+              CustomButtom(
+                buttonColor: MyTheme.loginbuttonColor,
+                buttontext: 'LOGIN WITH MOBILE',
+                textColor: Colors.white,
+                //Theme.of(context).colorScheme.onPrimary,
+                handleButtonClick: loginButtonClickHandlerPhone,
+              ),
+              SizedBox(
+                height: 15,
+              ),
 
               CustomButtom(
                 buttonColor: MyTheme.loginbuttonColor,
-                buttontext: 'LOGIN',
-                textColor: Theme.of(context).colorScheme.onPrimary,
+                buttontext: 'LOGIN WITH EMAIL',
+                textColor: Colors.white,
+                //Theme.of(context).colorScheme.onPrimary,
                 handleButtonClick: loginButtonClickHandler,
               ),
 
@@ -69,7 +82,8 @@ class LoginPage extends StatelessWidget {
               CustomButtom(
                 buttonColor: MyTheme.signUpButtonColor,
                 buttontext: 'SIGNUP',
-                textColor: Theme.of(context).colorScheme.primary,
+                textColor: Colors.white,
+                // textColor: Theme.of(context).colorScheme.primary,
                 handleButtonClick: signupButtonClickHandler,
               ),
             ],
@@ -77,6 +91,11 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  loginButtonClickHandlerPhone() {
+    print("Login Phone Clicked");
+    Get.to(() => Register());
   }
 
   loginButtonClickHandler() {

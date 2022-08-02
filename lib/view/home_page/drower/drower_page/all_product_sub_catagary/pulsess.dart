@@ -6,8 +6,8 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 
-class Spices extends StatelessWidget {
-  const Spices({Key? key}) : super(key: key);
+class Pulses extends StatelessWidget {
+  const Pulses({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,14 @@ class Spices extends StatelessWidget {
       'Ghee 8'
     ];
     final List<String> text3 = [
-      'Spices 1',
-      'Spices 2',
-      'Spices 3',
-      'Spices 4',
-      'Spices 5',
-      'Spices 6',
-      'Spices 7',
-      'Spices 8'
+      'Pulse 1',
+      'Pulse 2',
+      'Pulse 3',
+      'Pulse 4',
+      'Pulse 5',
+      'Pulse 6',
+      'Pulse 7',
+      'Pulse 8'
     ];
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -37,7 +37,7 @@ class Spices extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'Spices',
+          'Jeggary',
           style: TextStyle(
               color: AppColors.themecolors, fontWeight: FontWeight.bold),
         ),
@@ -83,7 +83,7 @@ class Spices extends StatelessWidget {
                             width: size.width * 0.98,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: Color(0xff623A2B),
+                              color: Color(0xffEFC072),
                             ),
                             child: Column(
                               //mainAxisAlignment: MainAxisAlignment.center,
@@ -115,8 +115,9 @@ class Spices extends StatelessWidget {
                                 //   ),
                                 // ),
                                 Image.network(
-                                  'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3BpY2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60',
-                                  width: 35.w,
+                                  'https://images.unsplash.com/photo-1552585960-0e1069ce7405?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+                                  //'https://images.unsplash.com/photo-1610508500445-a4592435e27e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8amFnZ2VyeXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60'
+                                  width: 30.w,
                                   //'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrfScAJM3MU-f7T5SOMJ1muAuEqOZ-LEc9SVJDA3QFWKRq7AHJwtT1Xl081tBqoMJeDE&usqp=CAU',
                                   height: size.height * 0.15,
                                   fit: BoxFit.fitWidth,

@@ -21,6 +21,7 @@ class MainDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Drawer(
+        backgroundColor: Colors.white,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[

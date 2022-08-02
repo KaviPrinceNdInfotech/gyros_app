@@ -19,18 +19,17 @@ class WhatsAppTrackOrder extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              color: Colors.white,
-              width: size.width,
-              height: size.height,
-              child: Column(
-                children: [
-                  Positioned(
-                    top: 0,
-                    child: Container(
+        child: Container(
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                color: Colors.white,
+                width: size.width,
+                height: size.height,
+                child: Column(
+                  children: [
+                    Container(
                       color: AppColors.themecolors,
                       height: size.height * 0.3,
                       width: double.infinity,
@@ -143,156 +142,157 @@ class WhatsAppTrackOrder extends StatelessWidget {
                         ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Positioned(
-              top: 24.h,
-              left: 5.w,
-              right: 5.w,
-              child: PhysicalModel(
-                color: Colors.white10,
-                borderRadius: BorderRadius.circular(5),
-                elevation: 2,
-                child: Container(
-                  height: 17.h,
-                  width: 90.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    //border: Border.all(color: Colors.grey, width: 0.5)
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Contact Us',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
+              Positioned(
+                top: 24.h,
+                left: 5.w,
+                right: 5.w,
+                child: PhysicalModel(
+                  color: Colors.white10,
+                  borderRadius: BorderRadius.circular(5),
+                  elevation: 2,
+                  child: Container(
+                    height: 17.h,
+                    width: 90.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      //border: Border.all(color: Colors.grey, width: 0.5)
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Contact Us',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _launchWhatsapp();
-                          },
-                          child: Container(
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              _launchWhatsapp();
+                            },
+                            child: Container(
+                              height: 5.5.h,
+                              width: 90.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey)),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'lib/assets/asset/whatsapp.png',
+                                    height: 4.h,
+                                    width: 8.w,
+                                    //color: Colors.green,
+                                  ),
+                                  Text('   Whatsapp Chat')
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 44.h,
+                left: 5.w,
+                right: 5.w,
+                child: PhysicalModel(
+                  color: Colors.white10,
+                  borderRadius: BorderRadius.circular(5),
+                  elevation: 2,
+                  child: Container(
+                    height: 22.h,
+                    width: 90.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      //border: Border.all(color: Colors.grey, width: 0.5)
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'View Order Status',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          Text(
+                            'Track Your Order',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Container(
                             height: 5.5.h,
                             width: 90.w,
                             decoration: BoxDecoration(
                                 border: Border.all(color: Colors.grey)),
                             child: Row(
                               children: [
-                                Image.asset(
-                                  'lib/assets/asset/whatsapp.png',
-                                  height: 4.h,
-                                  width: 8.w,
-                                  //color: Colors.green,
+                                Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.search),
                                 ),
-                                Text('   Whatsapp Chat')
+                                Text(
+                                  'Find your order',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13),
+                                ),
+
+                                ///transform bpx
+                                // RotatedBox(
+                                //   quarterTurns: 4,
+                                //   child: Icon(
+                                //     Icons.login,
+                                //     color: Colors.black,
+                                //   ),
+                                // ),
+                                // AnimatedContainer(
+                                //   duration: Duration(seconds: 2),
+                                //   color: Colors.black,
+                                //   height: 3.h,
+                                //   width: 6.w,
+                                // ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 44.h,
-              left: 5.w,
-              right: 5.w,
-              child: PhysicalModel(
-                color: Colors.white10,
-                borderRadius: BorderRadius.circular(5),
-                elevation: 2,
-                child: Container(
-                  height: 22.h,
-                  width: 90.w,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    //border: Border.all(color: Colors.grey, width: 0.5)
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.h),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'View Order Status',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        Text(
-                          'Track Your Order',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Container(
-                          height: 5.5.h,
-                          width: 90.w,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey)),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(Icons.search),
-                              ),
-                              Text(
-                                'Find your order',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w400, fontSize: 13),
-                              ),
-
-                              ///transform bpx
-                              // RotatedBox(
-                              //   quarterTurns: 4,
-                              //   child: Icon(
-                              //     Icons.login,
-                              //     color: Colors.black,
-                              //   ),
-                              // ),
-                              // AnimatedContainer(
-                              //   duration: Duration(seconds: 2),
-                              //   color: Colors.black,
-                              //   height: 3.h,
-                              //   width: 6.w,
-                              // ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

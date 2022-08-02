@@ -17,6 +17,7 @@ class Tracking extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Order Status',
@@ -248,7 +249,7 @@ class Tracking extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     elevation: 0,
                     onPressed: () {
-                      Get.to(() =>NavBar());
+                      Get.to(() => NavBar());
                     },
                     child: Text(
                       'Continue Shopping',

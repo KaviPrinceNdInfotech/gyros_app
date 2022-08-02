@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/controllers/binding_controllers/binding_controllers.dart';
-import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/intro_screen/intro_video/intro_video_view.dart';
 import 'package:gyros_app/view/onboardonds/onboarding_screens.dart';
 import 'package:sizer/sizer.dart';
@@ -48,10 +47,14 @@ class MyApp extends StatelessWidget {
         //getPages: AppPages.routs,
         //initialRoute: Routs.INITIAL,
         debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.system,
+
+        ///todo theme mode
+        //themeMode: ThemeMode.system,
         //title: 'Book Appointment',
-        theme: MyTheme.lightTheme(context),
-        darkTheme: MyTheme.darkTheme(context),
+        ///todo here theme light and dart you have to uncomments
+
+        //theme: MyTheme.lightTheme(context),
+        //darkTheme: MyTheme.darkTheme(context),
         home: Column(
           children: [
             SizedBox(height: 0, child: SplashScreen),
