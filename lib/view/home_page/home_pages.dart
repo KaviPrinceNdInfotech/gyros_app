@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/cart_new_section/empty_cart/empty_cart.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/honey_catagary.dart';
@@ -129,7 +130,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: InkWell(
               onTap: () {
-                //Get.to(() => Register());
+                Get.to(() => ShopingBagsEmpty());
               },
               child: Icon(
                 Icons.shopping_cart,

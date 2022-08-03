@@ -22,7 +22,7 @@ class NavBar extends StatelessWidget {
   var size, height, width;
   NavBar({Key? key}) : super(key: key);
 
-  NavController _navController = Get.put(NavController(), permanent: true);
+  NavController _navController = Get.find();
   //final _advancedDrawerController = AdvancedDrawerController();
   @override
   Widget build(BuildContext context) {
@@ -157,7 +157,7 @@ class NavBar extends StatelessWidget {
                               height: 3.8.h,
                               width: 6.w,
                               child: Icon(
-                                Icons.shopping_cart_rounded,
+                                Icons.explore,
                                 size: 20.sp,
                                 color: _navController.tabindex.value == 2
                                     ? AppColors.themecolors
@@ -172,7 +172,7 @@ class NavBar extends StatelessWidget {
                               //   fit: BoxFit.fill,
                               // ),
                             ),
-                            Text("Cart",
+                            Text("Explore",
                                 style: GoogleFonts.poppins(
                                     color: _navController.tabindex.value == 2
                                         ? AppColors.themecolors

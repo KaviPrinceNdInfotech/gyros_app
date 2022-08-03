@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detailss.dart';
 import 'package:gyros_app/view/cart_new_section/widget_class/class_cart_component.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
@@ -12,6 +14,7 @@ class CartPageView extends StatelessWidget {
   CartPageView({Key? key}) : super(key: key);
 
   ProductController _productController = Get.put(ProductController());
+  NavController _navController = Get.find();
 
   //Categorycontroller _categorycontroller = Get.put(Categorycontroller());
 
@@ -21,9 +24,11 @@ class CartPageView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white10,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         leading: InkWell(
           onTap: () {
-            Get.back();
+            _navController.tabindex(0);
+            Get.to(() => NavBar());
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,

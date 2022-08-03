@@ -4,8 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
-import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
 import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
@@ -13,12 +14,14 @@ import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
 import 'drower_page/all_products.dart';
+import 'drower_page/blogs/my_blogs.dart';
 import 'drower_page/profile_page_personal/personal_profile_page.dart';
 import 'drower_page/trackingss/tracking.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    NavController _navController = Get.put(NavController(), permanent: true);
     return SafeArea(
       child: Drawer(
         backgroundColor: Colors.white,
@@ -75,6 +78,7 @@ class MainDrawer extends StatelessWidget {
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
+
                 Get.to(() => AllProducts());
                 Get.offNamed('/AllProducts');
               },
@@ -99,12 +103,17 @@ class MainDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
               tileColor:
-                  Get.currentRoute == '/BestDeal' ? Colors.grey[300] : null,
+                  // Get.currentRoute == '/NavBar'
+                  //     ? Colors.grey[300]
+                  //     :
+                  Colors.transparent,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                Get.to(() => BestDeal());
-                Get.offNamed('/BestDeal');
+                _navController.tabindex(3);
+                Get.to(() => NavBar());
+                //Get.to(() => BestDeal());
+                Get.offNamed('/NavBar');
               },
             ),
             ListTile(
@@ -183,12 +192,12 @@ class MainDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 9.sp, fontWeight: FontWeight.w600),
               ),
               tileColor:
-                  Get.currentRoute == '/Gallerys' ? Colors.grey[300] : null,
+                  Get.currentRoute == '/Blogss' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
-                Get.back();
-                //Get.to(() => Gallerys());
-                Get.offNamed('/Gallerys');
+                //Get.back();
+                Get.to(() => Blogss());
+                Get.offNamed('/Blogss');
               },
             ),
             ListTile(

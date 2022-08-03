@@ -18,7 +18,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final _formkeyphone = GlobalKey<FormState>();
+    final _formkeyphones = GlobalKey<FormState>();
     TextEditingController mobileController = TextEditingController();
 
     return Scaffold(
@@ -113,7 +113,7 @@ class _RegisterState extends State<Register> {
                         children: [
                           TextFieldDecorator(
                             child: UserMobileTextField(
-                              key: _formkeyphone,
+                              key: _formkeyphones,
 
                               // useridTextFieldPrefixicon
                               userMobileController: mobileController,
@@ -171,7 +171,7 @@ class _RegisterState extends State<Register> {
                               borderRadius: BorderRadius.circular(24),
                             ),
                             child: ElevatedButton(
-                              key: _formkeyphone,
+                              //key: _formkeyphones,
                               onPressed: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(

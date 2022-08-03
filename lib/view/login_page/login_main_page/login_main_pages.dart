@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/forget_password/forget_passwords.dart';
@@ -17,6 +18,7 @@ class LoginMainPage extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
   TextEditingController useridController = TextEditingController();
   TextEditingController passController = TextEditingController();
+  NavController _navController = Get.find();
 
   // String userIdErrorText = 'User Id Can not found';
   // String userIdHinttext = 'Enter User Id';
@@ -41,7 +43,11 @@ class LoginMainPage extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(
-                          'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
+                          //'https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                          //'https://images.unsplash.com/photo-1616344091740-af6b6859bb01?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGhvbmV5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60'
+                          //'https://images.unsplash.com/photo-1555211652-5c6222f971bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
+                          'https://images.unsplash.com/photo-1627154424678-0d3909874daa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbmV5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60'
+                          //'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
                           //'https://img.freepik.com/free-photo/fresh-vegetables-with-price-tags-shelf-grocery-store-supermarket_342744-1397.jpg?w=1800&t=st=1656765079~exp=1656765679~hmac=960f81d4a643d71d68c26c50e5b182ce5cee8ee12935b54cbf72f66ea89c3425'
                           //'https://images.unsplash.com/photo-1608686207856-001b95cf60ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80'
                           //'https://img.freepik.com/free-photo/woman-with-tablet-buying-healthy-food-supermarket-grocery-store_342744-1110.jpg?t=st=1656747606~exp=1656748206~hmac=cad4fcedf9befb2991319f1634acc32b038e0757fc8cb569c84777d87febd9be&w=1800'
@@ -55,13 +61,13 @@ class LoginMainPage extends StatelessWidget {
                 //crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 1.h,
+                    height: 0.0.h,
                   ),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
                       height: size.height * 0.2,
-                      width: size.width * 0.5,
+                      width: size.width * 0.4,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
@@ -81,7 +87,7 @@ class LoginMainPage extends StatelessWidget {
                   //   //animate: false,
                   // ),
                   SizedBox(
-                    height: 12.h,
+                    height: 10.h,
                   ),
 
                   TextFieldDecorator(
@@ -132,7 +138,9 @@ class LoginMainPage extends StatelessWidget {
                     buttontext: 'LOGIN',
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     handleButtonClick: () {
+                      _navController.tabindex(0);
                       Get.to(() => NavBar());
+                      //Get.to(() => NavBar());
                     },
                   ),
                   SizedBox(

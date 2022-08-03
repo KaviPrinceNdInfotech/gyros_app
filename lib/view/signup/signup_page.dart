@@ -6,7 +6,7 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
+import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:gyros_app/widgets/text_field_decorator.dart';
 import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
@@ -42,7 +42,8 @@ class SignUp extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(
-                          'https://images.pexels.com/photos/7267055/pexels-photo-7267055.jpeg?auto=compress&cs=tinysrgb&w=600'
+                          'https://images.unsplash.com/photo-1618411640018-972400a01458?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHN3ZWV0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1400&q=60'
+                          //'https://images.pexels.com/photos/7267055/pexels-photo-7267055.jpeg?auto=compress&cs=tinysrgb&w=600'
                           //'https://images.pexels.com/photos/8805182/pexels-photo-8805182.jpeg?auto=compress&cs=tinysrgb&w=600'
                           //'https://images.pexels.com/photos/6280438/pexels-photo-6280438.jpeg?auto=compress&cs=tinysrgb&w=600'
                           //'https://images.pexels.com/photos/6280438/pexels-photo-6280438.jpeg?auto=compress&cs=tinysrgb&w=600'
@@ -204,7 +205,7 @@ class SignUp extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.to(() => LoginMainPage());
+                          Get.to(() => LoginPage());
                         },
                         child: Text(
                           ' Login',

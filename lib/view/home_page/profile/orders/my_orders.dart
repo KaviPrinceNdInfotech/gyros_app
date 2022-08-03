@@ -17,6 +17,7 @@ class OrderPage extends StatelessWidget {
     return Scaffold(
       body: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
             'My Orders',

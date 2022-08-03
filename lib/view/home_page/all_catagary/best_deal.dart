@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 
 class BestDeal extends StatelessWidget {
-  const BestDeal({Key? key}) : super(key: key);
+  BestDeal({Key? key}) : super(key: key);
+  NavController _navController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,9 @@ class BestDeal extends StatelessWidget {
         ),
         leading: InkWell(
             onTap: () {
-              Get.back();
+              //Get.back();
+              _navController.tabindex(0);
+              Get.to(() => NavBar());
               // _homePageController.toggle(index);
               //Get.to(() => WalkTracking());
             },

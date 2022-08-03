@@ -19,6 +19,7 @@ class HelpSuport extends StatelessWidget {
     width = size.width;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Ask Question',

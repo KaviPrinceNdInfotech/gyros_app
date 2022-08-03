@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 
 class Otp extends StatefulWidget {
@@ -12,6 +13,7 @@ class Otp extends StatefulWidget {
 }
 
 class _OtpState extends State<Otp> {
+  NavController _navController = Get.find();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -125,6 +127,7 @@ class _OtpState extends State<Otp> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
+                                _navController.tabindex(0);
                                 Get.to(() => NavBar());
                               },
                               style: ButtonStyle(

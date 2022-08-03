@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/cow_ghee.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/oil_catagary.dart';
 import 'package:sizer/sizer.dart';
@@ -15,7 +17,8 @@ import 'all_product_sub_catagary/spices_catagary.dart';
 import 'all_product_sub_catagary/sweets_catagary.dart';
 
 class AllProducts extends StatelessWidget {
-  const AllProducts({Key? key}) : super(key: key);
+  AllProducts({Key? key}) : super(key: key);
+  NavController _navController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,8 @@ class AllProducts extends StatelessWidget {
         ),
         leading: InkWell(
             onTap: () {
-              Get.back();
+              _navController.tabindex(0);
+              Get.to(() => NavBar());
             },
             child: Icon(
               Icons.arrow_back_ios_outlined,
