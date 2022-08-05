@@ -4,23 +4,23 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/reset_password/forget_email_code.dart';
+import 'package:gyros_app/view/reset_password/reset_password.dart';
 import 'package:gyros_app/widgets/text_field_decorator.dart';
 import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
 
-class Forgetpasswords extends StatelessWidget {
-  final _formkey = GlobalKey<FormState>();
-  TextEditingController emailController = TextEditingController();
+class EmailCode extends StatelessWidget {
+  final _formkeysss = GlobalKey<FormState>();
+  //TextEditingController emailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
-  Forgetpasswords({Key? key}) : super(key: key);
+  EmailCode({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Form(
-        key: _formkey,
+        key: _formkeysss,
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -29,12 +29,7 @@ class Forgetpasswords extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(
-                          'https://images.unsplash.com/photo-1610508500445-a4592435e27e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-                          // 'https://images.unsplash.com/photo-1605194000384-439c3ced8d15?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
-                          // 'https://images.unsplash.com/photo-1605276277265-84f97980a425?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
-                          //'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3dlZXRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60'
-                          //'https://images.unsplash.com/photo-1551844547-043f512dc4d9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHN3ZWV0c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60'
-                          //'https://images.unsplash.com/photo-1471943311424-646960669fbc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
+                          'https://images.unsplash.com/photo-1609540969455-ad5ea19be121?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
                           //'https://images.pexels.com/photos/7267050/pexels-photo-7267050.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
                           //'https://images.pexels.com/photos/6280388/pexels-photo-6280388.jpeg?auto=compress&cs=tinysrgb&w=600'
                           //'https://images.pexels.com/photos/6674392/pexels-photo-6674392.jpeg?auto=compress&cs=tinysrgb&w=600'
@@ -47,7 +42,7 @@ class Forgetpasswords extends StatelessWidget {
                           //'https://images.wallpapersden.com/image/download/las-vegas-night-hotel_Zmxtbm6UmZqaraWkpJRmbmdlrWZlbWU.jpg'
                           //'https://i.pinimg.com/originals/01/96/c1/0196c1f3432b1a2ebac601dadb7b92cd.jpg'
                           ),
-                      fit: BoxFit.fitHeight)),
+                      fit: BoxFit.cover)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 //crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,38 +75,23 @@ class Forgetpasswords extends StatelessWidget {
                   // ),
 
                   SizedBox(
-                    height: 13.h,
+                    height: 12.h,
                   ),
 
                   TextFieldDecorator(
                     child: UserIdTextField(
                       // useridTextFieldPrefixicon
-                      useridController: emailController,
-                      userIdErrorText: 'Email can not be empty',
-                      userIdHintText: 'Enter Email',
+                      useridController: otpController,
+                      userIdErrorText: 'Pin can not be empty',
+                      userIdHintText: 'Enter Your Pin',
                       userIdHintTextColor: AppColors.themecolors,
                       userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.email,
+                      useridTextFieldPrefixIcon: Icons.pin,
                       useridTextFieldPrefixIconColor: AppColors.themecolors,
 
                       onUseridValueChange: (value) {},
                     ),
                   ),
-
-                  // TextFieldDecorator(
-                  //   child: UserIdTextField(
-                  //     // useridTextFieldPrefixicon
-                  //     useridController: otpController,
-                  //     userIdErrorText: 'Pin can not be empty',
-                  //     userIdHintText: 'Enter Your Pin',
-                  //     userIdHintTextColor: AppColors.themecolors,
-                  //     userIdErrorTextColor: AppColors.themecolors,
-                  //     useridTextFieldPrefixIcon: Icons.pin,
-                  //     useridTextFieldPrefixIconColor: AppColors.themecolors,
-                  //
-                  //     onUseridValueChange: (value) {},
-                  //   ),
-                  // ),
 
                   SizedBox(
                     height: 1.h,
@@ -119,10 +99,10 @@ class Forgetpasswords extends StatelessWidget {
 
                   CustomButtom(
                     buttonColor: MyTheme.loginbuttonColor,
-                    buttontext: 'Next',
+                    buttontext: 'Reset',
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     handleButtonClick: () {
-                      Get.to(() => EmailCode());
+                      Get.to(() => ResetPasswords());
                     },
                   ),
                   SizedBox(

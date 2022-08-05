@@ -7,10 +7,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/privecy_policy/privecy_policyyy.dart';
 import 'package:gyros_app/shiping_policy/shipping_policyyy.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
-import 'package:gyros_app/view/cart_page_practice/shoping_page_practice.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/contact_us/help_supportss.dart';
-import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
+import 'package:gyros_app/view/login_page/login_pagee.dart';
+import 'package:gyros_app/view/model_cart_practice/viewss/catalog_screen1.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
 
@@ -68,8 +68,9 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  Get.to(() => CatalogScreen());
                   //_bottomController.tabindex(0);
-                  Get.to(() => ShoppingPage());
+                  //Get.to(() => ShoppingPage());
                   //MainPage());
 
                   //Todo if you want to go with any page in nav bar
@@ -417,7 +418,7 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
-                  Get.to(() => LoginMainPage());
+                  Get.to(() => LoginPage());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => Wollet()));
                 }, //PersonalDetails

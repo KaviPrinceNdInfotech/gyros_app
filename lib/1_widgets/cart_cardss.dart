@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gyros_app/constants/shared_car_page_constant.dart';
 import 'package:gyros_app/controllers/cart_controllers.dart';
 import 'package:gyros_app/models/cart_model.dart';
-import 'package:sizer/sizer.dart';
+
+import '../constants/shared_car_page_constant.dart';
 
 class CartCArd extends StatelessWidget {
   final CartController cartController = Get.find();
@@ -19,7 +19,7 @@ class CartCArd extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 114,
-      padding: const EdgeInsets.only(left: 6, top: 10, bottom: 10, right: 10),
+      padding: EdgeInsets.only(left: 6, top: 10, bottom: 10, right: 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -46,27 +46,12 @@ class CartCArd extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                product.product.productName,
-                style: TextStyle(
-                    fontSize: 11.sp,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
+              Text(product.product.productName),
+              Text(product.product.productDescription),
               SizedBox(
-                width: 25.w,
-                height: 3.h,
-                child: Text(product.product.productDescription,
-                    style: TextStyle(
-                      fontSize: 8.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                    )),
+                height: 30,
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Text('₹ ${product.product.price.toString()}')
+              Text(product.product.price.toString())
             ],
           ),
           Align(
@@ -80,7 +65,7 @@ class CartCArd extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       function2;
                     },
@@ -105,19 +90,17 @@ class CartCArd extends StatelessWidget {
                       width: 30,
                       child: GetBuilder<CartController>(builder: (controller) {
                         return Center(
-                          child: Text(
-                            product.qty.toString(),
-                            style: TextStyle(fontSize: 18),
-                          ),
-                        );
+                            child: Text(
+                          product.qty.toString(),
+                          style: TextStyle(fontSize: 18),
+                        ));
                       })),
                   SizedBox(
                     width: 5,
                   ),
-                  InkWell(
+                  GestureDetector(
                     onTap: () {
                       function1;
-                      print('okpressdd');
                     },
                     child: Container(
                       decoration: BoxDecoration(

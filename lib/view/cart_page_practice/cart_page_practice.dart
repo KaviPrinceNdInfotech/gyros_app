@@ -18,7 +18,16 @@ class CartPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: greyColor2,
         appBar: AppBar(
-          title: Text('Cart'),
+          elevation: 0,
+          leading: Icon(
+            Icons.arrow_back_ios_outlined,
+            color: Colors.green,
+          ),
+          backgroundColor: Colors.white,
+          title: Text(
+            'Cart',
+            style: TextStyle(color: Colors.green),
+          ),
         ),
         body: Container(
           margin: EdgeInsets.fromLTRB(24, 30, 24, 0),
@@ -30,7 +39,7 @@ class CartPage extends StatelessWidget {
                     return Column(
                         children: cartController.cartItems
                             .map((e) => Padding(
-                                padding: EdgeInsets.only(bottom: 16),
+                                padding: EdgeInsets.only(bottom: 10),
                                 child: CartCArd(
                                   function1: () {
                                     cartController.increasQty(e);

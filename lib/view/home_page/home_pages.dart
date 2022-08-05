@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
-import 'package:gyros_app/view/cart_new_section/empty_cart/empty_cart.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/honey_catagary.dart';
@@ -12,6 +11,9 @@ import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/profile/cuppons_page.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
+import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
+import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
+import 'package:gyros_app/view/model_cart_practice/widgets/catalog_product.dart';
 import 'package:sizer/sizer.dart';
 
 import 'all_catagary/best_deal.dart';
@@ -130,7 +132,8 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: InkWell(
               onTap: () {
-                Get.to(() => ShopingBagsEmpty());
+                Get.to(() => Cartproducts());
+                //Get.to(() => ShopingBagsEmpty());
               },
               child: Icon(
                 Icons.shopping_cart,
@@ -294,7 +297,8 @@ class HomePage extends StatelessWidget {
                 ),
                 //color: MyTheme.loginPageBoxColor,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
                   child: Text(
                     'Flash Sale',
                     style: TextStyle(
@@ -309,219 +313,12 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-                height: size.height * 0.29,
-                width: double.infinity,
+                height: size.height * 0.31,
                 child: ListView.builder(
-                    itemCount: text2.length,
                     scrollDirection: Axis.horizontal,
+                    itemCount: Productss.products.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Obx(
-                        () => Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: InkWell(
-                            onTap: () {
-                              // _homePageController.toggle(index);
-                              if (index == 0) {
-                                //Get.to(() => ManPage());
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WaterTracking());
-                              } else if (index == 1) {
-                                //Get.to(() => ManPage());
-                              } else if (index == 2) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 3) {
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 4) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              }
-                            },
-                            child: PhysicalModel(
-                              borderRadius: BorderRadius.circular(5),
-                              color: _homePageController.selectedIndex.value ==
-                                      index
-                                  ? MyTheme.ThemeColors
-                                  : Color(0xffeff8f5),
-                              elevation: 0.1,
-                              child: Container(
-                                height: 55.h,
-                                width: size.width * 0.48,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: MyTheme.ContainerUnSelectedColor,
-                                ),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Container(
-                                        height: 3.5.h,
-                                        width: 22.w,
-                                        decoration: BoxDecoration(
-                                            color: Colors.yellow,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(5),
-                                              bottomRight: Radius.circular(20),
-                                            )),
-                                        child: Center(
-                                          child: Text(
-                                            'Best Saller',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 9.sp,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 0.6.h,
-                                    ),
-                                    PhysicalModel(
-                                      shadowColor: Colors.green,
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(5),
-                                      elevation: 5,
-                                      child: Container(
-                                        height: size.height * 0.15,
-                                        width: size.width * 0.32,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          // border: Border.all(
-                                          //     color: AppColors.themecolors),
-                                          image: DecorationImage(
-                                              image: AssetImage(image1[index]),
-                                              fit: BoxFit.cover),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 1.7.w),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            text2[index],
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 11.sp,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Save 30%',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 10.sp,
-                                              color: Colors.red.shade300,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 2.w),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          '₹ 50',
-                                          style: TextStyle(
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 7.sp,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 23.w,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 2.w),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  '₹ 30',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 8.sp,
-                                                    color: MyTheme
-                                                        .loginbuttonColor,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ' /500 gm',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 5.sp,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Container(
-                                            height: 3.3.h,
-                                            width: 23.9.w,
-                                            decoration: BoxDecoration(
-                                                color: MyTheme.loginbuttonColor,
-                                                borderRadius: BorderRadius.only(
-                                                  bottomRight:
-                                                      Radius.circular(5),
-                                                  bottomLeft:
-                                                      Radius.circular(5),
-                                                )),
-                                            child: Center(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Add To Cart',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 8.sp,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 1.w,
-                                                  ),
-                                                  Icon(
-                                                    Icons
-                                                        .add_shopping_cart_outlined,
-                                                    size: 13.sp,
-                                                    color: Colors.redAccent,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
+                      return CatalogProductCart(index: index);
                     })),
             SizedBox(
               height: 01.h,
@@ -536,7 +333,8 @@ class HomePage extends StatelessWidget {
                 ),
                 //color: MyTheme.loginPageBoxColor,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
                   child: Text(
                     'Purchase your first product',
                     style: TextStyle(
@@ -604,7 +402,8 @@ class HomePage extends StatelessWidget {
                 ),
                 //color: MyTheme.loginPageBoxColor,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
                   child: Text(
                     'Our Products',
                     style: TextStyle(
@@ -619,196 +418,12 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-                height: size.height * 0.29,
-                width: double.infinity,
+                height: size.height * 0.31,
                 child: ListView.builder(
-                    itemCount: text3.length,
                     scrollDirection: Axis.horizontal,
+                    itemCount: Productss.products.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return Obx(
-                        () => Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: InkWell(
-                            onTap: () {
-                              // _homePageController.toggle(index);
-                              if (index == 0) {
-                                //Get.to(() => ManPage());
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WaterTracking());
-                              } else if (index == 1) {
-                                //Get.to(() => ManPage());
-                              } else if (index == 2) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 3) {
-                                //Get.to(() => WalkTracking());
-                              } else if (index == 4) {
-                                //Get.to(() => BestSeller());
-                                //Get.to(() => WalkTracking());
-                              }
-                            },
-                            child: PhysicalModel(
-                              borderRadius: BorderRadius.circular(5),
-                              color: _homePageController.selectedIndex.value ==
-                                      index
-                                  ? MyTheme.ThemeColors
-                                  : Color(0xffeff8f5),
-                              elevation: 0.1,
-                              child: Container(
-                                height: 55.h,
-                                width: size.width * 0.48,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: MyTheme.ContainerUnSelectedColor,
-                                ),
-                                child: Column(
-                                  //mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: 3.6.h,
-                                    ),
-                                    PhysicalModel(
-                                      shadowColor: Colors.green,
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(5),
-                                      elevation: 5,
-                                      child: Container(
-                                        height: size.height * 0.15,
-                                        width: size.width * 0.32,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          // border: Border.all(
-                                          //     color: AppColors.themecolors),
-                                          image: DecorationImage(
-                                              image: AssetImage(image2[index]),
-                                              fit: BoxFit.cover),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 1.7.w),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            text3[index],
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 11.sp,
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                          Text(
-                                            'Save 30%',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 10.sp,
-                                              color: Colors.red.shade300,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 2.w),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          '₹ 50',
-                                          style: TextStyle(
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 7.sp,
-                                            color: Colors.grey,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 23.w,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 2.w),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  '₹ 30',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 8.sp,
-                                                    color: MyTheme
-                                                        .loginbuttonColor,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  ' /500 gm',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 5.sp,
-                                                    color: Colors.grey,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Container(
-                                            height: 3.3.h,
-                                            width: 23.9.w,
-                                            decoration: BoxDecoration(
-                                                color: MyTheme.loginbuttonColor,
-                                                borderRadius: BorderRadius.only(
-                                                  bottomRight:
-                                                      Radius.circular(5),
-                                                  bottomLeft:
-                                                      Radius.circular(5),
-                                                )),
-                                            child: Center(
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Add To Cart',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 8.sp,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 1.w,
-                                                  ),
-                                                  Icon(
-                                                    Icons
-                                                        .add_shopping_cart_outlined,
-                                                    size: 13.sp,
-                                                    color: Colors.redAccent,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
+                      return CatalogProductCart(index: index);
                     })),
             Align(
               alignment: Alignment.centerLeft,
@@ -820,7 +435,8 @@ class HomePage extends StatelessWidget {
                 ),
                 //color: MyTheme.loginPageBoxColor,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
                   child: Text(
                     'Our Offers',
                     style: TextStyle(

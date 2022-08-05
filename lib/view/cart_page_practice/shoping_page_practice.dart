@@ -22,7 +22,7 @@ class ShoppingPage extends StatelessWidget {
         children: [
           SafeArea(
               child: Container(
-            margin: EdgeInsets.only(top: 220, left: 24, right: 24, bottom: 50),
+            margin: EdgeInsets.only(top: 50, left: 24, right: 24, bottom: 50),
             child: GetX<ShoppingController>(builder: (controller) {
               return StaggeredGridView.countBuilder(
                 //scrollDirection: Axis.vertical,
@@ -147,7 +147,7 @@ class ShoppingPage extends StatelessWidget {
           )),
           SafeArea(
             child: Container(
-              margin: EdgeInsets.fromLTRB(24, 30, 24, 0),
+              margin: EdgeInsets.fromLTRB(10, 8, 24, 0),
               child: Column(
                 children: [
                   Row(
@@ -163,9 +163,9 @@ class ShoppingPage extends StatelessWidget {
                             Get.back();
                           },
                           icon: Icon(
-                            Icons.dashboard_outlined,
-                            size: 18.sp,
-                            color: Colors.black,
+                            Icons.arrow_back_ios_outlined,
+                            size: 20.sp,
+                            color: Colors.green,
                           )),
                       Stack(
                         children: [
@@ -198,90 +198,90 @@ class ShoppingPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(
-                    margin: EdgeInsets.only(top: 20, bottom: 28),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.only(top: 13, left: 17, bottom: 13),
-                          height: 50,
-                          width: MediaQuery.of(context).size.width - 119,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8))),
-                          child: Row(
-                            children: [
-                              Icon(Icons.search),
-                              SizedBox(width: 9),
-                              Text(
-                                'Search',
-                              )
-                            ],
-                          ),
-                        ),
-                        Container(
-                            height: 50,
-                            width: 53,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8)),
-                              // image: DecorationImage(
-                              //     image: AssetImage(
-                              //         'lib/assets/asset/guser_logo.png')
-                              // ),
-                            ),
-                            child: Center(
-                                child: Icon(
-                              Icons.dashboard_outlined,
-                              size: 15.sp,
-                              color: Colors.black,
-                            )))
-                      ],
-                    ),
-                  ),
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                            height: 26,
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                color: Colors.blue),
-                            child: Text('All')),
-                        Container(
-                            height: 26,
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                color: Colors.white),
-                            child: Text('Adidas')),
-                        Container(
-                            height: 26,
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                color: Colors.white),
-                            child: Text('Converse')),
-                        Container(
-                            height: 26,
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8)),
-                                color: Colors.white),
-                            child: Text('New Balance')),
-                      ],
-                    ),
-                  )
+                  // Container(
+                  //   margin: EdgeInsets.only(top: 20, bottom: 28),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Container(
+                  //         padding:
+                  //             EdgeInsets.only(top: 13, left: 17, bottom: 13),
+                  //         height: 50,
+                  //         width: MediaQuery.of(context).size.width - 119,
+                  //         decoration: BoxDecoration(
+                  //             color: Colors.white,
+                  //             borderRadius:
+                  //                 BorderRadius.all(Radius.circular(8))),
+                  //         child: Row(
+                  //           children: [
+                  //             Icon(Icons.search),
+                  //             SizedBox(width: 9),
+                  //             Text(
+                  //               'Search',
+                  //             )
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       Container(
+                  //           height: 50,
+                  //           width: 53,
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.blue,
+                  //             borderRadius:
+                  //                 BorderRadius.all(Radius.circular(8)),
+                  //             // image: DecorationImage(
+                  //             //     image: AssetImage(
+                  //             //         'lib/assets/asset/guser_logo.png')
+                  //             // ),
+                  //           ),
+                  //           child: Center(
+                  //               child: Icon(
+                  //             Icons.dashboard_outlined,
+                  //             size: 15.sp,
+                  //             color: Colors.black,
+                  //           )))
+                  //     ],
+                  //   ),
+                  // ),
+                  // Container(
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //     children: [
+                  //       Container(
+                  //           height: 26,
+                  //           padding: EdgeInsets.all(4),
+                  //           decoration: BoxDecoration(
+                  //               borderRadius:
+                  //                   BorderRadius.all(Radius.circular(8)),
+                  //               color: Colors.blue),
+                  //           child: Text('All')),
+                  //       Container(
+                  //           height: 26,
+                  //           padding: EdgeInsets.all(4),
+                  //           decoration: BoxDecoration(
+                  //               borderRadius:
+                  //                   BorderRadius.all(Radius.circular(8)),
+                  //               color: Colors.white),
+                  //           child: Text('Adidas')),
+                  //       Container(
+                  //           height: 26,
+                  //           padding: EdgeInsets.all(4),
+                  //           decoration: BoxDecoration(
+                  //               borderRadius:
+                  //                   BorderRadius.all(Radius.circular(8)),
+                  //               color: Colors.white),
+                  //           child: Text('Converse')),
+                  //       Container(
+                  //           height: 26,
+                  //           padding: EdgeInsets.all(4),
+                  //           decoration: BoxDecoration(
+                  //               borderRadius:
+                  //                   BorderRadius.all(Radius.circular(8)),
+                  //               color: Colors.white),
+                  //           child: Text('New Balance')),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
