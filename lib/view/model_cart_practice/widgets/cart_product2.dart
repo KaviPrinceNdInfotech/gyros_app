@@ -217,35 +217,166 @@ class CartProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: AssetImage(
-              product.imageUrl,
+          PhysicalModel(
+            shadowColor: Colors.green,
+            color: Colors.green,
+            borderRadius: BorderRadius.circular(5),
+            elevation: 8,
+            child: Container(
+              height: size.height * 0.18,
+              width: size.width * 0.30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                // border: Border.all(
+                //     color: AppColors.themecolors),
+                image: DecorationImage(
+                    image: AssetImage(product.imageUrl), fit: BoxFit.cover),
+              ),
             ),
           ),
+          // CircleAvatar(
+          //   radius: 40,
+          //   backgroundImage: AssetImage(
+          //     product.imageUrl,
+          //   ),
+          // ),
           SizedBox(
             width: 20,
           ),
           Expanded(
-            child: Text(product.name),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.name,
+                  style: GoogleFonts.anekBangla(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 1,
+                    fontSize: 13.sp,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "₹${product.price.toString()}",
+                      style: GoogleFonts.anekBangla(
+                        color: Colors.yellowAccent.shade100,
+                        fontSize: 11.sp,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "/${product.weight.toString()}gm",
+                      style: GoogleFonts.anekBangla(
+                        color: Colors.grey.shade800,
+                        letterSpacing: 1,
+                        fontSize: 8.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              controller.removeProduct(product);
-            },
-            icon: Icon(Icons.remove_circle),
+
+          Container(
+            height: 4.h,
+            width: 26.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              //mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                  child: NeoPopButton(
+                    color: Colors.grey,
+                    bottomShadowColor: Colors.black12,
+                    //buttonPosition: Position.fullBottom,
+                    depth: 2,
+                    onTapUp: () {
+                      controller.removeProduct(product);
+                    },
+                    border: Border.all(
+                      color: Colors.black12,
+                      width: 2,
+                    ),
+                    child: const Center(
+                      child: Icon(
+                        Icons.remove_circle_outline,
+                        size: 20,
+                        color: Colors.redAccent,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 1.5.w),
+                  child: PhysicalModel(
+                    elevation: 7,
+                    color: Colors.white,
+                    shadowColor: Colors.green,
+                    shape: BoxShape.circle,
+                    child: Container(
+                      height: 4.h,
+                      width: 7.w,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.white),
+                      child: Center(
+                        child: Text(
+                          '$quantity',
+                          style: GoogleFonts.anekBangla(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: NeoPopButton(
+                    color: Colors.grey,
+                    bottomShadowColor: Colors.green,
+                    rightShadowColor: Colors.green,
+                    //buttonPosition: Position.fullBottom,
+                    depth: 2,
+                    onTapUp: () {
+                      controller.addProduct(product);
+                    },
+                    border: Border.all(
+                      color: Colors.green,
+                      width: 2,
+                    ),
+                    child: const Center(
+                      child: Icon(Icons.add_circle_outline_sharp,
+                          size: 20, color: Colors.greenAccent),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-          Text('$quantity'),
-          IconButton(
-              onPressed: () {
-                controller.addProduct(product);
-              },
-              icon: Icon(Icons.add_circle))
+          // IconButton(x
+          //   onPressed: () {
+          //     controller.removeProduct(product);
+          //   },
+          //   icon: Icon(Icons.remove_circle),
+          // ),
+          // Text('$quantity'),
+          // IconButton(
+          //     onPressed: () {
+          //       controller.addProduct(product);
+          //     },
+          //     icon: Icon(Icons.add_circle))
         ],
       ),
     );

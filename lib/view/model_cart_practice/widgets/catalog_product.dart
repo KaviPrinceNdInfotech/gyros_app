@@ -4,6 +4,8 @@ import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:sizer/sizer.dart';
+
+import 'item_details_pageee/item_details_catagary.dart';
 //import 'package:shoping_cart_get_x/controllers/cart_controller.dart;
 
 class CatalogProducts extends StatelessWidget {
@@ -108,17 +110,36 @@ class CatalogProductCart extends StatelessWidget {
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(5),
                     elevation: 5,
-                    child: Container(
-                      height: size.height * 0.15,
-                      width: size.width * 0.32,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        // border: Border.all(
-                        //     color: AppColors.themecolors),
-                        image: DecorationImage(
-                            image:
-                                AssetImage(Productss.products[index].imageUrl),
-                            fit: BoxFit.cover),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(() => ItemDetailss(
+                              cartController.products[index].toString(),
+
+                              // product:pr,
+                            ));
+                      },
+                      child: Container(
+                        height: size.height * 0.15,
+                        width: size.width * 0.32,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          // border: Border.all(
+                          //     color: AppColors.themecolors),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                  Productss.products[index].imageUrl),
+                              fit: BoxFit.cover),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Hero(
+                            tag: Productss.products[index].name,
+                            child: Image.asset(
+                              Productss.products[index].imageUrl,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

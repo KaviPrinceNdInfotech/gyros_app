@@ -1,7 +1,9 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
@@ -11,6 +13,7 @@ import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/profile/cuppons_page.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
+import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/catalog_product.dart';
@@ -28,6 +31,7 @@ import 'home_page_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
+  final CartController controller = Get.put(CartController());
   HomePageController _homePageController = Get.put(HomePageController());
   final List<Map> myProducts =
       List.generate(100000, (index) => {"id": index, "name": "Product $index"})
@@ -131,15 +135,30 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: InkWell(
-              onTap: () {
-                Get.to(() => Cartproducts());
-                //Get.to(() => ShopingBagsEmpty());
-              },
-              child: Icon(
-                Icons.shopping_cart,
-                color: AppColors.themecolors,
-              ),
-            ),
+                onTap: () {
+                  Get.to(() => Cartproducts());
+                  //Get.to(() => ShopingBagsEmpty());
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: Obx(
+                    () => Badge(
+                      toAnimate: false,
+                      badgeColor: AppColors.themecolors,
+                      badgeContent: Text(
+                        controller.count.toString(),
+                        style: GoogleFonts.alatsi(
+                          color: Colors.white,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: AppColors.themecolors,
+                      ),
+                    ),
+                  ),
+                )),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),

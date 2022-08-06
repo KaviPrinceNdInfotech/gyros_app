@@ -14,7 +14,7 @@ class IntroVideoBoxController extends GetxController {
     controller =
         // VideoPlayerController.network(
         //     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4")
-        VideoPlayerController.asset("lib/assets/asset/green1.mp4")
+        VideoPlayerController.asset("lib/assets/asset/neo.mp4")
           ..addListener(() => update())
           ..setLooping(false)
           ..initialize().then((_) {

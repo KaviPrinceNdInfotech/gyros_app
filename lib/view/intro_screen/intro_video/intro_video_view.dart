@@ -29,6 +29,7 @@ class IntroVideo extends StatelessWidget {
               behavior: HitTestBehavior.opaque,
               onTap: () {
                 _introVideoBoxController.controller!.value.isPlaying;
+                BoxFit.cover;
                 // ? _introVideoBoxController.controller!.pause()
                 // : _introVideoBoxController.controller!.play();
               },

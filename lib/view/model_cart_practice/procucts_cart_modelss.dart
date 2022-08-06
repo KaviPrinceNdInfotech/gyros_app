@@ -1,4 +1,5 @@
 class Productss {
+  final String id;
   final String name;
   final double price;
   final String imageUrl;
@@ -7,6 +8,7 @@ class Productss {
   final String weight;
 
   const Productss({
+    required this.id,
     required this.name,
     required this.price,
     required this.imageUrl,
@@ -16,6 +18,7 @@ class Productss {
   });
   static const List<Productss> products = [
     Productss(
+      id: '1',
       name: 'Ghee',
       price: 455.3,
       imageUrl: 'lib/assets/asset/ghee3.jpeg',
@@ -24,6 +27,7 @@ class Productss {
       weight: '500',
     ),
     Productss(
+      id: '2',
       name: 'Honey',
       price: 355.3,
       imageUrl: 'lib/assets/asset/honey3.jpeg',
@@ -32,6 +36,7 @@ class Productss {
       weight: '500',
     ),
     Productss(
+      id: '3',
       name: 'Jaggary',
       price: 155,
       imageUrl: 'lib/assets/asset/ jagary3.jpeg',
@@ -40,6 +45,7 @@ class Productss {
       weight: '500',
     ),
     Productss(
+      id: '4',
       name: 'Sweets',
       price: 400.3,
       imageUrl: 'lib/assets/asset/sweet3.jpeg',
@@ -48,6 +54,7 @@ class Productss {
       weight: '500',
     ),
     Productss(
+      id: '5',
       name: 'Sattu',
       price: 55.3,
       imageUrl: 'lib/assets/asset/sattu4.jpeg',
@@ -56,6 +63,7 @@ class Productss {
       weight: '500',
     ),
     Productss(
+      id: '6',
       name: 'Pulses',
       price: 95.8,
       imageUrl: 'lib/assets/asset/dal2.png',
@@ -64,6 +72,7 @@ class Productss {
       weight: '500',
     ),
     Productss(
+      id: '7',
       name: 'Spice',
       price: 155.3,
       imageUrl: 'lib/assets/asset/spices3.jpeg',

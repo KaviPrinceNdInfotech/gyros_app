@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/login_page/login_main_page/login_controller.dart';
 
 class UserMobileTextField extends StatelessWidget {
@@ -44,8 +45,8 @@ class UserMobileTextField extends StatelessWidget {
       onChanged: (value) {
         onUserMobileValueChange(value);
       },
-      cursorColor: Theme.of(context).colorScheme.secondary,
-      style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+      cursorColor: MyTheme.ThemeColors,
+      style: TextStyle(color: MyTheme.ThemeColors),
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: userMobileHintText,
