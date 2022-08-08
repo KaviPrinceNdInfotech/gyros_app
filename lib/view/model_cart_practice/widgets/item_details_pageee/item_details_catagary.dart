@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
@@ -13,7 +14,7 @@ import 'package:sizer/sizer.dart';
 
 class ItemDetailss extends StatelessWidget {
   final CartController controller = Get.put(CartController());
-  //final RozarPayController _rozarPayController = Get.find();
+  final RozarPayController _rozarPayController = Get.find();
   final cartController = Get.put(CartController());
   final int index;
   ItemDetailss(
@@ -252,7 +253,7 @@ class ItemDetailss extends StatelessWidget {
                     width: size.width * 0.7,
                     child: ElevatedButton(
                       onPressed: () {
-                        //_rozarPayController.openCheckout();
+                        _rozarPayController.openCheckout();
                         print('click');
                       },
                       style: ButtonStyle(

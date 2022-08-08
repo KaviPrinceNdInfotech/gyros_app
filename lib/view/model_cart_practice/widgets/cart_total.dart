@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
+import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/add_address_order.dart';
 import 'package:neopop/utils/color_utils.dart';
 import 'package:neopop/utils/constants.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
@@ -12,6 +14,7 @@ import 'package:sizer/sizer.dart';
 
 class TotalPrice extends StatelessWidget {
   final CartController controller = Get.find();
+  final RozarPayController _rozarPayController = Get.find();
   TotalPrice({Key? key}) : super(key: key);
 
   @override
@@ -55,7 +58,7 @@ class TotalPrice extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Container(
-                  height: size.height * 0.27,
+                  height: size.height * 0.30,
                   width: 90.w,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,9 +71,30 @@ class TotalPrice extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w700),
                           ),
-                          Icon(
-                            Icons.edit,
-                            color: Colors.blueGrey.shade300,
+                          InkWell(
+                            onTap: () {
+                              Get.to(() => AddAddress());
+                            },
+                            child: Material(
+                              elevation: 5,
+                              child: Container(
+                                height: size.height * 0.04,
+                                width: size.width * 0.20,
+                                decoration: BoxDecoration(
+                                  gradient: MyTheme.gradient3,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Add Address',
+                                    style: TextStyle(
+                                      fontSize: 8.sp,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           )
                         ],
                       ),
@@ -370,6 +394,7 @@ class TotalPrice extends StatelessWidget {
                           animationDuration: const Duration(milliseconds: 200),
                           depth: kButtonDepth,
                           onTapUp: () {
+                            _rozarPayController.openCheckout();
                             // Get.to(() => TotalPrice());
                           },
                           border: Border.all(
