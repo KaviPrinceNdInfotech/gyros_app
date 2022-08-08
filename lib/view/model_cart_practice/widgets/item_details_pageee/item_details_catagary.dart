@@ -1,23 +1,50 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
+import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemDetailss extends StatelessWidget {
-  const ItemDetailss(String string, {Key? key}) : super(key: key);
+  final CartController controller = Get.put(CartController());
+  //final RozarPayController _rozarPayController = Get.find();
+  final cartController = Get.put(CartController());
+  final int index;
+  ItemDetailss(
+      {Key? key,
+      required this.name,
+      required this.price,
+      required this.weight,
+      required this.imageUrl,
+      required this.description,
+      required this.color,
+      required this.index})
+      : super(key: key);
+
+  final String name;
+  final double price;
+  final String weight;
+  final String imageUrl;
+  final String description;
+  final String color;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: AppColors.themecolors,
+      backgroundColor:
+          Color(int.parse(Productss.products[index].color.toString())),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: AppColors.themecolors,
+        //Productss.products[index].weight
+        backgroundColor:
+            Color(int.parse(Productss.products[index].color.toString())),
         elevation: 0,
         title: Text(
           'Items Details',
@@ -25,16 +52,32 @@ class ItemDetailss extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: InkWell(
-              onTap: () {
-                Get.to(() => Cartproducts());
-              },
-              child: Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-              ),
-            ),
+                onTap: () {
+                  Get.to(() => Cartproducts());
+                  //Get.to(() => ShopingBagsEmpty());
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: Obx(
+                    () => Badge(
+                      toAnimate: false,
+                      badgeColor: AppColors.themecolors,
+                      badgeContent: Text(
+                        controller.count.toString(),
+                        style: GoogleFonts.alatsi(
+                          color: Colors.white,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                )),
           ),
         ],
         leading: InkWell(
@@ -60,7 +103,8 @@ class ItemDetailss extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 4.w),
                 child: Text(
-                  'Ghee',
+                  //'ghee',
+                  Productss.products[index].name,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -81,7 +125,7 @@ class ItemDetailss extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      ' ₹ 450',
+                      ' ₹ ${Productss.products[index].price}',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -127,7 +171,7 @@ class ItemDetailss extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            ' 500gm',
+                            ' ${Productss.products[index].weight}gm',
                             style: TextStyle(
                               fontSize: 15.sp,
                               color: Colors.black,
@@ -140,7 +184,8 @@ class ItemDetailss extends StatelessWidget {
                         height: 4.h,
                       ),
                       Text(
-                        'This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once. This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.',
+                        Productss.products[index].descriptions,
+                        //'This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once. This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.',
                         style: TextStyle(
                           fontSize: 10.sp,
                           color: Colors.black,
@@ -154,14 +199,17 @@ class ItemDetailss extends StatelessWidget {
           Positioned(
             top: 11.h,
             left: size.width * 0.5,
-            child: Container(
-              height: size.height * 0.22,
-              width: size.width * 0.44,
-              decoration: BoxDecoration(
-                color: Colors.orange,
-                image: DecorationImage(
-                    image: AssetImage('lib/assets/asset/ghee3.jpeg'),
-                    fit: BoxFit.cover),
+            child: Material(
+              elevation: 7,
+              child: Container(
+                height: size.height * 0.21,
+                width: size.width * 0.44,
+                decoration: BoxDecoration(
+                  color: Colors.orange,
+                  image: DecorationImage(
+                      image: AssetImage(Productss.products[index].imageUrl),
+                      fit: BoxFit.cover),
+                ),
               ),
             ),
           ),
@@ -173,6 +221,7 @@ class ItemDetailss extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
+                      cartController.addProduct(Productss.products[index]);
                       //_cartNewController.addItemInCart(product);
                       //_cartNewController.numOfItems.(product);
                     },
@@ -181,10 +230,12 @@ class ItemDetailss extends StatelessWidget {
                       height: 50,
                       width: 50,
                       decoration: BoxDecoration(
-                        color: MyTheme.ThemeColors,
+                        color: Color(int.parse(
+                            Productss.products[index].color.toString())),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: MyTheme.ThemeColors,
+                          color: Color(int.parse(
+                              Productss.products[index].color.toString())),
                         ),
                       ),
                       child: Padding(
@@ -200,7 +251,10 @@ class ItemDetailss extends StatelessWidget {
                     height: 50,
                     width: size.width * 0.7,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        //_rozarPayController.openCheckout();
+                        print('click');
+                      },
                       style: ButtonStyle(
                           shape: MaterialStateProperty.all(
                             RoundedRectangleBorder(
@@ -208,7 +262,8 @@ class ItemDetailss extends StatelessWidget {
                             ),
                           ),
                           backgroundColor: MaterialStateProperty.all(
-                            MyTheme.ThemeColors,
+                            Color(int.parse(
+                                Productss.products[index].color.toString())),
                           )),
                       child: Text(
                         'Buy Now'.toUpperCase(),

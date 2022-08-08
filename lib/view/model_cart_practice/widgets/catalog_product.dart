@@ -113,7 +113,16 @@ class CatalogProductCart extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         Get.to(() => ItemDetailss(
-                              cartController.products[index].toString(),
+                              name: Productss.products[index].name,
+                              price: Productss.products[index].price,
+                              weight: Productss.products[index].weight,
+                              imageUrl: Productss.products[index].imageUrl,
+                              description:
+                                  Productss.products[index].descriptions,
+                              color: Productss.products[index].color,
+                              index: index,
+
+                              //cartController.products[index].toString(),
 
                               // product:pr,
                             ));
@@ -132,12 +141,9 @@ class CatalogProductCart extends StatelessWidget {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(2.0),
-                          child: Hero(
-                            tag: Productss.products[index].name,
-                            child: Image.asset(
-                              Productss.products[index].imageUrl,
-                              fit: BoxFit.cover,
-                            ),
+                          child: Image.asset(
+                            Productss.products[index].imageUrl,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),

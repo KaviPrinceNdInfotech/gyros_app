@@ -14,6 +14,7 @@ class ControllerBinding extends Bindings {
     Get.put(CartNewController());
     Get.put(FavCounterController());
     Get.put(NavController());
+    //Get.put(RozarPayController());
   }
 
   // CartNewController _cartNewController = Get.put(CartNewController());

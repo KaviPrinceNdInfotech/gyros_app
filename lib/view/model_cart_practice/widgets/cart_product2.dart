@@ -291,7 +291,7 @@ class CartProductCard extends StatelessWidget {
 
           Container(
             height: 4.h,
-            width: 26.w,
+            width: 23.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -314,29 +314,31 @@ class CartProductCard extends StatelessWidget {
                     child: const Center(
                       child: Icon(
                         Icons.remove_circle_outline,
-                        size: 20,
+                        size: 18,
                         color: Colors.redAccent,
                       ),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 1.5.w),
+                  padding: EdgeInsets.symmetric(horizontal: 1.w),
                   child: PhysicalModel(
-                    elevation: 7,
+                    elevation: 4,
                     color: Colors.white,
                     shadowColor: Colors.green,
                     shape: BoxShape.circle,
                     child: Container(
                       height: 4.h,
-                      width: 7.w,
+                      width: 8.w,
                       decoration: BoxDecoration(
                           shape: BoxShape.circle, color: Colors.white),
                       child: Center(
                         child: Text(
                           '$quantity',
                           style: GoogleFonts.anekBangla(
-                              color: Colors.black, fontWeight: FontWeight.bold),
+                              color: Colors.black,
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -358,7 +360,7 @@ class CartProductCard extends StatelessWidget {
                     ),
                     child: const Center(
                       child: Icon(Icons.add_circle_outline_sharp,
-                          size: 20, color: Colors.greenAccent),
+                          size: 18, color: Colors.greenAccent),
                     ),
                   ),
                 ),
