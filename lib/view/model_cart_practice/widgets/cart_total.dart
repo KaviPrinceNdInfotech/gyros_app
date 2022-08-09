@@ -6,7 +6,7 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
-import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/add_address_order.dart';
+import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/address_list/address_listss.dart';
 import 'package:neopop/utils/color_utils.dart';
 import 'package:neopop/utils/constants.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
@@ -73,7 +73,7 @@ class TotalPrice extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(() => AddAddress());
+                              Get.to(() => AddressList());
                             },
                             child: Material(
                               elevation: 5,

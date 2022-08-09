@@ -127,7 +127,7 @@ class HomePage extends StatelessWidget {
         elevation: 0,
         title: Image.asset(
           'lib/assets/asset/guser_logo.png',
-          color: AppColors.themecolors,
+          // color: AppColors.themecolors,
           height: 13.h,
           width: 35.w,
         ),

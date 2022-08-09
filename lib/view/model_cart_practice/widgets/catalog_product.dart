@@ -112,20 +112,33 @@ class CatalogProductCart extends StatelessWidget {
                     elevation: 5,
                     child: InkWell(
                       onTap: () {
-                        Get.to(() => ItemDetailss(
-                              name: Productss.products[index].name,
-                              price: Productss.products[index].price,
-                              weight: Productss.products[index].weight,
-                              imageUrl: Productss.products[index].imageUrl,
-                              description:
-                                  Productss.products[index].descriptions,
-                              color: Productss.products[index].color,
-                              index: index,
+                        //Navigator.of(context).push(_createRoute());
 
-                              //cartController.products[index].toString(),
+                        Get.to(
+                          () => ItemDetailss(
+                            name: Productss.products[index].name,
+                            price: Productss.products[index].price,
+                            weight: Productss.products[index].weight,
+                            imageUrl: Productss.products[index].imageUrl,
+                            description: Productss.products[index].descriptions,
+                            color: Productss.products[index].color,
+                            id: Productss.products[index].id,
 
-                              // product:pr,
-                            ));
+                            index: index,
+
+                            //cartController.products[index].toString(),
+
+                            // product:pr,
+                          ), //next page class
+                          duration: Duration(
+                              milliseconds:
+                                  500), //duration of transitions, default 1 sec
+                          transition:
+                              // Transition.leftToRight //transition effect
+                              // Transition.fadeIn
+                              //Transition.size
+                              Transition.zoom,
+                        );
                       },
                       child: Container(
                         height: size.height * 0.15,
@@ -292,6 +305,39 @@ class CatalogProductCart extends StatelessWidget {
       //     ),
       //   ],
       // ),
+    );
+  }
+
+  Route _createRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => ItemDetailss(
+        name: Productss.products[index].name,
+        price: Productss.products[index].price,
+        weight: Productss.products[index].weight,
+        imageUrl: Productss.products[index].imageUrl,
+        description: Productss.products[index].descriptions,
+        color: Productss.products[index].color,
+        id: Productss.products[index].id,
+
+        index: index,
+
+        //cartController.products[index].toString(),
+
+        // product:pr,
+      ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }

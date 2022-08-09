@@ -19,6 +19,7 @@ class ItemDetailss extends StatelessWidget {
   final int index;
   ItemDetailss(
       {Key? key,
+      required this.id,
       required this.name,
       required this.price,
       required this.weight,
@@ -34,6 +35,7 @@ class ItemDetailss extends StatelessWidget {
   final String imageUrl;
   final String description;
   final String color;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -210,6 +212,10 @@ class ItemDetailss extends StatelessWidget {
                   image: DecorationImage(
                       image: AssetImage(Productss.products[index].imageUrl),
                       fit: BoxFit.cover),
+                ),
+                child: Image.asset(
+                  Productss.products[index].imageUrl,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

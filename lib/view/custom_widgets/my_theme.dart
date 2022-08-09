@@ -44,6 +44,21 @@ class MyTheme {
     end: Alignment.centerRight,
   );
 
+  static SweepGradient sweepGradient1 = SweepGradient(
+    colors: [
+      Colors.blue.shade400,
+      Colors.green.shade200,
+      Colors.yellow.shade300,
+      Colors.red,
+      Colors.blue.shade400,
+    ],
+    stops: [0.0, 0.25, 0.5, 0.70, 1],
+  );
+
+  static RadialGradient radial1 = RadialGradient(
+      colors: [Colors.green, Colors.blue, Colors.orange, Colors.pink],
+      stops: [0.2, 0.5, 0.7, 1]);
+
   static LinearGradient gradient3 = const LinearGradient(
     colors: <Color>[
       Color(0xff47bd82),
@@ -59,6 +74,12 @@ class MyTheme {
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
+
+  static LinearGradient gradient4 =
+      const LinearGradient(colors: [Colors.green, Colors.blue]);
+
+  static LinearGradient gradient5 =
+      const LinearGradient(colors: [Colors.red, Colors.yellowAccent]);
 
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         canvasColor: Colors.white,
