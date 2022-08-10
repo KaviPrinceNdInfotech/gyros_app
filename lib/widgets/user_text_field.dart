@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
 import 'package:gyros_app/view/login_page/login_main_page/login_controller.dart';
 
 class UserIdTextField extends StatelessWidget {
+  LoginPageController _loginPageController = Get.find();
   UserIdTextField({
     Key? key,
     required this.useridController,
@@ -32,16 +34,16 @@ class UserIdTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      controller: useridController,
-      validator: (value) {
-        if (value!.isEmpty) {
-          return userIdErrorText;
-        } else {
-          return null;
-        }
+      keyboardType: TextInputType.emailAddress,
+      controller: _loginPageController.emailController,
+      onSaved: (value) {
+        _loginPageController.email = value!;
       },
       onChanged: (value) {
         onUseridValueChange(value);
+      },
+      validator: (value) {
+        return _loginPageController.validateEmail(value!);
       },
       cursorColor: Theme.of(context).colorScheme.secondary,
       style: TextStyle(color: Theme.of(context).colorScheme.secondary),

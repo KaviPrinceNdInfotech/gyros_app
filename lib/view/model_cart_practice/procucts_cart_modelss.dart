@@ -31,7 +31,7 @@ class Productss {
         weight: '500',
         color: "0xffffdb61",
         descriptions:
-            'This ghee is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
+            'This ghee is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai This ghee is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
     Productss(
         id: '2',
         name: 'Honey',
@@ -53,7 +53,7 @@ class Productss {
         weight: '500',
         color: "0xff654321",
         descriptions:
-            'This jaggery is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
+            'This jaggery is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai This jaggery is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
     Productss(
         id: '4',
         name: 'Sweets',
@@ -64,7 +64,7 @@ class Productss {
         weight: '500',
         color: "0xffFFDE67",
         descriptions:
-            'This Sweets is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
+            'This Sweets is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai This Sweets is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
     Productss(
         id: '5',
         name: 'Sattu',
@@ -75,7 +75,7 @@ class Productss {
         weight: '500',
         color: "0xffBAB86C",
         descriptions:
-            'This Sattu is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
+            'This Sattu is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai This Sattu is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
     Productss(
         id: '6',
         name: 'Pulses',
@@ -86,7 +86,7 @@ class Productss {
         weight: '500',
         color: "0xffffa07a",
         descriptions:
-            'This Pulses is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
+            'This Pulses is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai This Pulses is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
     Productss(
         id: '7',
         name: 'Spice',
@@ -97,6 +97,6 @@ class Productss {
         weight: '250',
         color: "0xffcd5c5c",
         descriptions:
-            'This Spices is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
+            'This Spices is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai This Spices is one of the fresh item currently And It is fresh product through villager direct from farm to home and you can easily use no any side effects and it is varified product fron fassai'),
   ];
 }

@@ -4,14 +4,12 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
+import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/forget_password/forget_passwords.dart';
 import 'package:gyros_app/view/signup/signup_page.dart';
-import 'package:gyros_app/widgets/password_field.dart';
-import 'package:gyros_app/widgets/text_field_decorator.dart';
-import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginMainPage extends StatelessWidget {
@@ -19,13 +17,8 @@ class LoginMainPage extends StatelessWidget {
   TextEditingController useridController = TextEditingController();
   TextEditingController passController = TextEditingController();
   NavController _navController = Get.find();
+  LoginPageController _loginPageController = Get.find();
 
-  // String userIdErrorText = 'User Id Can not found';
-  // String userIdHinttext = 'Enter User Id';
-  // Color UserIdHintTextColor = AppColors.themecolors;
-  // IconData useridTextFieldPrefixicon = Icons.person;
-  // Color userIdErrorTextColor = AppColors.themecolors;
-  // Color useridTextFieldPrefixIconColor = AppColors.themecolors;
   LoginMainPage({Key? key}) : super(key: key);
 
   @override
@@ -34,7 +27,8 @@ class LoginMainPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Form(
-        key: _formkey,
+        key: _loginPageController.loginFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -87,21 +81,64 @@ class LoginMainPage extends StatelessWidget {
                   //   //animate: false,
                   // ),
                   SizedBox(
-                    height: 10.h,
+                    height: 15.h,
                   ),
 
-                  TextFieldDecorator(
-                    child: UserIdTextField(
-                      // useridTextFieldPrefixicon
-                      useridController: useridController,
-                      userIdErrorText: 'User Id Can not found',
-                      userIdHintText: 'Enter User Id',
-                      userIdHintTextColor: AppColors.themecolors,
-                      userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.person,
-                      useridTextFieldPrefixIconColor: AppColors.themecolors,
+                  ///todo from here email....
 
-                      onUseridValueChange: (value) {},
+                  Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.13,
+                    margin: EdgeInsets.symmetric(vertical: 0),
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                    decoration: BoxDecoration(
+                      //color: MyTheme.loginPageBoxColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFormField(
+                      style: TextStyle(
+                        color: MyTheme.ThemeColors,
+                      ),
+                      cursorColor: MyTheme.ThemeColors,
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color: MyTheme.ThemeColors,
+                          ),
+                        ),
+                        errorStyle: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w700),
+                        //border: InputBorder.none,
+                        fillColor: MyTheme.loginPageBoxColor,
+                        filled: true,
+                        focusColor: MyTheme.loginPageBoxColor,
+                        border: OutlineInputBorder(
+                          //borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 2, color: MyTheme.ThemeColors),
+                        ),
+                        //labelText: "Email",
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: MyTheme.ThemeColors,
+                        ),
+                        hintText: 'Enter Your Email',
+                        hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _loginPageController.emailController,
+                      onSaved: (value) {
+                        _loginPageController.email = value!;
+                      },
+                      validator: (value) {
+                        return _loginPageController.validateEmail(value!);
+                      },
                     ),
                   ),
 
@@ -109,28 +146,93 @@ class LoginMainPage extends StatelessWidget {
                     height: 0.h,
                   ),
 
-                  TextFieldDecorator(
-                    child: UserPassTextField(
-                      // useridTextFieldPrefixicon
-                      userPassController: passController,
-                      userPassErrorText: 'passwordCan not be empty',
-                      userPassHintText: 'Enter Password ',
-                      userPassHintTextColor: AppColors.themecolors,
-                      userPassErrorTextColor: AppColors.themecolors,
-                      userPassTextFieldPrefixIcon: Icons.lock,
+                  ///here from password.......
 
-                      userPassTextFieldSufixIcon: Icons.visibility_off,
-                      userPassTextFieldSufixIconColor: AppColors.themecolors,
-                      userPassTextFieldPrefixIconColor: AppColors.themecolors,
+                  Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.13,
+                    margin: EdgeInsets.symmetric(vertical: 2),
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                    decoration: BoxDecoration(
+                      //color: MyTheme.loginPageBoxColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Obx(
+                      () => TextFormField(
+                        //keyboardType: TextInputType.visiblePassword,
+                        //obscureText: true,
+                        obscureText: _loginPageController.isVisible.value,
+                        controller: _loginPageController.passwordController,
+                        style: TextStyle(
+                          color: MyTheme.ThemeColors,
+                        ),
+                        cursorColor: MyTheme.ThemeColors,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              width: 3,
+                              color: MyTheme.ThemeColors,
+                            ),
+                          ),
+                          errorStyle: TextStyle(
+                              color: Colors.red, fontWeight: FontWeight.w700),
+                          //border: InputBorder.none,
+                          fillColor: MyTheme.loginPageBoxColor,
+                          filled: true,
+                          focusColor: MyTheme.loginPageBoxColor,
+                          border: OutlineInputBorder(
+                            //borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                                width: 2, color: MyTheme.ThemeColors),
+                          ),
+                          //labelText: "Email",
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: MyTheme.ThemeColors,
+                          ),
 
-                      onUserPassValueChange: (value) {
-                        print('Pass Value $value');
-                      },
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _loginPageController.isVisible.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            color: MyTheme.ThemeColors,
+                            onPressed: () {
+                              _loginPageController.isVisible.value =
+                                  !_loginPageController.isVisible.value;
+                              print('hello prefix');
+                              //TODO : will use getx here.............
+                            },
+                          ),
+
+                          hintText: 'Enter Your Password',
+                          hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                        ),
+                        onSaved: (value) {
+                          _loginPageController.password = value!;
+                        },
+                        // onChanged: (value) {
+                        //   onUserPassValueChange(value);
+                        // },
+                        //
+                        // onUserPassValueChange: (value) {
+                        //   print('Pass Value $value');
+                        // },
+                        validator: (value) {
+                          return _loginPageController.validatePassword(value!);
+                        },
+                      ),
                     ),
                   ),
 
                   SizedBox(
-                    height: 1.h,
+                    height: 0.h,
                   ),
 
                   CustomButtom(
@@ -138,6 +240,7 @@ class LoginMainPage extends StatelessWidget {
                     buttontext: 'LOGIN',
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     handleButtonClick: () {
+                      _loginPageController.checkLogin();
                       _navController.tabindex(0);
                       Get.to(() => NavBar());
                       //Get.to(() => NavBar());

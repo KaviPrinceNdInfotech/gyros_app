@@ -104,35 +104,36 @@ class ItemDetailss extends StatelessWidget {
                 height: 4.h,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 4.w),
+                padding: EdgeInsets.symmetric(vertical: 0.h, horizontal: 4.w),
                 child: Text(
                   //'ghee',
                   Productss.products[index].name,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 19.sp,
+                    fontSize: 22.sp,
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 4.w),
-                child: Row(
+                padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 4.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Price:',
+                      'Price',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
                         fontSize: 11.sp,
                       ),
                     ),
                     Text(
-                      ' ₹ ${Productss.products[index].price}',
+                      '₹ ${Productss.products[index].price}',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 13.sp,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ],
@@ -141,12 +142,12 @@ class ItemDetailss extends StatelessWidget {
             ],
           ),
           Positioned(
-              top: size.height * 0.29,
+              top: size.height * 0.30,
               bottom: 0,
               //right: -1,
               //left: -1,
               child: Container(
-                height: size.height * 6,
+                height: size.height * 5,
                 width: size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -163,10 +164,12 @@ class ItemDetailss extends StatelessWidget {
                       SizedBox(
                         height: 5.h,
                       ),
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Weight:',
+                            'Weight',
                             style: TextStyle(
                               fontSize: 11.sp,
                               color: Colors.black,
@@ -174,11 +177,11 @@ class ItemDetailss extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            ' ${Productss.products[index].weight}gm',
+                            '${Productss.products[index].weight}gm',
                             style: TextStyle(
-                              fontSize: 15.sp,
+                              fontSize: 18.sp,
                               color: Colors.black,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ],
@@ -200,12 +203,12 @@ class ItemDetailss extends StatelessWidget {
                 ),
               )),
           Positioned(
-            top: 11.h,
-            left: size.width * 0.5,
+            top: 12.h,
+            left: size.width * 0.48,
             child: Material(
               elevation: 7,
               child: Container(
-                height: size.height * 0.21,
+                height: size.height * 0.22,
                 width: size.width * 0.44,
                 decoration: BoxDecoration(
                   color: Colors.orange,

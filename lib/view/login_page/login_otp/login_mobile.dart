@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/phone_login_controllerr/phone_login_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/login_page/login_otp/login_with_otp.dart';
 import 'package:sizer/sizer.dart';
@@ -13,6 +16,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formkeyss = GlobalKey<FormState>();
+  LoginMobileController _loginMobileController = Get.find();
   @override
   Widget build(BuildContext context) {
     //new RefreshIndicatorState(key: new GlobalKey<RefreshIndicatorState>();
@@ -25,7 +29,8 @@ class _RegisterState extends State<Register> {
       resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xfff7f6fb),
       body: Form(
-        key: _formkeyss,
+        key: _loginMobileController.MobileLoginFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SafeArea(
           child: Container(
             height: size.height,
@@ -94,7 +99,7 @@ class _RegisterState extends State<Register> {
                       height: 28,
                     ),
                     Container(
-                      height: size.height * 0.3,
+                      height: size.height * 0.33,
                       padding: EdgeInsets.all(28),
                       decoration: BoxDecoration(
                         color: Colors.white30,
@@ -109,156 +114,166 @@ class _RegisterState extends State<Register> {
                             fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                            Container(
-                              width: size.width * 0.8,
-                              margin: EdgeInsets.symmetric(vertical: 10),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 1, horizontal: 20),
-                              decoration: BoxDecoration(
-                                color: MyTheme.loginPageBoxColor,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: TextFormField(
-                                keyboardType: TextInputType.number,
-                                //controller: userMobileController,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return null;
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                onChanged: (value) {
-                                  // onUserMobileValueChange(value);
-                                },
-                                cursorColor: MyTheme.ThemeColors,
-                                style: TextStyle(color: MyTheme.ThemeColors),
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: " Enter your mobile",
-                                  hintStyle: TextStyle(
-                                    color: AppColors.themecolors,
-                                  ),
-                                  // prefixIcon: Icon(
-                                  //   userMobileTextFieldPrefixIcon,
-                                  //   color: userMobileTextFieldPrefixIconColor,
-                                  // ),
-                                  prefix: Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 8),
-                                    child: Text(
-                                      '+91',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 1.h,
+                          ),
 
-                            // TextFieldDecorator(
-                            //   child: UserMobileTextField(
-                            //     // useridTextFieldPrefixicon
-                            //     userMobileController: mobileController,
-                            //     userMobileErrorText: 'Phone Can not found',
-                            //     userMobileHintText: 'Enter Phone Number',
-                            //     userMobileHintTextColor: AppColors.themecolors,
-                            //     userMobileErrorTextColor: AppColors.themecolors,
-                            //     userMobileTextFieldPrefixIcon: '+91',
-                            //     userMobileTextFieldPrefixIconColor:
-                            //         AppColors.themecolors,
-                            //
-                            //     onUserMobileValueChange: (value) {},
-                            //   ),
-                            // ),
-                            // // SizedBox(
-                            // //   height: 0.h,
-                            // // ),
-                            // // TextFormField(
-                            // //   keyboardType: TextInputType.number,
-                            // //   style: TextStyle(
-                            // //     fontSize: 18,
-                            // //     fontWeight: FontWeight.bold,
-                            // //   ),
-                            // //   decoration: InputDecoration(
-                            // //     enabledBorder: OutlineInputBorder(
-                            // //         borderSide: BorderSide(color: Colors.black12),
-                            // //         borderRadius: BorderRadius.circular(10)),
-                            // //     focusedBorder: OutlineInputBorder(
-                            // //         borderSide: BorderSide(color: Colors.black12),
-                            // //         borderRadius: BorderRadius.circular(10)),
-                            // //     prefix: Padding(
-                            // //       padding: EdgeInsets.symmetric(horizontal: 8),
-                            // //       child: Text(
-                            // //         '+91 ',
-                            // //         style: TextStyle(
-                            // //           fontSize: 18,
-                            // //           fontWeight: FontWeight.bold,
-                            // //         ),
-                            // //       ),
-                            // //     ),
-                            // //     // suffixIcon: Icon(
-                            // //     //   Icons.check_circle,
-                            // //     //   color: Colors.green,
-                            // //     //   size: 32,
-                            // //     // ),
-                            // //   ),
-                            // // ),
-                            SizedBox(
-                              height: 2.h,
+                          Container(
+                            width: size.width * 0.8,
+                            height: size.height * 0.13,
+                            margin: EdgeInsets.symmetric(vertical: 0),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 1, horizontal: 0),
+                            decoration: BoxDecoration(
+                              //color: MyTheme.loginPageBoxColor,
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            Container(
-                              width: size.width * 0.8,
-                              decoration: BoxDecoration(
-                                color: MyTheme.loginbuttonColor,
-                                borderRadius: BorderRadius.circular(24),
+                            child: TextFormField(
+                              style: TextStyle(
+                                color: MyTheme.ThemeColors,
                               ),
-                              child: ElevatedButton(
-                                //key: _formkeyphones,
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => Otp()),
-                                  );
-                                },
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.green),
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(24.0),
-                                    ),
+                              cursorColor: MyTheme.ThemeColors,
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: BorderSide(
+                                    width: 3,
+                                    color: MyTheme.ThemeColors,
                                   ),
                                 ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(14.0),
-                                  child: Text(
-                                    'Send',
-                                    style: TextStyle(fontSize: 18),
+                                errorStyle: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w700),
+                                //border: InputBorder.none,
+                                fillColor: MyTheme.loginPageBoxColor,
+                                filled: true,
+                                focusColor: MyTheme.loginPageBoxColor,
+                                border: OutlineInputBorder(
+                                  //borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: BorderSide(
+                                      width: 2, color: MyTheme.ThemeColors),
+                                ),
+                                //labelText: "Email",
+                                prefixIcon: Icon(
+                                  Icons.phone_android_outlined,
+                                  color: MyTheme.ThemeColors,
+                                ),
+                                hintText: 'Enter Your Phone Number',
+                                hintStyle:
+                                    TextStyle(color: MyTheme.ThemeColors),
+                              ),
+                              keyboardType: TextInputType.number,
+                              controller:
+                                  _loginMobileController.phoneController,
+                              onSaved: (value) {
+                                _loginMobileController.phone = value!;
+                              },
+                              validator: (value) {
+                                return _loginMobileController
+                                    .validatePhone(value!);
+                              },
+                            ),
+                          ),
+
+                          // TextFieldDecorator(
+                          //   child: UserMobileTextField(
+                          //     // useridTextFieldPrefixicon
+                          //     userMobileController: mobileController,
+                          //     userMobileErrorText: 'Phone Can not found',
+                          //     userMobileHintText: 'Enter Phone Number',
+                          //     userMobileHintTextColor: AppColors.themecolors,
+                          //     userMobileErrorTextColor: AppColors.themecolors,
+                          //     userMobileTextFieldPrefixIcon: '+91',
+                          //     userMobileTextFieldPrefixIconColor:
+                          //         AppColors.themecolors,
+                          //
+                          //     onUserMobileValueChange: (value) {},
+                          //   ),
+                          // ),
+                          // // SizedBox(
+                          // //   height: 0.h,
+                          // // ),
+                          // // TextFormField(
+                          // //   keyboardType: TextInputType.number,
+                          // //   style: TextStyle(
+                          // //     fontSize: 18,
+                          // //     fontWeight: FontWeight.bold,
+                          // //   ),
+                          // //   decoration: InputDecoration(
+                          // //     enabledBorder: OutlineInputBorder(
+                          // //         borderSide: BorderSide(color: Colors.black12),
+                          // //         borderRadius: BorderRadius.circular(10)),
+                          // //     focusedBorder: OutlineInputBorder(
+                          // //         borderSide: BorderSide(color: Colors.black12),
+                          // //         borderRadius: BorderRadius.circular(10)),
+                          // //     prefix: Padding(
+                          // //       padding: EdgeInsets.symmetric(horizontal: 8),
+                          // //       child: Text(
+                          // //         '+91 ',
+                          // //         style: TextStyle(
+                          // //           fontSize: 18,
+                          // //           fontWeight: FontWeight.bold,
+                          // //         ),
+                          // //       ),
+                          // //     ),
+                          // //     // suffixIcon: Icon(
+                          // //     //   Icons.check_circle,
+                          // //     //   color: Colors.green,
+                          // //     //   size: 32,
+                          // //     // ),
+                          // //   ),
+                          // // ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Container(
+                            width: size.width * 0.8,
+                            decoration: BoxDecoration(
+                              color: MyTheme.loginbuttonColor,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: ElevatedButton(
+                              //key: _formkeyphones,
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => Otp()),
+                                );
+                              },
+                              style: ButtonStyle(
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.green),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(24.0),
                                   ),
                                 ),
                               ),
+                              child: Padding(
+                                padding: EdgeInsets.all(14.0),
+                                child: Text(
+                                  'Send',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ),
                             ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                          ],
-                        ),
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                        ],
                       ),
                     ),
                   ],
