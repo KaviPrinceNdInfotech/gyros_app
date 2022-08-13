@@ -101,8 +101,15 @@ class AddressList extends StatelessWidget {
                                   gradient: _addressListController
                                               .selectedIndex.value ==
                                           index
-                                      ? MyTheme.gradient5
-                                      : MyTheme.gradient4,
+                                      ? MyTheme.gradient4
+                                      : LinearGradient(
+                                          begin: Alignment.centerLeft,
+                                          end: Alignment.centerRight,
+                                          colors: [
+                                            Colors.grey.shade400,
+                                            Colors.black87
+                                          ],
+                                        ),
                                   //gradient: MyTheme.gradient4
 
                                   // color:

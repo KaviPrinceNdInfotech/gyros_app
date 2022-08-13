@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
+import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
 import 'package:gyros_app/controllers/phone_login_controllerr/phone_login_controllers.dart';
 import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
@@ -22,6 +23,7 @@ class ControllerBinding extends Bindings {
     Get.put(LoginPageController());
     Get.put(SignUpPageController());
     Get.put(LoginMobileController());
+    Get.put(AddAdressController());
   }
 
   // CartNewController _cartNewController = Get.put(CartNewController());

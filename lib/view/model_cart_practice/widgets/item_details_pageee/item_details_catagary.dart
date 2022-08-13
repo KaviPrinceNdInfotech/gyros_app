@@ -187,7 +187,73 @@ class ItemDetailss extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
+                        height: 2.h,
+                      ),
+                      SizedBox(
                         height: 4.h,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Text(
+                                'Rating:',
+                                style: TextStyle(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 2),
+                              child: Text(
+                                '5',
+                                style: TextStyle(
+                                    color: Color(int.parse(Productss
+                                        .products[index].color
+                                        .toString())),
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 0),
+                              child: Text(
+                                '/',
+                                style: TextStyle(
+                                    color: Color(int.parse(Productss
+                                        .products[index].color
+                                        .toString())),
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 2),
+                              child: Text(
+                                '4.1',
+                                style: TextStyle(
+                                    color: Color(int.parse(Productss
+                                        .products[index].color
+                                        .toString())),
+                                    fontSize: 13.sp,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                            Icon(
+                              Icons.star,
+                              color: Colors.yellow.shade700,
+                              size: 20,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3.h,
                       ),
                       Text(
                         Productss.products[index].descriptions,

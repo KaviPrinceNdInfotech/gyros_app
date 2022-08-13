@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
+import 'package:gyros_app/view/model_cart_practice/widgets/gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
 import 'item_details_pageee/item_details_catagary.dart';
@@ -70,7 +71,7 @@ class CatalogProductCart extends StatelessWidget {
             color: MyTheme.ThemeColors,
             elevation: 0.1,
             child: Container(
-              height: 27.h,
+              height: 26.h,
               width: size.width * 0.5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
@@ -103,7 +104,7 @@ class CatalogProductCart extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 1.h,
+                    height: 0.7.h,
                   ),
                   PhysicalModel(
                     shadowColor: Colors.green,
@@ -142,7 +143,7 @@ class CatalogProductCart extends StatelessWidget {
                       },
                       child: Container(
                         height: size.height * 0.15,
-                        width: size.width * 0.32,
+                        width: size.width * 0.33,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           // border: Border.all(
@@ -163,7 +164,7 @@ class CatalogProductCart extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 1.h,
+                    height: 0.9.h,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 1.7.w),
@@ -173,7 +174,7 @@ class CatalogProductCart extends StatelessWidget {
                         Text(
                           Productss.products[index].name,
                           style: TextStyle(
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             fontSize: 11.sp,
                             color: Colors.black,
                           ),
@@ -197,80 +198,107 @@ class CatalogProductCart extends StatelessWidget {
                         Productss.products[index].oldprice.toString(),
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w500,
                           fontSize: 7.sp,
                           color: Colors.grey,
                         ),
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 23.w,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 2.w),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          //width: 21.w,
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 Productss.products[index].price.toString(),
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 8.sp,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 10.sp,
                                   color: MyTheme.loginbuttonColor,
                                 ),
                               ),
                               Text(
-                                ' ${Productss.products[index].weight} gm',
+                                ' / ${Productss.products[index].weight} gm',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 5.sp,
+                                  fontSize: 7.sp,
                                   color: Colors.grey,
                                 ),
                               ),
                             ],
                           ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          cartController.addProduct(Productss.products[index]);
-                        },
-                        child: Container(
+
+                        Spacer(),
+                        Container(
                           height: 3.3.h,
-                          width: 23.9.w,
+                          width: 23.5.w,
                           decoration: BoxDecoration(
-                              color: MyTheme.loginbuttonColor,
-                              borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(5),
-                                bottomLeft: Radius.circular(5),
-                              )),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Add To Cart',
-                                  style: TextStyle(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              cartController
+                                  .addProduct(Productss.products[index]);
+                            },
+                            child: RaisedGradientButton(
+                              //height: 3.3.h,
+                              //width: 23.9.w,
+                              child: Text(
+                                'Add To Cart',
+                                style: TextStyle(
                                     color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 8.sp,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 1.w,
-                                ),
-                                Icon(
-                                  Icons.add_shopping_cart_outlined,
-                                  size: 13.sp,
-                                  color: Colors.redAccent,
-                                ),
-                              ],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 8.sp),
+                              ),
+                              gradient: LinearGradient(
+                                colors: <Color>[
+                                  Colors.green,
+                                  Colors.cyan.shade400
+                                ],
+                              ),
+                              onPressed: () {
+                                cartController
+                                    .addProduct(Productss.products[index]);
+                                print('Add To cart');
+                              },
                             ),
                           ),
                         ),
-                      ),
-                    ],
+
+                        // InkWell(
+                        //   onTap: () {
+                        //     cartController.addProduct(Productss.products[index]);
+                        //   },
+                        //   child: Container(
+                        //     height: 3.3.h,
+                        //     width: 23.9.w,
+                        //     decoration: BoxDecoration(
+                        //         //color: MyTheme.loginbuttonColor,
+                        //         gradient: MyTheme.gradient4,
+                        //         borderRadius: BorderRadius.only(
+                        //           bottomRight: Radius.circular(5),
+                        //           bottomLeft: Radius.circular(5),
+                        //         )),
+                        //     child: Center(
+                        //       child: Text(
+                        //         'Add To Cart',
+                        //         style: TextStyle(
+                        //           color: Colors.white,
+                        //           fontWeight: FontWeight.w500,
+                        //           fontSize: 8.sp,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
+                    ),
                   ),
                 ],
               ),

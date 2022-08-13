@@ -332,7 +332,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-                height: size.height * 0.31,
+                height: size.height * 0.30,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: Productss.products.length,
@@ -437,7 +437,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-                height: size.height * 0.31,
+                height: size.height * 0.30,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: Productss.products.length,
