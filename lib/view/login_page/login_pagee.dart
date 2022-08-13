@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
@@ -57,7 +58,19 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 8.h,
+              ),
+
+              Text(
+                'Choose an options.',
+                style: GoogleFonts.actor(
+                  color: Colors.white,
+                  fontSize: 19.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              SizedBox(
+                height: 8.h,
               ),
               CustomButtom(
                 buttonColor: MyTheme.loginbuttonColor,

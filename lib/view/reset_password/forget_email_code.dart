@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:gyros_app/constants/app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
+import 'package:gyros_app/controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/reset_password/reset_password.dart';
-import 'package:gyros_app/widgets/text_field_decorator.dart';
-import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
 
 class EmailCode extends StatelessWidget {
   final _formkeysss = GlobalKey<FormState>();
   //TextEditingController emailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+  ForgotCodeController _forgotCodeController = Get.find();
   EmailCode({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +20,8 @@ class EmailCode extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Form(
-        key: _formkeysss,
+        key: _forgotCodeController.ForgotFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -75,23 +76,104 @@ class EmailCode extends StatelessWidget {
                   // ),
 
                   SizedBox(
-                    height: 12.h,
+                    height: 5.h,
                   ),
-
-                  TextFieldDecorator(
-                    child: UserIdTextField(
-                      // useridTextFieldPrefixicon
-                      useridController: otpController,
-                      userIdErrorText: 'Pin can not be empty',
-                      userIdHintText: 'Enter Your Pin',
-                      userIdHintTextColor: AppColors.themecolors,
-                      userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.pin,
-                      useridTextFieldPrefixIconColor: AppColors.themecolors,
-
-                      onUseridValueChange: (value) {},
+                  Text(
+                    'Enter Your Pin',
+                    style: GoogleFonts.actor(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.h),
+                    child: Text(
+                      "You can change your password through pin",
+                      style: GoogleFonts.actor(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+
+                  Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.13,
+                    margin: EdgeInsets.symmetric(vertical: 0),
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                    decoration: BoxDecoration(
+                      //color: MyTheme.loginPageBoxColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFormField(
+                      style: TextStyle(
+                        color: MyTheme.ThemeColors,
+                      ),
+                      cursorColor: MyTheme.ThemeColors,
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color: MyTheme.ThemeColors,
+                          ),
+                        ),
+                        errorStyle: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w700),
+                        //border: InputBorder.none,
+                        fillColor: MyTheme.loginPageBoxColor,
+                        filled: true,
+                        focusColor: MyTheme.loginPageBoxColor,
+                        border: OutlineInputBorder(
+                          //borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 2, color: MyTheme.ThemeColors),
+                        ),
+                        //labelText: "Email",
+                        prefixIcon: Icon(
+                          Icons.pin,
+                          color: MyTheme.ThemeColors,
+                        ),
+                        hintText: 'Enter Your Code',
+                        hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _forgotCodeController.codeController,
+                      onSaved: (value) {
+                        _forgotCodeController.code = value!;
+                      },
+                      validator: (value) {
+                        return _forgotCodeController.validateCode(value!);
+                      },
+                    ),
+                  ),
+
+                  // TextFieldDecorator(
+                  //   child: UserIdTextField(
+                  //     // useridTextFieldPrefixicon
+                  //     useridController: otpController,
+                  //     userIdErrorText: 'Pin can not be empty',
+                  //     userIdHintText: 'Enter Your Pin',
+                  //     userIdHintTextColor: AppColors.themecolors,
+                  //     userIdErrorTextColor: AppColors.themecolors,
+                  //     useridTextFieldPrefixIcon: Icons.pin,
+                  //     useridTextFieldPrefixIconColor: AppColors.themecolors,
+                  //
+                  //     onUseridValueChange: (value) {},
+                  //   ),
+                  // ),
 
                   SizedBox(
                     height: 1.h,

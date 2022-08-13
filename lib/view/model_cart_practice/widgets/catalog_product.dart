@@ -195,7 +195,7 @@ class CatalogProductCart extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        Productss.products[index].oldprice.toString(),
+                        "₹${Productss.products[index].oldprice.toString()}",
                         style: TextStyle(
                           decoration: TextDecoration.lineThrough,
                           fontWeight: FontWeight.w500,
@@ -206,7 +206,7 @@ class CatalogProductCart extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 2.w),
+                    padding: EdgeInsets.symmetric(horizontal: 1.8.w),
                     child: Row(
                       children: [
                         SizedBox(
@@ -215,19 +215,22 @@ class CatalogProductCart extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                Productss.products[index].price.toString(),
+                                '₹${Productss.products[index].price.toString()}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 10.sp,
                                   color: MyTheme.loginbuttonColor,
                                 ),
                               ),
-                              Text(
-                                ' / ${Productss.products[index].weight} gm',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 7.sp,
-                                  color: Colors.grey,
+                              Padding(
+                                padding: EdgeInsets.only(top: 0.3.h),
+                                child: Text(
+                                  '/${Productss.products[index].weight} gm',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 7.sp,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ],

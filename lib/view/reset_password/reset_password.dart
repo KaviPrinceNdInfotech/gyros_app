@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:gyros_app/constants/app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
+import 'package:gyros_app/controllers/set_new_password/set_new_pswd_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
-import 'package:gyros_app/widgets/text_field_decorator.dart';
-import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
 
 class ResetPasswords extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
+  SetPasswordController _setPasswordController = Get.find();
   TextEditingController newpassController = TextEditingController();
   TextEditingController confirmpassController = TextEditingController();
+
+  //ForgotCodeController _forgotCodeController = Get.find();
   ResetPasswords({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +22,8 @@ class ResetPasswords extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Form(
-        key: _formkey,
+        key: _setPasswordController.SetPasswordFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -71,40 +74,176 @@ class ResetPasswords extends StatelessWidget {
                   //   //reverse: false,
                   //   //animate: false,
                   // ),
-
                   SizedBox(
-                    height: 12.h,
+                    height: 4.h,
                   ),
 
-                  TextFieldDecorator(
-                    child: UserIdTextField(
-                      // useridTextFieldPrefixicon
-                      useridController: newpassController,
-                      userIdErrorText: 'Email can not be empty',
-                      userIdHintText: 'Enter new password',
-                      userIdHintTextColor: AppColors.themecolors,
-                      userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.lock_outlined,
-                      useridTextFieldPrefixIconColor: AppColors.themecolors,
-
-                      onUseridValueChange: (value) {},
+                  Text(
+                    'Change your password.',
+                    style: GoogleFonts.actor(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.h),
+                    child: Text(
+                      "Enter your new password and shopin again with us.",
+                      style: GoogleFonts.actor(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 4.h,
+                  ),
+                  Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.13,
+                    margin: EdgeInsets.symmetric(vertical: 0),
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                    decoration: BoxDecoration(
+                      //color: MyTheme.loginPageBoxColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFormField(
+                      style: TextStyle(
+                        color: MyTheme.ThemeColors,
+                      ),
+                      cursorColor: MyTheme.ThemeColors,
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color: MyTheme.ThemeColors,
+                          ),
+                        ),
+                        errorStyle: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w700),
+                        //border: InputBorder.none,
+                        fillColor: MyTheme.loginPageBoxColor,
+                        filled: true,
+                        focusColor: MyTheme.loginPageBoxColor,
+                        border: OutlineInputBorder(
+                          //borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 2, color: MyTheme.ThemeColors),
+                        ),
+                        //labelText: "Email",
+                        prefixIcon: Icon(
+                          Icons.lock_outlined,
+                          color: MyTheme.ThemeColors,
+                        ),
+                        hintText: 'Enter New Password',
+                        hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                      ),
+                      //keyboardType: TextInputType.emailAddress,
+                      controller: _setPasswordController.code1Controller,
+                      onSaved: (value) {
+                        _setPasswordController.code1 = value!;
+                      },
+                      validator: (value) {
+                        return _setPasswordController.validateCode1(value!);
+                      },
                     ),
                   ),
 
-                  TextFieldDecorator(
-                    child: UserIdTextField(
-                      // useridTextFieldPrefixicon
-                      useridController: confirmpassController,
-                      userIdErrorText: 'Confiirm pass can not be empty',
-                      userIdHintText: 'Confirm Password',
-                      userIdHintTextColor: AppColors.themecolors,
-                      userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.lock,
-                      useridTextFieldPrefixIconColor: AppColors.themecolors,
-
-                      onUseridValueChange: (value) {},
+                  Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.13,
+                    margin: EdgeInsets.symmetric(vertical: 0),
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                    decoration: BoxDecoration(
+                      //color: MyTheme.loginPageBoxColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFormField(
+                      style: TextStyle(
+                        color: MyTheme.ThemeColors,
+                      ),
+                      cursorColor: MyTheme.ThemeColors,
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color: MyTheme.ThemeColors,
+                          ),
+                        ),
+                        errorStyle: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w700),
+                        //border: InputBorder.none,
+                        fillColor: MyTheme.loginPageBoxColor,
+                        filled: true,
+                        focusColor: MyTheme.loginPageBoxColor,
+                        border: OutlineInputBorder(
+                          //borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 2, color: MyTheme.ThemeColors),
+                        ),
+                        //labelText: "Email",
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: MyTheme.ThemeColors,
+                        ),
+                        hintText: 'Enter Confirm Password',
+                        hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                      ),
+                      //keyboardType: TextInputType.emailAddress,
+                      controller: _setPasswordController.code2Controller,
+                      onSaved: (value) {
+                        _setPasswordController.code2 = value!;
+                      },
+                      validator: (value) {
+                        return _setPasswordController.validateCode2(value!);
+                      },
                     ),
                   ),
+
+                  // TextFieldDecorator(
+                  //   child: UserIdTextField(
+                  //     // useridTextFieldPrefixicon
+                  //     useridController: newpassController,
+                  //     userIdErrorText: 'Email can not be empty',
+                  //     userIdHintText: 'Enter new password',
+                  //     userIdHintTextColor: AppColors.themecolors,
+                  //     userIdErrorTextColor: AppColors.themecolors,
+                  //     useridTextFieldPrefixIcon: Icons.lock_outlined,
+                  //     useridTextFieldPrefixIconColor: AppColors.themecolors,
+                  //
+                  //     onUseridValueChange: (value) {},
+                  //   ),
+                  // ),
+                  //
+                  // TextFieldDecorator(
+                  //   child: UserIdTextField(
+                  //     // useridTextFieldPrefixicon
+                  //     useridController: confirmpassController,
+                  //     userIdErrorText: 'Confiirm pass can not be empty',
+                  //     userIdHintText: 'Confirm Password',
+                  //     userIdHintTextColor: AppColors.themecolors,
+                  //     userIdErrorTextColor: AppColors.themecolors,
+                  //     useridTextFieldPrefixIcon: Icons.lock,
+                  //     useridTextFieldPrefixIconColor: AppColors.themecolors,
+                  //
+                  //     onUseridValueChange: (value) {},
+                  //   ),
+                  // ),
 
                   SizedBox(
                     height: 1.h,

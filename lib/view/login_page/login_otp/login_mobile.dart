@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/phone_login_controllerr/phone_login_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
@@ -78,20 +79,20 @@ class _RegisterState extends State<Register> {
                     ),
                     Text(
                       'Login With Mobile',
-                      style: TextStyle(
-                          fontSize: 22,
+                      style: GoogleFonts.actor(
+                          fontSize: 19.sp,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black),
+                          color: Colors.white),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
                       "Add your phone number. we'll send you a verification code so we know you're real",
-                      style: TextStyle(
+                      style: GoogleFonts.actor(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                       textAlign: TextAlign.center,
                     ),

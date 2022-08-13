@@ -81,6 +81,39 @@ class MyTheme {
   static LinearGradient gradient5 =
       const LinearGradient(colors: [Colors.red, Colors.yellowAccent]);
 
+  static LinearGradient gradient6 = LinearGradient(
+    colors: [
+      const Color(0xffD6FF7F),
+      //Colors.blueGrey.shade500,
+      const Color(0xff00B3CC)
+    ],
+    // begin: const FractionalOffset(0.0, 0.0),
+    // end: const FractionalOffset(1.0, 0.0),
+    // stops: [0.0, 1.0],
+    // tileMode: TileMode.clamp,
+  );
+
+  static LinearGradient gradient7 = LinearGradient(
+    colors: [
+      Color(0xFF0061ff),
+      Color(0xFF60efff),
+    ],
+    begin: const FractionalOffset(0.0, 0.0),
+    end: const FractionalOffset(1.0, 0.0),
+    stops: [0.0, 1.0],
+    tileMode: TileMode.clamp,
+  );
+
+  static LinearGradient gradient8 =
+      const LinearGradient(colors: [Color(0xff402565), Color(0xff30BE96)]);
+
+  static LinearGradient gradient9 = const LinearGradient(
+    colors: [
+      Color.fromARGB(255, 148, 231, 225),
+      Color.fromARGB(255, 62, 182, 226)
+    ],
+  );
+
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         canvasColor: Colors.white,
         fontFamily: GoogleFonts.poppins().fontFamily,

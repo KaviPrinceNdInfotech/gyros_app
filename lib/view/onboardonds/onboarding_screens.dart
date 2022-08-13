@@ -88,74 +88,84 @@ class OnboardingPage extends StatelessWidget {
               Positioned(
                 right: 20,
                 bottom: 20,
-                child: Container(
-                  height: 4.h,
-                  width: 19.w,
-                  decoration: BoxDecoration(
-                    gradient: MyTheme.gradient2,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: FloatingActionButton(
-                    highlightElevation: 1,
-                    heroTag: 'next',
-                    shape: RoundedRectangleBorder(
+                child: PhysicalModel(
+                  elevation: 3,
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    height: 4.5.h,
+                    width: 22.w,
+                    decoration: BoxDecoration(
+                      gradient: MyTheme.gradient2,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    splashColor: Colors.lightGreenAccent,
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    onPressed: _controller.forwardAct,
-                    child: Obx(() {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _controller.isLastPage ? 'START' : 'NEXT',
-                            style: TextStyle(
-                              color: Colors.yellow.shade200,
-                              fontSize: 9.sp,
-                              fontWeight: FontWeight.w400,
+                    child: FloatingActionButton(
+                      highlightElevation: 1,
+                      heroTag: 'next',
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      splashColor: Colors.lightGreenAccent,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      onPressed: _controller.forwardAct,
+                      child: Obx(() {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _controller.isLastPage ? 'START' : 'NEXT',
+                              style: TextStyle(
+                                color: Colors.yellow.shade200,
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          Icon(
-                            Icons.arrow_right,
-                            size: 18,
-                            color: Colors.yellow.shade200,
-                          )
-                        ],
-                      );
-                    }),
+                            Icon(
+                              Icons.arrow_right,
+                              size: 16.sp,
+                              color: Colors.yellow.shade200,
+                            )
+                          ],
+                        );
+                      }),
+                    ),
                   ),
                 ),
               ),
               Positioned(
                 right: 20,
                 top: 20,
-                child: Container(
-                  height: 4.h,
-                  width: 16.w,
-                  decoration: BoxDecoration(
-                    gradient: MyTheme.gradient3,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: FloatingActionButton(
-                    highlightElevation: 5,
-                    heroTag: 'Skip',
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                child: PhysicalModel(
+                  elevation: 3,
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    height: 4.5.h,
+                    width: 18.w,
+                    decoration: BoxDecoration(
+                      gradient: MyTheme.gradient2,
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    splashColor: Colors.lightGreenAccent,
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                    onPressed: () {
-                      Get.to(() => LoginPage());
-                    },
-                    child: Text(
-                      'SKIP',
-                      style: TextStyle(
-                        color: Colors.yellow.shade200,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
+                    child: FloatingActionButton(
+                      highlightElevation: 6,
+                      heroTag: 'Skip',
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      splashColor: Colors.lightGreenAccent,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
+                      onPressed: () {
+                        Get.to(() => LoginPage());
+                      },
+                      child: Text(
+                        'SKIP',
+                        style: TextStyle(
+                          color: Colors.yellow.shade200,
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),

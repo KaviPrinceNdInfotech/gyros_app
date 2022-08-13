@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
@@ -72,6 +73,34 @@ class LoginMainPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(
+                    height: 6.h,
+                  ),
+
+                  Text(
+                    'Login With Your Email.',
+                    style: GoogleFonts.actor(
+                      color: Colors.white,
+                      fontSize: 19.sp,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.h),
+                    child: Text(
+                      "Enter Your Email and start purchasing with Gyros.",
+                      style: GoogleFonts.actor(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                   // Lottie.asset(
                   //   'lib/assets/asset/76899-delivery-grocery-and-food.json',
                   //   height: size.height * 0.4,
@@ -81,7 +110,7 @@ class LoginMainPage extends StatelessWidget {
                   //   //animate: false,
                   // ),
                   SizedBox(
-                    height: 15.h,
+                    height: 6.h,
                   ),
 
                   ///todo from here email....

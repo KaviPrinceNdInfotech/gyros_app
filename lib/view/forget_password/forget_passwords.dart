@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:gyros_app/constants/app_colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
+import 'package:gyros_app/controllers/reset_password/reset_ps_email_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/reset_password/forget_email_code.dart';
-import 'package:gyros_app/widgets/text_field_decorator.dart';
-import 'package:gyros_app/widgets/user_text_field.dart';
 import 'package:sizer/sizer.dart';
 
 class Forgetpasswords extends StatelessWidget {
   final _formkey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController otpController = TextEditingController();
+
+  ResetEmailController _resetEmailController = Get.find();
   Forgetpasswords({Key? key}) : super(key: key);
 
   @override
@@ -20,7 +21,8 @@ class Forgetpasswords extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Form(
-        key: _formkey,
+        key: _resetEmailController.resetEmailFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
           child: SafeArea(
             child: Container(
@@ -80,23 +82,103 @@ class Forgetpasswords extends StatelessWidget {
                   // ),
 
                   SizedBox(
-                    height: 13.h,
+                    height: 5.h,
                   ),
-
-                  TextFieldDecorator(
-                    child: UserIdTextField(
-                      // useridTextFieldPrefixicon
-                      useridController: emailController,
-                      userIdErrorText: 'Email can not be empty',
-                      userIdHintText: 'Enter Email',
-                      userIdHintTextColor: AppColors.themecolors,
-                      userIdErrorTextColor: AppColors.themecolors,
-                      useridTextFieldPrefixIcon: Icons.email,
-                      useridTextFieldPrefixIconColor: AppColors.themecolors,
-
-                      onUseridValueChange: (value) {},
+                  Text(
+                    'Enter Your Email address',
+                    style: GoogleFonts.actor(
+                        fontSize: 19.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.h),
+                    child: Text(
+                      "We'll send you a verification code on your email",
+                      style: GoogleFonts.actor(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  Container(
+                    width: size.width * 0.8,
+                    height: size.height * 0.13,
+                    margin: EdgeInsets.symmetric(vertical: 0),
+                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                    decoration: BoxDecoration(
+                      //color: MyTheme.loginPageBoxColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: TextFormField(
+                      style: TextStyle(
+                        color: MyTheme.ThemeColors,
+                      ),
+                      cursorColor: MyTheme.ThemeColors,
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide: BorderSide(
+                            width: 3,
+                            color: MyTheme.ThemeColors,
+                          ),
+                        ),
+                        errorStyle: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w700),
+                        //border: InputBorder.none,
+                        fillColor: MyTheme.loginPageBoxColor,
+                        filled: true,
+                        focusColor: MyTheme.loginPageBoxColor,
+                        border: OutlineInputBorder(
+                          //borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 2, color: MyTheme.ThemeColors),
+                        ),
+                        //labelText: "Email",
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: MyTheme.ThemeColors,
+                        ),
+                        hintText: 'Enter Your Email',
+                        hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _resetEmailController.emailController,
+                      onSaved: (value) {
+                        _resetEmailController.email = value!;
+                      },
+                      validator: (value) {
+                        return _resetEmailController.validateEml(value!);
+                      },
+                    ),
+                  ),
+
+                  // TextFieldDecorator(
+                  //   child: UserIdTextField(
+                  //     // useridTextFieldPrefixicon
+                  //     useridController: emailController,
+                  //     userIdErrorText: 'Email can not be empty',
+                  //     userIdHintText: 'Enter Email',
+                  //     userIdHintTextColor: AppColors.themecolors,
+                  //     userIdErrorTextColor: AppColors.themecolors,
+                  //     useridTextFieldPrefixIcon: Icons.email,
+                  //     useridTextFieldPrefixIconColor: AppColors.themecolors,
+                  //
+                  //     onUseridValueChange: (value) {},
+                  //   ),
+                  // ),
 
                   // TextFieldDecorator(
                   //   child: UserIdTextField(

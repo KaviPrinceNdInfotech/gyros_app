@@ -79,7 +79,7 @@ class BestDeal extends StatelessWidget {
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 4 / 3,
-                      mainAxisExtent: 215,
+                      mainAxisExtent: 205,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0),
                   itemCount: text2.length,
@@ -124,8 +124,8 @@ class BestDeal extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Container(
-                                    height: 3.5.h,
-                                    width: 22.w,
+                                    height: size.height * 0.03,
+                                    width: size.width * 0.22,
                                     decoration: BoxDecoration(
                                         color: Colors.red,
                                         borderRadius: BorderRadius.only(
@@ -144,9 +144,10 @@ class BestDeal extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 0.6.h,
-                                ),
+                                Spacer(),
+                                // SizedBox(
+                                //   height: 0.6.h,
+                                // ),
                                 PhysicalModel(
                                   shadowColor: Colors.green,
                                   color: Colors.green,
@@ -165,6 +166,7 @@ class BestDeal extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                                Spacer(),
                                 Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 1.7.w),
@@ -275,6 +277,9 @@ class BestDeal extends StatelessWidget {
                                       ),
                                     ),
                                   ],
+                                ),
+                                SizedBox(
+                                  height: 1.h,
                                 ),
                               ],
                             ),
