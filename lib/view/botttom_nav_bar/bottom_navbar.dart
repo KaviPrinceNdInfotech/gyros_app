@@ -32,9 +32,6 @@ class NavBar extends StatelessWidget {
     print(height);
     print(width);
     return Scaffold(
-      // appBar: AppBar(
-      //   title: ,
-      // ),
       bottomNavigationBar: Obx(() => SizedBox(
             height: 8.h,
             child: Container(
@@ -301,7 +298,6 @@ class NavBar extends StatelessWidget {
           ),
         ),
       ),
-
       floatingActionButton: SizedBox(
         height: 6.h,
         width: 12.w,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -5,11 +7,21 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/controllers/binding_controllers/binding_controllers.dart';
 import 'package:gyros_app/view/intro_screen/intro_video/intro_video_view.dart';
-import 'package:gyros_app/view/onboardonds/onboarding_screens.dart';
+import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:sizer/sizer.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() async {
+  HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
@@ -31,14 +43,13 @@ class MyApp extends StatelessWidget {
       navigateRoute:
           //SplashPage(),
           //DrawerPracticee(),
-          OnboardingPage(),
+          // OnboardingPage(),
+          LoginPage(),
+      //HomePage(),
+      // SignUp(),
+      //NavBar(),
       duration: 6500,
       imageSize: 100,
-      //imageSrc: "lib/assets/video/intro video.mp4",
-      //"lib/assets/intro video_1.gif",
-      //"lib/assets/vot bag logo.png",
-      //text: "WELCOME TO VOIT",
-
       backgroundColor: Colors.white,
     );
     return Sizer(builder: (context, orientation, deviceType) {

@@ -22,6 +22,7 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavController _navController = Get.put(NavController(), permanent: true);
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Drawer(
         backgroundColor: Colors.white,
@@ -36,7 +37,7 @@ class MainDrawer extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundColor: Colors.white,
-                      radius: 55,
+                      radius: size.height * 0.05,
                       child: Center(
                           child: Padding(
                         padding: const EdgeInsets.all(0.0),

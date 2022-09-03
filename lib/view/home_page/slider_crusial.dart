@@ -1,13 +1,33 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
+import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 
 class MySlider extends StatelessWidget {
   final _sliderKey = GlobalKey();
   MySlider({Key? key}) : super(key: key);
+
+  Future<List<String>> getData() async {
+    var url = 'https://api.gyros.farm/api/AdminApi/BannerImage';
+    var res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      var data = json.decode(res.body);
+      var rest = data["BannerImageList"];
+      //your json string
+      String jsonString = json.encode(rest);
+      //convert json string to list
+      List<String> newData = List<String>.from(json.decode(jsonString));
+      print("List Size&&&&&&&&&&&&&&&: ${newData}");
+      return newData;
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 
   final List<Color> colors = [
     Colors.red,
@@ -18,7 +38,6 @@ class MySlider extends StatelessWidget {
     Colors.indigo,
     Colors.purple,
   ];
-
   final List<String> images = [
     'lib/assets/asset/ghee5.jpeg',
     'lib/assets/asset/oil_1.jpeg',
@@ -37,56 +56,104 @@ class MySlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-        height: 26.h,
-        child: ListView(
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            Container(
-              height: 26.h,
-              child: CarouselSlider.builder(
-                //scrollPhysics: NeverScrollableScrollPhysics(),
-                key: _sliderKey,
-                unlimitedMode: true,
-                autoSliderTransitionTime: Duration(seconds: 2),
-                //autoSliderDelay: Duration(seconds: 5),
-                slideBuilder: (index) {
-                  return Container(
-                    height: 26.h,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(images[index]), fit: BoxFit.fill),
+          height: 26.h,
+          child: FutureBuilder<List<String>>(
+            future: getData(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var items = snapshot.data;
+                var base = 'https://api.gyros.farm/Images/';
+                return Container(
+                  height: 26.h,
+                  child: CarouselSlider.builder(
+                    //scrollPhysics: NeverScrollableScrollPhysics(),
+                    key: _sliderKey,
+                    unlimitedMode: true,
+                    autoSliderTransitionTime: Duration(seconds: 2),
+                    //autoSliderDelay: Duration(seconds: 5),
+                    slideBuilder: (index) {
+                      return Container(
+                        height: 26.h,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(base + '${items![index]}'),
+                              fit: BoxFit.fill),
+                        ),
+                      );
+                    },
+                    slideTransform: ZoomOutSlideTransform(),
+                    slideIndicator: CircularSlideIndicator(
+                      indicatorBorderWidth: 2,
+                      indicatorRadius: 4,
+                      itemSpacing: 15,
+                      currentIndicatorColor: Colors.white,
+                      padding: EdgeInsets.only(bottom: 6),
                     ),
-                    //color: colors[index],
-                    // child: Text(
-                    //   letters[index],
-                    //   style: TextStyle(fontSize: 200, color: Colors.white),
-                    // ),
-                  );
-                },
-                slideTransform: ZoomOutSlideTransform(),
-                slideIndicator: CircularSlideIndicator(
-                  indicatorBorderWidth: 2,
-                  indicatorRadius: 4,
-                  itemSpacing: 15,
-                  currentIndicatorColor: Colors.white,
-                  padding: EdgeInsets.only(bottom: 6),
-                ),
-                itemCount: images.length,
-                enableAutoSlider: true,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 1),
-              child: Align(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minWidth: 190, maxWidth: 600),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+                    itemCount: items!.length,
+                    enableAutoSlider: true,
+                  ),
+                );
+
+                /*  ListView(
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Container(
+                      height: 26.h,
+                      child: CarouselSlider.builder(
+                        //scrollPhysics: NeverScrollableScrollPhysics(),
+                        key: _sliderKey,
+                        unlimitedMode: true,
+                        autoSliderTransitionTime: Duration(seconds: 2),
+                        //autoSliderDelay: Duration(seconds: 5),
+                        slideBuilder: (index) {
+                          return Container(
+                            height: 26.h,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage('${'Images'}'),
+                                  fit: BoxFit.fill),
+                            ),
+                            //color: colors[index],
+                            // child: Text(
+                            //   letters[index],
+                            //   style: TextStyle(fontSize: 200, color: Colors.white),
+                            // ),
+                          );
+                        },
+                        slideTransform: ZoomOutSlideTransform(),
+                        slideIndicator: CircularSlideIndicator(
+                          indicatorBorderWidth: 2,
+                          indicatorRadius: 4,
+                          itemSpacing: 15,
+                          currentIndicatorColor: Colors.white,
+                          padding: EdgeInsets.only(bottom: 6),
+                        ),
+                        itemCount: images.length,
+                        enableAutoSlider: true,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 1),
+                      child: Align(
+                        child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(minWidth: 190, maxWidth: 600),
+                        ),
+                      ),
+                    ),
+                  ],
+                );*/
+              } else if (snapshot.hasError) {
+                return Text("${snapshot.error}");
+              }
+              return Center(
+                  child: CircularProgressIndicator(
+                color: Colors.white,
+              ));
+            },
+          )),
     );
   }
 }

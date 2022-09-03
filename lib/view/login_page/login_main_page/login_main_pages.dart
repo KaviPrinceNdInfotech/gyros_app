@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,16 +14,60 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/forget_password/forget_passwords.dart';
 import 'package:gyros_app/view/signup/signup_page.dart';
+import 'package:http/http.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginMainPage extends StatelessWidget {
-  final _formkey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   TextEditingController useridController = TextEditingController();
   TextEditingController passController = TextEditingController();
   NavController _navController = Get.find();
   LoginPageController _loginPageController = Get.find();
 
   LoginMainPage({Key? key}) : super(key: key);
+
+  void login(String email, password) async {
+    try {
+      var response = await post(
+          Uri.parse("https://api.gyros.farm/api/AdminApi/LoginWithEmail"),
+          body: {
+            'Email': email,
+            'PassWord': password,
+          });
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        if (data['Status'] == 200) {
+          _toast(data);
+          Get.to(() => NavBar());
+        } else {
+          _toast(data);
+        }
+      } else {
+        Fluttertoast.showToast(
+            msg: 'Login Failed',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 3,
+            backgroundColor: Colors.grey,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    } catch (e) {
+      print('Error');
+      print(e.toString());
+    }
+  }
+
+  _toast(data) {
+    return Fluttertoast.showToast(
+        msg: '${data['Message']}',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 3,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,171 +161,197 @@ class LoginMainPage extends StatelessWidget {
                   ),
 
                   ///todo from here email....
-
-                  Container(
-                    width: size.width * 0.8,
-                    height: size.height * 0.13,
-                    margin: EdgeInsets.symmetric(vertical: 0),
-                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
-                    decoration: BoxDecoration(
-                      //color: MyTheme.loginPageBoxColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: TextFormField(
-                      style: TextStyle(
-                        color: MyTheme.ThemeColors,
-                      ),
-                      cursorColor: MyTheme.ThemeColors,
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(
-                            width: 3,
-                            color: MyTheme.ThemeColors,
-                          ),
-                        ),
-                        errorStyle: TextStyle(
-                            color: Colors.red, fontWeight: FontWeight.w700),
-                        //border: InputBorder.none,
-                        fillColor: MyTheme.loginPageBoxColor,
-                        filled: true,
-                        focusColor: MyTheme.loginPageBoxColor,
-                        border: OutlineInputBorder(
-                          //borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(width: 2, color: MyTheme.ThemeColors),
-                        ),
-                        //labelText: "Email",
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: MyTheme.ThemeColors,
-                        ),
-                        hintText: 'Enter Your Email',
-                        hintStyle: TextStyle(color: MyTheme.ThemeColors),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      controller: _loginPageController.emailController,
-                      onSaved: (value) {
-                        _loginPageController.email = value!;
-                      },
-                      validator: (value) {
-                        return _loginPageController.validateEmail(value!);
-                      },
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 0.h,
-                  ),
-
-                  ///here from password.......
-
-                  Container(
-                    width: size.width * 0.8,
-                    height: size.height * 0.13,
-                    margin: EdgeInsets.symmetric(vertical: 2),
-                    padding: EdgeInsets.symmetric(vertical: 1, horizontal: 0),
-                    decoration: BoxDecoration(
-                      //color: MyTheme.loginPageBoxColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Obx(
-                      () => TextFormField(
-                        //keyboardType: TextInputType.visiblePassword,
-                        //obscureText: true,
-                        obscureText: _loginPageController.isVisible.value,
-                        controller: _loginPageController.passwordController,
-                        style: TextStyle(
-                          color: MyTheme.ThemeColors,
-                        ),
-                        cursorColor: MyTheme.ThemeColors,
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
+                  Form(
+                    key: _formKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      children: [
+                        Container(
+                          width: size.width * 0.8,
+                          height: size.height * 0.13,
+                          margin: EdgeInsets.symmetric(vertical: 0),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                          decoration: BoxDecoration(
+                            //color: MyTheme.loginPageBoxColor,
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                              width: 3,
+                          ),
+                          child: TextFormField(
+                            controller: useridController,
+                            style: TextStyle(
                               color: MyTheme.ThemeColors,
                             ),
-                          ),
-                          errorStyle: TextStyle(
-                              color: Colors.red, fontWeight: FontWeight.w700),
-                          //border: InputBorder.none,
-                          fillColor: MyTheme.loginPageBoxColor,
-                          filled: true,
-                          focusColor: MyTheme.loginPageBoxColor,
-                          border: OutlineInputBorder(
-                            //borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                                width: 2, color: MyTheme.ThemeColors),
-                          ),
-                          //labelText: "Email",
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: MyTheme.ThemeColors,
-                          ),
-
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _loginPageController.isVisible.value
-                                  ? Icons.visibility_off
-                                  : Icons.visibility,
+                            cursorColor: MyTheme.ThemeColors,
+                            decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide(
+                                  width: 3,
+                                  color: MyTheme.ThemeColors,
+                                ),
+                              ),
+                              errorStyle: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w700),
+                              //border: InputBorder.none,
+                              fillColor: MyTheme.loginPageBoxColor,
+                              filled: true,
+                              focusColor: MyTheme.loginPageBoxColor,
+                              border: OutlineInputBorder(
+                                //borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                                borderSide: BorderSide(
+                                    width: 2, color: MyTheme.ThemeColors),
+                              ),
+                              //labelText: "Email",
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: MyTheme.ThemeColors,
+                              ),
+                              hintText: 'Enter Your Email',
+                              hintStyle: TextStyle(color: MyTheme.ThemeColors),
                             ),
-                            color: MyTheme.ThemeColors,
-                            onPressed: () {
-                              _loginPageController.isVisible.value =
-                                  !_loginPageController.isVisible.value;
-                              print('hello prefix');
-                              //TODO : will use getx here.............
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Enter email address";
+                              }
+                              String p = "[a-zA-Z0-9\+\.\_\%\-\+]{1,256}" +
+                                  "\\@" +
+                                  "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                                  "(" +
+                                  "\\." +
+                                  "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                                  ")+";
+                              RegExp regExp = new RegExp(p);
+                              if (regExp.hasMatch(value)) {
+                                return null;
+                              }
+                              return 'Email is not valid';
                             },
                           ),
-
-                          hintText: 'Enter Your Password',
-                          hintStyle: TextStyle(color: MyTheme.ThemeColors),
                         ),
-                        onSaved: (value) {
-                          _loginPageController.password = value!;
-                        },
-                        // onChanged: (value) {
-                        //   onUserPassValueChange(value);
-                        // },
-                        //
-                        // onUserPassValueChange: (value) {
-                        //   print('Pass Value $value');
-                        // },
-                        validator: (value) {
-                          return _loginPageController.validatePassword(value!);
-                        },
-                      ),
+
+                        SizedBox(
+                          height: 0.h,
+                        ),
+
+                        ///here from password.......
+                        Container(
+                          width: size.width * 0.8,
+                          height: size.height * 0.13,
+                          margin: EdgeInsets.symmetric(vertical: 2),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 1, horizontal: 0),
+                          decoration: BoxDecoration(
+                            //color: MyTheme.loginPageBoxColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Obx(
+                            () => TextFormField(
+                              //keyboardType: TextInputType.visiblePassword,
+                              //obscureText: true,
+                              obscureText: _loginPageController.isVisible.value,
+                              controller: passController,
+                              style: TextStyle(
+                                color: MyTheme.ThemeColors,
+                              ),
+                              cursorColor: MyTheme.ThemeColors,
+                              decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: BorderSide(
+                                    width: 3,
+                                    color: MyTheme.ThemeColors,
+                                  ),
+                                ),
+                                errorStyle: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w700),
+                                //border: InputBorder.none,
+                                fillColor: MyTheme.loginPageBoxColor,
+                                filled: true,
+                                focusColor: MyTheme.loginPageBoxColor,
+                                border: OutlineInputBorder(
+                                  //borderSide: BorderSide.none,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                  borderSide: BorderSide(
+                                      width: 2, color: MyTheme.ThemeColors),
+                                ),
+                                //labelText: "Email",
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: MyTheme.ThemeColors,
+                                ),
+
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _loginPageController.isVisible.value
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                  color: MyTheme.ThemeColors,
+                                  onPressed: () {
+                                    _loginPageController.isVisible.value =
+                                        !_loginPageController.isVisible.value;
+                                    print('hello prefix');
+                                    //TODO : will use getx here.............
+                                  },
+                                ),
+
+                                hintText: 'Enter Your Password',
+                                hintStyle:
+                                    TextStyle(color: MyTheme.ThemeColors),
+                              ),
+                              onSaved: (value) {
+                                _loginPageController.password = value!;
+                              },
+                              // onChanged: (value) {
+                              //   onUserPassValueChange(value);
+                              // },
+                              //
+                              // onUserPassValueChange: (value) {
+                              //   print('Pass Value $value');
+                              // },
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter Password';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-
                   SizedBox(
                     height: 0.h,
                   ),
-
                   CustomButtom(
                     buttonColor: MyTheme.loginbuttonColor,
                     buttontext: 'LOGIN',
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     handleButtonClick: () {
-                      _loginPageController.checkLogin();
-                      _navController.tabindex(0);
-                      Get.to(() => NavBar());
-                      //Get.to(() => NavBar());
+                      if (_formKey.currentState!.validate()) {
+                        login(useridController.text.toString(),
+                            passController.text.toString());
+                      }
+                      // _loginPageController.checkLogin();
+                      // _navController.tabindex(0);
+                      // Get.to(() => NavBar());
+                      // //Get.to(() => NavBar());
                     },
                   ),
                   SizedBox(
                     height: 1.h,
                   ),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -322,113 +395,6 @@ class LoginMainPage extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  // Align(
-                  //   alignment: Alignment.center,
-                  //   child: Container(
-                  //     height: 6.h,
-                  //     width: 65.w,
-                  //     decoration: BoxDecoration(
-                  //       border:
-                  //           Border.all(color: AppColors.themecolors, width: 1),
-                  //     ),
-                  //     child: Center(
-                  //       child: TextField(
-                  //         cursorColor: AppColors.themecolors,
-                  //         style: TextStyle(
-                  //             color: AppColors.themecolors, fontSize: 10.sp),
-                  //         decoration: InputDecoration(
-                  //           fillColor: Colors.grey.shade200,
-                  //           contentPadding: EdgeInsets.symmetric(
-                  //               vertical: 1.7.h, horizontal: 2.w),
-                  //           // border: OutlineInputBorder(
-                  //           //     borderRadius: BorderRadius.circular(0),
-                  //           //     borderSide: BorderSide(
-                  //           //       color: Colors.red,
-                  //           //       width: 1,
-                  //           //     )),
-                  //           hintText: 'Name',
-                  //           hintStyle: TextStyle(
-                  //               color: Colors.grey,
-                  //               fontSize: 10.sp,
-                  //               fontWeight: FontWeight.w500),
-                  //
-                  //           disabledBorder: InputBorder.none,
-                  //           border: InputBorder.none,
-                  //           filled: true,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 2.h,
-                  // ),
-                  // Align(
-                  //   alignment: Alignment.center,
-                  //   child: Container(
-                  //     height: 6.h,
-                  //     width: 65.w,
-                  //     decoration: BoxDecoration(
-                  //       border:
-                  //           Border.all(color: AppColors.themecolors, width: 1),
-                  //     ),
-                  //     child: Center(
-                  //       child: TextField(
-                  //         obscureText: true,
-                  //         cursorColor: AppColors.themecolors,
-                  //         style: TextStyle(
-                  //             color: AppColors.themecolors, fontSize: 10.sp),
-                  //         decoration: InputDecoration(
-                  //           fillColor: Colors.grey.shade200,
-                  //           contentPadding: EdgeInsets.symmetric(
-                  //               vertical: 1.7.h, horizontal: 2.w),
-                  //           // border: OutlineInputBorder(
-                  //           //     borderRadius: BorderRadius.circular(0),
-                  //           //     borderSide: BorderSide(
-                  //           //       color: Colors.red,
-                  //           //       width: 1,
-                  //           //     )),
-                  //           hintText: 'Password',
-                  //           hintStyle: TextStyle(
-                  //               color: Colors.grey,
-                  //               fontSize: 10.sp,
-                  //               fontWeight: FontWeight.w500),
-                  //
-                  //           disabledBorder: InputBorder.none,
-                  //           border: InputBorder.none,
-                  //           filled: true,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 5.h,
-                  // ),
-                  // InkWell(
-                  //   onTap: () {
-                  //     // Get.to(() => HomePage());
-                  //   },
-                  //   child: Container(
-                  //       height: 6.h,
-                  //       width: 65.w,
-                  //       decoration: BoxDecoration(
-                  //         border: Border.all(
-                  //             color: AppColors.themecolors, width: 1),
-                  //         color: AppColors.themecolors,
-                  //       ),
-                  //       child: Center(
-                  //         child: Text(
-                  //           'Login',
-                  //           style: TextStyle(
-                  //             color: Colors.white,
-                  //             fontSize: 10.sp,
-                  //             fontWeight: FontWeight.bold,
-                  //           ),
-                  //         ),
-                  //       )),
-                  // ),
                 ],
               ),
             ),

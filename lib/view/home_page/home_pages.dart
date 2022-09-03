@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,27 +8,20 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
-import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/honey_catagary.dart';
-import 'package:gyros_app/view/home_page/drower/drower_page/all_product_sub_catagary/oil_catagary.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
-import 'package:gyros_app/view/home_page/profile/cuppons_page.dart';
+import 'package:gyros_app/view/home_page/home_page_model/categoryModel.dart';
+import 'package:gyros_app/view/home_page/home_page_model/our_offer_model.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/catalog_product.dart';
+import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 
-import 'all_catagary/best_deal.dart';
-import 'drower/drower_page/all_product_sub_catagary/cow_ghee.dart';
-import 'drower/drower_page/all_product_sub_catagary/jaggery_catagary.dart';
-import 'drower/drower_page/all_product_sub_catagary/pulsess.dart';
-import 'drower/drower_page/all_product_sub_catagary/sattu_catagary.dart';
-import 'drower/drower_page/all_product_sub_catagary/spices_catagary.dart';
-import 'drower/drower_page/all_product_sub_catagary/sweets_catagary.dart';
-import 'drower/drower_page/gift_box.dart';
 import 'home_page_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -113,6 +108,41 @@ class HomePage extends StatelessWidget {
     "Spices",
     'Honey',
   ];
+
+  Future<List<Result>> getCategoryData() async {
+    List<Result> list;
+
+    var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
+
+    var res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      var data = json.decode(res.body);
+      var rest = data["result"] as List;
+      list = rest.map<Result>((json) => Result.fromJson(json)).toList();
+      print("List Size&&&&&&&&&&&&&&&Rahul: ${list}");
+    } else {
+      throw Exception('Failed to load data');
+    }
+    return list;
+  }
+
+  //our offers...........................................
+  Future<List<ourOfferResult>> ourOfferData() async {
+    List<ourOfferResult> list;
+    var url = 'https://api.gyros.farm/api/AdminApi/PromotionImage';
+    var res = await http.get(Uri.parse(url));
+    if (res.statusCode == 200) {
+      var data = json.decode(res.body);
+      var rest = data["result"] as List;
+      list = rest
+          .map<ourOfferResult>((json) => ourOfferResult.fromJson(json))
+          .toList();
+      print("List Size&&&&&&&&&&&&&&&Rahul: ${list}");
+    } else {
+      throw Exception('Failed to load data');
+    }
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -201,111 +231,145 @@ class HomePage extends StatelessWidget {
               color: Colors.greenAccent,
               child: MySlider(),
             ),
-            SizedBox(
-              height: 33.5.h,
-              child: GridView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      childAspectRatio: 5 / 2,
-                      mainAxisExtent: 75,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 0),
-                  itemCount: text1.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Obx(
-                      () => Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: InkWell(
-                          onTap: () {
-                            _homePageController.toggle(index);
-                            if (index == 0) {
-                              Get.to(() => AllProducts());
-                              //Get.to(() => BestSeller());
-                              //Get.to(() => WaterTracking());
-                            } else if (index == 1) {
-                              Get.to(() => BestDeal());
-                            } else if (index == 2) {
-                              Get.to(() => CowGhee());
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 3) {
-                              Get.to(() => Oil());
-                            } else if (index == 4) {
-                              Get.to(() => Spices());
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 5) {
-                              Get.to(() => Honey());
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 6) {
-                              Get.to(() => Pulses());
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 7) {
-                              Get.to(() => Sattu());
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 8) {
-                              Get.to(() => CupponsPage());
-                            } else if (index == 9) {
-                              Get.to(() => GiftBox());
+            FutureBuilder<List<Result>>(
+                future: getCategoryData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var items = snapshot.data;
+                    var base = 'https://api.gyros.farm/Images/';
+                    return SizedBox(
+                      // height: 33.5.h,
+                      child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 4,
+                                  childAspectRatio: 5 / 2,
+                                  mainAxisExtent: 75,
+                                  crossAxisSpacing: 0,
+                                  mainAxisSpacing: 0),
+                          itemCount: items?.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Obx(
+                              () => Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    _homePageController.toggle(index);
+                                    if (index == 0) {
+                                      Get.to(() => AllProducts());
+                                      //Get.to(() => BestSeller());
+                                      //Get.to(() => WaterTracking());
+                                    } else if (index == 1) {
+                                      Get.to(() => BestDeal());
+                                    }
+                                    /*else if (index == 2) {
+                                      Get.to(() => CowGhee());
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 3) {
+                                      Get.to(() => Oil());
+                                    } else if (index == 4) {
+                                      Get.to(() => Spices());
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 5) {
+                                      Get.to(() => Honey());
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 6) {
+                                      Get.to(() => Pulses());
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 7) {
+                                      Get.to(() => Sattu());
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 8) {
+                                      Get.to(() => CupponsPage());
+                                    } else if (index == 9) {
+                                      Get.to(() => GiftBox());
 
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 10) {
-                              Get.to(() => Sweets());
-                              //Get.to(() => BestSeller());
-                              //Get.to(() => WalkTracking());
-                            } else if (index == 11) {
-                              Get.to(() => Jeggary());
-                              //Get.to(() => WalkTracking());
-                            }
-                          },
-                          child: PhysicalModel(
-                            borderRadius: BorderRadius.circular(5),
-                            color:
-                                _homePageController.selectedIndex.value == index
-                                    ? MyTheme.ThemeColors
-                                    : Color(0xffeff8f5),
-                            elevation: 0.1,
-                            child: Container(
-                              height: 10.h,
-                              width: 20.w,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color:
-                                    _homePageController.selectedIndex.value ==
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 10) {
+                                      Get.to(() => Sweets());
+                                      //Get.to(() => BestSeller());
+                                      //Get.to(() => WalkTracking());
+                                    } else if (index == 11) {
+                                      Get.to(() => Jeggary());
+                                      //Get.to(() => WalkTracking());
+                                    }*/
+                                  },
+                                  child: PhysicalModel(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: _homePageController
+                                                .selectedIndex.value ==
                                             index
                                         ? MyTheme.ThemeColors
-                                        : Colors.white12,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.network(images2[index],
-                                      height: size.height * 0.05,
-                                      color: _homePageController
-                                                  .selectedIndex.value ==
-                                              index
-                                          ? Colors.white
-                                          : MyTheme.ThemeColors),
-                                  Center(
-                                      child: Text(
-                                    text1[index],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 8.sp,
+                                        : Color(0xffeff8f5),
+                                    elevation: 0.1,
+                                    child: Container(
+                                      height: 10.h,
+                                      width: 20.w,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
                                         color: _homePageController
                                                     .selectedIndex.value ==
                                                 index
-                                            ? Colors.white
-                                            : MyTheme.ThemeColors),
-                                  )),
-                                ],
+                                            ? MyTheme.ThemeColors
+                                            : Colors.white12,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.network(
+                                            base +
+                                                '${items![index].imageName.toString()}',
+                                            fit: BoxFit.fill,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return Icon(
+                                                Icons.error,
+                                                color: Colors.grey,
+                                              );
+                                            },
+                                            height: size.height * 0.04,
+                                            // color: _homePageController
+                                            //             .selectedIndex
+                                            //             .value ==
+                                            //         index
+                                            //     ? Colors.white
+                                            //     : MyTheme.ThemeColors
+                                          ),
+                                          Center(
+                                              child: Text(
+                                            items[index]
+                                                .categoryName
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 8.sp,
+                                                color: _homePageController
+                                                            .selectedIndex
+                                                            .value ==
+                                                        index
+                                                    ? Colors.white
+                                                    : MyTheme.ThemeColors),
+                                          )),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
+                            );
+                          }),
                     );
-                  }),
-            ),
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ));
+                }),
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
@@ -460,7 +524,6 @@ class HomePage extends StatelessWidget {
                     'Our Offers',
                     style: TextStyle(
                       color: Colors.white,
-
                       //color: Theme.of(context).colorScheme.onPrimary,
                       fontWeight: FontWeight.w300,
                       fontSize: 11.sp,
@@ -469,49 +532,60 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
-                height: size.height * 0.2,
-                //width: double.infinity,
-                child: ListView.builder(
-                    //physics: NeverScrollableScrollPhysics(),
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          // _homePageController.toggle(index);
-                          // if (index == 0) {
-                          //   //Get.to(() => ManPage());
-                          //   //Get.to(() => BestSeller());
-                          //   //Get.to(() => WaterTracking());
-                          // }
-                        },
-                        child: PhysicalModel(
-                          borderRadius: BorderRadius.circular(0),
-                          color: Color(0xffeff8f5),
-                          elevation: 0.1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Container(
-                              height: 15.h,
-                              width: 95.w, //size.width * 0.99,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                // color: MyTheme.ContainerUnSelectedColor,
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                      'lib/assets/asset/Organic.png'),
-                                  fit: BoxFit.fill,
+            FutureBuilder<List<ourOfferResult>>(
+                future: ourOfferData(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var items = snapshot.data;
+                    var base = 'https://api.gyros.farm/Images/';
+                    return SizedBox(
+                        height: size.height * 0.2,
+                        //width: double.infinity,
+                        child: ListView.builder(
+                            itemCount: items!.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              return InkWell(
+                                onTap: () {},
+                                child: PhysicalModel(
+                                  borderRadius: BorderRadius.circular(0),
+                                  color: Color(0xffeff8f5),
+                                  elevation: 0.1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Container(
+                                      height: 15.h,
+                                      width: 95.w, //size.width * 0.99,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        // color: MyTheme.ContainerUnSelectedColor,
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            base +
+                                                '${items![index].promotionalBannerPath}',
+                                          ),
+                                          fit: BoxFit.fill,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    })),
+                              );
+                            }));
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ));
+                })
           ],
         ),
       ),
     );
   }
 }
+//Model
+
+// ourOffers model

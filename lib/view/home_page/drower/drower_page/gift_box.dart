@@ -7,7 +7,9 @@ import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 
 class GiftBox extends StatelessWidget {
-  const GiftBox({Key? key}) : super(key: key);
+  GiftBox({Key? key}) : super(key: key);
+
+  var height, width;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,8 @@ class GiftBox extends StatelessWidget {
       'lib/assets/asset/gft66.jpeg',
     ];
     Size size = MediaQuery.of(context).size;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -84,10 +88,10 @@ class GiftBox extends StatelessWidget {
               child: GridView.builder(
                   shrinkWrap: true,
                   //physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 3 / 2,
-                      mainAxisExtent: 210,
+                      childAspectRatio: width / height * 0.35,
+                      mainAxisExtent: size.height * 0.25,
                       crossAxisSpacing: 0,
                       mainAxisSpacing: 0),
                   itemCount: text2.length,
@@ -115,8 +119,8 @@ class GiftBox extends StatelessWidget {
                           color: MyTheme.ThemeColors,
                           elevation: 0.1,
                           child: Container(
-                            height: size.height * 55,
-                            width: size.width * 0.48,
+                            height: size.height * 3,
+                            width: size.width * 0.4,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage(
@@ -161,8 +165,8 @@ class GiftBox extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5),
                                   elevation: 5,
                                   child: Container(
-                                    height: size.height * 0.15,
-                                    width: size.width * 0.32,
+                                    height: size.height * 0.12,
+                                    width: size.width * 0.3,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                       // border: Border.all(

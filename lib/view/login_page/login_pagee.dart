@@ -14,7 +14,6 @@ import 'login_otp/login_mobile.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -94,6 +93,7 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 15,
               ),
+
               CustomButtom(
                 buttonColor: MyTheme.signUpButtonColor,
                 buttontext: 'SIGNUP',
