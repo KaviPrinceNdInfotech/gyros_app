@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gyros_app/catagary_list_by_id/catagary_list_by_id.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/home_controllers/catagary_by_id_controller.dart';
+import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/home_page_model/categoryModel.dart';
@@ -28,6 +30,8 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final CartController controller = Get.put(CartController());
   HomePageController _homePageController = Get.put(HomePageController());
+  CatagaryByIdController _catagaryByIdController = Get.find();
+  CatagaryController _catagaryController = Get.find();
   final List<Map> myProducts =
       List.generate(100000, (index) => {"id": index, "name": "Product $index"})
           .toList();
@@ -108,6 +112,7 @@ class HomePage extends StatelessWidget {
     "Spices",
     'Honey',
   ];
+  //product List..................................
 
   Future<List<Result>> getCategoryData() async {
     List<Result> list;
@@ -149,122 +154,122 @@ class HomePage extends StatelessWidget {
     GlobalKey<ScaffoldState> _key = GlobalKey();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.white,
-      key: _key,
-      appBar: AppBar(
-        centerTitle: true,
         backgroundColor: Colors.white,
-        elevation: 0,
-        title: Image.asset(
-          'lib/assets/asset/guser_logo.png',
-          // color: AppColors.themecolors,
-          height: 13.h,
-          width: 35.w,
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3.w),
-            child: InkWell(
-                onTap: () {
-                  Get.to(() => Cartproducts());
-                  //Get.to(() => ShopingBagsEmpty());
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(6.0),
-                  child: Obx(
-                    () => Badge(
-                      toAnimate: false,
-                      badgeColor: AppColors.themecolors,
-                      badgeContent: Text(
-                        controller.count.toString(),
-                        style: GoogleFonts.alatsi(
-                          color: Colors.white,
-                          fontSize: 10.sp,
+        key: _key,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Image.asset(
+            'lib/assets/asset/guser_logo.png',
+            // color: AppColors.themecolors,
+            height: 13.h,
+            width: 35.w,
+          ),
+          actions: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3.w),
+              child: InkWell(
+                  onTap: () {
+                    Get.to(() => Cartproducts());
+                    //Get.to(() => ShopingBagsEmpty());
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.all(6.0),
+                    child: Obx(
+                      () => Badge(
+                        toAnimate: false,
+                        badgeColor: AppColors.themecolors,
+                        badgeContent: Text(
+                          controller.count.toString(),
+                          style: GoogleFonts.alatsi(
+                            color: Colors.white,
+                            fontSize: 10.sp,
+                          ),
+                        ),
+                        child: Icon(
+                          Icons.shopping_cart,
+                          color: AppColors.themecolors,
                         ),
                       ),
-                      child: Icon(
-                        Icons.shopping_cart,
-                        color: AppColors.themecolors,
-                      ),
                     ),
-                  ),
-                )),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3.w),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => SearchPage());
-                //Get.to(() => ExploreView());
-              },
-              child: Icon(
-                Icons.search,
-                color: AppColors.themecolors,
+                  )),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3.w),
+              child: InkWell(
+                onTap: () {
+                  Get.to(() => SearchPage());
+                  //Get.to(() => ExploreView());
+                },
+                child: Icon(
+                  Icons.search,
+                  color: AppColors.themecolors,
+                ),
               ),
             ),
-          ),
-        ],
-        // Text(
-        //   'Gyrus',
-        //   style: TextStyle(
-        //     color: Colors.black,
-        //     fontWeight: FontWeight.bold,
-        //     fontSize: 16.sp,
-        //   ),
-        // ),
-        leading: InkWell(
-            onTap: () {
-              _key.currentState!.openDrawer();
-            },
-            child: Icon(
-              Icons.menu,
-              color: AppColors.themecolors,
-            )),
-      ),
-      drawer: MainDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: size.height * 0.25,
-              width: double.infinity,
-              color: Colors.greenAccent,
-              child: MySlider(),
-            ),
-            FutureBuilder<List<Result>>(
-                future: getCategoryData(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var items = snapshot.data;
-                    var base = 'https://api.gyros.farm/Images/';
-                    return SizedBox(
-                      // height: 33.5.h,
-                      child: GridView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4,
-                                  childAspectRatio: 5 / 2,
-                                  mainAxisExtent: 75,
-                                  crossAxisSpacing: 0,
-                                  mainAxisSpacing: 0),
-                          itemCount: items?.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Obx(
-                              () => Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    _homePageController.toggle(index);
-                                    if (index == 0) {
-                                      Get.to(() => AllProducts());
-                                      //Get.to(() => BestSeller());
-                                      //Get.to(() => WaterTracking());
-                                    } else if (index == 1) {
-                                      Get.to(() => BestDeal());
-                                    }
-                                    /*else if (index == 2) {
+          ],
+          // Text(
+          //   'Gyrus',
+          //   style: TextStyle(
+          //     color: Colors.black,
+          //     fontWeight: FontWeight.bold,
+          //     fontSize: 16.sp,
+          //   ),
+          // ),
+          leading: InkWell(
+              onTap: () {
+                _key.currentState!.openDrawer();
+              },
+              child: Icon(
+                Icons.menu,
+                color: AppColors.themecolors,
+              )),
+        ),
+        drawer: MainDrawer(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: size.height * 0.25,
+                width: double.infinity,
+                color: Colors.greenAccent,
+                child: MySlider(),
+              ),
+              FutureBuilder<List<Result>>(
+                  future: getCategoryData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var items = snapshot.data;
+                      var base = 'https://api.gyros.farm/Images/';
+                      return SizedBox(
+                        // height: 33.5.h,
+                        child: GridView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    childAspectRatio: 5 / 2,
+                                    mainAxisExtent: 75,
+                                    crossAxisSpacing: 0,
+                                    mainAxisSpacing: 0),
+                            itemCount: items?.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Obx(
+                                () => Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      _homePageController.toggle(index);
+                                      if (index == 0) {
+                                        Get.to(() => AllProducts());
+                                        //Get.to(() => BestSeller());
+                                        //Get.to(() => WaterTracking());
+                                      } else if (index == 1) {
+                                        Get.to(() => CatagaryListSubcatagary());
+                                      }
+                                      /*else if (index == 2) {
                                       Get.to(() => CowGhee());
                                       //Get.to(() => WalkTracking());
                                     } else if (index == 3) {
@@ -286,304 +291,308 @@ class HomePage extends StatelessWidget {
                                     } else if (index == 9) {
                                       Get.to(() => GiftBox());
 
-                                      //Get.to(() => WalkTracking());
-                                    } else if (index == 10) {
-                                      Get.to(() => Sweets());
-                                      //Get.to(() => BestSeller());
-                                      //Get.to(() => WalkTracking());
-                                    } else if (index == 11) {
-                                      Get.to(() => Jeggary());
-                                      //Get.to(() => WalkTracking());
-                                    }*/
-                                  },
-                                  child: PhysicalModel(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: _homePageController
-                                                .selectedIndex.value ==
-                                            index
-                                        ? MyTheme.ThemeColors
-                                        : Color(0xffeff8f5),
-                                    elevation: 0.1,
-                                    child: Container(
-                                      height: 10.h,
-                                      width: 20.w,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: _homePageController
-                                                    .selectedIndex.value ==
-                                                index
-                                            ? MyTheme.ThemeColors
-                                            : Colors.white12,
-                                      ),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.network(
-                                            base +
-                                                '${items![index].imageName.toString()}',
-                                            fit: BoxFit.fill,
-                                            errorBuilder:
-                                                (context, error, stackTrace) {
-                                              return Icon(
-                                                Icons.error,
-                                                color: Colors.grey,
-                                              );
-                                            },
-                                            height: size.height * 0.04,
-                                            // color: _homePageController
-                                            //             .selectedIndex
-                                            //             .value ==
-                                            //         index
-                                            //     ? Colors.white
-                                            //     : MyTheme.ThemeColors
-                                          ),
-                                          Center(
-                                              child: Text(
-                                            items[index]
-                                                .categoryName
-                                                .toString(),
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 8.sp,
-                                                color: _homePageController
-                                                            .selectedIndex
-                                                            .value ==
-                                                        index
-                                                    ? Colors.white
-                                                    : MyTheme.ThemeColors),
-                                          )),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
-                  }
-                  return Center(
-                      child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ));
-                }),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: size.height * 0.034,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: MyTheme.gradient2,
-                ),
-                //color: MyTheme.loginPageBoxColor,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
-                  child: Text(
-                    'Flash Sale',
-                    style: TextStyle(
-                      color: Colors.white,
+                                        //Get.to(() => WalkTracking());
+                                      } else if (index == 10) {
+                                        Get.to(() => Sweets());
+                                        //Get.to(() => BestSeller());
+                                        //Get.to(() => WalkTracking());
+                                      } else if (index == 11) {
+                                        Get.to(() => Jeggary());
+                                        //Get.to(() => WalkTracking());
+                                      }*/
+                                    },
+                                    child: PhysicalModel(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: _homePageController
+                                                  .selectedIndex.value ==
+                                              index
+                                          ? MyTheme.ThemeColors
+                                          : Color(0xffeff8f5),
+                                      elevation: 0.1,
+                                      child: Container(
+                                        height: 10.h,
+                                        width: 20.w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: _homePageController
+                                                      .selectedIndex.value ==
+                                                  index
+                                              ? MyTheme.ThemeColors
+                                              : Colors.white12,
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.network(
+                                              base +
+                                                  '${items![index].imageName.toString()}',
+                                              fit: BoxFit.fill,
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                //if image not comming in catagary then we have to purchase
 
-                      //color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 11.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-                height: size.height * 0.30,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Productss.products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CatalogProductCart(index: index);
-                    })),
-            SizedBox(
-              height: 01.h,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: size.height * 0.034,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: MyTheme.gradient2,
-                ),
-                //color: MyTheme.loginPageBoxColor,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
-                  child: Text(
-                    'Purchase your first product',
-                    style: TextStyle(
-                      color: Colors.white,
+                                                return Icon(
+                                                  Icons.error,
+                                                  color: Colors.grey,
+                                                );
+                                              },
 
-                      //color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 11.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-                height: size.height * 0.19,
-                //width: double.infinity,
-                child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: 1,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Obx(
-                        () => InkWell(
-                          onTap: () {
-                            // _homePageController.toggle(index);
-                            if (index == 0) {
-                              //Get.to(() => ManPage());
-                              //Get.to(() => BestSeller());
-                              //Get.to(() => WaterTracking());
-                            }
-                          },
-                          child: PhysicalModel(
-                            borderRadius: BorderRadius.circular(0),
-                            color:
-                                _homePageController.selectedIndex.value == index
-                                    ? MyTheme.ThemeColors
-                                    : Color(0xffeff8f5),
-                            elevation: 0.1,
-                            child: Container(
-                              height: 23.h,
-                              width: 100.w, //size.width * 0.99,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(0),
-                                color: MyTheme.ContainerUnSelectedColor,
-                                image: DecorationImage(
-                                    image: AssetImage(
-                                        'lib/assets/asset/Organic.gif'),
-                                    fit: BoxFit.fill),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    })),
-            SizedBox(
-              height: 0.h,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: size.height * 0.034,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: MyTheme.gradient2,
-                ),
-                //color: MyTheme.loginPageBoxColor,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
-                  child: Text(
-                    'Our Products',
-                    style: TextStyle(
-                      color: Colors.white,
-
-                      //color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 11.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-                height: size.height * 0.30,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: Productss.products.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return CatalogProductCart(index: index);
-                    })),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Container(
-                height: size.height * 0.034,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: MyTheme.gradient2,
-                ),
-                //color: MyTheme.loginPageBoxColor,
-                child: Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
-                  child: Text(
-                    'Our Offers',
-                    style: TextStyle(
-                      color: Colors.white,
-                      //color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 11.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            FutureBuilder<List<ourOfferResult>>(
-                future: ourOfferData(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var items = snapshot.data;
-                    var base = 'https://api.gyros.farm/Images/';
-                    return SizedBox(
-                        height: size.height * 0.2,
-                        //width: double.infinity,
-                        child: ListView.builder(
-                            itemCount: items!.length,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext context, int index) {
-                              return InkWell(
-                                onTap: () {},
-                                child: PhysicalModel(
-                                  borderRadius: BorderRadius.circular(0),
-                                  color: Color(0xffeff8f5),
-                                  elevation: 0.1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: Container(
-                                      height: 15.h,
-                                      width: 95.w, //size.width * 0.99,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        // color: MyTheme.ContainerUnSelectedColor,
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                            base +
-                                                '${items![index].promotionalBannerPath}',
-                                          ),
-                                          fit: BoxFit.fill,
+                                              height: size.height * 0.04,
+                                              // color: _homePageController
+                                              //             .selectedIndex
+                                              //             .value ==
+                                              //         index
+                                              //     ? Colors.white
+                                              //     : MyTheme.ThemeColors
+                                            ),
+                                            Center(
+                                                child: Text(
+                                              items[index]
+                                                  .categoryName
+                                                  .toString(),
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 8.sp,
+                                                  color: _homePageController
+                                                              .selectedIndex
+                                                              .value ==
+                                                          index
+                                                      ? Colors.white
+                                                      : MyTheme.ThemeColors),
+                                            )),
+                                          ],
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
                               );
-                            }));
-                  } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
-                  }
-                  return Center(
-                      child: CircularProgressIndicator(
-                    color: Colors.white,
-                  ));
-                })
-          ],
-        ),
-      ),
-    );
+                            }),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ));
+                  }),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: size.height * 0.034,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: MyTheme.gradient2,
+                  ),
+                  //color: MyTheme.loginPageBoxColor,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
+                    child: Text(
+                      'Flash Sale',
+                      style: TextStyle(
+                        color: Colors.white,
+
+                        //color: Theme.of(context).colorScheme.onPrimary,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 11.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                  height: size.height * 0.30,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: Productss.products.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CatalogProductCart(index: index);
+                      })),
+              SizedBox(
+                height: 01.h,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: size.height * 0.034,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: MyTheme.gradient2,
+                  ),
+                  //color: MyTheme.loginPageBoxColor,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
+                    child: Text(
+                      'Purchase your first product',
+                      style: TextStyle(
+                        color: Colors.white,
+
+                        //color: Theme.of(context).colorScheme.onPrimary,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 11.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                  height: size.height * 0.19,
+                  //width: double.infinity,
+                  child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 1,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Obx(
+                          () => InkWell(
+                            onTap: () {
+                              // _homePageController.toggle(index);
+                              if (index == 0) {
+                                //Get.to(() => ManPage());
+                                //Get.to(() => BestSeller());
+                                //Get.to(() => WaterTracking());
+                              }
+                            },
+                            child: PhysicalModel(
+                              borderRadius: BorderRadius.circular(0),
+                              color: _homePageController.selectedIndex.value ==
+                                      index
+                                  ? MyTheme.ThemeColors
+                                  : Color(0xffeff8f5),
+                              elevation: 0.1,
+                              child: Container(
+                                height: 23.h,
+                                width: 100.w, //size.width * 0.99,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(0),
+                                  color: MyTheme.ContainerUnSelectedColor,
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'lib/assets/asset/Organic.gif'),
+                                      fit: BoxFit.fill),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      })),
+              SizedBox(
+                height: 0.h,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: size.height * 0.034,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: MyTheme.gradient2,
+                  ),
+                  //color: MyTheme.loginPageBoxColor,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
+                    child: Text(
+                      'Our Products',
+                      style: TextStyle(
+                        color: Colors.white,
+
+                        //color: Theme.of(context).colorScheme.onPrimary,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 11.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                  height: size.height * 0.30,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: Productss.products.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CatalogProductCart(index: index);
+                      })),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  height: size.height * 0.034,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    gradient: MyTheme.gradient2,
+                  ),
+                  //color: MyTheme.loginPageBoxColor,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 2.w, vertical: 0.4.h),
+                    child: Text(
+                      'Our Offers',
+                      style: TextStyle(
+                        color: Colors.white,
+                        //color: Theme.of(context).colorScheme.onPrimary,
+                        fontWeight: FontWeight.w300,
+                        fontSize: 11.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              FutureBuilder<List<ourOfferResult>>(
+                  future: ourOfferData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var items = snapshot.data;
+                      var base = 'https://api.gyros.farm/Images/';
+                      return SizedBox(
+                          height: size.height * 0.2,
+                          //width: double.infinity,
+                          child: ListView.builder(
+                              itemCount: items!.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (BuildContext context, int index) {
+                                return InkWell(
+                                  onTap: () {},
+                                  child: PhysicalModel(
+                                    borderRadius: BorderRadius.circular(0),
+                                    color: Color(0xffeff8f5),
+                                    elevation: 0.1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Container(
+                                        height: 15.h,
+                                        width: 95.w, //size.width * 0.99,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          // color: MyTheme.ContainerUnSelectedColor,
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              base +
+                                                  '${items![index].promotionalBannerPath}',
+                                            ),
+                                            fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }));
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
+                    }
+                    return Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ));
+                  })
+            ],
+          ),
+        ));
   }
 }
 //Model

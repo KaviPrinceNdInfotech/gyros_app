@@ -1,50 +1,61 @@
-class category {
+// To parse this JSON data, do
+//
+//     final catagaryListModel = catagaryListModelFromJson(jsonString);
+
+import 'dart:convert';
+
+CatagaryListModel catagaryListModelFromJson(String str) =>
+    CatagaryListModel.fromJson(json.decode(str));
+
+String catagaryListModelToJson(CatagaryListModel data) =>
+    json.encode(data.toJson());
+
+class CatagaryListModel {
+  CatagaryListModel({
+    this.result,
+    this.status,
+    this.message,
+  });
+
   List<Result>? result;
   int? status;
   String? message;
 
-  category({this.result, this.status, this.message});
+  factory CatagaryListModel.fromJson(Map<String, dynamic> json) =>
+      CatagaryListModel(
+        result:
+            List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
+        status: json["status"],
+        message: json["message"],
+      );
 
-  category.fromJson(Map<String, dynamic> json) {
-    if (json['result'] != null) {
-      result = <Result>[];
-      json['result'].forEach((v) {
-        result!.add(new Result.fromJson(v));
-      });
-    }
-    status = json['status'];
-    message = json['message'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.result != null) {
-      data['result'] = this.result!.map((v) => v.toJson()).toList();
-    }
-    data['status'] = this.status;
-    data['message'] = this.message;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "result": List<dynamic>.from(result!.map((x) => x.toJson())),
+        "status": status,
+        "message": message,
+      };
 }
 
 class Result {
+  Result({
+    this.id,
+    this.categoryName,
+    this.imageName,
+  });
+
   int? id;
   String? categoryName;
   String? imageName;
 
-  Result({this.id, this.categoryName, this.imageName});
+  factory Result.fromJson(Map<String, dynamic> json) => Result(
+        id: json["id"],
+        categoryName: json["CategoryName"],
+        imageName: json["ImageName"] == null ? null : json["ImageName"],
+      );
 
-  Result.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    categoryName = json['CategoryName'];
-    imageName = json['ImageName'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['CategoryName'] = this.categoryName;
-    data['ImageName'] = this.imageName;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "CategoryName": categoryName,
+        "ImageName": imageName == null ? null : imageName,
+      };
 }

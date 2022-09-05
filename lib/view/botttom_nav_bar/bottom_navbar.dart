@@ -281,6 +281,7 @@ class NavBar extends StatelessWidget {
               index: _navController.tabindex.value,
               children: [
                 HomePage(),
+                //HomePagePractice(),
                 AllProducts(),
                 // ExploreView(),
 //     //StudioPage(),

@@ -3,6 +3,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
+import 'package:gyros_app/controllers/home_controllers/catagary_by_id_controller.dart';
+import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.dart';
 import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
 import 'package:gyros_app/controllers/phone_login_controllerr/phone_login_controllers.dart';
 import 'package:gyros_app/controllers/reset_password/reset_ps_email_controllers.dart';
@@ -30,6 +32,8 @@ class ControllerBinding extends Bindings {
     Get.put(ResetEmailController());
     Get.put(ForgotCodeController());
     Get.put(SetPasswordController());
+    Get.put(CatagaryController());
+    Get.put(CatagaryByIdController());
   }
 
   // CartNewController _cartNewController = Get.put(CartNewController());

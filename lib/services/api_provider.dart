@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gyros_app/models/catagary_list_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiProvider {
@@ -155,35 +156,6 @@ class ApiProvider {
     }
   }
 
-  //pancard detail updated............new 6.................
-
-  static userPanApi(
-    var panNumber,
-  ) async {
-    var prefs = GetStorage();
-    token = prefs.read("token");
-    print(token);
-    var headers = {
-      'Authorization': 'Bearer $token',
-    };
-    print(headers);
-    var url = baseUrl + 'user/pan-number';
-
-    var body = {
-      "panNumber": panNumber,
-    };
-    print(body);
-    http.Response r =
-        await http.put(Uri.parse(url), body: body, headers: headers);
-    print(r.body);
-    if (r.statusCode == 200) {
-      return r;
-    } else {
-      Get.snackbar('Error', 'Details');
-      return r;
-    }
-  }
-
   //personal details page.........new 7.........
 
   static PersonalDetailApi(var profession, var date_of_birth, var pin_code,
@@ -220,64 +192,46 @@ class ApiProvider {
 
   //add bank detail...............new 8...............
 
-  static BankDetailApi(
-    var ifsc_code,
-    var account_number,
-    var confirm_account_number,
-    var name,
-    var bank_name,
-  ) async {
-    var prefs = GetStorage();
-    token = prefs.read("token");
-    print(token);
-    var headers = {
-      'Authorization': 'Bearer $token',
-    };
-    print(headers);
-    var url = baseUrl + 'user/bank-details';
-
-    var body = {
-      "ifsc_code": ifsc_code,
-      "account_number": account_number,
-      "confirm_account_number": confirm_account_number,
-      "name": name,
-      "bank_name": bank_name,
-    };
-    print(body);
-    http.Response r =
-        await http.put(Uri.parse(url), body: body, headers: headers);
-    print(r.body);
-    if (r.statusCode == 200) {
-      return r;
-    } else {
-      Get.snackbar('Error', 'Details');
-      return r;
-    }
-  }
-
-  //get all catagary API........new 9.....................................................
+  ///get all catagary API........new 9...........guros..........................................
 
   static getallategaryApi() async {
-    var url = baseUrl + 'category';
+    var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
 
-    // var prefs = GetStorage();
-    // var r;
-    // prefs.write("id", jsonDecode(r.body)["cat"]['_id']);
-    // categoryid=  prefs.read('id');
-    // print("userId :    $categoryid");
-    // return r;
-    // var headers = {
-    //   'Authorization': 'Bearer $token'
-    // };
+    var prefs = GetStorage();
+    var r;
+    prefs.write("id", jsonDecode(r.body)["cat"]['_id']);
+    categoryid = prefs.read('id');
+    print("userId : $categoryid");
 
     try {
       http.Response r = await http.get(Uri.parse(url));
       print(r.body.toString());
       if (r.statusCode == 200) {
-        //list is not here ..............................................................
-        //GetAllCategaryModel getallcategary =
-        //getAllCategaryModelFromJson(r.body);
-        //return getallcategary;
+        List<CatagaryListModels> getallcat = catagaryListModelsFromJson(r.body);
+        //List<CatagaryListModel> getallcategary = catagaryListFromJson(r.body);
+        return getallcat;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  ///get catagary name Api new 10.. gyros...............................
+
+  static getcatnameIdApi(var catid) async {
+    var prefs = GetStorage();
+    categoryid = prefs.read('id');
+    print("userid  $categoryid");
+    var url = baseUrl + 'SubcategoryList/$catid';
+    var headers = {'Authorization': 'Bearer $token'};
+    try {
+      http.Response r = await http.get(Uri.parse(url), headers: headers);
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        List<CatagaryListModels> getcatname =
+            catagaryListModelsFromJson(r.body);
+        // List<CatagaryListModel> getcatname = catagaryListModelFromJson(r.body);
+        return getcatname;
       }
     } catch (error) {
       return;
