@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final catagaryListModels = catagaryListModelsFromJson(jsonString);
+//     final ourOfferPromotionList = ourOfferPromotionListFromJson(jsonString);
 
 import 'dart:convert';
 
-CatagaryListModels catagaryListModelsFromJson(String str) =>
-    CatagaryListModels.fromJson(json.decode(str));
+OurOfferPromotionList ourOfferPromotionListFromJson(String str) =>
+    OurOfferPromotionList.fromJson(json.decode(str));
 
-String catagaryListModelsToJson(CatagaryListModels data) =>
+String ourOfferPromotionListToJson(OurOfferPromotionList data) =>
     json.encode(data.toJson());
 
-class CatagaryListModels {
-  CatagaryListModels({
+class OurOfferPromotionList {
+  OurOfferPromotionList({
     this.result,
     this.status,
     this.message,
@@ -21,8 +21,8 @@ class CatagaryListModels {
   int? status;
   String? message;
 
-  factory CatagaryListModels.fromJson(Map<String, dynamic> json) =>
-      CatagaryListModels(
+  factory OurOfferPromotionList.fromJson(Map<String, dynamic> json) =>
+      OurOfferPromotionList(
         result:
             List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
         status: json["status"],
@@ -39,23 +39,19 @@ class CatagaryListModels {
 class Result {
   Result({
     this.id,
-    this.categoryName,
-    this.imageName,
+    this.promotionalBannerPath,
   });
 
   int? id;
-  String? categoryName;
-  String? imageName;
+  String? promotionalBannerPath;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-        id: json["id"],
-        categoryName: json["CategoryName"],
-        imageName: json["ImageName"] == null ? null : json["ImageName"],
+        id: json["Id"],
+        promotionalBannerPath: json["Promotional_BannerPath"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "CategoryName": categoryName,
-        "ImageName": imageName == null ? null : imageName,
+        "Id": id,
+        "Promotional_BannerPath": promotionalBannerPath,
       };
 }

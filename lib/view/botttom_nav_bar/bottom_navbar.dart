@@ -11,7 +11,7 @@ import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
 import 'package:gyros_app/view/cart_new_section/cart_view_section.dart';
 import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
-import 'package:gyros_app/view/home_page/home_pages.dart';
+import 'package:gyros_app/view/home_page/profile/home_page_practice.dart';
 import 'package:gyros_app/view/home_page/profile/profile_page.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -280,8 +280,8 @@ class NavBar extends StatelessWidget {
             child: IndexedStack(
               index: _navController.tabindex.value,
               children: [
-                HomePage(),
-                //HomePagePractice(),
+                //HomePage(),
+                HomePagePractice(),
                 AllProducts(),
                 // ExploreView(),
 //     //StudioPage(),

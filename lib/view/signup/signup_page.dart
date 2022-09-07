@@ -37,6 +37,7 @@ class SignUp extends StatelessWidget {
             'Password': password,
             'ConfirmPassword': confirmPassword
           });
+
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         print('&&&&&&&&&&&&&&&&&&&&&&${data}');

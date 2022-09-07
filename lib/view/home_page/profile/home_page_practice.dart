@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,33 +5,30 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
-import 'package:gyros_app/controllers/home_controllers/catagary_by_id_controller.dart';
-import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.dart';
+import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
-import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/home_page_controller.dart';
-import 'package:gyros_app/view/home_page/home_page_model/categoryModel.dart';
-import 'package:gyros_app/view/home_page/home_page_model/our_offer_model.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/catalog_product.dart';
-import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
 
 class HomePagePractice extends StatelessWidget {
   HomePagePractice({Key? key}) : super(key: key);
   final CartController controller = Get.put(CartController());
-  HomePageController _homePageController = Get.put(HomePageController());
-  CatagaryByIdController _catagaryByIdController = Get.find();
-  CatagaryController _catagaryController = Get.find();
+  HomePageController _homePageController = Get.find();
+  SubCatByIdController _subCatByIdController = Get.find();
+  //CatagaryByIdController _catagaryByIdController = Get.find();
+  //CatagaryController _catagaryController = Get.find();
   final List<Map> myProducts =
       List.generate(100000, (index) => {"id": index, "name": "Product $index"})
           .toList();
+
+  //var base = 'https://voit.in/Images/';
 
   final List<String> images = [
     'https://wallpaperaccess.com/full/2792340.jpg',
@@ -111,47 +106,50 @@ class HomePagePractice extends StatelessWidget {
     "Spices",
     'Honey',
   ];
-  //product List..................................
 
-  Future<List<Result>> getCategoryData() async {
-    List<Result> list;
+  ///product List with api future builder................................
 
-    var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
+  // Future<List<Result>> getCategoryData() async {
+  //   List<Result> list;
+  //
+  //   var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
+  //
+  //   var res = await http.get(Uri.parse(url));
+  //   if (res.statusCode == 200) {
+  //     var data = json.decode(res.body);
+  //     var rest = data["result"] as List;
+  //     list = rest.map<Result>((json) => Result.fromJson(json)).toList();
+  //     print("List Size&&&&&&&&&&&&&&&Rahul: ${list}");
+  //   } else {
+  //     throw Exception('Failed to load data');
+  //   }
+  //   return list;
+  // }
 
-    var res = await http.get(Uri.parse(url));
-    if (res.statusCode == 200) {
-      var data = json.decode(res.body);
-      var rest = data["result"] as List;
-      list = rest.map<Result>((json) => Result.fromJson(json)).toList();
-      print("List Size&&&&&&&&&&&&&&&Rahul: ${list}");
-    } else {
-      throw Exception('Failed to load data');
-    }
-    return list;
-  }
+  ///our offers api with future builder............................................
 
-  //our offers...........................................
-  Future<List<ourOfferResult>> ourOfferData() async {
-    List<ourOfferResult> list;
-    var url = 'https://api.gyros.farm/api/AdminApi/PromotionImage';
-    var res = await http.get(Uri.parse(url));
-    if (res.statusCode == 200) {
-      var data = json.decode(res.body);
-      var rest = data["result"] as List;
-      list = rest
-          .map<ourOfferResult>((json) => ourOfferResult.fromJson(json))
-          .toList();
-      print("List Size&&&&&&&&&&&&&&&Rahul: ${list}");
-    } else {
-      throw Exception('Failed to load data');
-    }
-    return list;
-  }
+  // Future<List<ourOfferResult>> ourOfferData() async {
+  //   List<ourOfferResult> list;
+  //   var url = 'https://api.gyros.farm/api/AdminApi/PromotionImage';
+  //   var res = await http.get(Uri.parse(url));
+  //   if (res.statusCode == 200) {
+  //     var data = json.decode(res.body);
+  //     var rest = data["result"] as List;
+  //     list = rest
+  //         .map<ourOfferResult>((json) => ourOfferResult.fromJson(json))
+  //         .toList();
+  //     print("List Size&&&&&&&&&&&&&&&Rahul: ${list}");
+  //   } else {
+  //     throw Exception('Failed to load data');
+  //   }
+  //   return list;
+  // }
 
   @override
   Widget build(BuildContext context) {
     GlobalKey<ScaffoldState> _key = GlobalKey();
     Size size = MediaQuery.of(context).size;
+    var base = 'https://api.gyros.farm/Images/';
     return Scaffold(
       backgroundColor: Colors.white,
       key: _key,
@@ -226,8 +224,7 @@ class HomePagePractice extends StatelessWidget {
             )),
       ),
       drawer: MainDrawer(),
-      body: Obx(() => (_catagaryController.isLoading.value == false &&
-              _homePageController.isLoading.value == false)
+      body: Obx(() => (_homePageController.isLoading.value == false)
           ? SingleChildScrollView(
               child: Column(
                 children: [
@@ -250,7 +247,7 @@ class HomePagePractice extends StatelessWidget {
                                 crossAxisSpacing: 0,
                                 mainAxisSpacing: 0),
                         itemCount:
-                            _catagaryController.getcatagary!.imageName!.length,
+                            _homePageController.getcatagartlist!.result!.length,
                         //items?.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Obx(
@@ -258,45 +255,50 @@ class HomePagePractice extends StatelessWidget {
                               padding: EdgeInsets.all(8.0),
                               child: InkWell(
                                 onTap: () {
-                                  _homePageController.toggle(index);
-                                  if (index == 0) {
-                                    Get.to(() => AllProducts());
-                                    //Get.to(() => BestSeller());
-                                    //Get.to(() => WaterTracking());
-                                  } else if (index == 1) {
-                                    Get.to(() => BestDeal());
-                                  }
-                                  /*else if (index == 2) {
-                                        Get.to(() => CowGhee());
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 3) {
-                                        Get.to(() => Oil());
-                                      } else if (index == 4) {
-                                        Get.to(() => Spices());
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 5) {
-                                        Get.to(() => Honey());
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 6) {
-                                        Get.to(() => Pulses());
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 7) {
-                                        Get.to(() => Sattu());
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 8) {
-                                        Get.to(() => CupponsPage());
-                                      } else if (index == 9) {
-                                        Get.to(() => GiftBox());
-
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 10) {
-                                        Get.to(() => Sweets());
-                                        //Get.to(() => BestSeller());
-                                        //Get.to(() => WalkTracking());
-                                      } else if (index == 11) {
-                                        Get.to(() => Jeggary());
-                                        //Get.to(() => WalkTracking());
-                                      }*/
+                                  _subCatByIdController.catid =
+                                      _homePageController
+                                          .getcatagartlist!.result![index].id
+                                          .toString();
+                                  _subCatByIdController.subcatidApi();
+                                  // _homePageController.toggle(index);
+                                  // if (index == 0) {
+                                  //   Get.to(() => CatagaryListSubcatagary());
+                                  //   //Get.to(() => BestSeller());
+                                  //   //Get.to(() => WaterTracking());
+                                  // } else if (index == 1) {
+                                  //   Get.to(() => CatagaryListSubcatagary());
+                                  // }
+                                  // /*else if (index == 2) {
+                                  //       Get.to(() => CowGhee());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 3) {
+                                  //       Get.to(() => Oil());
+                                  //     } else if (index == 4) {
+                                  //       Get.to(() => Spices());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 5) {
+                                  //       Get.to(() => Honey());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 6) {
+                                  //       Get.to(() => Pulses());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 7) {
+                                  //       Get.to(() => Sattu());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 8) {
+                                  //       Get.to(() => CupponsPage());
+                                  //     } else if (index == 9) {
+                                  //       Get.to(() => GiftBox());
+                                  //
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 10) {
+                                  //       Get.to(() => Sweets());
+                                  //       //Get.to(() => BestSeller());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     } else if (index == 11) {
+                                  //       Get.to(() => Jeggary());
+                                  //       //Get.to(() => WalkTracking());
+                                  //     }*/
                                 },
                                 child: PhysicalModel(
                                   borderRadius: BorderRadius.circular(5),
@@ -322,10 +324,8 @@ class HomePagePractice extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Image.network(
-                                          _catagaryController.getcatagary
-                                              .toString(),
-                                          // base +
-                                          //     '${items![index].imageName.toString()}',
+                                          base +
+                                              '${_homePageController.getcatagartlist!.result![index].imageName.toString()}',
                                           fit: BoxFit.fill,
                                           errorBuilder:
                                               (context, error, stackTrace) {
@@ -347,8 +347,8 @@ class HomePagePractice extends StatelessWidget {
                                         ),
                                         Center(
                                             child: Text(
-                                          _catagaryController
-                                              .getcatagary!.categoryName
+                                          _homePageController.getcatagartlist!
+                                              .result![index].categoryName
                                               .toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
@@ -532,56 +532,93 @@ class HomePagePractice extends StatelessWidget {
                       ),
                     ),
                   ),
-                  FutureBuilder<List<ourOfferResult>>(
-                      future: ourOfferData(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          var items = snapshot.data;
-                          var base = 'https://api.gyros.farm/Images/';
-                          return SizedBox(
-                              height: size.height * 0.2,
-                              //width: double.infinity,
-                              child: ListView.builder(
-                                  itemCount: items!.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return InkWell(
-                                      onTap: () {},
-                                      child: PhysicalModel(
-                                        borderRadius: BorderRadius.circular(0),
-                                        color: Color(0xffeff8f5),
-                                        elevation: 0.1,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(2.0),
-                                          child: Container(
-                                            height: 15.h,
-                                            width: 95.w, //size.width * 0.99,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              // color: MyTheme.ContainerUnSelectedColor,
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                  base +
-                                                      '${items![index].promotionalBannerPath}',
-                                                ),
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ),
+                  SizedBox(
+                      height: size.height * 0.2,
+                      //width: double.infinity,
+                      child: ListView.builder(
+                          itemCount:
+                              _homePageController.getouroffer!.result!.length,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) {
+                            return InkWell(
+                              onTap: () {},
+                              child: PhysicalModel(
+                                borderRadius: BorderRadius.circular(0),
+                                color: Color(0xffeff8f5),
+                                elevation: 0.1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Container(
+                                    height: 15.h,
+                                    width: 95.w, //size.width * 0.99,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      // color: MyTheme.ContainerUnSelectedColor,
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          base +
+                                              '${_homePageController.getouroffer!.result![index].promotionalBannerPath}',
                                         ),
+                                        fit: BoxFit.fill,
                                       ),
-                                    );
-                                  }));
-                        } else if (snapshot.hasError) {
-                          return Text("${snapshot.error}");
-                        }
-                        return Center(
-                            child: CircularProgressIndicator(
-                          color: Colors.white,
-                        ));
-                      })
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          })),
+
+                  ///from here we can see the method of future builder.....................
+                  // FutureBuilder<List<ourOfferResult>>(
+                  //     future: ourOfferData(),
+                  //     builder: (context, snapshot) {
+                  //       if (snapshot.hasData) {
+                  //         var items = snapshot.data;
+                  //         var base = 'https://api.gyros.farm/Images/';
+                  //         return SizedBox(
+                  //             height: size.height * 0.2,
+                  //             //width: double.infinity,
+                  //             child: ListView.builder(
+                  //                 itemCount: items!.length,
+                  //                 scrollDirection: Axis.horizontal,
+                  //                 itemBuilder:
+                  //                     (BuildContext context, int index) {
+                  //                   return InkWell(
+                  //                     onTap: () {},
+                  //                     child: PhysicalModel(
+                  //                       borderRadius: BorderRadius.circular(0),
+                  //                       color: Color(0xffeff8f5),
+                  //                       elevation: 0.1,
+                  //                       child: Padding(
+                  //                         padding: const EdgeInsets.all(2.0),
+                  //                         child: Container(
+                  //                           height: 15.h,
+                  //                           width: 95.w, //size.width * 0.99,
+                  //                           decoration: BoxDecoration(
+                  //                             borderRadius:
+                  //                                 BorderRadius.circular(5),
+                  //                             // color: MyTheme.ContainerUnSelectedColor,
+                  //                             image: DecorationImage(
+                  //                               image: NetworkImage(
+                  //                                 base +
+                  //                                     '${items[index].promotionalBannerPath}',
+                  //                               ),
+                  //                               fit: BoxFit.fill,
+                  //                             ),
+                  //                           ),
+                  //                         ),
+                  //                       ),
+                  //                     ),
+                  //                   );
+                  //                 }));
+                  //       } else if (snapshot.hasError) {
+                  //         return Text("${snapshot.error}");
+                  //       }
+                  //       return Center(
+                  //           child: CircularProgressIndicator(
+                  //         color: Colors.white,
+                  //       ));
+                  //     })
                 ],
               ),
             )

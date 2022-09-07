@@ -8,11 +8,9 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/catagary_list_by_id/catagary_list_by_id.dart';
 import 'package:gyros_app/constants/app_colors.dart';
-import 'package:gyros_app/controllers/home_controllers/catagary_by_id_controller.dart';
 import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
-import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/home_page_model/categoryModel.dart';
 import 'package:gyros_app/view/home_page/home_page_model/our_offer_model.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
@@ -30,7 +28,7 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final CartController controller = Get.put(CartController());
   HomePageController _homePageController = Get.put(HomePageController());
-  CatagaryByIdController _catagaryByIdController = Get.find();
+  // CatagaryByIdController _catagaryByIdController = Get.find();
   CatagaryController _catagaryController = Get.find();
   final List<Map> myProducts =
       List.generate(100000, (index) => {"id": index, "name": "Product $index"})
@@ -118,7 +116,6 @@ class HomePage extends StatelessWidget {
     List<Result> list;
 
     var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
-
     var res = await http.get(Uri.parse(url));
     if (res.statusCode == 200) {
       var data = json.decode(res.body);
@@ -263,10 +260,15 @@ class HomePage extends StatelessWidget {
                                     onTap: () {
                                       _homePageController.toggle(index);
                                       if (index == 0) {
-                                        Get.to(() => AllProducts());
+                                        Get.to(() => CatagaryListSubcatagary());
+                                        //Get.to(() => AllProducts());
                                         //Get.to(() => BestSeller());
                                         //Get.to(() => WaterTracking());
                                       } else if (index == 1) {
+                                        Get.to(() => CatagaryListSubcatagary());
+                                      } else if (index == 2) {
+                                        Get.to(() => CatagaryListSubcatagary());
+                                      } else if (index == 3) {
                                         Get.to(() => CatagaryListSubcatagary());
                                       }
                                       /*else if (index == 2) {

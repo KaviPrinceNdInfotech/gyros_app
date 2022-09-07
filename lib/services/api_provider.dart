@@ -4,14 +4,88 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
+import 'package:gyros_app/models/slider_banner_models.dart';
+import 'package:gyros_app/models/sub_cat_by_id_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/our_offer_permotion_model.dart';
+
 class ApiProvider {
-  static var baseUrl = 'https://api.gyros.farm/api/AdminApi/';
+  static var baseUrl = 'https://api.gyros.farm/';
   //static var baseUrl = 'http://97.74.95.55:5003/';
   //static var baseUrl = 'https://one-code-flyweis.herokuapp.com/';
   static String token = '';
   static String categoryid = '';
+  static String catid = '';
+
+  //catagary list api gyros 1 api.....................
+
+  static AllcatagaryApi() async {
+    var url = baseUrl + 'api/AdminApi/ProductList';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        CatagaryListModels catagarylist = catagaryListModelsFromJson(r.body);
+        return catagarylist;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  //slider banner Api gyros 2.........
+
+  static SliderBannerApi() async {
+    var url = baseUrl + 'api/AdminApi/BannerImage';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        SliderListModel sliderbanerlist = sliderListModelFromJson(r.body);
+        return sliderbanerlist;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  //our offer banner Api gyros 3...................................................
+
+  static ourOfferApi() async {
+    var url = baseUrl + 'api/AdminApi/PromotionImage';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        OurOfferPromotionList ourofferlist =
+            ourOfferPromotionListFromJson(r.body);
+        return ourofferlist;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  //sub_cat_by_id  gyros api 4.....................................
+
+  static getsubcatIdApi(var catid) async {
+    // var prefs = GetStorage();
+    // categoryid = prefs.read('id');
+    //   print("userid  $categoryid");
+    var url = baseUrl + 'api/AdminApi/SubcategoryList/$catid';
+    //var headers = {'Authorization': 'Bearer $token'};
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        SubcatbyId getsubcatbyid = subcatbyIdFromJson(r.body);
+        return getsubcatbyid;
+      }
+    } catch (error) {
+      return;
+    }
+  }
 
   //add user Api. signup.  new 1 Api........................................................
 
@@ -194,49 +268,49 @@ class ApiProvider {
 
   ///get all catagary API........new 9...........guros..........................................
 
-  static getallategaryApi() async {
-    var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
-
-    var prefs = GetStorage();
-    var r;
-    prefs.write("id", jsonDecode(r.body)["cat"]['_id']);
-    categoryid = prefs.read('id');
-    print("userId : $categoryid");
-
-    try {
-      http.Response r = await http.get(Uri.parse(url));
-      print(r.body.toString());
-      if (r.statusCode == 200) {
-        List<CatagaryListModels> getallcat = catagaryListModelsFromJson(r.body);
-        //List<CatagaryListModel> getallcategary = catagaryListFromJson(r.body);
-        return getallcat;
-      }
-    } catch (error) {
-      return;
-    }
-  }
+  // static getallategaryApi() async {
+  //   var url = 'https://api.gyros.farm/api/AdminApi/ProductList';
+  //
+  //   var prefs = GetStorage();
+  //   var r;
+  //   prefs.write("id", jsonDecode(r.body)["cat"]['_id']);
+  //   categoryid = prefs.read('id');
+  //   print("userId : $categoryid");
+  //
+  //   try {
+  //     http.Response r = await http.get(Uri.parse(url));
+  //     print(r.body.toString());
+  //     if (r.statusCode == 200) {
+  //       List<CatagaryListModels> getallcat = catagaryListModelsFromJson(r.body);
+  //       //List<CatagaryListModel> getallcategary = catagaryListFromJson(r.body);
+  //       return getallcat;
+  //     }
+  //   } catch (error) {
+  //     return;
+  //   }
+  // }
 
   ///get catagary name Api new 10.. gyros...............................
 
-  static getcatnameIdApi(var catid) async {
-    var prefs = GetStorage();
-    categoryid = prefs.read('id');
-    print("userid  $categoryid");
-    var url = baseUrl + 'SubcategoryList/$catid';
-    var headers = {'Authorization': 'Bearer $token'};
-    try {
-      http.Response r = await http.get(Uri.parse(url), headers: headers);
-      print(r.body.toString());
-      if (r.statusCode == 200) {
-        List<CatagaryListModels> getcatname =
-            catagaryListModelsFromJson(r.body);
-        // List<CatagaryListModel> getcatname = catagaryListModelFromJson(r.body);
-        return getcatname;
-      }
-    } catch (error) {
-      return;
-    }
-  }
+  // static getcatnameIdApi(var catid) async {
+  //   var prefs = GetStorage();
+  //   categoryid = prefs.read('id');
+  //   print("userid  $categoryid");
+  //   var url = baseUrl + 'SubcategoryList/$catid';
+  //   var headers = {'Authorization': 'Bearer $token'};
+  //   try {
+  //     http.Response r = await http.get(Uri.parse(url), headers: headers);
+  //     print(r.body.toString());
+  //     if (r.statusCode == 200) {
+  //       List<CatagaryListModels> getcatname =
+  //           catagaryListModelsFromJson(r.body);
+  //       // List<CatagaryListModel> getcatname = catagaryListModelFromJson(r.body);
+  //       return getcatname;
+  //     }
+  //   } catch (error) {
+  //     return;
+  //   }
+  // }
 
   ///get Priority catagary api 10........................................
 
