@@ -12,10 +12,12 @@ import 'package:gyros_app/controllers/set_new_password/set_new_pswd_controller.d
 import 'package:gyros_app/controllers/sign_up_controller/sign_up_controllers.dart';
 import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/login_page/login_with_email/login_email_controller.dart';
 
 import '../../view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
 import '../../view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
 import '../../view/home_page/home_page_controller.dart';
+import '../otp_timer_controller/otp_timer_controllerss.dart';
 
 class ControllerBinding extends Bindings {
   @override
@@ -37,6 +39,8 @@ class ControllerBinding extends Bindings {
     Get.put(HomePageController());
     Get.put(SubCatByIdController());
     Get.put(SubCatByIdController());
+    Get.put(LoginEmailController());
+    Get.lazyPut(() => OtpTimerController());
 
     //Get.put(CatagaryByIdController());
   }

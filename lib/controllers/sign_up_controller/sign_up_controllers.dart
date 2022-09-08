@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:gyros_app/controllers/otp_timer_controller/otp_timer_controllerss.dart';
 import 'package:gyros_app/services/api_provider.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
+import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:http/http.dart' as http;
 
 // class SignUpPageController extends GetxController {
@@ -112,36 +113,39 @@ import 'package:http/http.dart' as http;
 class SignUpPageController extends GetxController {
   RxBool isLoading = true.obs;
   GlobalKey<FormState> signupform = GlobalKey(debugLabel: "signupform");
+
   OtpTimerController _timeController = Get.put(OtpTimerController());
 
-  void calluserProfileApi() async {
-    print(name.text);
-    http.Response r = await ApiProvider.addUserApi(
-      name.text,
-      phone.text,
-      email.text,
-      password.text,
-      confirmpassword.text,
+  void callsignupApi() async {
+    CallLoader.loader();
+    print(Name.text);
+    http.Response r = await ApiProvider.signUpApi(
+      Name.text,
+      Mobile_No.text,
+      Email_Id.text,
+      PassWord.text,
+      ConfirmPassWord.text,
     );
     if (r.statusCode == 200) {
       //Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
       //Get.to(()=> LoginPage());
-
-      _timeController.email = email.text;
-      _timeController.phoneNumber = phone.text;
+      CallLoader.hideLoader();
       Get.to(() => NavBar());
+
+      _timeController.email = Email_Id.text;
+      _timeController.phoneNumber = Mobile_No.text;
     }
   }
 
   //from here add member and add patient both ccontroller function ..............
 
-  TextEditingController name = TextEditingController();
-  TextEditingController phone = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController Name = TextEditingController();
+  TextEditingController Mobile_No = TextEditingController();
+  TextEditingController Email_Id = TextEditingController();
   //TextEditingController state = TextEditingController();
   //TextEditingController city = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
+  TextEditingController PassWord = TextEditingController();
+  TextEditingController ConfirmPassWord = TextEditingController();
 
   //this is City..........
   //Rx<String?> selectedCity = (null as String?).obs;
@@ -163,11 +167,11 @@ class SignUpPageController extends GetxController {
     // states.refresh();
     super.onInit();
 
-    name = TextEditingController();
-    phone = TextEditingController();
-    email = TextEditingController();
-    password = TextEditingController();
-    confirmpassword = TextEditingController();
+    Name;
+    Mobile_No;
+    Email_Id;
+    PassWord;
+    ConfirmPassWord;
   }
 
   @override
@@ -177,17 +181,18 @@ class SignUpPageController extends GetxController {
 
   @override
   void onClose() {
-    name.dispose();
-    phone.dispose();
-    email.dispose();
-    password.dispose();
-    confirmpassword.dispose();
+    Name.dispose();
+    Mobile_No.dispose();
+    Email_Id.dispose();
+    PassWord.dispose();
+    ConfirmPassWord.dispose();
   }
 
   String? validatename(value) {
     if (value.length < 2) {
       return "Provide valid name";
     }
+
     return null;
   }
 
@@ -220,9 +225,8 @@ class SignUpPageController extends GetxController {
   }
 
   void checkSignUp() {
-    final isValid = signupform.currentState!.validate();
-    if (!isValid) {
-      return;
+    if (signupform.currentState!.validate()) {
+      callsignupApi();
     }
     signupform.currentState!.save();
   }

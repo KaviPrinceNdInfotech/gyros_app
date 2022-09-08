@@ -87,24 +87,62 @@ class ApiProvider {
     }
   }
 
-  //add user Api. signup.  new 1 Api........................................................
+  //login with email api gyros api 5..................................
 
-  static addUserApi(
-    var name,
-    var phone,
-    var email,
-    var password,
-    var confirmPassword,
+  static LoginEmailApi(
+    var Email,
+    var PassWord,
+  ) async {
+    var prefs = GetStorage();
+    // token = prefs.read("token");
+    // print(token);
+
+    // var headers = {
+    //   'Authorization': 'Bearer $token',
+    // };
+    // print(headers);
+    var url = baseUrl + 'api/AdminApi/LoginWithEmail';
+
+    var body = {
+      "Email": Email,
+      "PassWord": PassWord,
+    };
+    print(body);
+    http.Response r = await http.post(
+      Uri.parse(url), body: body,
+      //headers: headers
+    );
+    print(r.body);
+    if (r.statusCode == 200) {
+      // var prefs = GetStorage();
+      // prefs.write("token", json.decode(r.body)['data']['token']);
+      // token = prefs.read("token");
+      // print(token);
+      return r;
+    } else {
+      Get.snackbar('Error', 'Login Failed');
+      return r;
+    }
+  }
+
+  //sign up  Api gyros  gyros Api 6........................................................
+
+  static signUpApi(
+    var Name,
+    var Mobile_No,
+    var Email_Id,
+    var PassWord,
+    var ConfirmPassWord,
   ) async {
     try {
-      var url = baseUrl + 'Registration';
+      var url = baseUrl + 'api/AdminApi/Registration';
 
       var body = {
-        "name": name,
-        "phone": phone,
-        "email": email,
-        "password": password,
-        "confirmPassword": confirmPassword,
+        "Name": Name,
+        "Mobile_No": Mobile_No,
+        "Email_Id": Email_Id,
+        "PassWord": PassWord,
+        "ConfirmPassWord": ConfirmPassWord,
       };
       print(body);
       http.Response r = await http.post(
@@ -115,7 +153,7 @@ class ApiProvider {
       if (r.statusCode == 200) {
         return r;
       } else {
-        Get.snackbar('Error', 'Details');
+        Get.snackbar('Error', 'Login Fail');
         return r;
       }
     } catch (e) {

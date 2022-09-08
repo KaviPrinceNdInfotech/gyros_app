@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
+import 'package:gyros_app/view/login_page/login_with_email/login_email.dart';
 import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
@@ -85,6 +85,7 @@ class LoginPage extends StatelessWidget {
               CustomButtom(
                 buttonColor: MyTheme.loginbuttonColor,
                 buttontext: 'LOGIN WITH EMAIL',
+
                 textColor: Colors.white,
                 //Theme.of(context).colorScheme.onPrimary,
                 handleButtonClick: loginButtonClickHandler,
@@ -115,7 +116,10 @@ class LoginPage extends StatelessWidget {
 
   loginButtonClickHandler() {
     print("Login Clicked");
-    Get.to(LoginMainPage());
+    Get.to(() => LoginEmailPage());
+
+    ///login main page api with future builder below page........
+    //Get.to(LoginMainPage());
   }
 
   signupButtonClickHandler() {
