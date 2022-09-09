@@ -50,12 +50,14 @@ class CatagaryListSubcatagary extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     var base = 'https://api.gyros.farm/Images/';
+    var index;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'Best Deal',
+          // _catByIdController.getcatbyid!.result![index].productName.toString(),
+          'Details Of Products',
           style: TextStyle(
               color: AppColors.themecolors, fontWeight: FontWeight.bold),
         ),

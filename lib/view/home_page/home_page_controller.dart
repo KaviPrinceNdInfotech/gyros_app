@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
+import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
+import 'package:gyros_app/models/flash_sall_list_product_model.dart';
 import 'package:gyros_app/models/our_offer_permotion_model.dart';
 import 'package:gyros_app/models/slider_banner_models.dart';
 import 'package:gyros_app/services/api_provider.dart';
@@ -13,6 +15,8 @@ class HomePageController extends GetxController {
   CatagaryListModels? getcatagartlist;
   SliderListModel? getsliderbaner;
   OurOfferPromotionList? getouroffer;
+  FirstOrderBanner? getfirstorderbanner;
+  FlashSellListProduct? getflashsellproduct;
 
   //all catagary list .........
 
@@ -41,11 +45,31 @@ class HomePageController extends GetxController {
     }
   }
 
+  //first_order_banner.........................
+
+  void firstorderApi() async {
+    getfirstorderbanner = await ApiProvider.FirstPurchaseApi();
+    if (getfirstorderbanner!.result.isNotEmpty) {
+      isLoading(false);
+    }
+  }
+
+  //flash sale product.....list....
+
+  void flashsellproductApi() async {
+    getflashsellproduct = await ApiProvider.FlashsellproduuctApi();
+    if (getflashsellproduct!.result!.isNotEmpty) {
+      isLoading(false);
+    }
+  }
+
   @override
   void onInit() {
     categoryListssApi();
     sliderBannerApi();
     ourofferApi();
+    firstorderApi();
+    flashsellproductApi();
     super.onInit();
   }
 

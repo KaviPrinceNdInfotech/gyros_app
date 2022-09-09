@@ -41,6 +41,7 @@ class ControllerBinding extends Bindings {
     Get.put(SubCatByIdController());
     Get.put(LoginEmailController());
     Get.lazyPut(() => OtpTimerController());
+    //Get.to(FlashProductByIdController());
 
     //Get.put(CatagaryByIdController());
   }

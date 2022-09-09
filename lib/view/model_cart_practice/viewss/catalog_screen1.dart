@@ -24,7 +24,7 @@ class CatalogScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 217, child: const CatalogProducts()),
+            SizedBox(height: 217, child: CatalogProducts()),
             ElevatedButton(
               onPressed: () => Get.to(() =>
                   //MyCart()),

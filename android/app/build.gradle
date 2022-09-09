@@ -48,6 +48,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        ///TODO: here multidex we have to  1st step enable in android studio. flutter project.....
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -65,4 +68,8 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    ///TODO: here multidex second process..........prince
+
+    implementation 'com.android.support:multidex:1.0.3'
 }

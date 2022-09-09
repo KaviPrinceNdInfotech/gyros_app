@@ -4,6 +4,9 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
+import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
+import 'package:gyros_app/models/flash_product_descriptions_model.dart';
+import 'package:gyros_app/models/flash_sall_list_product_model.dart';
 import 'package:gyros_app/models/slider_banner_models.dart';
 import 'package:gyros_app/models/sub_cat_by_id_model.dart';
 import 'package:http/http.dart' as http;
@@ -17,6 +20,7 @@ class ApiProvider {
   static String token = '';
   static String categoryid = '';
   static String catid = '';
+  static String productid = '';
 
   //catagary list api gyros 1 api.....................
 
@@ -126,7 +130,6 @@ class ApiProvider {
   }
 
   //sign up  Api gyros  gyros Api 6........................................................
-
   static signUpApi(
     var Name,
     var Mobile_No,
@@ -153,7 +156,7 @@ class ApiProvider {
       if (r.statusCode == 200) {
         return r;
       } else {
-        Get.snackbar('Error', 'Login Fail');
+        Get.snackbar('Error', 'SignUp Fail');
         return r;
       }
     } catch (e) {
@@ -161,6 +164,97 @@ class ApiProvider {
       print(e.toString());
     }
   }
+
+  //First Purchase banner gyros  api gyros 7 api.....................
+
+  static FirstPurchaseApi() async {
+    var url = baseUrl + 'api/AdminApi/Specialoffer';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        FirstOrderBanner firstofferlist = firstOrderBannerFromJson(r.body);
+        return firstofferlist;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // flash sell product list gyros.. 8 Api ..............FlashSellListProduct
+
+  static FlashsellproduuctApi() async {
+    var url = baseUrl + 'api/AdminApi/FlashSale';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        FlashSellListProduct flashsaleproductlist =
+            flashSellListProductFromJson(r.body);
+        return flashsaleproductlist;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  //sub flash sale product_by_id  gyros api 9.....................................
+
+  static getproductdetails(var productid) async {
+    // var prefs = GetStorage();
+    // categoryid = prefs.read('id');
+    //   print("userid  $categoryid");
+    var url = baseUrl + 'api/AdminApi/FlaseSaleSubList/$productid';
+    //var headers = {'Authorization': 'Bearer $token'};
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        FlashSellListProductdetails productdetailsbyid =
+            flashSellListProductdetailsFromJson(r.body);
+        return productdetailsbyid;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  ///till gyros...........................
+
+  // static signUpApi(
+  //   var Name,
+  //   var Mobile_No,
+  //   var Email_Id,
+  //   var PassWord,
+  //   var ConfirmPassWord,
+  // ) async {
+  //   try {
+  //     var url = baseUrl + 'api/AdminApi/Registration';
+  //
+  //     var body = {
+  //       "Name": Name,
+  //       "Mobile_No": Mobile_No,
+  //       "Email_Id": Email_Id,
+  //       "PassWord": PassWord,
+  //       "ConfirmPassWord": ConfirmPassWord,
+  //     };
+  //     print(body);
+  //     http.Response r = await http.post(
+  //       Uri.parse(url),
+  //       body: body,
+  //     );
+  //     print(r.body);
+  //     if (r.statusCode == 200) {
+  //       return r;
+  //     } else {
+  //       Get.snackbar('Error', 'SignUp Fail');
+  //       return r;
+  //     }
+  //   } catch (e) {
+  //     print('Error');
+  //     print(e.toString());
+  //   }
+  // }
 
   //OTP Varification New 2....................................
 
