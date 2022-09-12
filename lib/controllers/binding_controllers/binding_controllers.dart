@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
+import 'package:gyros_app/controllers/blog_list_controller.dart';
 import 'package:gyros_app/controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
 import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.dart';
 import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
@@ -41,7 +42,7 @@ class ControllerBinding extends Bindings {
     Get.put(SubCatByIdController());
     Get.put(LoginEmailController());
     Get.lazyPut(() => OtpTimerController());
-    //Get.to(FlashProductByIdController());
+    Get.lazyPut(() => BlogListController());
 
     //Get.put(CatagaryByIdController());
   }

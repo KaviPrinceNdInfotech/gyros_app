@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gyros_app/models/blog_model.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
@@ -213,6 +214,21 @@ class ApiProvider {
         FlashSellListProductdetails productdetailsbyid =
             flashSellListProductdetailsFromJson(r.body);
         return productdetailsbyid;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+  //blog post Api gyros.......10........
+
+  static BlogPostApi() async {
+    var url = baseUrl + 'api/AdminApi/Blog';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        BlogModel blocgmodellist = blogModelFromJson(r.body);
+        return blocgmodellist;
       }
     } catch (error) {
       return;

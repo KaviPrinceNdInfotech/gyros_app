@@ -497,17 +497,34 @@ class HomePagePractice extends StatelessWidget {
                                                 BorderRadius.circular(5),
                                             // border: Border.all(
                                             //     color: AppColors.themecolors),
-                                            image: DecorationImage(
-                                                image: AssetImage(Productss
-                                                    .products[index].imageUrl),
-                                                fit: BoxFit.cover),
+                                            // image: DecorationImage(
+                                            //     image: AssetImage(Productss
+                                            //         .products[index].imageUrl),
+                                            //     fit: BoxFit.cover),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Image.asset(
-                                              Productss
-                                                  .products[index].imageUrl,
-                                              fit: BoxFit.cover,
+                                            padding: EdgeInsets.all(2.0),
+                                            child: Image.network(
+                                              base +
+                                                  '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
+                                              fit: BoxFit.fill,
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                //if image not comming in catagary then we have to purchase
+
+                                                return Icon(
+                                                  Icons.error,
+                                                  color: Colors.grey,
+                                                );
+                                              },
+
+                                              height: size.height * 0.04,
+                                              // color: _homePageController
+                                              //             .selectedIndex
+                                              //             .value ==
+                                              //         index
+                                              //     ? Colors.white
+                                              //     : MyTheme.ThemeColors
                                             ),
                                           ),
                                         ),
@@ -877,17 +894,34 @@ class HomePagePractice extends StatelessWidget {
                                                 BorderRadius.circular(5),
                                             // border: Border.all(
                                             //     color: AppColors.themecolors),
-                                            image: DecorationImage(
-                                                image: AssetImage(Productss
-                                                    .products[index].imageUrl),
-                                                fit: BoxFit.cover),
+                                            // image: DecorationImage(
+                                            //     image: AssetImage(Productss
+                                            //         .products[index].imageUrl),
+                                            //     fit: BoxFit.cover),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Image.asset(
-                                              Productss
-                                                  .products[index].imageUrl,
-                                              fit: BoxFit.cover,
+                                            padding: EdgeInsets.all(2.0),
+                                            child: Image.network(
+                                              base +
+                                                  '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
+                                              fit: BoxFit.fill,
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                //if image not comming in catagary then we have to purchase
+
+                                                return Icon(
+                                                  Icons.error,
+                                                  color: Colors.grey,
+                                                );
+                                              },
+
+                                              height: size.height * 0.04,
+                                              // color: _homePageController
+                                              //             .selectedIndex
+                                              //             .value ==
+                                              //         index
+                                              //     ? Colors.white
+                                              //     : MyTheme.ThemeColors
                                             ),
                                           ),
                                         ),

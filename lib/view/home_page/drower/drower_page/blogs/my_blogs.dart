@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/blog_list_controller.dart';
 import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:sizer/sizer.dart';
 
 class Blogss extends StatelessWidget {
-  const Blogss({Key? key}) : super(key: key);
+  Blogss({Key? key}) : super(key: key);
+  BlogListController _blogListController = Get.put(BlogListController());
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    var base = 'https://api.gyros.farm/Images/';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -123,7 +126,7 @@ class Blogss extends StatelessWidget {
                   height: 1.h,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     'Latest',
                     style: TextStyle(
@@ -134,19 +137,21 @@ class Blogss extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.37,
+                  height: size.height * 0.32,
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 4,
+                      itemCount:
+                          //4,
+                          _blogListController.blogmodel!.result!.length,
                       itemBuilder: (BuildContext ctx, index) {
                         return SizedBox(
-                          height: size.height * 0.4,
+                          height: size.height * 0.35,
                           width: size.width * 0.4,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(5.0),
+                                padding: EdgeInsets.all(5.0),
                                 child: Container(
                                   height: size.height * 0.19,
                                   width: size.width * 0.4,
@@ -154,7 +159,9 @@ class Blogss extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: NetworkImage(
-                                              'https://images.unsplash.com/photo-1593701461250-d7b22dfd3a77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
+                                            base +
+                                                '${_blogListController.blogmodel!.result![index].imagePath}',
+                                          ),
                                           fit: BoxFit.cover),
                                       color: Colors.amber,
                                       borderRadius: BorderRadius.circular(15)),
@@ -164,9 +171,11 @@ class Blogss extends StatelessWidget {
                                 height: 0.5.h,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 7),
+                                padding: EdgeInsets.only(left: 7),
                                 child: Text(
-                                  'Gyros farm',
+                                  _blogListController
+                                      .blogmodel!.result![index].title
+                                      .toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 9.sp,
@@ -178,13 +187,19 @@ class Blogss extends StatelessWidget {
                                 height: 0.5.h,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 7),
-                                child: Text(
-                                  'Gyros Sweets Rs.3.1 Cr in Sweets products.',
-                                  style: GoogleFonts.acme(
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black45,
+                                padding: EdgeInsets.only(left: 7),
+                                child: SizedBox(
+                                  height: size.height * 0.03,
+                                  width: size.width * 0.38,
+                                  child: Text(
+                                    _blogListController
+                                        .blogmodel!.result![index].createContent
+                                        .toString(),
+                                    style: GoogleFonts.acme(
+                                      fontSize: size.height * 0.011,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black45,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -227,7 +242,7 @@ class Blogss extends StatelessWidget {
                       }),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 19),
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                   child: Text(
                     'Gyros Blogs',
                     style: GoogleFonts.radioCanada(
@@ -237,11 +252,14 @@ class Blogss extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 1.h,
+                ),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
                     height: size.height * 0.5,
-                    width: size.width * 0.94,
+                    width: size.width * 0.97,
                     decoration: BoxDecoration(
                       color: Color(0xfff5e1e1),
                       borderRadius: BorderRadius.circular(10),
@@ -250,10 +268,10 @@ class Blogss extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 0.h,
+                          height: 1.h,
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(4.0),
                           child: Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
@@ -320,14 +338,13 @@ control parameters, and R&D of new products. ...""",
                   child: GridView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       //scrollDirection: Axis.horizontal,
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 200,
-                              childAspectRatio: 3 / 2,
-                              crossAxisSpacing: 10,
-                              mainAxisExtent: 317,
-                              mainAxisSpacing: 10),
-                      itemCount: 4,
+                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 3 / 2,
+                          crossAxisSpacing: 5,
+                          mainAxisExtent: size.height * 0.50,
+                          mainAxisSpacing: 7),
+                      itemCount: _blogListController.blogmodel!.result!.length,
                       itemBuilder: (BuildContext ctx, index) {
                         return SizedBox(
                           height: size.height * 0.48,
@@ -336,7 +353,7 @@ control parameters, and R&D of new products. ...""",
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.all(5.0),
+                                padding: EdgeInsets.all(5.0),
                                 child: Container(
                                   height: size.height * 0.22,
                                   width: size.width * 0.5,
@@ -344,9 +361,9 @@ control parameters, and R&D of new products. ...""",
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: NetworkImage(
-                                              'https://images.unsplash.com/photo-1627154424678-0d3909874daa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGhvbmV5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60'
-                                              //'https://images.unsplash.com/photo-1593701461250-d7b22dfd3a77?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
-                                              ),
+                                            base +
+                                                '${_blogListController.blogmodel!.result![index].imagePath}',
+                                          ),
                                           fit: BoxFit.cover),
                                       color: Colors.amber,
                                       borderRadius: BorderRadius.circular(15)),
@@ -356,7 +373,8 @@ control parameters, and R&D of new products. ...""",
                                 height: 0.5.h,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 7),
+                                padding:
+                                    EdgeInsets.only(left: size.width * 0.011),
                                 child: Text(
                                   """Why are experts opposing mandatory food fortification by FSSAI?""",
                                   style: TextStyle(
@@ -370,7 +388,8 @@ control parameters, and R&D of new products. ...""",
                                 height: 0.5.h,
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 7),
+                                padding:
+                                    EdgeInsets.only(left: size.width * 0.011),
                                 child: Text(
                                   """Recently, FSSAI decided to mandate the fortification of rice and edible oils with vitamins and minerals. Through this, they plan to combat malnutrition in India. In response, a cohort of...""",
                                   style: GoogleFonts.acme(
