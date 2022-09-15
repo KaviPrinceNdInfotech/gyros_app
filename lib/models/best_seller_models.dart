@@ -1,17 +1,17 @@
 // To parse this JSON data, do
 //
-//     final flashSaleProductDetailsModel = flashSaleProductDetailsModelFromJson(jsonString);
+//     final bestSellerModel = bestSellerModelFromJson(jsonString);
 
 import 'dart:convert';
 
-FlashSaleProductDetailsModel flashSaleProductDetailsModelFromJson(String str) =>
-    FlashSaleProductDetailsModel.fromJson(json.decode(str));
+BestSellerModel bestSellerModelFromJson(String str) =>
+    BestSellerModel.fromJson(json.decode(str));
 
-String flashSaleProductDetailsModelToJson(FlashSaleProductDetailsModel data) =>
+String bestSellerModelToJson(BestSellerModel data) =>
     json.encode(data.toJson());
 
-class FlashSaleProductDetailsModel {
-  FlashSaleProductDetailsModel({
+class BestSellerModel {
+  BestSellerModel({
     this.result,
     this.status,
     this.message,
@@ -21,8 +21,8 @@ class FlashSaleProductDetailsModel {
   int? status;
   String? message;
 
-  factory FlashSaleProductDetailsModel.fromJson(Map<String, dynamic> json) =>
-      FlashSaleProductDetailsModel(
+  factory BestSellerModel.fromJson(Map<String, dynamic> json) =>
+      BestSellerModel(
         result:
             List<Result>.from(json["result"].map((x) => Result.fromJson(x))),
         status: json["status"],
@@ -40,50 +40,50 @@ class Result {
   Result({
     this.id,
     this.productName,
+    this.categoryId,
+    this.quentity,
     this.price,
-    this.productImage,
     this.discount,
-    this.weight1,
-    this.pkt1,
-    this.sellerOption,
-    this.qty1,
+    this.productImage,
     this.productDescription,
+    this.isActiveFlashSale,
+    this.isActiveBestSale,
   });
 
   int? id;
   String? productName;
+  int? categoryId;
+  dynamic quentity;
   int? price;
-  String? productImage;
   String? discount;
-  String? weight1;
-  String? pkt1;
-  dynamic sellerOption;
-  int? qty1;
+  String? productImage;
   String? productDescription;
+  bool? isActiveFlashSale;
+  bool? isActiveBestSale;
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
         id: json["Id"],
         productName: json["ProductName"],
+        categoryId: json["Category_Id"],
+        quentity: json["Quentity"],
         price: json["Price"],
-        productImage: json["Product_Image"],
         discount: json["Discount"],
-        weight1: json["Weight1"],
-        pkt1: json["Pkt1"],
-        sellerOption: json["SellerOption"],
-        qty1: json["Qty1"],
+        productImage: json["Product_Image"],
         productDescription: json["ProductDescription"],
+        isActiveFlashSale: json["IsActiveFlashSale"],
+        isActiveBestSale: json["IsActiveBestSale"],
       );
 
   Map<String, dynamic> toJson() => {
         "Id": id,
         "ProductName": productName,
+        "Category_Id": categoryId,
+        "Quentity": quentity,
         "Price": price,
-        "Product_Image": productImage,
         "Discount": discount,
-        "Weight1": weight1,
-        "Pkt1": pkt1,
-        "SellerOption": sellerOption,
-        "Qty1": qty1,
+        "Product_Image": productImage,
         "ProductDescription": productDescription,
+        "IsActiveFlashSale": isActiveFlashSale,
+        "IsActiveBestSale": isActiveBestSale,
       };
 }

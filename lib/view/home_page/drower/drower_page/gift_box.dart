@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/gift_box_controller.dart';
+import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 
 class GiftBox extends StatelessWidget {
   GiftBox({Key? key}) : super(key: key);
+
+  final RozarPayController _rozarPayController = Get.find();
+  GiftBoxController _giftBoxController = Get.find();
 
   var height, width;
 
@@ -47,6 +52,7 @@ class GiftBox extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
+    var base = 'https://api.gyros.farm/Images/';
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -68,236 +74,295 @@ class GiftBox extends StatelessWidget {
               color: AppColors.themecolors,
             )),
       ),
-      body: Container(
-        height: size.height,
-        width: size.width,
-        child: Column(
-          children: [
-            Container(
-              height: size.height * 0.03,
-              width: size.width,
-              color: Colors.green,
-              child: Center(
-                child: Text(
-                  'Buy from range of premium and healthy gift Box',
-                  style: TextStyle(fontSize: 10.sp, color: Colors.white),
-                ),
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  //physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: width / height * 0.35,
-                      mainAxisExtent: size.height * 0.25,
-                      crossAxisSpacing: 0,
-                      mainAxisSpacing: 0),
-                  itemCount: text2.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: InkWell(
-                        onTap: () {
-                          // _homePageController.toggle(index);
-                          if (index == 0) {
-                            //Get.to(() => ManPage());
-                            //Get.to(() => BestSeller());
-                            //Get.to(() => WaterTracking());
-                          } else if (index == 1) {
-                            //Get.to(() => ManPage());
-                          } else if (index == 2) {
-                            //Get.to(() => BestSeller());
-                            //Get.to(() => WalkTracking());
-                          } else if (index == 3) {
-                            //Get.to(() => WalkTracking());
-                          }
-                        },
-                        child: PhysicalModel(
-                          borderRadius: BorderRadius.circular(5),
-                          color: MyTheme.ThemeColors,
-                          elevation: 0.1,
-                          child: Container(
-                            height: size.height * 3,
-                            width: size.width * 0.4,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                    'lib/assets/asset/background1.jpeg',
-                                  ),
-                                  fit: BoxFit.fill),
-                              borderRadius: BorderRadius.circular(5),
-                              color: MyTheme.ContainerUnSelectedColor,
+      body: Obx(
+        () => (_giftBoxController.isLoading.value)
+            ? Center(child: CircularProgressIndicator())
+            : _giftBoxController.giftcardModel!.result!.isEmpty
+                ? Center(
+                    child: Text('No data'),
+                  )
+                : Container(
+                    height: size.height,
+                    width: size.width,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: size.height * 0.03,
+                          width: size.width,
+                          color: Colors.green,
+                          child: Center(
+                            child: Text(
+                              'Buy from range of premium and healthy gift Box',
+                              style: TextStyle(
+                                  fontSize: 10.sp, color: Colors.white),
                             ),
-                            child: Column(
-                              //mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    height: 3.5.h,
-                                    width: 22.w,
-                                    decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(5),
-                                          bottomRight: Radius.circular(20),
-                                        )),
-                                    child: Center(
-                                      child: Text(
-                                        text1[index],
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 9.sp,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 0.6.h,
-                                ),
-                                PhysicalModel(
-                                  shadowColor: Colors.green,
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(5),
-                                  elevation: 5,
-                                  child: Container(
-                                    height: size.height * 0.12,
-                                    width: size.width * 0.3,
-                                    decoration: BoxDecoration(
+                          ),
+                        ),
+                        Expanded(
+                          child: GridView.builder(
+                              shrinkWrap: true,
+                              //physics: NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: width / height * 0.35,
+                                      mainAxisExtent: size.height * 0.25,
+                                      crossAxisSpacing: 0,
+                                      mainAxisSpacing: 0),
+                              itemCount: _giftBoxController
+                                  .giftcardModel!.result!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // _homePageController.toggle(index);
+                                      if (index == 0) {
+                                        //Get.to(() => ManPage());
+                                        //Get.to(() => BestSeller());
+                                        //Get.to(() => WaterTracking());
+                                      } else if (index == 1) {
+                                        //Get.to(() => ManPage());
+                                      } else if (index == 2) {
+                                        //Get.to(() => BestSeller());
+                                        //Get.to(() => WalkTracking());
+                                      } else if (index == 3) {
+                                        //Get.to(() => WalkTracking());
+                                      }
+                                    },
+                                    child: PhysicalModel(
                                       borderRadius: BorderRadius.circular(5),
-                                      // border: Border.all(
-                                      //     color: AppColors.themecolors),
-                                      image: DecorationImage(
-                                          image: AssetImage(image1[index]),
-                                          fit: BoxFit.cover),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 1.7.w),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        text2[index],
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 11.sp,
-                                          color: Colors.yellow,
+                                      color: MyTheme.ThemeColors,
+                                      elevation: 0.1,
+                                      child: Container(
+                                        height: size.height * 3,
+                                        width: size.width * 0.4,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                'lib/assets/asset/background1.jpeg',
+                                              ),
+                                              fit: BoxFit.fill),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color:
+                                              MyTheme.ContainerUnSelectedColor,
                                         ),
-                                      ),
-                                      Text(
-                                        'Save 30%',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 10.sp,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 2.w),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      '₹ 50',
-                                      style: TextStyle(
-                                        decoration: TextDecoration.lineThrough,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 7.sp,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 23.w,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 2.w),
-                                        child: Row(
+                                        child: Column(
+                                          //mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              '₹ 30',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 8.sp,
-                                                color: MyTheme.loginbuttonColor,
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Container(
+                                                height: 3.5.h,
+                                                width: 22.w,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(5),
+                                                      bottomRight:
+                                                          Radius.circular(20),
+                                                    )),
+                                                child: Center(
+                                                  child: Text(
+                                                    _giftBoxController
+                                                        .giftcardModel!
+                                                        .result![index]
+                                                        .title
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 9.sp,
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                            Text(
-                                              ' /500 gm',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 5.sp,
-                                                color: Colors.white70,
+                                            SizedBox(
+                                              height: 0.9.h,
+                                            ),
+                                            PhysicalModel(
+                                              shadowColor: Colors.green,
+                                              color: Colors.green,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              elevation: 5,
+                                              child: Container(
+                                                height: size.height * 0.12,
+                                                width: size.width * 0.3,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  // border: Border.all(
+                                                  //     color: AppColors.themecolors),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(base +
+                                                          '${_giftBoxController.giftcardModel!.result![index].imageName.toString()}'),
+                                                      fit: BoxFit.cover),
+                                                ),
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: 1.1.h,
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 1.7.w),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    _giftBoxController
+                                                        .giftcardModel!
+                                                        .result![index]
+                                                        .name
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 11.sp,
+                                                      color: Colors.yellow,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    'Save ${_giftBoxController.giftcardModel!.result![index].discount}%',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 10.sp,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            // Padding(
+                                            //   padding:
+                                            //       EdgeInsets.symmetric(horizontal: 2.w),
+                                            //   child: Align(
+                                            //     alignment: Alignment.centerLeft,
+                                            //     child: Text(
+                                            //       '',
+                                            //       style: TextStyle(
+                                            //         decoration: TextDecoration.lineThrough,
+                                            //         fontWeight: FontWeight.w400,
+                                            //         fontSize: 7.sp,
+                                            //         color: Colors.white,
+                                            //       ),
+                                            //     ),
+                                            //   ),
+                                            // ),
+                                            SizedBox(
+                                              height: 0.5.h,
+                                            ),
+                                            Row(
+                                              children: [
+                                                SizedBox(
+                                                  width: 23.w,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 2.w),
+                                                    child: Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        SizedBox(
+                                                          height: 1.h,
+                                                        ),
+                                                        Text(
+                                                          '₹ ${_giftBoxController.giftcardModel!.result![index].price}',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w800,
+                                                            fontSize: 9.sp,
+                                                            color: MyTheme
+                                                                .loginbuttonColor,
+                                                          ),
+                                                        ),
+                                                        // Text(
+                                                        //   ' /500 gm',
+                                                        //   style: TextStyle(
+                                                        //     fontWeight: FontWeight.w800,
+                                                        //     fontSize: 6.sp,
+                                                        //     color: Colors.white,
+                                                        //   ),
+                                                        // ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                InkWell(
+                                                  onTap: () {
+                                                    _rozarPayController
+                                                        .openCheckout();
+                                                  },
+                                                  child: Container(
+                                                    height: 3.h,
+                                                    width: 22.9.w,
+                                                    decoration: BoxDecoration(
+                                                        color: MyTheme
+                                                            .loginbuttonColor,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  5),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  5),
+                                                        )),
+                                                    child: Center(
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            'Buy Now',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontSize: 8.sp,
+                                                            ),
+                                                          ),
+                                                          // SizedBox(
+                                                          //   width: 1.w,
+                                                          // ),
+                                                          // Icon(
+                                                          //   Icons
+                                                          //       .add_shopping_cart_outlined,
+                                                          //   size: 13.sp,
+                                                          //   color: Colors.redAccent,
+                                                          // ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
                                       ),
                                     ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        height: 3.3.h,
-                                        width: 23.9.w,
-                                        decoration: BoxDecoration(
-                                            color: MyTheme.loginbuttonColor,
-                                            borderRadius: BorderRadius.only(
-                                              bottomRight: Radius.circular(5),
-                                              bottomLeft: Radius.circular(5),
-                                            )),
-                                        child: Center(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Add To Cart',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 8.sp,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 1.w,
-                                              ),
-                                              Icon(
-                                                Icons
-                                                    .add_shopping_cart_outlined,
-                                                size: 13.sp,
-                                                color: Colors.redAccent,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                                  ),
+                                );
+                              }),
                         ),
-                      ),
-                    );
-                  }),
-            ),
-          ],
-        ),
+                      ],
+                    ),
+                  ),
       ),
     );
   }

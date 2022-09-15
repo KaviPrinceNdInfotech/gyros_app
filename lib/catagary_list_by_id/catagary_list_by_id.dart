@@ -9,13 +9,18 @@ import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_contro
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:http/http.dart' as http;
 import 'package:sizer/sizer.dart';
+
+import '../view/model_cart_practice/procucts_cart_modelss.dart';
+import '../view/model_cart_practice/widgets/gradient_button.dart';
 
 class CatagaryListSubcatagary extends StatelessWidget {
   CatagaryListSubcatagary({Key? key}) : super(key: key);
   NavController _navController = Get.find();
   SubCatByIdController _catByIdController = Get.find();
+  final CartController cartController = Get.find();
 
   Future<List<CategoryResult>> getSubCategoryData() async {
     List<CategoryResult> list;
@@ -135,29 +140,33 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                   child: Column(
                                     //mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Container(
-                                          height: size.height * 0.03,
-                                          width: size.width * 0.22,
-                                          decoration: BoxDecoration(
-                                              color: Colors.red,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                              )),
-                                          child: Center(
-                                            child: Text(
-                                              text1[index],
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 9.sp,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                      ///TODO here we have best seller.....
+                                      // Align(
+                                      //   alignment: Alignment.centerLeft,
+                                      //   child: Container(
+                                      //     height: size.height * 0.03,
+                                      //     width: size.width * 0.22,
+                                      //     decoration: BoxDecoration(
+                                      //         color: Colors.red,
+                                      //         borderRadius: BorderRadius.only(
+                                      //           topLeft: Radius.circular(5),
+                                      //           bottomRight:
+                                      //               Radius.circular(20),
+                                      //         )),
+                                      //     child: Center(
+                                      //       child: Text(
+                                      //         text1[index],
+                                      //         style: TextStyle(
+                                      //           color: Colors.white,
+                                      //           fontWeight: FontWeight.w500,
+                                      //           fontSize: 9.sp,
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      SizedBox(
+                                        height: 1.h,
                                       ),
                                       Spacer(),
                                       // SizedBox(
@@ -169,8 +178,8 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5),
                                         elevation: 5,
                                         child: Container(
-                                          height: size.height * 0.10,
-                                          width: size.width * 0.22,
+                                          height: size.height * 0.12,
+                                          width: size.width * 0.28,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -196,7 +205,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                                   .result![index].productName
                                                   .toString(),
                                               style: TextStyle(
-                                                fontWeight: FontWeight.w400,
+                                                fontWeight: FontWeight.w600,
                                                 fontSize: 11.sp,
                                                 color: Colors.yellow,
                                               ),
@@ -212,38 +221,36 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 2.w),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            '₹ 50',
-                                            style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 7.sp,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                      // Padding(
+                                      //   padding: EdgeInsets.symmetric(
+                                      //       horizontal: 2.w),
+                                      //   child: Align(
+                                      //     alignment: Alignment.centerLeft,
+                                      //     child: Text(
+                                      //       '₹ 50',
+                                      //       style: TextStyle(
+                                      //         decoration:
+                                      //             TextDecoration.lineThrough,
+                                      //         fontWeight: FontWeight.w400,
+                                      //         fontSize: 7.sp,
+                                      //         color: Colors.white,
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      Spacer(),
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: 23.w,
+                                            width: size.width * 0.48,
+                                            //width: 23.w,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 2.w),
+                                                  horizontal: 1.w),
                                               child: Row(
                                                 children: [
                                                   Text(
-                                                    _catByIdController
-                                                        .getcatbyid!
-                                                        .result![index]
-                                                        .price
-                                                        .toString(),
+                                                    '₹${_catByIdController.getcatbyid!.result![index].price.toString()}',
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w900,
@@ -253,12 +260,62 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                                     ),
                                                   ),
                                                   Text(
-                                                    ' /500 gm',
+                                                    '/500 gm',
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontSize: 5.sp,
+                                                      fontSize: 7.sp,
                                                       color: Colors.white70,
+                                                    ),
+                                                  ),
+                                                  Spacer(),
+                                                  // SizedBox(
+                                                  //   width: 4.w,
+                                                  // ),
+                                                  Container(
+                                                    height: 3.3.h,
+                                                    width: 22.5.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        cartController
+                                                            .addProduct(Productss
+                                                                    .products[
+                                                                index]);
+                                                      },
+                                                      child:
+                                                          RaisedGradientButton(
+                                                        //height: 3.3.h,
+                                                        //width: 23.9.w,
+                                                        child: Text(
+                                                          'Add To Cart',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 8.sp),
+                                                        ),
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: <Color>[
+                                                            Colors.green,
+                                                            Colors.cyan.shade400
+                                                          ],
+                                                        ),
+                                                        onPressed: () {
+                                                          cartController
+                                                              .addProduct(Productss
+                                                                      .products[
+                                                                  index]);
+                                                          print('Add To cart');
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 ],

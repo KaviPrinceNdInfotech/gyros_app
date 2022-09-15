@@ -8,10 +8,12 @@ import 'package:gyros_app/models/catagary_list_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
 import 'package:gyros_app/models/flash_sall_list_product_model.dart';
+import 'package:gyros_app/models/gift_box_model.dart';
 import 'package:gyros_app/models/slider_banner_models.dart';
 import 'package:gyros_app/models/sub_cat_by_id_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/best_seller_models.dart';
 import '../models/our_offer_permotion_model.dart';
 
 class ApiProvider {
@@ -211,8 +213,8 @@ class ApiProvider {
       http.Response r = await http.get(Uri.parse(url));
       print(r.body.toString());
       if (r.statusCode == 200) {
-        FlashSellListProductdetails productdetailsbyid =
-            flashSellListProductdetailsFromJson(r.body);
+        FlashSaleProductDetailsModel productdetailsbyid =
+            flashSaleProductDetailsModelFromJson(r.body);
         return productdetailsbyid;
       }
     } catch (error) {
@@ -229,6 +231,38 @@ class ApiProvider {
       if (r.statusCode == 200) {
         BlogModel blocgmodellist = blogModelFromJson(r.body);
         return blocgmodellist;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // get Gift Api gyros.......11........
+
+  static GiftBoxApi() async {
+    var url = baseUrl + 'api/AdminApi/Gift';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        GiftcardModel giftcardmodel = giftcardModelFromJson(r.body);
+        return giftcardmodel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // Best seller Api gyros.......12........
+
+  static BestSellerApi() async {
+    var url = baseUrl + 'api/AdminApi/BestSale';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        BestSellerModel bestSellerModel = bestSellerModelFromJson(r.body);
+        return bestSellerModel;
       }
     } catch (error) {
       return;
@@ -953,4 +987,139 @@ class ApiProvider {
       //CallLoader.errorDialog(e.message);
     }
   }
+
+  ///from here we have to define cart.....
+  ///
+  ///
+  // import 'package:dio/dio.dart';
+  //import 'package:flutter/material.dart';
+  //import 'package:food_app/screens/widget/common_Loader.dart';
+  // import 'package:get/get.dart' as g;
+
+  ///
+
+  // class UpdateCartEndProvider{
+  // Dio client;
+  // UpdateCartEndProvider({required this.client});
+  ///update your cart...dio......................
+  // updateCart(int quantity, var id) async{
+  // var data = {
+  // "productId": id,
+  // "quantity": quantity
+  // };
+  //
+  // try {
+  // CommanLoader.loader();
+  // Response r =  await client.put('/cart/quantity', data: data);
+  //
+  //
+  // if (r.statusMessage == 'OK') {
+  // CommanLoader.hideLoader();
+  // g.Get.snackbar("success", r.data['msg'],
+  // snackPosition: g.SnackPosition.BOTTOM,
+  // backgroundColor: Colors.white
+  // );
+  // }
+  //
+  //
+  // else {
+  // CommanLoader.hideLoader();
+  // CommanLoader.message(r.data['name']);
+  // }
+  // } on DioError catch (e) {
+  // return Future.error(e.message.toString());
+  // }
+  // }
+  //
+  ///remove cart from dio....
+  // removeItem( var id) async{
+  // var data = {
+  // "productId": id,
+  // "quantity": 0
+  // };
+  //
+  // try {
+  // CommanLoader.loader();
+  // Response r =  await client.put('/cart/quantity', data: data);
+  //
+  // if (r.statusMessage == 'OK') {
+  // CommanLoader.hideLoader();
+  // g.Get.snackbar("success", r.data['msg'],
+  // snackPosition: g.SnackPosition.BOTTOM,
+  // backgroundColor: Colors.white
+  // );
+  // }
+  //
+  //
+  // else {
+  // CommanLoader.hideLoader();
+  // CommanLoader.message(r.data['name']);
+  // }
+  // } on DioError catch (e) {
+  // return Future.error(e.message.toString());
+  // }
+  // }
+  ///from dio add to cart.......
+  // addToCart(var id) async {
+  // var data = {
+  // "productId": id
+  // };
+  //
+  // try {
+  // CommanLoader.loader();
+  // Response r = await client.post('/cart',data: data);
+  //
+  // if (r.statusMessage == 'OK') {
+  // CommanLoader.hideLoader();
+  // CommanLoader.hideLoader();
+  // g.Get.snackbar("success", r.data['msg'],
+  // snackPosition: g.SnackPosition.BOTTOM,
+  // backgroundColor: Colors.white
+  // );
+  // } else {
+  // CommanLoader.hideLoader();
+  // CommanLoader.message(r.data['error']);
+  // }
+  // } on DioError catch (e) {
+  // CommanLoader.hideLoader();
+  // return CommanLoader.message(e.message.toString());
+  // }
+  // }
+  //
+  // }
+
+  /// here api client dio...
+// ignore_for_file: unnecessary_overrides
+
+  // import 'package:dio/dio.dart';
+  // import 'package:food_app/screens/widget/common_Loader.dart';
+  //
+  // class Client {
+  // Dio init() {
+  // Dio _dio = Dio();
+  // _dio.interceptors.add(ApiInterceptor());
+  // _dio.options.baseUrl = 'http://97.74.87.200:5000';
+  // return _dio;
+  // }
+  // }
+  //
+  // class ApiInterceptor extends Interceptor {
+  // @override
+  // void onError(DioError err, ErrorInterceptorHandler handler) {
+  // super.onError(err, handler);
+  // }
+  //
+  // @override
+  // void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  // if (token != '') {
+  // options.headers["Authorization"] = 'Bearer $token';
+  // } else {}
+  // super.onRequest(options, handler);
+  // }
+  //
+  // @override
+  // void onResponse(Response response, ResponseInterceptorHandler handler) {
+  // super.onResponse(response, handler);
+  // }
+  // }
 }

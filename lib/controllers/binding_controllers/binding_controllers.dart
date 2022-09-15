@@ -4,6 +4,7 @@ import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/controllers/blog_list_controller.dart';
 import 'package:gyros_app/controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
+import 'package:gyros_app/controllers/gift_box_controller.dart';
 import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.dart';
 import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
 import 'package:gyros_app/controllers/phone_login_controllerr/phone_login_controllers.dart';
@@ -18,6 +19,7 @@ import 'package:gyros_app/view/login_page/login_with_email/login_email_controlle
 import '../../view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
 import '../../view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
 import '../../view/home_page/home_page_controller.dart';
+import '../best_seller_controller.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
 
 class ControllerBinding extends Bindings {
@@ -43,6 +45,8 @@ class ControllerBinding extends Bindings {
     Get.put(LoginEmailController());
     Get.lazyPut(() => OtpTimerController());
     Get.lazyPut(() => BlogListController());
+    Get.lazyPut(() => GiftBoxController());
+    Get.lazyPut(() => BestSellerController());
 
     //Get.put(CatagaryByIdController());
   }

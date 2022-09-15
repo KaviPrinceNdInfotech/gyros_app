@@ -86,3 +86,6 @@ class MyApp extends StatelessWidget {
     });
   }
 }
+
+/// _favCounterController.numOfItem.value.toString(),
+/// var currentItem = _cartNewController.cartItems[index];

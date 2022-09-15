@@ -117,20 +117,20 @@ class CatalogProductCart extends StatelessWidget {
 
                         Get.to(
                           () => ItemDetailss(
-                            name: Productss.products[index].name,
-                            price: Productss.products[index].price,
-                            weight: Productss.products[index].weight,
-                            imageUrl: Productss.products[index].imageUrl,
-                            description: Productss.products[index].descriptions,
-                            color: Productss.products[index].color,
-                            id: Productss.products[index].id,
+                              // name: Productss.products[index].name,
+                              // price: Productss.products[index].price,
+                              // weight: Productss.products[index].weight,
+                              // imageUrl: Productss.products[index].imageUrl,
+                              // description: Productss.products[index].descriptions,
+                              // color: Productss.products[index].color,
+                              // id: Productss.products[index].id,
 
-                            index: index,
+                              // index: index,
 
-                            //cartController.products[index].toString(),
+                              //cartController.products[index].toString(),
 
-                            // product:pr,
-                          ), //next page class
+                              // product:pr,
+                              ), //next page class
                           duration: Duration(
                               milliseconds:
                                   500), //duration of transitions, default 1 sec
@@ -246,8 +246,8 @@ class CatalogProductCart extends StatelessWidget {
                           ),
                           child: InkWell(
                             onTap: () {
-                              cartController
-                                  .addProduct(Productss.products[index]);
+                              // cartController
+                              //     .addProduct(Productss.products[index]);
                             },
                             child: RaisedGradientButton(
                               //height: 3.3.h,
@@ -266,8 +266,8 @@ class CatalogProductCart extends StatelessWidget {
                                 ],
                               ),
                               onPressed: () {
-                                cartController
-                                    .addProduct(Productss.products[index]);
+                                // cartController
+                                //     .addProduct(Productss.products![index]);
                                 print('Add To cart');
                               },
                             ),
@@ -342,20 +342,20 @@ class CatalogProductCart extends StatelessWidget {
   Route _createRoute() {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => ItemDetailss(
-        name: Productss.products[index].name,
-        price: Productss.products[index].price,
-        weight: Productss.products[index].weight,
-        imageUrl: Productss.products[index].imageUrl,
-        description: Productss.products[index].descriptions,
-        color: Productss.products[index].color,
-        id: Productss.products[index].id,
+          // name: Productss.products[index].name,
+          // price: Productss.products[index].price,
+          // weight: Productss.products[index].weight,
+          // imageUrl: Productss.products[index].imageUrl,
+          // description: Productss.products[index].descriptions,
+          // color: Productss.products[index].color,
+          // id: Productss.products[index].id,
 
-        index: index,
+          //index: index,
 
-        //cartController.products[index].toString(),
+          //cartController.products[index].toString(),
 
-        // product:pr,
-      ),
+          // product:pr,
+          ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(1.0, 1.0);
         const end = Offset.zero;

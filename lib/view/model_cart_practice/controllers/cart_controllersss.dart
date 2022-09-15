@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
 import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 
+import '../../../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
+
 class CartController extends GetxController {
+  FlashProductByIdController _flashProductByIdController =
+      Get.put(FlashProductByIdController());
   // add  a dict  to store the products in the cart .
 
   var _products = {}.obs;

@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
-import 'package:gyros_app/models/flash_sall_list_product_model.dart';
+import 'package:gyros_app/models/flash_product_descriptions_model.dart';
 import 'package:gyros_app/services/api_provider.dart';
+
+import '../../view/model_cart_practice/widgets/item_details_pageee/item_details_catagary.dart';
 
 class FlashProductByIdController extends GetxController {
   RxBool isLoading = true.obs;
   String productid = '';
 
-  FlashSellListProduct? flashproductbyid;
+  FlashSaleProductDetailsModel? flashproductbyid;
 
   void flashproductbyIdApi() async {
     isLoading(false);
@@ -14,7 +16,16 @@ class FlashProductByIdController extends GetxController {
     flashproductbyid =
         await ApiProvider.getproductdetails(productid.toString());
     if (flashproductbyid != null) {
-      //Get.to(() => ItemDetailss());
+      Get.to(
+        () => ItemDetailss(), //next page class
+        duration: Duration(
+            milliseconds: 400), //duration of transitions, default 1 sec
+        transition:
+            // Transition.leftToRight //transition effect
+            // Transition.fadeIn
+            //Transition.size
+            Transition.zoom,
+      );
       isLoading(false);
 
       //Get.to(()=>Container());
