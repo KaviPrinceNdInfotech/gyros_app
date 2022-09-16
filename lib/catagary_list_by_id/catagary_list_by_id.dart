@@ -104,7 +104,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                             _catByIdController.getcatbyid!.result!.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: EdgeInsets.all(3.0),
                             child: InkWell(
                               onTap: () {
                                 // _homePageController.toggle(index);
@@ -195,7 +195,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                       Spacer(),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 1.7.w),
+                                            horizontal: 0.5.w),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -246,7 +246,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                             //width: 23.w,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 1.w),
+                                                  horizontal: 0.5.w),
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -273,8 +273,8 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                                   //   width: 4.w,
                                                   // ),
                                                   Container(
-                                                    height: 3.3.h,
-                                                    width: 22.5.w,
+                                                    height: 3.1.h,
+                                                    width: 21.5.w,
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -299,7 +299,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
-                                                              fontSize: 8.sp),
+                                                              fontSize: 7.sp),
                                                         ),
                                                         gradient:
                                                             LinearGradient(
@@ -325,7 +325,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 1.h,
+                                        height: 0.5.h,
                                       ),
                                     ],
                                   ),

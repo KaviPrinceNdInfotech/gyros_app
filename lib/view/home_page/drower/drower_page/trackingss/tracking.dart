@@ -105,115 +105,119 @@ class Tracking extends StatelessWidget {
                                 ),
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(22.0),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  'https://img.icons8.com/ios-filled/2x/planet.png',
-                                  height: 5.w,
-                                  width: 10.w,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Order Placed',
-                                  style: GoogleFonts.roboto(
+                      SizedBox(
+                        height: 45.h,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(22.0),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    'https://img.icons8.com/ios-filled/2x/planet.png',
+                                    height: 5.w,
+                                    width: 10.w,
                                     color: Colors.white,
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.w400,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Order Placed',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.white,
+                                      fontSize: 9.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(22.0),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/2x/external-confirm-data-xnimrodx-lineal-xnimrodx.png',
-                                  height: 5.w,
-                                  width: 10.w,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Order Confirm',
-                                  style: GoogleFonts.roboto(
+                            Padding(
+                              padding: const EdgeInsets.all(22.0),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    'https://img.icons8.com/external-xnimrodx-lineal-xnimrodx/2x/external-confirm-data-xnimrodx-lineal-xnimrodx.png',
+                                    height: 5.w,
+                                    width: 10.w,
                                     color: Colors.white,
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.w400,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Order Confirm',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.white,
+                                      fontSize: 9.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(22.0),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  'https://img.icons8.com/ios-filled/2x/process.png',
-                                  height: 5.w,
-                                  width: 10.w,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Order Proccesed',
-                                  style: GoogleFonts.roboto(
+                            Padding(
+                              padding: const EdgeInsets.all(22.0),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    'https://img.icons8.com/ios-filled/2x/process.png',
+                                    height: 5.w,
+                                    width: 10.w,
                                     color: Colors.white,
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.w400,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Order Proccesed',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.white,
+                                      fontSize: 9.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(22.0),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  'https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/2x/external-delivery-time-customer-services-help-support-smashingstocks-mixed-smashing-stocks.png',
-                                  height: 5.w,
-                                  width: 10.w,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Ready to order Pickup',
-                                  style: GoogleFonts.roboto(
+                            Padding(
+                              padding: const EdgeInsets.all(22.0),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    'https://img.icons8.com/external-smashingstocks-mixed-smashing-stocks/2x/external-delivery-time-customer-services-help-support-smashingstocks-mixed-smashing-stocks.png',
+                                    height: 5.w,
+                                    width: 10.w,
                                     color: Colors.white,
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.w400,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Ready to order Pickup',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.white,
+                                      fontSize: 9.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(22.0),
-                            child: Row(
-                              children: [
-                                Image.network(
-                                  'https://img.icons8.com/ios-filled/2x/checked-truck.png',
-                                  height: 5.w,
-                                  width: 10.w,
-                                  color: Colors.white,
-                                ),
-                                Text(
-                                  'Order Deliverd',
-                                  style: GoogleFonts.roboto(
+                            Padding(
+                              padding: const EdgeInsets.all(22.0),
+                              child: Row(
+                                children: [
+                                  Image.network(
+                                    'https://img.icons8.com/ios-filled/2x/checked-truck.png',
+                                    height: 5.w,
+                                    width: 10.w,
                                     color: Colors.white,
-                                    fontSize: 9.sp,
-                                    fontWeight: FontWeight.w400,
                                   ),
-                                ),
-                              ],
+                                  Text(
+                                    'Order Deliverd',
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.white,
+                                      fontSize: 9.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

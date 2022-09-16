@@ -15,6 +15,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/best_seller_models.dart';
 import '../models/our_offer_permotion_model.dart';
+import '../models/our_story_model.dart';
 
 class ApiProvider {
   static var baseUrl = 'https://api.gyros.farm/';
@@ -263,6 +264,22 @@ class ApiProvider {
       if (r.statusCode == 200) {
         BestSellerModel bestSellerModel = bestSellerModelFromJson(r.body);
         return bestSellerModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // Our Story  get Api gyros.......13........
+
+  static OurStoryApi() async {
+    var url = baseUrl + 'api/AdminApi/OurStories';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        OurStoryModel ourStoryModelModel = ourStoryModelFromJson(r.body);
+        return ourStoryModelModel;
       }
     } catch (error) {
       return;

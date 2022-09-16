@@ -8,7 +8,6 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
-import 'package:gyros_app/view/cart_new_section/cart_view_section.dart';
 import 'package:gyros_app/view/home_page/all_catagary/best_deal.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/all_products.dart';
 import 'package:gyros_app/view/home_page/profile/home_page_practice.dart';
@@ -16,6 +15,7 @@ import 'package:gyros_app/view/home_page/profile/profile_page.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../home_page/drower/drower_page/gift_box.dart';
 import 'bottom_nav_bar_controller.dart';
 
 class NavBar extends StatelessWidget {
@@ -139,7 +139,10 @@ class NavBar extends StatelessWidget {
                         ),
                       ),
 
-                      //...............................................................
+                      //.
+                      // ..............................................................
+
+                      ///TODO: explore Icon and text.........but we have to now set cart  page......
 
                       InkWell(
                         onTap: () {
@@ -288,8 +291,11 @@ class NavBar extends StatelessWidget {
 //     //const Page4(),
                 //WishListPage(),
                 //MyCartPage(),
-                CartPageView(),
+                ///Todo this kis explore page......call...cartpageview......
+                //CartPageView(),
                 //Explorepage(),
+                GiftBox(),
+                //Cartproducts(),
                 BestDeal(),
                 ProfilePages(),
                 //Profile(),

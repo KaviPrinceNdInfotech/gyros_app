@@ -33,18 +33,18 @@ class HomePagePractice extends StatelessWidget {
       List.generate(100000, (index) => {"id": index, "name": "Product $index"})
           .toList();
 
-  //var base = 'https://voit.in/Images/';
+  ///var base = 'https://voit.in/Images/';
 
-  final List<String> images = [
-    'https://wallpaperaccess.com/full/2792340.jpg',
-    'https://wallpaperaccess.com/full/2792350.jpg',
-    'https://wallpaperaccess.com/full/2792347.jpg',
-    'https://wallpaperaccess.com/full/2792432.jpg',
-    'https://wallpaperaccess.com/full/2614545.jpg',
-    'https://wallpaperaccess.com/full/2792584.jpg',
-    'https://wallpaperaccess.com/full/2792583.jpg',
-    'https://wallpaperaccess.com/full/2792492.jpg',
-  ];
+  // final List<String> images = [
+  //   'https://wallpaperaccess.com/full/2792340.jpg',
+  //   'https://wallpaperaccess.com/full/2792350.jpg',
+  //   'https://wallpaperaccess.com/full/2792347.jpg',
+  //   'https://wallpaperaccess.com/full/2792432.jpg',
+  //   'https://wallpaperaccess.com/full/2614545.jpg',
+  //   'https://wallpaperaccess.com/full/2792584.jpg',
+  //   'https://wallpaperaccess.com/full/2792583.jpg',
+  //   'https://wallpaperaccess.com/full/2792492.jpg',
+  // ];
 
   final List<String> images2 = [
     'https://img.icons8.com/external-bearicons-detailed-outline-bearicons/2x/external-All-miscellany-texts-and-badges-bearicons-detailed-outline-bearicons.png',
@@ -63,26 +63,26 @@ class HomePagePractice extends StatelessWidget {
     'https://img.icons8.com/external-icongeek26-outline-icongeek26/2x/external-Jaggery-pongal-icongeek26-outline-icongeek26.png',
   ];
 
-  final List<String> text1 = [
-    'All',
-    'Best deals',
-    'Ghee',
-    'Oil',
-    'Spices',
-    'Honey',
-    'Pulses',
-    'Sattu',
-    'Combos',
-    'Gift Boxes',
-    'Sweet',
-    'Jaggery',
-  ];
-  final List<String> image1 = [
-    'lib/assets/asset/ghee3.jpeg',
-    'lib/assets/asset/oil_1.jpeg',
-    'lib/assets/asset/spices4.webp',
-    'lib/assets/asset/honey3.jpeg',
-  ];
+  // final List<String> text1 = [
+  //   'All',
+  //   'Best deals',
+  //   'Ghee',
+  //   'Oil',
+  //   'Spices',
+  //   'Honey',
+  //   'Pulses',
+  //   'Sattu',
+  //   'Combos',
+  //   'Gift Boxes',
+  //   'Sweet',
+  //   'Jaggery',
+  // ];
+  // final List<String> image1 = [
+  //   'lib/assets/asset/ghee3.jpeg',
+  //   'lib/assets/asset/oil_1.jpeg',
+  //   'lib/assets/asset/spices4.webp',
+  //   'lib/assets/asset/honey3.jpeg',
+  // ];
 
   final List<String> image2 = [
     'lib/assets/asset/ jagary3.jpeg',
@@ -1055,8 +1055,9 @@ class HomePagePractice extends StatelessWidget {
                                               ),
                                               child: InkWell(
                                                 onTap: () {
-                                                  // cartController.addProduct(
-                                                  //     Productss.products[index]);
+                                                  cartController.addProduct(
+                                                      Productss
+                                                          .products[index]);
                                                 },
                                                 child: RaisedGradientButton(
                                                   //height: 3.3.h,

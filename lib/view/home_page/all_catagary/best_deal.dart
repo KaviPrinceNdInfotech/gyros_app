@@ -7,12 +7,17 @@ import 'package:gyros_app/controllers/best_seller_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../model_cart_practice/procucts_cart_modelss.dart';
+import '../../model_cart_practice/widgets/gradient_button.dart';
 
 class BestDeal extends StatelessWidget {
   BestDeal({Key? key}) : super(key: key);
   NavController _navController = Get.find();
   BestSellerController _bestSellerController = Get.find();
+  final CartController cartController = Get.find();
 
   ///rahul api best deal oldd
 
@@ -258,7 +263,7 @@ class BestDeal extends StatelessWidget {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: 23.w,
+                                            width: size.width * 0.48,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 2.w),
@@ -285,6 +290,56 @@ class BestDeal extends StatelessWidget {
                                                           FontWeight.w400,
                                                       fontSize: 5.sp,
                                                       color: Colors.white70,
+                                                    ),
+                                                  ),
+                                                  Spacer(),
+                                                  // SizedBox(
+                                                  //   width: 4.w,
+                                                  // ),
+                                                  Container(
+                                                    height: 3.1.h,
+                                                    width: 21.5.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        cartController
+                                                            .addProduct(Productss
+                                                                    .products[
+                                                                index]);
+                                                      },
+                                                      child:
+                                                          RaisedGradientButton(
+                                                        //height: 3.3.h,
+                                                        //width: 23.9.w,
+                                                        child: Text(
+                                                          'Add To Cart',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 7.sp),
+                                                        ),
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: <Color>[
+                                                            Colors.green,
+                                                            Colors.cyan.shade400
+                                                          ],
+                                                        ),
+                                                        onPressed: () {
+                                                          cartController
+                                                              .addProduct(Productss
+                                                                      .products[
+                                                                  index]);
+                                                          print('Add To cart');
+                                                        },
+                                                      ),
                                                     ),
                                                   ),
                                                 ],

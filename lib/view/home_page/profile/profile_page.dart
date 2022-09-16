@@ -10,10 +10,10 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/contact_us/help_supportss.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
-import 'package:gyros_app/view/model_cart_practice/viewss/catalog_screen1.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../botttom_nav_bar/bottom_navbar.dart';
 import 'cuppons_page.dart';
 import 'orders/my_orders.dart';
 
@@ -68,7 +68,11 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
-                  Get.to(() => CatalogScreen());
+                  _navController.tabindex(0);
+                  Get.to(() => NavBar());
+
+                  ///Todo: cart practice......
+                  // Get.to(() => CatalogScreen());
                   //_bottomController.tabindex(0);
                   //Get.to(() => ShoppingPage());
                   //MainPage());

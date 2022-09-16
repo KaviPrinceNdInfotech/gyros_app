@@ -5,14 +5,18 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/gift_box_controller.dart';
 import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../botttom_nav_bar/bottom_nav_bar_controller.dart';
 
 class GiftBox extends StatelessWidget {
   GiftBox({Key? key}) : super(key: key);
 
   final RozarPayController _rozarPayController = Get.find();
-  GiftBoxController _giftBoxController = Get.find();
+  NavController _navController = Get.find();
+  GiftBoxController _giftBoxController = Get.put(GiftBoxController());
 
   var height, width;
 
@@ -65,7 +69,9 @@ class GiftBox extends StatelessWidget {
         ),
         leading: InkWell(
             onTap: () {
-              Get.back();
+              _navController.tabindex(0);
+              Get.to(() => NavBar());
+              //Get.back();
               // _homePageController.toggle(index);
               //Get.to(() => WalkTracking());
             },

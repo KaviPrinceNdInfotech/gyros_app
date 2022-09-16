@@ -45,7 +45,7 @@ class OrderPage extends StatelessWidget {
                   Text(
                     'Order ID: 33467878',
                     style: TextStyle(
-                      fontSize: 14.sp,
+                      fontSize: 13.sp,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -53,14 +53,14 @@ class OrderPage extends StatelessWidget {
                     color: Colors.white10,
                     shadowColor: Colors.greenAccent,
                     borderRadius: BorderRadius.circular(10),
-                    elevation: 7,
+                    elevation: 2,
                     child: InkWell(
                       onTap: () {
                         Get.to(() => Tracking());
                       },
                       child: Container(
-                        height: 5.h,
-                        width: 27.w,
+                        height: 3.h,
+                        width: 26.w,
                         decoration: BoxDecoration(
                           color: Colors.greenAccent,
                           borderRadius: BorderRadius.circular(10),
@@ -69,8 +69,9 @@ class OrderPage extends StatelessWidget {
                           child: Text(
                             'Track Your Order',
                             style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 11,
+                              color: Colors.yellow.shade800,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
@@ -86,10 +87,10 @@ class OrderPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Order Date : Feb 16,2022',
+                    'Order Date : Feb 16 2022',
                     style: TextStyle(
-                      fontSize: 6.sp,
-                      wordSpacing: 3,
+                      fontSize: 9.sp,
+                      wordSpacing: 2,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -98,7 +99,8 @@ class OrderPage extends StatelessWidget {
                       'Estimated delivery : Aug 15 2022',
                       style: TextStyle(
                         color: Colors.green,
-                        fontSize: 11,
+                        fontSize: 9.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -112,12 +114,12 @@ class OrderPage extends StatelessWidget {
             SizedBox(
               height: 30.h,
               child: ListView.builder(
-                  itemCount: 3,
+                  itemCount: 2,
                   itemBuilder: (BuildContext context, int Index) {
                     return Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
-                        height: 10.h,
+                        height: 15.h,
                         width: size.width,
                         decoration: BoxDecoration(
                           color: Colors.greenAccent,
@@ -134,8 +136,8 @@ class OrderPage extends StatelessWidget {
                                 elevation: 6,
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
-                                  height: 9.h,
-                                  width: 18.w,
+                                  height: 12.h,
+                                  width: 24.w,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     image: DecorationImage(
@@ -153,12 +155,14 @@ class OrderPage extends StatelessWidget {
                                 'Ghee',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 12.sp,
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(
-                                width: 32.w,
-                              ),
+                              Spacer(),
+                              // SizedBox(
+                              //   width: 32.w,
+                              // ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -168,13 +172,14 @@ class OrderPage extends StatelessWidget {
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
                                   Text(
                                     'Quantity : 1',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 8.sp,
+                                      fontSize: 10.sp,
                                     ),
                                   ),
                                 ],
@@ -186,9 +191,12 @@ class OrderPage extends StatelessWidget {
                     );
                   }),
             ),
-            Divider(),
+            //Divider(),
             SizedBox(
-              height: 21.h,
+              height: 4.h,
+            ),
+            SizedBox(
+              height: 24.h,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 2.h),
                 child: Row(
@@ -202,7 +210,7 @@ class OrderPage extends StatelessWidget {
                           'Payment Method',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 10.sp,
+                            fontSize: 13.sp,
                           ),
                         ),
                         SizedBox(
@@ -211,18 +219,22 @@ class OrderPage extends StatelessWidget {
                         Text(
                           'Cash On Delivery',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 12,
                             color: Colors.red,
+                            fontWeight: FontWeight.w700,
                           ),
+                        ),
+                        SizedBox(
+                          height: 1.h,
                         ),
                         Spacer(),
                         PhysicalModel(
                           color: Colors.grey,
-                          elevation: 6,
+                          elevation: 2,
                           borderRadius: BorderRadius.circular(20),
                           child: Container(
-                            height: 9.h,
-                            width: 18.w,
+                            height: 11.h,
+                            width: 24.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(
@@ -233,10 +245,17 @@ class OrderPage extends StatelessWidget {
                             //color: Colors.orange,
                           ),
                         ),
-                        Text(
-                          '       Ghee',
-                          style: TextStyle(
-                            fontSize: 10,
+                        SizedBox(
+                          height: 1.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 8.w),
+                          child: Text(
+                            'Ghee',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ],
@@ -245,51 +264,50 @@ class OrderPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Delivery',
+                          'Delivery Address:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 10.sp,
+                            fontSize: 12.sp,
+                            color: Colors.grey,
                           ),
                         ),
                         SizedBox(
                           height: 3.h,
                         ),
-                        Text(
-                          'Address',
-                          style: TextStyle(
-                            fontSize: 7,
-                            color: Colors.grey,
-                          ),
-                        ),
+
                         Text(
                           'New Ashok Nagar 110096',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
                             // color: Colors.grey,
                           ),
                         ),
                         Text(
                           'Delhi',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
                             // color: Colors.grey,
                           ),
                         ),
                         Text(
                           '908-678-910',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
                             //color: Colors.grey,
                           ),
                         ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
+                        Spacer(),
+                        // SizedBox(
+                        //   height: 2.h,
+                        // ),
                         // Spacer(),
                         Text(
                           'Total: Rs 490',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             //color: Colors.grey,
                           ),
@@ -324,7 +342,7 @@ class OrderPage extends StatelessWidget {
                       style: GoogleFonts.arapey(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                        fontSize: 17,
                       ),
                     ),
                   ),

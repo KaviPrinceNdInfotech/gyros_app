@@ -21,6 +21,7 @@ import '../../view/cart_new_section/product_details/product_detail_controllerss/
 import '../../view/home_page/home_page_controller.dart';
 import '../best_seller_controller.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
+import '../our_story_controller.dart';
 
 class ControllerBinding extends Bindings {
   @override
@@ -43,10 +44,11 @@ class ControllerBinding extends Bindings {
     Get.put(SubCatByIdController());
     Get.put(SubCatByIdController());
     Get.put(LoginEmailController());
-    Get.lazyPut(() => OtpTimerController());
-    Get.lazyPut(() => BlogListController());
-    Get.lazyPut(() => GiftBoxController());
-    Get.lazyPut(() => BestSellerController());
+    Get.put(OtpTimerController());
+    Get.put(BlogListController());
+    Get.put(GiftBoxController());
+    Get.put(BestSellerController());
+    Get.put(OurStoryController());
 
     //Get.put(CatagaryByIdController());
   }
