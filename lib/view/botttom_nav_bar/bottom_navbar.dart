@@ -22,7 +22,7 @@ class NavBar extends StatelessWidget {
   var size, height, width;
   NavBar({Key? key}) : super(key: key);
 
-  NavController _navController = Get.find();
+  NavController _navController = Get.put(NavController());
   //final _advancedDrawerController = AdvancedDrawerController();
   @override
   Widget build(BuildContext context) {

@@ -6,10 +6,8 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/controllers/binding_controllers/binding_controllers.dart';
-import 'package:gyros_app/view/intro_screen/intro_video/intro_video_view.dart';
-import 'package:gyros_app/view/login_page/login_pagee.dart';
+import 'package:gyros_app/view/splash_screenss/splash_screen.dart';
 import 'package:sizer/sizer.dart';
-import 'package:splash_screen_view/SplashScreenView.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -39,19 +37,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Widget SplashScreen = SplashScreenView(
-      navigateRoute:
-          //SplashPage(),
-          //DrawerPracticee(),
-          // OnboardingPage(),
-          LoginPage(),
-      //HomePage(),
-      // SignUp(),
-      //NavBar(),
-      duration: 6500,
-      imageSize: 100,
-      backgroundColor: Colors.white,
-    );
+    // Widget SplashScreen = SplashScreenView(
+    //   navigateRoute:
+    //
+    //       //SplashPage(),
+    //       //DrawerPracticee(),
+    //       // OnboardingPage(),
+    //       LoginPage(),
+    //   //HomePage(),
+    //   // SignUp(),
+    //   //NavBar(),
+    //   duration: 6500,
+    //   imageSize: 100,
+    //   backgroundColor: Colors.white,
+    // );
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
         initialBinding: ControllerBinding(),
@@ -66,22 +65,7 @@ class MyApp extends StatelessWidget {
 
         //theme: MyTheme.lightTheme(context),
         //darkTheme: MyTheme.darkTheme(context),
-        home: Column(
-          children: [
-            SizedBox(height: 0, child: SplashScreen),
-            IntroVideo(),
-            // Container(
-            //   height: 100.h,
-            //   width: 100.w,
-            //   decoration: BoxDecoration(
-            //     color: Colors.green,
-            //     // image: DecorationImage(
-            //     //     image: AssetImage('lib/assets/intro video_1.gif'),
-            //     //     fit: BoxFit.fill),
-            //   ),
-            // ),
-          ],
-        ),
+        home: SplashScreen(),
       );
     });
   }

@@ -14,9 +14,17 @@ class CallLoader {
     if (Get.isDialogOpen!) Get.back();
   }
 
+  static message(String message) {
+    Get.defaultDialog(
+        title: "Something went wrong",
+        content: Column(
+          children: [Text(message)],
+        ));
+  }
+
   static successDialog([String? description]) {
     Get.defaultDialog(
-        title: "Sucess",
+        title: "Successful",
         content: Column(
           children: [
             if (description != null)
@@ -50,3 +58,6 @@ class CallLoader {
         ));
   }
 }
+
+String? emailStore = '';
+String? token = '';

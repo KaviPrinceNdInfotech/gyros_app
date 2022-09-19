@@ -19,12 +19,13 @@ import '../models/our_story_model.dart';
 
 class ApiProvider {
   static var baseUrl = 'https://api.gyros.farm/';
-  //static var baseUrl = 'http://97.74.95.55:5003/';
-  //static var baseUrl = 'https://one-code-flyweis.herokuapp.com/';
+
   static String token = '';
+  static String Token = '';
   static String categoryid = '';
   static String catid = '';
   static String productid = '';
+  static String orderid = '';
 
   //catagary list api gyros 1 api.....................
 
@@ -101,14 +102,6 @@ class ApiProvider {
     var Email,
     var PassWord,
   ) async {
-    var prefs = GetStorage();
-    // token = prefs.read("token");
-    // print(token);
-
-    // var headers = {
-    //   'Authorization': 'Bearer $token',
-    // };
-    // print(headers);
     var url = baseUrl + 'api/AdminApi/LoginWithEmail';
 
     var body = {
@@ -122,10 +115,10 @@ class ApiProvider {
     );
     print(r.body);
     if (r.statusCode == 200) {
-      // var prefs = GetStorage();
-      // prefs.write("token", json.decode(r.body)['data']['token']);
-      // token = prefs.read("token");
-      // print(token);
+      var prefs = GetStorage();
+      prefs.write("token", json.decode(r.body)['Token']);
+      token = prefs.read("token");
+      print(token);
       return r;
     } else {
       Get.snackbar('Error', 'Login Failed');

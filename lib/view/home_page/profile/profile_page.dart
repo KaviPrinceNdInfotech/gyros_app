@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/privecy_policy/privecy_policyyy.dart';
 import 'package:gyros_app/shiping_policy/shipping_policyyy.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/contact_us/help_supportss.dart';
+import 'package:gyros_app/view/home_page/profile/cuppons_page.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../botttom_nav_bar/bottom_navbar.dart';
-import 'cuppons_page.dart';
 import 'orders/my_orders.dart';
 
 //import 'main_screen_details.dart';
@@ -68,6 +69,9 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  ///Get.to(PaymentPage());
+
+                  ///here home return......
                   _navController.tabindex(0);
                   Get.to(() => NavBar());
 
@@ -422,7 +426,15 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
+                  print(Get.currentRoute);
+
+                  GetStorage prefs = GetStorage();
+                  prefs.erase();
+                  //prefs.remove('email');
+
                   Get.to(() => LoginPage());
+                  Get.offNamed('/LoginPage');
+                  // Get.to(() => LoginPage());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => Wollet()));
                 }, //PersonalDetails

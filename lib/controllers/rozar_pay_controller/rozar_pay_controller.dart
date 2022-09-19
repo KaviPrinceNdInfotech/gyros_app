@@ -22,7 +22,8 @@ class RozarPayController extends GetxController {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_aeRns0u8gPpOUK',
+      'key': 'rzp_live_sTN4TNvGmEs3C1',
+      // 'key': 'rzp_test_aeRns0u8gPpOUK',
       'amount': 500,
       'name': 'Kumar Prince',
       'description': 'Do Payment',
