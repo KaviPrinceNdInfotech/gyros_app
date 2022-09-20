@@ -116,7 +116,7 @@ class ApiProvider {
     print(r.body);
     if (r.statusCode == 200) {
       var prefs = GetStorage();
-      prefs.write("token", json.decode(r.body)['Token']);
+      prefs.write("token", json.decode(r.body)['token']);
       token = prefs.read("token");
       print(token);
       return r;

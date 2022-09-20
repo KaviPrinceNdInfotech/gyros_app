@@ -117,13 +117,12 @@ class BestDeal extends StatelessWidget {
                     height: size.height,
                     child: GridView.builder(
                         shrinkWrap: true,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2,
-                                childAspectRatio: 4 / 3,
-                                mainAxisExtent: 205,
-                                crossAxisSpacing: 0,
-                                mainAxisSpacing: 0),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 4 / 3,
+                            mainAxisExtent: size.height * 0.24,
+                            crossAxisSpacing: 0,
+                            mainAxisSpacing: 0),
                         itemCount: _bestSellerController
                             .bestsellermodel!.result!.length,
                         itemBuilder: (BuildContext context, int index) {
@@ -198,8 +197,8 @@ class BestDeal extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5),
                                         elevation: 5,
                                         child: Container(
-                                          height: size.height * 0.10,
-                                          width: size.width * 0.22,
+                                          height: size.height * 0.11,
+                                          width: size.width * 0.26,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
@@ -220,16 +219,20 @@ class BestDeal extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              _bestSellerController
-                                                  .bestsellermodel!
-                                                  .result![index]
-                                                  .productName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 11.sp,
-                                                color: Colors.yellow,
+                                            SizedBox(
+                                              width: size.width * 0.27,
+                                              height: size.height * 0.032,
+                                              child: Text(
+                                                _bestSellerController
+                                                    .bestsellermodel!
+                                                    .result![index]
+                                                    .productName
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: size.height * 0.015,
+                                                  color: Colors.yellow,
+                                                ),
                                               ),
                                             ),
                                             Text(
@@ -287,8 +290,8 @@ class BestDeal extends StatelessWidget {
                                                     ' /500 gm',
                                                     style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize: 5.sp,
+                                                          FontWeight.w600,
+                                                      fontSize: 7.sp,
                                                       color: Colors.white70,
                                                     ),
                                                   ),

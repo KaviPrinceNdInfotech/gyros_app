@@ -70,6 +70,7 @@ class ProfilePages extends StatelessWidget {
                 ),
                 onTap: () {
                   ///Get.to(PaymentPage());
+                  //Get.to(StepperDemo());
 
                   ///here home return......
                   _navController.tabindex(0);

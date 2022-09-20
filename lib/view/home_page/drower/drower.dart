@@ -10,10 +10,10 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
-import 'package:gyros_app/view/signup/signup_page.dart';
+import 'package:gyros_app/view/login_page/login_pagee.dart';
+import 'package:gyros_app/view/order_confirmation_screens/order_confirmation.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../login_page/login_pagee.dart';
 import 'drower_page/all_products.dart';
 import 'drower_page/blogs/my_blogs.dart';
 import 'drower_page/profile_page_personal/personal_profile_page.dart';
@@ -69,7 +69,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -2),
+              // visualDensity: VisualDensity(horizontal: 0, vertical: -4),
               title: Text(
                 'Shop',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -99,7 +99,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              // visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Best Deal',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -132,7 +132,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              // visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Gift Boxes',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -160,7 +160,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Our Story',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -188,7 +188,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Blogs',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -217,7 +217,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Website',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -246,7 +246,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Traceability',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -274,7 +274,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Profile',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -287,6 +287,34 @@ class MainDrawer extends StatelessWidget {
                 Get.back();
                 Get.to(() => PersonalProfile());
                 Get.offNamed('/PersonalProfile');
+              },
+            ),
+            ListTile(
+              //horizontalTitleGap: 2.h,
+              leading: Icon(
+                Icons.local_shipping_rounded,
+                color: Colors.black,
+                size: 14.sp,
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios_sharp,
+                size: 11.sp,
+                color: Colors.black,
+              ),
+              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+              dense: true,
+              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              title: Text(
+                'View order',
+                style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
+              ),
+              tileColor: Get.currentRoute == '/OrderConfirmationPage'
+                  ? Colors.grey[300]
+                  : null,
+              onTap: () {
+                print(Get.currentRoute);
+                Get.to(() => OrderConfirmationPage());
+                Get.offNamed('/OrderConfirmationPage');
               },
             ),
             ListTile(
@@ -303,7 +331,7 @@ class MainDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
               dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
               title: Text(
                 'Logout',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
@@ -319,33 +347,6 @@ class MainDrawer extends StatelessWidget {
 
                 Get.to(() => LoginPage());
                 Get.offNamed('/LoginPage');
-              },
-            ),
-            ListTile(
-              //horizontalTitleGap: 2.h,
-              leading: Icon(
-                Icons.person_add_alt_1_rounded,
-                color: Colors.black,
-                size: 14.sp,
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios_sharp,
-                size: 11.sp,
-                color: Colors.black,
-              ),
-              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              dense: true,
-              visualDensity: VisualDensity(horizontal: 0, vertical: -1),
-              title: Text(
-                'Create Account',
-                style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
-              ),
-              tileColor:
-                  Get.currentRoute == '/SignUp' ? Colors.grey[300] : null,
-              onTap: () {
-                print(Get.currentRoute);
-                Get.to(() => SignUp());
-                Get.offNamed('/SignUp');
               },
             ),
           ],

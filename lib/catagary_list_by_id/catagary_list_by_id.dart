@@ -60,9 +60,10 @@ class CatagaryListSubcatagary extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
         title: Text(
           // _catByIdController.getcatbyid!.result![index].productName.toString(),
-          'Details Of Products',
+          'Categories Products',
           style: TextStyle(
               color: AppColors.themecolors, fontWeight: FontWeight.bold),
         ),
@@ -178,7 +179,7 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5),
                                         elevation: 5,
                                         child: Container(
-                                          height: size.height * 0.12,
+                                          height: size.height * 0.11,
                                           width: size.width * 0.28,
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -200,14 +201,18 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              _catByIdController.getcatbyid!
-                                                  .result![index].productName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 11.sp,
-                                                color: Colors.yellow,
+                                            SizedBox(
+                                              width: size.width * 0.3,
+                                              height: size.height * 0.037,
+                                              child: Text(
+                                                _catByIdController.getcatbyid!
+                                                    .result![index].productName
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 11.sp,
+                                                  color: Colors.yellow,
+                                                ),
                                               ),
                                             ),
                                             Text(

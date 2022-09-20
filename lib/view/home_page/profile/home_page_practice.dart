@@ -310,7 +310,7 @@ class HomePagePractice extends StatelessWidget {
                                   color:
                                       _homePageController.selectedIndex.value ==
                                               index
-                                          ? MyTheme.ThemeColors
+                                          ? Color(0xffeff8f5)
                                           : Color(0xffeff8f5),
                                   elevation: 0.1,
                                   child: Container(
@@ -321,7 +321,7 @@ class HomePagePractice extends StatelessWidget {
                                       color: _homePageController
                                                   .selectedIndex.value ==
                                               index
-                                          ? MyTheme.ThemeColors
+                                          ? Colors.white12
                                           : Colors.white12,
                                     ),
                                     child: Column(
@@ -362,7 +362,7 @@ class HomePagePractice extends StatelessWidget {
                                                           .selectedIndex
                                                           .value ==
                                                       index
-                                                  ? Colors.white
+                                                  ? MyTheme.ThemeColors
                                                   : MyTheme.ThemeColors),
                                         )),
                                       ],

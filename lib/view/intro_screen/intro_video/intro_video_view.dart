@@ -17,7 +17,8 @@ class IntroVideo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Expanded(
+    return SizedBox(
+      height: size.height,
       //height: size.height * 0.95,
       child: ListView.builder(
           //physics: NeverScrollableScrollPhysics(),
