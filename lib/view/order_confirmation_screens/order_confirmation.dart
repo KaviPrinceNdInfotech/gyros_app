@@ -149,7 +149,7 @@ class OrderConfirmationPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: size.width * 0.02,
-                              vertical: size.height * 0.005),
+                              vertical: size.height * 0.007),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

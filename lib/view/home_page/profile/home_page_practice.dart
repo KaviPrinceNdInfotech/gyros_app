@@ -400,7 +400,7 @@ class HomePagePractice extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                      height: size.height * 0.28,
+                      height: size.height * 0.286,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: _homePageController
@@ -425,7 +425,7 @@ class HomePagePractice extends StatelessWidget {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Container(
-                                          height: 3.5.h,
+                                          height: 3.1.h,
                                           width: 22.w,
                                           decoration: BoxDecoration(
                                               color: Colors.yellow,
@@ -443,7 +443,7 @@ class HomePagePractice extends StatelessWidget {
                                                   .toString(),
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 9.sp,
                                               ),
                                             ),
@@ -504,8 +504,8 @@ class HomePagePractice extends StatelessWidget {
                                             // );
                                           },
                                           child: Container(
-                                            height: size.height * 0.15,
-                                            width: size.width * 0.33,
+                                            height: size.height * 0.17,
+                                            width: size.width * 0.36,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -545,7 +545,7 @@ class HomePagePractice extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 0.9.h,
+                                        height: 0.6.h,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
@@ -560,6 +560,8 @@ class HomePagePractice extends StatelessWidget {
                                                   .result![index]
                                                   .productName
                                                   .toString(),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 11.sp,
@@ -577,22 +579,8 @@ class HomePagePractice extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 2.w),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "",
-                                            style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 7.sp,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
+                                      SizedBox(
+                                        height: size.height * 0.01,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
@@ -624,8 +612,9 @@ class HomePagePractice extends StatelessWidget {
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w400,
-                                                        fontSize: 7.sp,
-                                                        color: Colors.grey,
+                                                        fontSize: 8.sp,
+                                                        color: Colors
+                                                            .grey.shade700,
                                                       ),
                                                     ),
                                                   ),
@@ -635,8 +624,8 @@ class HomePagePractice extends StatelessWidget {
 
                                             Spacer(),
                                             Container(
-                                              height: 3.3.h,
-                                              width: 23.5.w,
+                                              height: size.height * 0.033,
+                                              width: 23.w,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
@@ -710,7 +699,7 @@ class HomePagePractice extends StatelessWidget {
                             );
                           })),
                   SizedBox(
-                    height: 01.h,
+                    height: 00.h,
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
@@ -812,18 +801,18 @@ class HomePagePractice extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                      height: size.height * 0.28,
+                      height: size.height * 0.286,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: _homePageController
                               .getflashsellproduct!.result!.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return PhysicalModel(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                              elevation: 0.1,
-                              child: Padding(
-                                padding: const EdgeInsets.all(2.0),
+                            return Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: PhysicalModel(
+                                borderRadius: BorderRadius.circular(5),
+                                color: MyTheme.ThemeColors,
+                                elevation: 0.1,
                                 child: Container(
                                   height: 26.h,
                                   width: size.width * 0.5,
@@ -837,7 +826,7 @@ class HomePagePractice extends StatelessWidget {
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Container(
-                                          height: 3.5.h,
+                                          height: 3.1.h,
                                           width: 22.w,
                                           decoration: BoxDecoration(
                                               color: Colors.yellow,
@@ -855,7 +844,7 @@ class HomePagePractice extends StatelessWidget {
                                                   .toString(),
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 9.sp,
                                               ),
                                             ),
@@ -916,8 +905,8 @@ class HomePagePractice extends StatelessWidget {
                                             // );
                                           },
                                           child: Container(
-                                            height: size.height * 0.15,
-                                            width: size.width * 0.33,
+                                            height: size.height * 0.17,
+                                            width: size.width * 0.36,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -957,7 +946,7 @@ class HomePagePractice extends StatelessWidget {
                                         ),
                                       ),
                                       SizedBox(
-                                        height: 0.9.h,
+                                        height: 0.6.h,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
@@ -972,6 +961,8 @@ class HomePagePractice extends StatelessWidget {
                                                   .result![index]
                                                   .productName
                                                   .toString(),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 11.sp,
@@ -989,22 +980,8 @@ class HomePagePractice extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 2.w),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "",
-                                            style: TextStyle(
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 7.sp,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ),
+                                      SizedBox(
+                                        height: size.height * 0.01,
                                       ),
                                       Padding(
                                         padding: EdgeInsets.symmetric(
@@ -1036,8 +1013,9 @@ class HomePagePractice extends StatelessWidget {
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w400,
-                                                        fontSize: 7.sp,
-                                                        color: Colors.grey,
+                                                        fontSize: 8.sp,
+                                                        color: Colors
+                                                            .grey.shade700,
                                                       ),
                                                     ),
                                                   ),
@@ -1047,8 +1025,8 @@ class HomePagePractice extends StatelessWidget {
 
                                             Spacer(),
                                             Container(
-                                              height: 3.3.h,
-                                              width: 23.5.w,
+                                              height: size.height * 0.033,
+                                              width: 23.w,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
