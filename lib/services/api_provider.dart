@@ -9,6 +9,7 @@ import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
 import 'package:gyros_app/models/flash_sall_list_product_model.dart';
 import 'package:gyros_app/models/gift_box_model.dart';
+import 'package:gyros_app/models/list_of_cart_model_api.dart';
 import 'package:gyros_app/models/slider_banner_models.dart';
 import 'package:gyros_app/models/sub_cat_by_id_model.dart';
 import 'package:http/http.dart' as http;
@@ -26,7 +27,8 @@ class ApiProvider {
   static String catid = '';
   static String productid = '';
   static String orderid = '';
-
+  static String Id = ''.toString();
+  static String prodid = '';
   //catagary list api gyros 1 api.....................
 
   static AllcatagaryApi() async {
@@ -116,8 +118,14 @@ class ApiProvider {
     print(r.body);
     if (r.statusCode == 200) {
       var prefs = GetStorage();
-      prefs.write("token", json.decode(r.body)['token']);
-      token = prefs.read("token");
+      //saved id..........
+      prefs.write("Id".toString(), json.decode(r.body)['Id']);
+      Id = prefs.read("Id").toString();
+      print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+
+      //saved token.........
+      prefs.write("token".toString(), json.decode(r.body)['token']);
+      token = prefs.read("token").toString();
       print(token);
       return r;
     } else {
@@ -279,7 +287,38 @@ class ApiProvider {
     }
   }
 
+  //get_cart_list api.....gyros........14......
+
+  static GetCartApi() async {
+    var prefs = GetStorage();
+
+    //prefs.write("token", json.decode(r.body)['token']);
+    Id = prefs.read(Id);
+    print(Id);
+    var body = {
+      "Id": Id,
+    };
+    token = prefs.read("token");
+    print(token);
+    var headers = {
+      'Authorization': 'Bearer $token',
+    };
+    var url = baseUrl + 'api/ProductApi/AddToCartList';
+    try {
+      http.Response r = await http.get(Uri.parse(url), headers: headers);
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        CartListModel cartlistModel = cartListModelFromJson(r.body);
+        return cartlistModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
   ///till gyros...........................
+
+  ///
 
   // static signUpApi(
   //   var Name,
@@ -1069,7 +1108,7 @@ class ApiProvider {
   // return Future.error(e.message.toString());
   // }
   // }
-  ///from dio add to cart.......
+  ///from dio add to cart.....................................add cart.....
   // addToCart(var id) async {
   // var data = {
   // "productId": id

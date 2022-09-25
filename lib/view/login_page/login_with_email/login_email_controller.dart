@@ -13,6 +13,7 @@ class LoginEmailController extends GetxController {
 
   //  var email = '';
   // var password = '';
+  var Id = '';
 
   void emailApi() async {
     CallLoader.loader();

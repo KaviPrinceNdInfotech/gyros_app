@@ -7,6 +7,8 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../home_page/drower/drower_page/trackingss/tracking.dart';
+
 final Uri _url = Uri.parse('https://www.instagram.com/anveshan.farms/');
 final Uri _url2 = Uri.parse('https://www.facebook.com/anveshan.farm/');
 final Uri _url3 = Uri.parse('https://twitter.com/Anveshan_farms');
@@ -250,39 +252,47 @@ class WhatsAppTrackOrder extends StatelessWidget {
                           SizedBox(
                             height: 2.h,
                           ),
-                          Container(
-                            height: 5.5.h,
-                            width: 90.w,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey)),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.search),
-                                ),
-                                Text(
-                                  'Find your order',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 13),
-                                ),
+                          InkWell(
+                            onTap: () {
+                              print(Get.currentRoute);
+                              Get.back();
+                              Get.to(() => Tracking());
+                              Get.offNamed('/Tracking');
+                            },
+                            child: Container(
+                              height: 5.5.h,
+                              width: 90.w,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.grey)),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Icon(Icons.car_rental),
+                                  ),
+                                  Text(
+                                    'Track your order',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 13),
+                                  ),
 
-                                ///transform bpx
-                                // RotatedBox(
-                                //   quarterTurns: 4,
-                                //   child: Icon(
-                                //     Icons.login,
-                                //     color: Colors.black,
-                                //   ),
-                                // ),
-                                // AnimatedContainer(
-                                //   duration: Duration(seconds: 2),
-                                //   color: Colors.black,
-                                //   height: 3.h,
-                                //   width: 6.w,
-                                // ),
-                              ],
+                                  ///transform bpx
+                                  // RotatedBox(
+                                  //   quarterTurns: 4,
+                                  //   child: Icon(
+                                  //     Icons.login,
+                                  //     color: Colors.black,
+                                  //   ),
+                                  // ),
+                                  // AnimatedContainer(
+                                  //   duration: Duration(seconds: 2),
+                                  //   color: Colors.black,
+                                  //   height: 3.h,
+                                  //   width: 6.w,
+                                  // ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
