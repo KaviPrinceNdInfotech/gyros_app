@@ -295,9 +295,13 @@ class ApiProvider {
     //prefs.write("token", json.decode(r.body)['token']);
     Id = prefs.read(Id);
     print(Id);
-    var body = {
-      "Id": Id,
+    final body = {
+      'Id': 'Id',
     };
+    final jsonString = json.encode(body);
+    //final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
+
+    // final jsonData = jsonDecode(response.body) as List;
     token = prefs.read("token");
     print(token);
     var headers = {
@@ -305,7 +309,11 @@ class ApiProvider {
     };
     var url = baseUrl + 'api/ProductApi/AddToCartList';
     try {
-      http.Response r = await http.get(Uri.parse(url), headers: headers);
+      http.Response r = await http.get(
+        Uri.parse(url),
+        headers: headers,
+        //body: jsonString,
+      );
       print(r.body.toString());
       if (r.statusCode == 200) {
         CartListModel cartlistModel = cartListModelFromJson(r.body);
