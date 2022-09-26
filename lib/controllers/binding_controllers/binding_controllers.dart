@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
+import 'package:gyros_app/controllers/all_products/all_products_controllers.dart';
 import 'package:gyros_app/controllers/blog_list_controller.dart';
 import 'package:gyros_app/controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
 import 'package:gyros_app/controllers/gift_box_controller.dart';
@@ -49,6 +50,7 @@ class ControllerBinding extends Bindings {
     Get.put(GiftBoxController());
     Get.put(BestSellerController());
     Get.put(OurStoryController());
+    Get.put(AllProductController());
 
     //Get.put(CatagaryByIdController());
   }

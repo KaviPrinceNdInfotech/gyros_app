@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gyros_app/models/all_product_model.dart';
 import 'package:gyros_app/models/blog_model.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
@@ -309,15 +310,30 @@ class ApiProvider {
     };
     var url = baseUrl + 'api/ProductApi/AddToCartList';
     try {
-      http.Response r = await http.get(
-        Uri.parse(url),
-        headers: headers,
-        //body: jsonString,
-      );
+      http.Response r =
+          await http.post(Uri.parse(url), headers: headers, body: body
+              //body: jsonString,
+              );
       print(r.body.toString());
       if (r.statusCode == 200) {
         CartListModel cartlistModel = cartListModelFromJson(r.body);
         return cartlistModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // get all product  get Api gyros.......15........
+
+  static AllProductApi() async {
+    var url = baseUrl + 'api/AdminApi/AllSubcategory';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        AllProductModel allProductModel = allProductModelFromJson(r.body);
+        return allProductModel;
       }
     } catch (error) {
       return;
@@ -368,7 +384,6 @@ class ApiProvider {
   static verifyotpApi(
       var emailOtp, var smsOtp, var email, var phone_number) async {
     var url = baseUrl + 'user/signup-verification';
-
     var body = {
       "emailOtp": emailOtp,
       "smsOtp": smsOtp,

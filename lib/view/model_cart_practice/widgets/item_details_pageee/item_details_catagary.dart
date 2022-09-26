@@ -1,6 +1,9 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_carousel_slider/carousel_slider.dart';
+import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
+import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +18,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
 
 class ItemDetailss extends StatelessWidget {
+  final _sliderKey1 = GlobalKey();
   final CartController controller = Get.put(CartController());
   final RozarPayController _rozarPayController = Get.find();
   FlashProductByIdController _flashProductByIdController =
@@ -125,58 +129,62 @@ class ItemDetailss extends StatelessWidget {
                               child: Stack(
                                 clipBehavior: Clip.none,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 0.h, horizontal: 4.w),
-                                        child: Text(
-                                          //'ghee',
-                                          _flashProductByIdController
-                                              .flashproductbyid!
-                                              .result![index]
-                                              .productName
-                                              .toString(),
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 22.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 6.h, horizontal: 4.w),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Price:',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 11.sp,
-                                              ),
-                                            ),
-                                            Text(
-                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![index].price.toString()}',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18.sp,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                  // Column(
+                                  //   crossAxisAlignment:
+                                  //       CrossAxisAlignment.start,
+                                  //   children: [
+                                  //     SizedBox(
+                                  //       height: 20.h,
+                                  //     ),
+                                  //
+                                  //     ///name...............
+                                  //     Padding(
+                                  //       padding: EdgeInsets.symmetric(
+                                  //           vertical: 0.h, horizontal: 4.w),
+                                  //       child: Text(
+                                  //         //'ghee',
+                                  //         _flashProductByIdController
+                                  //             .flashproductbyid!
+                                  //             .result![index]
+                                  //             .productName
+                                  //             .toString(),
+                                  //         style: TextStyle(
+                                  //           color: Colors.white,
+                                  //           fontWeight: FontWeight.bold,
+                                  //           fontSize: 22.sp,
+                                  //         ),
+                                  //       ),
+                                  //     ),
+                                  //
+                                  //     ///price..............
+                                  //     Padding(
+                                  //       padding: EdgeInsets.symmetric(
+                                  //           vertical: 6.h, horizontal: 4.w),
+                                  //       child: Column(
+                                  //         crossAxisAlignment:
+                                  //             CrossAxisAlignment.start,
+                                  //         children: [
+                                  //           Text(
+                                  //             'Price:',
+                                  //             style: TextStyle(
+                                  //               color: Colors.black,
+                                  //               fontWeight: FontWeight.w600,
+                                  //               fontSize: 11.sp,
+                                  //             ),
+                                  //           ),
+                                  //           Text(
+                                  //             '₹ ${_flashProductByIdController.flashproductbyid!.result![index].price.toString()}',
+                                  //             style: TextStyle(
+                                  //               color: Colors.black,
+                                  //               fontWeight: FontWeight.bold,
+                                  //               fontSize: 18.sp,
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
                                   Positioned(
                                       top: size.height * 0.30,
                                       bottom: 2,
@@ -188,8 +196,8 @@ class ItemDetailss extends StatelessWidget {
                                         decoration: BoxDecoration(
                                           color: Colors.white,
                                           borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(40),
-                                            topRight: Radius.circular(40),
+                                            topLeft: Radius.circular(0),
+                                            topRight: Radius.circular(0),
                                           ),
                                         ),
                                         child: Padding(
@@ -199,45 +207,116 @@ class ItemDetailss extends StatelessWidget {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
-                                                height: 5.h,
+                                                height: 8.h,
                                               ),
                                               Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 // mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    'Weight:',
-                                                    style: TextStyle(
-                                                      fontSize: 11.sp,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.w500,
+                                                  ///todo: product name.........
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 0.h,
+                                                            horizontal: 0.w),
+                                                    child: Text(
+                                                      //'ghee',
+                                                      _flashProductByIdController
+                                                          .flashproductbyid!
+                                                          .result![index]
+                                                          .productName
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        color: Colors.yellow,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 22.sp,
+                                                      ),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    height: 0.5.h,
+
+                                                  ///price..............
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 2.h,
+                                                            horizontal: 0.w),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              'Price:',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize: 11.sp,
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5.w,
+                                                            ),
+                                                            Text(
+                                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![index].price.toString()}',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 18.sp,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        '${_flashProductByIdController.flashproductbyid!.result![index].weight1}  ${_flashProductByIdController.flashproductbyid!.result![index].pkt1}',
+                                                        'Weight:',
                                                         style: TextStyle(
-                                                          fontSize: 18.sp,
+                                                          fontSize: 11.sp,
                                                           color: Colors.black,
                                                           fontWeight:
-                                                              FontWeight.bold,
+                                                              FontWeight.w500,
                                                         ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 2.w,
+                                                      ),
+
+                                                      ///weight................
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            '${_flashProductByIdController.flashproductbyid!.result![index].weight1}  ${_flashProductByIdController.flashproductbyid!.result![index].pkt1}',
+                                                            style: TextStyle(
+                                                              fontSize: 18.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ],
                                                   ),
                                                 ],
                                               ),
+
                                               SizedBox(
                                                 height: 1.h,
-                                              ),
-                                              SizedBox(
-                                                height: 4.h,
 
                                                 ///TODO: here we have rating view............
                                                 // child: Row(
@@ -331,6 +410,8 @@ class ItemDetailss extends StatelessWidget {
                                               SizedBox(
                                                 height: 1.h,
                                               ),
+
+                                              ///details.................
                                               Text(
                                                 'Details:',
                                                 style: TextStyle(
@@ -359,36 +440,79 @@ class ItemDetailss extends StatelessWidget {
                                           ),
                                         ),
                                       )),
+
+                                  ///image.........................
                                   Positioned(
-                                    top: 12.h,
-                                    left: size.width * 0.48,
+                                    top: 0.h,
+                                    //left: size.width * 0.0,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(4),
                                       elevation: 3,
                                       child: Container(
-                                        height: size.height * 0.22,
-                                        width: size.width * 0.44,
-                                        decoration: BoxDecoration(
-                                          color: Colors.orange,
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          border:
-                                              Border.all(color: Colors.green),
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                              base +
-                                                  '${_flashProductByIdController.flashproductbyid!.result![index].productImage.toString()}',
-                                            ),
-                                            fit: BoxFit.fill,
+                                        height: size.height * 0.38,
+                                        width: size.width,
+                                        child: CarouselSlider.builder(
+                                          //scrollPhysics: NeverScrollableScrollPhysics(),
+                                          key: _sliderKey1,
+                                          unlimitedMode: false,
+
+                                          autoSliderTransitionTime:
+                                              Duration(seconds: 2),
+                                          //autoSliderDelay: Duration(seconds: 5),
+                                          slideBuilder: (index) {
+                                            return Container(
+                                              height: 26.h,
+                                              alignment: Alignment.center,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(base +
+                                                        '${_flashProductByIdController.flashproductbyid!.result![index].productImage}'),
+                                                    fit: BoxFit.fill),
+                                              ),
+                                            );
+                                          },
+                                          slideTransform:
+                                              ZoomOutSlideTransform(),
+                                          slideIndicator:
+                                              CircularSlideIndicator(
+                                            indicatorBorderWidth: 2,
+                                            indicatorRadius: 4,
+                                            itemSpacing: 15,
+                                            currentIndicatorColor: Colors.white,
+                                            padding: EdgeInsets.only(bottom: 6),
                                           ),
+                                          itemCount: _flashProductByIdController
+                                              .flashproductbyid!.result!.length,
+                                          enableAutoSlider: true,
                                         ),
-                                        // child: Image.asset(
-                                        //   Productss.products[index].imageUrl,
-                                        //   fit: BoxFit.cover,
-                                        // ),
                                       ),
+
+                                      // Container(
+                                      //   height: size.height * 0.38,
+                                      //   width: size.width,
+                                      //   decoration: BoxDecoration(
+                                      //     color: Colors.orange,
+                                      //     borderRadius:
+                                      //         BorderRadius.circular(4),
+                                      //     border:
+                                      //         Border.all(color: Colors.green),
+                                      //     image: DecorationImage(
+                                      //       image: NetworkImage(
+                                      //         base +
+                                      //             '${_flashProductByIdController.flashproductbyid!.result![index].productImage.toString()}',
+                                      //       ),
+                                      //       fit: BoxFit.fill,
+                                      //     ),
+                                      //   ),
+                                      //   // child: Image.asset(
+                                      //   //   Productss.products[index].imageUrl,
+                                      //   //   fit: BoxFit.cover,
+                                      //   // ),
+                                      // ),
                                     ),
                                   ),
+
+                                  ///add product.................
                                   Positioned(
                                     bottom: 2.h,
                                     child: Padding(
