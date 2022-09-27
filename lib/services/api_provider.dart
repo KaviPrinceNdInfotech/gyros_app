@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/models/all_product_model.dart';
 import 'package:gyros_app/models/blog_model.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
+import 'package:gyros_app/models/contact_us_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
 import 'package:gyros_app/models/flash_sall_list_product_model.dart';
@@ -288,41 +289,72 @@ class ApiProvider {
     }
   }
 
-  //get_cart_list api.....gyros........14......
+  ///get_cart_list api.....gyros........14...........abhi bhaiya....when id passs in body in get api...
 
   static GetCartApi() async {
     var prefs = GetStorage();
-
-    //prefs.write("token", json.decode(r.body)['token']);
-    Id = prefs.read(Id);
-    print(Id);
-    final body = {
-      'Id': 'Id',
-    };
-    final jsonString = json.encode(body);
-    //final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
-
-    // final jsonData = jsonDecode(response.body) as List;
-    token = prefs.read("token");
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince55:${Id}');
+    //read token.........
+    token = prefs.read("token").toString();
     print(token);
-    var headers = {
-      'Authorization': 'Bearer $token',
-    };
-    var url = baseUrl + 'api/ProductApi/AddToCartList';
-    try {
-      http.Response r =
-          await http.post(Uri.parse(url), headers: headers, body: body
-              //body: jsonString,
-              );
-      print(r.body.toString());
-      if (r.statusCode == 200) {
-        CartListModel cartlistModel = cartListModelFromJson(r.body);
-        return cartlistModel;
-      }
-    } catch (error) {
-      return;
+    final body = {"Id": "$Id"};
+
+    final request = http.StreamedRequest('GET',
+        Uri.parse("https://api.gyros.farm/api/ProductApi/AddToCartList"));
+    request.headers["Authorization"] = "Bearer $token";
+    request.headers["Content-type"] = "application/json";
+    request.sink
+      ..add(utf8.encode(json.encode(body)))
+      ..close();
+    final streamedResponse = await request.send();
+    final response = await http.Response.fromStream(streamedResponse);
+    print(response.statusCode);
+    print("princebody:${response.body}");
+    print("&&&&&&&&&&&&&&&&&&prince: ${token}");
+
+    if (response.statusCode == 200) {
+      CartListModel cartListModel = cartListModelFromJson(response.body);
+      return cartListModel;
     }
   }
+
+  ///...................
+
+  // static GetCartApi() async {
+  //   var prefs = GetStorage();
+  //
+  //   //prefs.write("token", json.decode(r.body)['token']);
+  //   Id = prefs.read(Id);
+  //   print(Id);
+  //   final body = {
+  //     'Id': 'Id',
+  //   };
+  //   final jsonString = json.encode(body);
+  //   //final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
+  //
+  //   // final jsonData = jsonDecode(response.body) as List;
+  //   token = prefs.read("token");
+  //   print(token);
+  //   var headers = {
+  //     'Authorization': 'Bearer $token',
+  //   };
+  //   var url = baseUrl + 'api/ProductApi/AddToCartList';
+  //   try {
+  //     http.Response r =
+  //         await http.post(Uri.parse(url), headers: headers, body: body
+  //             //body: jsonString,
+  //             );
+  //     print(r.body.toString());
+  //     if (r.statusCode == 200) {
+  //       CartListModel cartlistModel = cartListModelFromJson(r.body);
+  //       return cartlistModel;
+  //     }
+  //   } catch (error) {
+  //     return;
+  //   }
+  // }
 
   // get all product  get Api gyros.......15........
 
@@ -339,6 +371,57 @@ class ApiProvider {
       return;
     }
   }
+
+  // get about us  get Api gyros.......16........
+
+  static ContactUsApi() async {
+    var url = baseUrl + 'api/AdminApi/ContactUs';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        ContactUsModel contactUsModel = contactUsModelFromJson(r.body);
+        return contactUsModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  //sign up  Api gyros  gyros Api 17........................................................
+  static PostQueryApi(
+    var Name,
+    var Email,
+    var OrderNo,
+    var Message,
+  ) async {
+    try {
+      var url = baseUrl + 'api/AdminApi/Query';
+
+      var body = {
+        "Name": Name,
+        "Email": Email,
+        "OrderNo": OrderNo,
+        "Message": Message,
+      };
+      print(body);
+      http.Response r = await http.post(
+        Uri.parse(url),
+        body: body,
+      );
+      print(r.body);
+      if (r.statusCode == 200) {
+        return r;
+      } else {
+        Get.snackbar('Error', 'send correct data');
+        return r;
+      }
+    } catch (e) {
+      print('Error');
+      print(e.toString());
+    }
+  }
+  //ContactUsModel
 
   ///till gyros...........................
 

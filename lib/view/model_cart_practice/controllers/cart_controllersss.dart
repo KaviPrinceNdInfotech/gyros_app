@@ -32,10 +32,9 @@ class CartController extends GetxController {
 
   @override
   void onInit() {
-    CartListgApi();
-    //categoryListssApi();
-
     super.onInit();
+
+    CartListgApi();
   }
 
   @override

@@ -19,7 +19,7 @@ class FlashProductByIdController extends GetxController {
       Get.to(
         () => ItemDetailss(), //next page class
         duration: Duration(
-            milliseconds: 400), //duration of transitions, default 1 sec
+            milliseconds: 300), //duration of transitions, default 1 sec
         transition:
             // Transition.leftToRight //transition effect
             // Transition.fadeIn

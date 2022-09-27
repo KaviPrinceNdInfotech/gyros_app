@@ -443,7 +443,10 @@
 //   }
 // }
 
-///.............................................................
+///
+///
+///... Todo: with Api...........................
+///
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -735,6 +738,7 @@ class CartProductCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     PhysicalModel(
                       shadowColor: Colors.green,
@@ -742,7 +746,7 @@ class CartProductCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                       elevation: 10,
                       child: Container(
-                        height: size.height * 0.18,
+                        height: size.height * 0.13,
                         width: size.width * 0.30,
                         decoration: BoxDecoration(
                           gradient: MyTheme.gradient3,
@@ -845,7 +849,7 @@ class CartProductCard extends StatelessWidget {
                               //buttonPosition: Position.fullBottom,
                               depth: 2,
                               onTapUp: () {
-                                //controller.removeProduct(product);
+                                // controller.removeProduct(product);
                               },
                               border: Border.all(
                                 color: Colors.black12,

@@ -8,6 +8,7 @@ CartListModel cartListModelFromJson(String str) =>
     CartListModel.fromJson(json.decode(str));
 
 String cartListModelToJson(CartListModel data) => json.encode(data.toJson());
+//
 
 class CartListModel {
   CartListModel({

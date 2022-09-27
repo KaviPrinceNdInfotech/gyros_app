@@ -24,6 +24,7 @@ class ItemDetailss extends StatelessWidget {
   FlashProductByIdController _flashProductByIdController =
       Get.put(FlashProductByIdController());
   final cartController = Get.put(CartController());
+  bool enableAutoSlider = false;
   //final int index;
   ItemDetailss({
     Key? key,
@@ -122,7 +123,7 @@ class ItemDetailss extends StatelessWidget {
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: _flashProductByIdController
                               .flashproductbyid!.result!.length,
-                          itemBuilder: (BuildContext context, int index) {
+                          itemBuilder: (BuildContext context, int mainIndex) {
                             return SizedBox(
                               height: constraints.maxHeight,
                               width: constraints.maxWidth,
@@ -224,7 +225,7 @@ class ItemDetailss extends StatelessWidget {
                                                       //'ghee',
                                                       _flashProductByIdController
                                                           .flashproductbyid!
-                                                          .result![index]
+                                                          .result![mainIndex]
                                                           .productName
                                                           .toString(),
                                                       style: TextStyle(
@@ -264,7 +265,7 @@ class ItemDetailss extends StatelessWidget {
                                                               width: 5.w,
                                                             ),
                                                             Text(
-                                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![index].price.toString()}',
+                                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![mainIndex].price.toString()}',
                                                               style: TextStyle(
                                                                 color: Colors
                                                                     .black,
@@ -298,7 +299,7 @@ class ItemDetailss extends StatelessWidget {
                                                       Row(
                                                         children: [
                                                           Text(
-                                                            '${_flashProductByIdController.flashproductbyid!.result![index].weight1}  ${_flashProductByIdController.flashproductbyid!.result![index].pkt1}',
+                                                            '${_flashProductByIdController.flashproductbyid!.result![mainIndex].weight1}  ${_flashProductByIdController.flashproductbyid!.result![mainIndex].pkt1}',
                                                             style: TextStyle(
                                                               fontSize: 18.sp,
                                                               color:
@@ -426,7 +427,7 @@ class ItemDetailss extends StatelessWidget {
                                               Text(
                                                 _flashProductByIdController
                                                     .flashproductbyid!
-                                                    .result![index]
+                                                    .result![mainIndex]
                                                     .productDescription
                                                     .toString(),
                                                 //'This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once. This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.',
@@ -447,18 +448,24 @@ class ItemDetailss extends StatelessWidget {
                                     //left: size.width * 0.0,
                                     child: Material(
                                       borderRadius: BorderRadius.circular(4),
-                                      elevation: 3,
+                                      elevation: 0,
                                       child: Container(
                                         height: size.height * 0.38,
                                         width: size.width,
+                                        decoration: BoxDecoration(),
                                         child: CarouselSlider.builder(
+                                          //enableAutoSlider= off;
                                           //scrollPhysics: NeverScrollableScrollPhysics(),
                                           key: _sliderKey1,
-                                          unlimitedMode: false,
+
+                                          //bool enableAutoSlider = false;
+
+                                          //unlimitedMode: false,
 
                                           autoSliderTransitionTime:
                                               Duration(seconds: 2),
-                                          //autoSliderDelay: Duration(seconds: 5),
+                                          autoSliderDelay: Duration(seconds: 5),
+                                          //Duration autoSliderTransitionTime = const Duration(seconds: 2),
                                           slideBuilder: (index) {
                                             return Container(
                                               height: 26.h,
@@ -466,7 +473,7 @@ class ItemDetailss extends StatelessWidget {
                                               decoration: BoxDecoration(
                                                 image: DecorationImage(
                                                     image: NetworkImage(base +
-                                                        '${_flashProductByIdController.flashproductbyid!.result![index].productImage}'),
+                                                        '${_flashProductByIdController.flashproductbyid!.result![mainIndex].multipleImage![index].toString()}'),
                                                     fit: BoxFit.fill),
                                               ),
                                             );
@@ -482,7 +489,10 @@ class ItemDetailss extends StatelessWidget {
                                             padding: EdgeInsets.only(bottom: 6),
                                           ),
                                           itemCount: _flashProductByIdController
-                                              .flashproductbyid!.result!.length,
+                                              .flashproductbyid!
+                                              .result![mainIndex]
+                                              .multipleImage!
+                                              .length,
                                           enableAutoSlider: true,
                                         ),
                                       ),
@@ -523,7 +533,8 @@ class ItemDetailss extends StatelessWidget {
                                           InkWell(
                                             onTap: () {
                                               cartController.addProduct(
-                                                  Productss.products[index]);
+                                                  Productss
+                                                      .products[mainIndex]);
                                               //_cartNewController.addItemInCart(product);
                                               //_cartNewController.numOfItems.(product);
                                             },
@@ -534,14 +545,15 @@ class ItemDetailss extends StatelessWidget {
                                               width: 50,
                                               decoration: BoxDecoration(
                                                 color: Color(int.parse(Productss
-                                                    .products[index].color
+                                                    .products[mainIndex].color
                                                     .toString())),
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                                 border: Border.all(
                                                   color: Color(int.parse(
                                                       Productss
-                                                          .products[index].color
+                                                          .products[mainIndex]
+                                                          .color
                                                           .toString())),
                                                 ),
                                               ),
@@ -577,7 +589,8 @@ class ItemDetailss extends StatelessWidget {
                                                   backgroundColor:
                                                       MaterialStateProperty.all(
                                                     Color(int.parse(Productss
-                                                        .products[index].color
+                                                        .products[mainIndex]
+                                                        .color
                                                         .toString())),
                                                   )),
                                               child: Text(
