@@ -10,8 +10,6 @@ import 'package:gyros_app/view/login_page/login_with_email/login_email.dart';
 import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
-import 'login_otp/login_mobile.dart';
-
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
   @override
@@ -22,7 +20,7 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: size.height,
-          width: double.infinity,
+          width: size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
@@ -33,7 +31,7 @@ class LoginPage extends StatelessWidget {
                       //'https://images.wallpapersden.com/image/download/las-vegas-night-hotel_Zmxtbm6UmZqaraWkpJRmbmdlrWZlbWU.jpg'
                       //'https://i.pinimg.com/originals/01/96/c1/0196c1f3432b1a2ebac601dadb7b92cd.jpg'
                       ),
-                  fit: BoxFit.fitHeight)),
+                  fit: BoxFit.fill)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -51,7 +49,7 @@ class LoginPage extends StatelessWidget {
                     color: Colors.white,
                     image: DecorationImage(
                       image: AssetImage('lib/assets/asset/guser_logo.png'),
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ),
@@ -68,16 +66,16 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(
-                height: 8.h,
-              ),
-              CustomButtom(
-                buttonColor: MyTheme.loginbuttonColor,
-                buttontext: 'LOGIN WITH MOBILE',
-                textColor: Colors.white,
-                //Theme.of(context).colorScheme.onPrimary,
-                handleButtonClick: loginButtonClickHandlerPhone,
-              ),
+              // SizedBox(
+              //   height: 8.h,
+              // ),
+              // CustomButtom(
+              //   buttonColor: MyTheme.loginbuttonColor,
+              //   buttontext: 'LOGIN WITH MOBILE',
+              //   textColor: Colors.white,
+              //   //Theme.of(context).colorScheme.onPrimary,
+              //   handleButtonClick: loginButtonClickHandlerPhone,
+              // ),
               SizedBox(
                 height: 15,
               ),
@@ -111,7 +109,7 @@ class LoginPage extends StatelessWidget {
 
   loginButtonClickHandlerPhone() {
     print("Login Phone Clicked");
-    Get.to(() => Register());
+    //Get.to(() => Register());
   }
 
   loginButtonClickHandler() {

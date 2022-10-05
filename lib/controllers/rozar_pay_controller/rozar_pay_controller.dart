@@ -3,6 +3,10 @@ import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class RozarPayController extends GetxController {
+  //get isLoading => null;
+
+  RxBool isLoading = false.obs;
+
   @override
   void onInit() {
     super.onInit();

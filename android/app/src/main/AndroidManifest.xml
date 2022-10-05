@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gyros_app">
+    package="com.ndinfotech.gyros_app">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="gyros_app"

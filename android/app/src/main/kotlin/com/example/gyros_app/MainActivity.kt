@@ -1,4 +1,4 @@
-package com.example.gyros_app
+package com.ndinfotech.gyros_app
 
 import io.flutter.embedding.android.FlutterActivity
 

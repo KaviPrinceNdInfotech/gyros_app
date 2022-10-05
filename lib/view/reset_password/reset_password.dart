@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/controllers/set_new_password/set_new_pswd_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/login_page/login_main_page/login_main_pages.dart';
+import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:sizer/sizer.dart';
 
 class ResetPasswords extends StatelessWidget {
@@ -43,7 +43,7 @@ class ResetPasswords extends StatelessWidget {
                           //'https://images.wallpapersden.com/image/download/las-vegas-night-hotel_Zmxtbm6UmZqaraWkpJRmbmdlrWZlbWU.jpg'
                           //'https://i.pinimg.com/originals/01/96/c1/0196c1f3432b1a2ebac601dadb7b92cd.jpg'
                           ),
-                      fit: BoxFit.fitHeight)),
+                      fit: BoxFit.fill)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 //crossAxisAlignment: CrossAxisAlignment.center,
@@ -254,7 +254,7 @@ class ResetPasswords extends StatelessWidget {
                     buttontext: 'Confirm',
                     textColor: Theme.of(context).colorScheme.onPrimary,
                     handleButtonClick: () {
-                      Get.to(() => LoginMainPage());
+                      Get.to(() => LoginPage());
                     },
                   ),
                   SizedBox(

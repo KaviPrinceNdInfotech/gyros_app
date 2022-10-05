@@ -22,6 +22,7 @@ import 'package:gyros_app/view/login_page/login_with_email/login_email_controlle
 import '../../view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
 import '../../view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
 import '../../view/home_page/home_page_controller.dart';
+import '../address_list_controller/address_list_controllers.dart';
 import '../best_seller_controller.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
 import '../our_story_controller.dart';
@@ -55,6 +56,7 @@ class ControllerBinding extends Bindings {
     Get.put(AllProductController());
     Get.put(ContactUsController());
     Get.put(PostQueryController());
+    Get.put(AddressListController());
 
     //Get.put(CatagaryByIdController());
   }

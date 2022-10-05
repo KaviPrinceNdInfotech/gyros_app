@@ -12,10 +12,12 @@ import 'package:gyros_app/models/flash_product_descriptions_model.dart';
 import 'package:gyros_app/models/flash_sall_list_product_model.dart';
 import 'package:gyros_app/models/gift_box_model.dart';
 import 'package:gyros_app/models/list_of_cart_model_api.dart';
+import 'package:gyros_app/models/no_of_cart_item_model.dart';
 import 'package:gyros_app/models/slider_banner_models.dart';
 import 'package:gyros_app/models/sub_cat_by_id_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../models/all_address_list_model.dart';
 import '../models/best_seller_models.dart';
 import '../models/our_offer_permotion_model.dart';
 import '../models/our_story_model.dart';
@@ -31,6 +33,7 @@ class ApiProvider {
   static String orderid = '';
   static String Id = ''.toString();
   static String prodid = '';
+  static String cartlistid = '';
   //catagary list api gyros 1 api.....................
 
   static AllcatagaryApi() async {
@@ -273,6 +276,26 @@ class ApiProvider {
     }
   }
 
+  // Best seller Api gyros.......11...................address neww
+
+  static AddressListApi() async {
+    var prefs = GetStorage();
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince108:${Id}');
+    var url = baseUrl + 'api/AdminApi/ListAddress/$Id';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        AddaddressModel allAddressModel = addaddressModelFromJson(r.body);
+        return allAddressModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
   // Our Story  get Api gyros.......13........
 
   static OurStoryApi() async {
@@ -296,9 +319,16 @@ class ApiProvider {
     //read id..........
     Id = prefs.read("Id").toString();
     print('&&&&&&&&&&&&&&&&&&prince55:${Id}');
+
     //read token.........
-    token = prefs.read("token").toString();
-    print(token);
+
+    token =
+        //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMWVjY2NjYi03Yjc5LTQyZjUtYjVkNC1mNGMxODc2ZGI0NzMiLCJJZCI6IjEiLCJ1c2VyaWQiOiIxIiwibmFtZSI6Inh5eiIsImV4cCI6MTY2NDUxNTI5MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNjYiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDM2NiJ9.vSL6mzm_RFgWi3aLkmTOYiyMb3P0oHhZ_w1dddx7nao';
+        //"Bearer $token";
+        //'$token';
+        // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlOWNmMjg0ZC0yMGZhLTQ1ZTgtYmUxZC0wOTc1MmJmOGJmMzkiLCJJZCI6IjEiLCJ1c2VyaWQiOiIxIiwibmFtZSI6Inh5eiIsImV4cCI6MTY2NDQ0OTA4MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNjYiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDM2NiJ9.ACMtaKjLrauPfyU0MKR67gwXANAC3A5yvNaFNgdLEjU';
+        prefs.read("token").toString();
+
     final body = {"Id": "$Id"};
 
     final request = http.StreamedRequest('GET',
@@ -319,6 +349,152 @@ class ApiProvider {
       return cartListModel;
     }
   }
+
+  ///add to cart api....gyros....16.............wronfggggggg.........
+
+  static AddToCartApi(
+    var productId,
+  ) async {
+    var url = baseUrl + 'api/ProductApi/AddToCart/$productId';
+    var prefs = GetStorage();
+    //saved id..........
+    final userId = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&okoko:${Id}');
+
+    token = prefs.read("token").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&okok:${token}');
+
+    var body = {
+      "Id": userId,
+    };
+    final headers = {"Authorization": "Bearer $token"};
+
+    print(body);
+    http.Response r =
+        await http.post(Uri.parse(url), body: body, headers: headers);
+    print(url);
+    print(r.body);
+    print(r.statusCode);
+
+    if (r.statusCode == 200) {
+      Get.snackbar('Sucess', 'Added cart Sucessfully');
+      return r;
+    } else {
+      Get.snackbar('Error', 'Already Added');
+      return r;
+    }
+  }
+
+  ///total no of item in cart...........api 15
+  //NoOfCartModel
+
+  static NoOfCartApi() async {
+    var prefs = GetStorage();
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince55:${Id}');
+
+    //read token.........
+
+    token = prefs.read("token").toString();
+    final body = {"Id": "$Id"};
+
+    final request = http.StreamedRequest(
+        'GET', Uri.parse("https://api.gyros.farm/api/ProductApi/NoOfItem"));
+    request.headers["Authorization"] = "Bearer $token";
+    request.headers["Content-type"] = "application/json";
+    request.sink
+      ..add(utf8.encode(json.encode(body)))
+      ..close();
+    final streamedResponse = await request.send();
+    final response = await http.Response.fromStream(streamedResponse);
+    print(response.statusCode);
+    print("princebody:${response.body}");
+    print("&&&&&&&&&&&&&&&&&&prince: ${token}");
+
+    if (response.statusCode == 200) {
+      NoOfCartModel noOfCartModel = noOfCartModelFromJson(response.body);
+      return noOfCartModel;
+    }
+  }
+
+  //
+  //login with plus cart api gyros api 5..................................
+
+  static cartplusApi(
+    var productId,
+  ) async {
+    var url = baseUrl + 'api/ProductApi/PlusAddToCart/$productId';
+    var prefs = GetStorage();
+    //saved id..........
+
+    final userId = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&okoko:${userId}');
+
+    token = prefs.read("token").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&okok:${token}');
+    var body = {
+      "Id": userId,
+    };
+    final headers = {"Authorization": "Bearer $token"};
+
+    print(body);
+    http.Response r =
+        await http.post(Uri.parse(url), body: body, headers: headers);
+    print(r.body);
+    print(r.statusCode);
+
+    if (r.statusCode == 200) {
+      return r;
+    } else {
+      Get.snackbar('Error', 'not increase');
+      return r;
+    }
+  }
+
+  //login with decrease cart api gyros api 5..................................
+  //api/ProductApi/DeleteAddToCart/$data
+
+  static cartminusApi(
+    var productId,
+  ) async {
+    var url = baseUrl + 'api/ProductApi/DeleteAddToCart/$productId';
+
+    var prefs = GetStorage();
+    //saved id..........
+
+    final userId = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&okoko:${userId}');
+
+    token = prefs.read("token").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&okok:${token}');
+    var body = {
+      "Id": userId,
+    };
+    final headers = {"Authorization": "Bearer $token"};
+
+    print(body);
+    http.Response r =
+        await http.post(Uri.parse(url), body: body, headers: headers);
+    print(r.body);
+    print(r.statusCode);
+
+    if (r.statusCode == 200) {
+      var data = jsonDecode(r.body.toString());
+      if (r.statusCode == 200) {
+        Get.snackbar('message', "success");
+      } else {
+        Get.snackbar('message', data["error"]);
+      }
+      return r;
+    } else {
+      // Get.snackbar('message', data["stat"]);
+      return r;
+    }
+  }
+
+  ///
+  ///
 
   ///...................
 
@@ -355,7 +531,7 @@ class ApiProvider {
   //     return;
   //   }
   // }
-
+  ///
   // get all product  get Api gyros.......15........
 
   static AllProductApi() async {

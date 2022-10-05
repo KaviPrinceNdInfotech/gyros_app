@@ -31,7 +31,9 @@ class _SplashScreenState extends State<SplashScreen> {
             ? () => Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => NavBar()))
             : () => Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => LoginPage())));
+                //in this line you can write different page.....
+                context,
+                MaterialPageRoute(builder: (context) => LoginPage())));
   }
 
   @override

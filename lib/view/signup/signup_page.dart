@@ -106,7 +106,7 @@ class SignUp extends StatelessWidget {
                           //'https://images.wallpapersden.com/image/download/las-vegas-night-hotel_Zmxtbm6UmZqaraWkpJRmbmdlrWZlbWU.jpg'
                           //'https://i.pinimg.com/originals/01/96/c1/0196c1f3432b1a2ebac601dadb7b92cd.jpg'
                           ),
-                      fit: BoxFit.fitHeight)),
+                      fit: BoxFit.fill)),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

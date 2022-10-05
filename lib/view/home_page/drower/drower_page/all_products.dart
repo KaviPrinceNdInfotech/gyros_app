@@ -71,31 +71,32 @@ class AllProducts extends StatelessWidget {
             )),
       ),
       body: Obx(() => (_allProductController.isLoading.value == false)
-          ? SingleChildScrollView(
-              child: Container(
+          ? Container(
+              //height: size.height,
+              width: double.infinity,
+              color: Colors.white,
+              child: SizedBox(
                 //height: size.height,
-                width: double.infinity,
-                color: Colors.white,
-                child: SizedBox(
-                  //height: size.height,
-                  width: size.width,
-                  // color: Colors.red,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          height: size.height * 0.03,
-                          width: size.width,
-                          color: Colors.green,
-                          child: Center(
-                            child: Text(
-                              'See your All Product',
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: Colors.white),
-                            ),
+                width: size.width,
+                // color: Colors.red,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: size.height * 0.03,
+                        width: size.width,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            'See your All Product',
+                            style:
+                                TextStyle(fontSize: 10.sp, color: Colors.white),
                           ),
                         ),
-                        ListView.builder(
+                      ),
+                      SizedBox(
+                        height: size.height * 93,
+                        child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: _allProductController
                                 .allProductModel!.result!.length,
@@ -297,88 +298,88 @@ class AllProducts extends StatelessWidget {
                                 ),
                               );
                             }),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-
-                ///here all product api..............
-                // ListView.builder(
-                //     shrinkWrap: true,
-                //     itemCount:
-                //         _homePageController.getcatagartlist!.result!.length,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return Padding(
-                //         padding: const EdgeInsets.all(1.0),
-                //         child: InkWell(
-                //           onTap: () {
-                //             _subCatByIdController.catid = _homePageController
-                //                 .getcatagartlist!.result![index].id
-                //                 .toString();
-                //             _subCatByIdController.subcatidApi();
-                //
-                //             // if (index == 0) {
-                //             //   Get.to(() => CowGhee());
-                //             // } else if (index == 1) {
-                //             //   Get.to(() => Oil());
-                //             // } else if (index == 2) {
-                //             //   Get.to(() => Honey());
-                //             // } else if (index == 3) {
-                //             //   Get.to(() => Jeggary());
-                //             // } else if (index == 4) {
-                //             //   Get.to(() => Spices());
-                //             // } else if (index == 5) {
-                //             //   Get.to(() => Sattu());
-                //             // } else if (index == 6) {
-                //             //   Get.to(() => Sweets());
-                //             // }
-                //           },
-                //           child: Container(
-                //             height: size.height * 0.25,
-                //             width: double.infinity,
-                //             decoration: BoxDecoration(
-                //                 border: Border.all(
-                //                     color: AppColors.themecolors, width: 2),
-                //                 image: DecorationImage(
-                //                   image: NetworkImage(base +
-                //                       '${_homePageController.getcatagartlist!.result![index].imageName.toString()}'),
-                //                   fit: BoxFit.cover,
-                //                   // centerSlice: Rect.fromCenter(
-                //                   //     center: Offset(200, 200),
-                //                   //     width: 1,
-                //                   //     height: 1),
-                //                   onError:
-                //                       (Object exception, StackTrace? stackTrace) {
-                //                     Text('No Image');
-                //                     // Icon(
-                //                     //   Icons.error,
-                //                     //   color: Colors.red,
-                //                     // );
-                //                     print('onError');
-                //                     print('Exception: $exception');
-                //                     print('Stack Trace:\n$stackTrace');
-                //                   },
-                //                 )),
-                //             child: Padding(
-                //               padding: EdgeInsets.all(8.0),
-                //               child: Text(
-                //                 _homePageController
-                //                     .getcatagartlist!.result![index].categoryName
-                //                     .toString(),
-                //                 style: GoogleFonts.abhayaLibre(
-                //                   backgroundColor: Colors.white70,
-                //                   fontStyle: FontStyle.italic,
-                //                   color: AppColors.themecolors,
-                //                   fontSize: 20.sp,
-                //                   fontWeight: FontWeight.bold,
-                //                 ),
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                //       );
-                //     }),
               ),
+
+              ///here all product api..............
+              // ListView.builder(
+              //     shrinkWrap: true,
+              //     itemCount:
+              //         _homePageController.getcatagartlist!.result!.length,
+              //     itemBuilder: (BuildContext context, int index) {
+              //       return Padding(
+              //         padding: const EdgeInsets.all(1.0),
+              //         child: InkWell(
+              //           onTap: () {
+              //             _subCatByIdController.catid = _homePageController
+              //                 .getcatagartlist!.result![index].id
+              //                 .toString();
+              //             _subCatByIdController.subcatidApi();
+              //
+              //             // if (index == 0) {
+              //             //   Get.to(() => CowGhee());
+              //             // } else if (index == 1) {
+              //             //   Get.to(() => Oil());
+              //             // } else if (index == 2) {
+              //             //   Get.to(() => Honey());
+              //             // } else if (index == 3) {
+              //             //   Get.to(() => Jeggary());
+              //             // } else if (index == 4) {
+              //             //   Get.to(() => Spices());
+              //             // } else if (index == 5) {
+              //             //   Get.to(() => Sattu());
+              //             // } else if (index == 6) {
+              //             //   Get.to(() => Sweets());
+              //             // }
+              //           },
+              //           child: Container(
+              //             height: size.height * 0.25,
+              //             width: double.infinity,
+              //             decoration: BoxDecoration(
+              //                 border: Border.all(
+              //                     color: AppColors.themecolors, width: 2),
+              //                 image: DecorationImage(
+              //                   image: NetworkImage(base +
+              //                       '${_homePageController.getcatagartlist!.result![index].imageName.toString()}'),
+              //                   fit: BoxFit.cover,
+              //                   // centerSlice: Rect.fromCenter(
+              //                   //     center: Offset(200, 200),
+              //                   //     width: 1,
+              //                   //     height: 1),
+              //                   onError:
+              //                       (Object exception, StackTrace? stackTrace) {
+              //                     Text('No Image');
+              //                     // Icon(
+              //                     //   Icons.error,
+              //                     //   color: Colors.red,
+              //                     // );
+              //                     print('onError');
+              //                     print('Exception: $exception');
+              //                     print('Stack Trace:\n$stackTrace');
+              //                   },
+              //                 )),
+              //             child: Padding(
+              //               padding: EdgeInsets.all(8.0),
+              //               child: Text(
+              //                 _homePageController
+              //                     .getcatagartlist!.result![index].categoryName
+              //                     .toString(),
+              //                 style: GoogleFonts.abhayaLibre(
+              //                   backgroundColor: Colors.white70,
+              //                   fontStyle: FontStyle.italic,
+              //                   color: AppColors.themecolors,
+              //                   fontSize: 20.sp,
+              //                   fontWeight: FontWeight.bold,
+              //                 ),
+              //               ),
+              //             ),
+              //           ),
+              //         ),
+              //       );
+              //     }),
             )
           : Center(child: CircularProgressIndicator())),
     );

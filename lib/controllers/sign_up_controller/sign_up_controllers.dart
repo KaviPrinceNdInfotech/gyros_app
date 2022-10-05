@@ -211,14 +211,14 @@ class SignUpPageController extends GetxController {
   }
 
   String? validatePassword(String value) {
-    if (value.length < 6) {
+    if (value.length < 5) {
       return "password should be 6 character";
     }
     return null;
   }
 
   String? validateConfirmPassword(String value) {
-    if (value.length < 6) {
+    if (value.length < 5) {
       return "re enter your password";
     }
     return null;
