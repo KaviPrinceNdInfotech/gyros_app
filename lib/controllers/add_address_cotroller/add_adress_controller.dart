@@ -1,37 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gyros_app/services/api_provider.dart';
+import 'package:gyros_app/widgets/circular_loader.dart';
+import 'package:http/http.dart' as http;
+
+import '../../view/model_cart_practice/viewss/adress_pagess/address_list/address_listss.dart';
+import '../otp_timer_controller/otp_timer_controllerss.dart';
 
 class AddAdressController extends GetxController {
   var isVisible = true.obs;
 
   final GlobalKey<FormState> AddressFormKey = GlobalKey<FormState>();
+  OtpTimerController _timeController = Get.put(OtpTimerController());
 
-  late TextEditingController fullnameController,
-      mobilenumberController,
-      enterstateController,
-      entercityController,
-      enterareaController,
-      enterhomeController,
-      enterpinController;
+  void postaddresssApi() async {
+    CallLoader.loader();
+    //print(Name.text);
+    http.Response r = await ApiProvider.PostAddressApi(
+      Name.text,
+      Mobile.text,
+      State.text,
+      City.text,
+      Area.text,
+      PinCode.text,
+    );
+    if (r.statusCode == 200) {
+      //Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
+      //Get.to(()=> LoginPage());
+      CallLoader.hideLoader();
 
-  var fullname = '';
-  var mobilenumber = '';
-  var enterstate = '';
-  var entercity = '';
-  var enterarea = '';
-  var enterhome = '';
-  var enterpin = '';
+      Get.to(() => AddressList());
+
+      _timeController.email = Email.text;
+      _timeController.phoneNumber = OrderNo.text;
+    }
+  }
+
+  TextEditingController Name = TextEditingController();
+  TextEditingController Mobile = TextEditingController();
+  TextEditingController State = TextEditingController();
+  TextEditingController City = TextEditingController();
+  TextEditingController Area = TextEditingController();
+  TextEditingController PinCode = TextEditingController();
+  TextEditingController Email = TextEditingController();
+  TextEditingController OrderNo = TextEditingController();
+
+  // late TextEditingController fullnameController,
+  //     mobilenumberController,
+  //     enterstateController,
+  //     entercityController,
+  //     enterareaController,
+  //     enterhomeController,
+  //     enterpinController;
+  //
+  // var fullname = '';
+  // var mobilenumber = '';
+  // var enterstate = '';
+  // var entercity = '';
+  // var enterarea = '';
+  // var enterhome = '';
+  // var enterpin = '';
 
   @override
   void onInit() {
     super.onInit();
-    fullnameController = TextEditingController();
-    mobilenumberController = TextEditingController();
-    enterstateController = TextEditingController();
-    entercityController = TextEditingController();
-    enterareaController = TextEditingController();
-    enterhomeController = TextEditingController();
-    enterpinController = TextEditingController();
+    Name;
+    Mobile;
+    State;
+    City;
+    Area;
+    PinCode;
+    Email;
+    OrderNo;
+    postaddresssApi();
+    // fullnameController = TextEditingController();
+    // mobilenumberController = TextEditingController();
+    // enterstateController = TextEditingController();
+    // entercityController = TextEditingController();
+    // enterareaController = TextEditingController();
+    // enterhomeController = TextEditingController();
+    // enterpinController = TextEditingController();
   }
 
   @override
@@ -41,13 +89,14 @@ class AddAdressController extends GetxController {
 
   @override
   void onClose() {
-    fullnameController.dispose();
-    mobilenumberController.dispose();
-    enterstateController.dispose();
-    entercityController.dispose();
-    enterareaController.dispose();
-    enterhomeController.dispose();
-    enterpinController.dispose();
+    Name;
+    Mobile;
+    State;
+    City;
+    Area;
+    PinCode;
+    Email;
+    OrderNo;
   }
 
   String? validateFullname(String value) {
@@ -99,7 +148,7 @@ class AddAdressController extends GetxController {
     return null;
   }
 
-  void checkAdress() {
+  void checkaddAdress() {
     final isValid = AddressFormKey.currentState!.validate();
     if (!isValid) {
       return;

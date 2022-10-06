@@ -184,6 +184,7 @@ class HomePagePractice extends StatelessWidget {
                     Icons.shopping_cart,
                     color: AppColors.themecolors,
                   ),
+
                   // Obx(
                   //   () => (controller.isLoading.value)
                   //       ? Center(child: CircularProgressIndicator())

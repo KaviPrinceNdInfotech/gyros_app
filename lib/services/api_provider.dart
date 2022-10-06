@@ -24,7 +24,6 @@ import '../models/our_story_model.dart';
 
 class ApiProvider {
   static var baseUrl = 'https://api.gyros.farm/';
-
   static String token = '';
   static String Token = '';
   static String categoryid = '';
@@ -135,6 +134,43 @@ class ApiProvider {
       return r;
     } else {
       Get.snackbar('Error', 'Login Failed');
+      return r;
+    }
+  }
+
+  static PostAddressApi(
+    var Name,
+    var Mobile,
+    var State,
+    var City,
+    var Area,
+    var PinCode,
+  ) async {
+    var prefs = GetStorage();
+    //saved id..........
+    // prefs.write("Id".toString(), json.decode(r.body)['Id']);
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&88999ppppp:${Id}');
+    var url = baseUrl + 'api/AdminApi/DeliveryAddress/$Id';
+
+    var body = {
+      "Name": Name,
+      "Mobile": Mobile,
+      "State": State,
+      "City": City,
+      "Area": Area,
+      "PinCode": PinCode,
+    };
+    print(body);
+    http.Response r = await http.post(
+      Uri.parse(url), body: body,
+      //headers: headers
+    );
+    print(r.body);
+    if (r.statusCode == 200) {
+      return r;
+    } else {
+      Get.snackbar('Error', 'Address not added');
       return r;
     }
   }
@@ -493,9 +529,6 @@ class ApiProvider {
     }
   }
 
-  ///
-  ///
-
   ///...................
 
   // static GetCartApi() async {
@@ -598,10 +631,61 @@ class ApiProvider {
     }
   }
   //ContactUsModel
+  ///
+  //post address api gyros api 5..................................
+  ///
+
+  // static PostAddressApi(
+  //   var Name,
+  //   var Mobile,
+  //   var State,
+  //   var City,
+  //   var Area,
+  //   var PinCode,
+  // ) async {
+  //   var prefs = GetStorage();
+  //   //read id..........
+  //   Id = prefs.read("Id").toString();
+  //   print('&&&&&&&&&&&&&&&&&&prince111:${Id}');
+  //   var url = baseUrl + 'api/AdminApi/DeliveryAddress/$Id';
+  //
+  //   var body = {
+  //     "Name": Name,
+  //     "Mobile": Mobile,
+  //     "State": State,
+  //     "City": City,
+  //     "Area": Area,
+  //     "PinCode": PinCode,
+  //   };
+  //   print(body);
+  //   http.Response r = await http.post(
+  //     Uri.parse(url), body: body,
+  //     //headers: headers
+  //   );
+  //   print(r.body);
+  //   if (r.statusCode == 200) {
+  //     return r;
+  //   } else {
+  //     Get.snackbar('Error', 'Address not added');
+  //     return r;
+  //   }
+  // }
 
   ///till gyros...........................
 
   ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  /// ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///......................old code.........
 
   // static signUpApi(
   //   var Name,

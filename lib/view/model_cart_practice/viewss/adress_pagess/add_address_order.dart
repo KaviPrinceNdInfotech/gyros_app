@@ -5,7 +5,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
-import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/address_list/address_listss.dart';
 import 'package:sizer/sizer.dart';
 
 class AddAddress extends StatelessWidget {
@@ -114,13 +113,14 @@ class AddAddress extends StatelessWidget {
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
                     //keyboardType: TextInputType.emailAddress,
-                    controller: _addAdressController.fullnameController,
-                    onSaved: (value) {
-                      _addAdressController.fullname = value!;
-                    },
+                    controller: _addAdressController.Name,
+
                     validator: (value) {
                       return _addAdressController.validateFullname(value!);
                     },
+                    // onSaved: (value) {
+                    //   _addAdressController.validateFullname = value!;
+                    // },
                   ),
                 ),
 
@@ -171,10 +171,10 @@ class AddAddress extends StatelessWidget {
                       hintText: 'Enter Your Mobile',
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
-                    controller: _addAdressController.mobilenumberController,
-                    onSaved: (value) {
-                      _addAdressController.mobilenumber = value!;
-                    },
+                    controller: _addAdressController.Mobile,
+                    // onSaved: (value) {
+                    //   _addAdressController.mobilenumber = value!;
+                    // },
                     validator: (value) {
                       return _addAdressController.validateMobile(value!);
                     },
@@ -228,10 +228,10 @@ class AddAddress extends StatelessWidget {
                       hintText: 'Enter Your State',
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
-                    controller: _addAdressController.enterstateController,
-                    onSaved: (value) {
-                      _addAdressController.enterstate = value!;
-                    },
+                    controller: _addAdressController.State,
+                    // onSaved: (value) {
+                    //   _addAdressController.enterstate = value!;
+                    // },
                     validator: (value) {
                       return _addAdressController.validateState(value!);
                     },
@@ -285,10 +285,10 @@ class AddAddress extends StatelessWidget {
                       hintText: 'Enter Your City',
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
-                    controller: _addAdressController.entercityController,
-                    onSaved: (value) {
-                      _addAdressController.entercity = value!;
-                    },
+                    controller: _addAdressController.City,
+                    // onSaved: (value) {
+                    //   _addAdressController.entercity = value!;
+                    // },
                     validator: (value) {
                       return _addAdressController.validateCity(value!);
                     },
@@ -342,10 +342,10 @@ class AddAddress extends StatelessWidget {
                       hintText: 'Enter Your Area',
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
-                    controller: _addAdressController.enterareaController,
-                    onSaved: (value) {
-                      _addAdressController.enterarea = value!;
-                    },
+                    controller: _addAdressController.Area,
+                    // onSaved: (value) {
+                    //   _addAdressController.enterarea = value!;
+                    // },
                     validator: (value) {
                       return _addAdressController.validateArea(value!);
                     },
@@ -354,60 +354,60 @@ class AddAddress extends StatelessWidget {
 
                 ///todo from here home....
 
-                Container(
-                  width: size.width * 0.8,
-                  height: size.height * 0.11,
-                  margin: EdgeInsets.symmetric(vertical: 0),
-                  padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-                  decoration: BoxDecoration(
-                    //color: MyTheme.loginPageBoxColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextFormField(
-                    style: TextStyle(
-                      color: MyTheme.ThemeColors,
-                    ),
-                    cursorColor: MyTheme.ThemeColors,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: MyTheme.ThemeColors,
-                        ),
-                      ),
-                      errorStyle: TextStyle(
-                          color: Colors.red, fontWeight: FontWeight.w700),
-                      //border: InputBorder.none,
-                      fillColor: MyTheme.loginPageBoxColor,
-                      filled: true,
-                      focusColor: MyTheme.loginPageBoxColor,
-                      border: OutlineInputBorder(
-                        //borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide:
-                            BorderSide(width: 2, color: MyTheme.ThemeColors),
-                      ),
-                      //labelText: "Email",
-                      prefixIcon: Icon(
-                        Icons.home,
-                        color: MyTheme.ThemeColors,
-                      ),
-                      hintText: 'Enter Your Home',
-                      hintStyle: TextStyle(color: MyTheme.ThemeColors),
-                    ),
-                    controller: _addAdressController.enterhomeController,
-                    onSaved: (value) {
-                      _addAdressController.enterhome = value!;
-                    },
-                    validator: (value) {
-                      return _addAdressController.validateHome(value!);
-                    },
-                  ),
-                ),
+                // Container(
+                //   width: size.width * 0.8,
+                //   height: size.height * 0.11,
+                //   margin: EdgeInsets.symmetric(vertical: 0),
+                //   padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                //   decoration: BoxDecoration(
+                //     //color: MyTheme.loginPageBoxColor,
+                //     borderRadius: BorderRadius.circular(20),
+                //   ),
+                //   child: TextFormField(
+                //     style: TextStyle(
+                //       color: MyTheme.ThemeColors,
+                //     ),
+                //     cursorColor: MyTheme.ThemeColors,
+                //     decoration: InputDecoration(
+                //       focusedBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(20),
+                //         borderSide: BorderSide(
+                //           width: 2,
+                //           color: MyTheme.ThemeColors,
+                //         ),
+                //       ),
+                //       errorStyle: TextStyle(
+                //           color: Colors.red, fontWeight: FontWeight.w700),
+                //       //border: InputBorder.none,
+                //       fillColor: MyTheme.loginPageBoxColor,
+                //       filled: true,
+                //       focusColor: MyTheme.loginPageBoxColor,
+                //       border: OutlineInputBorder(
+                //         //borderSide: BorderSide.none,
+                //         borderRadius: BorderRadius.circular(20),
+                //       ),
+                //       errorBorder: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(20),
+                //         borderSide:
+                //             BorderSide(width: 2, color: MyTheme.ThemeColors),
+                //       ),
+                //       //labelText: "Email",
+                //       prefixIcon: Icon(
+                //         Icons.home,
+                //         color: MyTheme.ThemeColors,
+                //       ),
+                //       hintText: 'Enter Your Home',
+                //       hintStyle: TextStyle(color: MyTheme.ThemeColors),
+                //     ),
+                //     controller: _addAdressController.enterhomeController,
+                //     onSaved: (value) {
+                //       _addAdressController.enterhome = value!;
+                //     },
+                //     validator: (value) {
+                //       return _addAdressController.validateHome(value!);
+                //     },
+                //   ),
+                // ),
 
                 ///todo from here pin....
 
@@ -456,10 +456,10 @@ class AddAddress extends StatelessWidget {
                       hintText: 'Enter Your Pin',
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
-                    controller: _addAdressController.enterpinController,
-                    onSaved: (value) {
-                      _addAdressController.enterpin = value!;
-                    },
+                    controller: _addAdressController.PinCode,
+                    // onSaved: (value) {
+                    //   _addAdressController.enterpin = value!;
+                    // },
                     validator: (value) {
                       return _addAdressController.validatePin(value!);
                     },
@@ -975,9 +975,10 @@ class AddAddress extends StatelessWidget {
                   child: ElevatedButton(
                     //key: _formkeyphones,
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => AddressList()),
-                      );
+                      _addAdressController.checkaddAdress();
+                      // Navigator.of(context).push(
+                      //   MaterialPageRoute(builder: (context) => AddressList()),
+                      // );
                     },
                     style: ButtonStyle(
                       foregroundColor:
