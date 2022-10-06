@@ -137,6 +137,7 @@ class ApiProvider {
       return r;
     }
   }
+  //here add address api...............gyros.....
 
   static PostAddressApi(
     var Name,
@@ -146,32 +147,37 @@ class ApiProvider {
     var Area,
     var PinCode,
   ) async {
-    var prefs = GetStorage();
-    //saved id..........
-    // prefs.write("Id".toString(), json.decode(r.body)['Id']);
-    Id = prefs.read("Id").toString();
-    print('&&&&&&&&&&&&&&&&&&&&&&88999ppppp:${Id}');
-    var url = baseUrl + 'api/AdminApi/DeliveryAddress/$Id';
+    try {
+      var prefs = GetStorage();
+      //saved id..........
+      // prefs.write("Id".toString(), json.decode(r.body)['Id']);
+      Id = prefs.read("Id").toString();
+      print('&&&&&&&&&&&&&&&&&&&&&&88999ppppp:${Id}');
+      var url = baseUrl + 'api/AdminApi/DeliveryAddress/$Id';
 
-    var body = {
-      "Name": Name,
-      "Mobile": Mobile,
-      "State": State,
-      "City": City,
-      "Area": Area,
-      "PinCode": PinCode,
-    };
-    print(body);
-    http.Response r = await http.post(
-      Uri.parse(url), body: body,
-      //headers: headers
-    );
-    print(r.body);
-    if (r.statusCode == 200) {
-      return r;
-    } else {
-      Get.snackbar('Error', 'Address not added');
-      return r;
+      var body = {
+        "Name": Name,
+        "Mobile": Mobile,
+        "State": State,
+        "City": City,
+        "Area": Area,
+        "PinCode": PinCode,
+      };
+      print(body);
+      http.Response r = await http.post(
+        Uri.parse(url), body: body,
+        //headers: headers
+      );
+      print(r.body);
+      if (r.statusCode == 200) {
+        return r;
+      } else {
+        Get.snackbar('Error', 'Address not added');
+        return r;
+      }
+    } catch (e) {
+      print('Error');
+      print(e.toString());
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/address_list_controller/address_list_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/add_address_order.dart';
+import 'package:gyros_app/view/model_cart_practice/widgets/cart_total.dart';
 import 'package:sizer/sizer.dart';
 
 class AddressList extends StatelessWidget {
@@ -22,7 +23,8 @@ class AddressList extends StatelessWidget {
         elevation: 0,
         leading: InkWell(
           onTap: () {
-            Get.back();
+            Get.to(() => TotalPrice());
+            // Get.back();
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,

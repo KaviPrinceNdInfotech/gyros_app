@@ -10,12 +10,13 @@ import '../otp_timer_controller/otp_timer_controllerss.dart';
 class AddAdressController extends GetxController {
   var isVisible = true.obs;
 
-  final GlobalKey<FormState> AddressFormKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> AddressFormKey =
+      GlobalKey<FormState>(debugLabel: "AddressFormKey");
   OtpTimerController _timeController = Get.put(OtpTimerController());
 
   void postaddresssApi() async {
     CallLoader.loader();
-    //print(Name.text);
+    print(Name.text);
     http.Response r = await ApiProvider.PostAddressApi(
       Name.text,
       Mobile.text,
@@ -29,7 +30,10 @@ class AddAdressController extends GetxController {
       //Get.to(()=> LoginPage());
       CallLoader.hideLoader();
 
-      Get.to(() => AddressList());
+      Get.to(() => AddressList())!
+          .then((value) => Get.delete<AddAdressController>());
+
+      //Get.to(() => AddressList());
 
       _timeController.email = Email.text;
       _timeController.phoneNumber = OrderNo.text;
@@ -72,7 +76,7 @@ class AddAdressController extends GetxController {
     PinCode;
     Email;
     OrderNo;
-    postaddresssApi();
+
     // fullnameController = TextEditingController();
     // mobilenumberController = TextEditingController();
     // enterstateController = TextEditingController();
@@ -89,14 +93,20 @@ class AddAdressController extends GetxController {
 
   @override
   void onClose() {
-    Name;
-    Mobile;
-    State;
-    City;
-    Area;
-    PinCode;
-    Email;
-    OrderNo;
+    Name.dispose();
+    Mobile.dispose();
+    State.dispose();
+    City.dispose();
+    Area.dispose();
+    PinCode.dispose();
+    Email.dispose();
+    OrderNo.dispose();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    //AddAdressController();
   }
 
   String? validateFullname(String value) {
@@ -149,9 +159,9 @@ class AddAdressController extends GetxController {
   }
 
   void checkaddAdress() {
-    final isValid = AddressFormKey.currentState!.validate();
-    if (!isValid) {
-      return;
+    //final isValid = AddressFormKey.currentState!.validate();
+    if (AddressFormKey.currentState!.validate()) {
+      postaddresssApi();
     }
     AddressFormKey.currentState!.save();
   }

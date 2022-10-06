@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
@@ -966,40 +967,57 @@ class AddAddress extends StatelessWidget {
                 SizedBox(
                   height: 0.h,
                 ),
-                Container(
-                  width: size.width * 0.7,
-                  decoration: BoxDecoration(
-                    color: MyTheme.loginbuttonColor,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: ElevatedButton(
-                    //key: _formkeyphones,
-                    onPressed: () {
-                      _addAdressController.checkaddAdress();
-                      // Navigator.of(context).push(
-                      //   MaterialPageRoute(builder: (context) => AddressList()),
-                      // );
-                    },
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.white),
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(14.0),
-                      child: Text(
-                        'Add Address',
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ),
-                  ),
+                CustomButtom(
+                  buttonColor: MyTheme.loginbuttonColor,
+                  buttontext: 'Add',
+                  textColor: Theme.of(context).colorScheme.onPrimary,
+                  handleButtonClick: () {
+                    //CallLoader.loader();
+                    _addAdressController.checkaddAdress();
+                    // if (_formKey.currentState!.validate()) {
+                    //   register(
+                    //       _nameController.text.toString(),
+                    //       _emailController.text.toString(),
+                    //       _passsController.text.toString(),
+                    //       _passsController.text.toString(),
+                    //       _confirmController.text.toString());
+                    // }
+                  },
                 ),
+                // Container(
+                //   width: size.width * 0.7,
+                //   decoration: BoxDecoration(
+                //     color: MyTheme.loginbuttonColor,
+                //     borderRadius: BorderRadius.circular(8),
+                //   ),
+                //   child: ElevatedButton(
+                //     //key: _formkeyphones,
+                //     onPressed: () {
+                //       _addAdressController.checkaddAdress();
+                //       // Navigator.of(context).push(
+                //       //   MaterialPageRoute(builder: (context) => AddressList()),
+                //       // );
+                //     },
+                //     style: ButtonStyle(
+                //       foregroundColor:
+                //           MaterialStateProperty.all<Color>(Colors.white),
+                //       backgroundColor:
+                //           MaterialStateProperty.all<Color>(Colors.green),
+                //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                //         RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(8.0),
+                //         ),
+                //       ),
+                //     ),
+                //     child: Padding(
+                //       padding: EdgeInsets.all(14.0),
+                //       child: Text(
+                //         'Add Address',
+                //         style: TextStyle(fontSize: 14),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

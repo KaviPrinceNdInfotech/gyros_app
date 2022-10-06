@@ -19,6 +19,7 @@ class IntroVideo extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return SizedBox(
       height: size.height,
+      width: size.width,
       //height: size.height * 0.95,
       child: ListView.builder(
           //physics: NeverScrollableScrollPhysics(),
@@ -37,7 +38,7 @@ class IntroVideo extends StatelessWidget {
               child: Stack(
                 children: [
                   Container(
-                      width: 100.w,
+                      width: size.width,
                       decoration: BoxDecoration(
                         gradient: MyTheme.gradient1,
                       ),
