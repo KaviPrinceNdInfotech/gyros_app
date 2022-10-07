@@ -9,8 +9,9 @@ import 'package:http/http.dart' as http;
 
 import '../../../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
 
-class CartController extends GetxController with StateMixin<CartListModel> {
-  RxBool isLoading = false.obs;
+class CartController extends GetxController {
+  //class CartController extends GetxController with StateMixin<CartListModel> {
+  RxBool isLoading = true.obs;
   String cartlistid = '';
   String productid = '';
   FlashProductByIdController _flashProductByIdController =
@@ -66,8 +67,9 @@ class CartController extends GetxController with StateMixin<CartListModel> {
     http.Response r = await ApiProvider.AddToCartApi(Id);
 
     if (r.statusCode == 200) {
-      CallLoader.hideLoader();
-      Get.to(() => Cartproducts());
+      CartListgApi();
+
+      //Get.to(() => Cartproducts());
 
       //Get.off(() => Cartproducts());
 
@@ -81,18 +83,18 @@ class CartController extends GetxController with StateMixin<CartListModel> {
       // );
 
       ///
-
-      // Get.to(
-      //   () => Cartproducts(), //next page class
-      //   duration: Duration(
-      //       milliseconds: 300), //duration of transitions, default 1 sec
-      //   transition:
-      //       // Transition.leftToRight //transition effect
-      //       // Transition.fadeIn
-      //       //Transition.size
-      //       Transition.zoom,
-      // );
-      isLoading(false);
+      Get.to(
+        () => Cartproducts(), //next page class
+        duration: Duration(
+            milliseconds: 300), //duration of transitions, default 1 sec
+        transition:
+            // Transition.leftToRight //transition effect
+            // Transition.fadeIn
+            //Transition.size
+            Transition.zoom,
+      );
+      //CallLoader.hideLoader();
+      //isLoading(false);
     }
   }
 
@@ -115,7 +117,7 @@ class CartController extends GetxController with StateMixin<CartListModel> {
   ///increment plus add to cart......post api........
 
   void pluscartApi(var Id) async {
-    CallLoader.loader();
+    //CallLoader.loader();
     http.Response r = await ApiProvider.cartplusApi(Id);
 
     if (r.statusCode == 200) {
@@ -132,7 +134,7 @@ class CartController extends GetxController with StateMixin<CartListModel> {
     //CallLoader.loader();
     http.Response r = await ApiProvider.cartminusApi(Id);
     if (r.statusCode == 200) {
-      CallLoader.hideLoader();
+      // CallLoader.hideLoader();
       CartListgApi();
       //Get.to(() => Cartproducts());
     }

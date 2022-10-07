@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gyros_app/services/api_provider.dart';
-import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:http/http.dart' as http;
 
 import '../../view/model_cart_practice/viewss/adress_pagess/address_list/address_listss.dart';
+import '../address_list_controller/address_list_controllers.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
 
 class AddAdressController extends GetxController {
   var isVisible = true.obs;
+  RxBool isLoading = true.obs;
+  AddressListController _addressListController =
+      Get.put(AddressListController());
 
   final GlobalKey<FormState> AddressFormKey =
       GlobalKey<FormState>(debugLabel: "AddressFormKey");
   OtpTimerController _timeController = Get.put(OtpTimerController());
 
   void postaddresssApi() async {
-    CallLoader.loader();
+    isLoading(true);
+    //CallLoader.loader();
     print(Name.text);
     http.Response r = await ApiProvider.PostAddressApi(
       Name.text,
@@ -28,10 +32,22 @@ class AddAdressController extends GetxController {
     if (r.statusCode == 200) {
       //Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
       //Get.to(()=> LoginPage());
-      CallLoader.hideLoader();
+      //CallLoader.hideLoader();
 
-      Get.to(() => AddressList())!
+      Get.to(
+        () => AddressList(), //next page class
+        duration: Duration(
+            milliseconds: 300), //duration of transitions, default 1 sec
+        transition:
+            // Transition.leftToRight //transition effect
+            // Transition.fadeIn
+            //Transition.size
+            Transition.zoom,
+      )!
           .then((value) => Get.delete<AddAdressController>());
+
+      // Get.to(() => AddressList())!
+      //     .then((value) => Get.delete<AddAdressController>());
 
       //Get.to(() => AddressList());
 

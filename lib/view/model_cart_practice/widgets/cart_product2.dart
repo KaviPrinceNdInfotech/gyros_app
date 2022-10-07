@@ -462,13 +462,19 @@ import 'package:sizer/sizer.dart';
 import 'cart_total.dart';
 
 class Cartproducts extends StatelessWidget {
-  final CartController controller = Get.find();
+  final CartController controller = Get.put(CartController());
+
   Cartproducts({Key? key}) : super(key: key);
+
+  _loaddata() async {
+    await Get.find<CartController>().cartListModel;
+  }
 
   RxBool isLoading = false.obs;
 
   @override
   Widget build(BuildContext context) {
+    _loaddata();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       // appBar: AppBar(

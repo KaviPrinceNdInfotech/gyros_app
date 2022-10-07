@@ -384,6 +384,50 @@ class ProfilePages extends StatelessWidget {
                 visualDensity: VisualDensity(horizontal: 0, vertical: 3),
                 leading: Padding(
                   padding: EdgeInsets.all(9.0),
+                  child: Icon(Icons.delete),
+                ),
+                title: Text(
+                  'Delete Account',
+                  style: GoogleFonts.raleway(
+                      color: Colors.black,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.bold),
+                ),
+                trailing: Icon(
+                  Icons.arrow_forward_ios_sharp,
+                  size: 9.sp,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Get.defaultDialog(
+                    title: "Welcome To Gyros",
+                    middleText: "You content goes here...",
+                    content: getContent(),
+                    barrierDismissible: true,
+                    radius: 20.0,
+                    confirm: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: confirmBtn(),
+                    ),
+                    cancel: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: cancelBtn(),
+                    ),
+                  );
+
+                  //Get.to(() => CupponsPage());
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => Wollet()));
+                }, //PersonalDetails
+              ),
+
+              ListTile(
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 0.5, horizontal: 10),
+                dense: true,
+                visualDensity: VisualDensity(horizontal: 0, vertical: 3),
+                leading: Padding(
+                  padding: EdgeInsets.all(9.0),
                   child: Icon(Icons.local_offer_rounded),
                 ),
                 title: Text(
@@ -526,6 +570,54 @@ class ProfilePages extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget confirmBtn() {
+    return ElevatedButton(
+        onPressed: () {
+          Get.back();
+        },
+        style: ElevatedButton.styleFrom(
+            primary: Colors.red,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+        child: Text("Confirm"));
+  }
+
+  Widget cancelBtn() {
+    return ElevatedButton(
+        onPressed: () {
+          Get.back();
+        },
+        style: ElevatedButton.styleFrom(
+            primary: Colors.green,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+        child: Text("Cancel"));
+  }
+
+  Widget getContent() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "If Yow want to remove your account,",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+        Text(
+          "Then you please click confirm button",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+        Text(
+          "Your data will erase if you press confirm.",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+        Text(
+          "If you don't want to delete press cancel",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+      ],
     );
   }
 }

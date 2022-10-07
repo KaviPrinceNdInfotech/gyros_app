@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/rozar_pay_controller/rozar_pay_controller.dart';
+
 class PaymentController extends GetxController {
   final GlobalKey<FormState> paymentFormKey = GlobalKey<FormState>();
+  final RozarPayController _rozarPayController = Get.put(RozarPayController());
+
   //NavController _navController = Get.find();
 
   TextEditingController payment = TextEditingController();
@@ -11,6 +15,8 @@ class PaymentController extends GetxController {
   void onInit() {
     super.onInit();
     payment;
+
+    _rozarPayController.openCheckout();
 
     // _navController.tabindex(0);
     // Get.to(() => NavBar());

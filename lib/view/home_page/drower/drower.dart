@@ -16,7 +16,6 @@ import 'package:sizer/sizer.dart';
 
 import 'drower_page/all_products.dart';
 import 'drower_page/blogs/my_blogs.dart';
-import 'drower_page/profile_page_personal/personal_profile_page.dart';
 import 'drower_page/trackingss/tracking.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -260,35 +259,37 @@ class MainDrawer extends StatelessWidget {
                 Get.offNamed('/Tracking');
               },
             ),
-            ListTile(
-              //horizontalTitleGap: 2.h,
-              leading: Icon(
-                Icons.account_circle,
-                color: Colors.black,
-                size: 14.sp,
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios_sharp,
-                size: 11.sp,
-                color: Colors.black,
-              ),
-              contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-              dense: true,
-              //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
-              title: Text(
-                'Profile',
-                style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
-              ),
-              tileColor: Get.currentRoute == '/PersonalProfile'
-                  ? Colors.grey[300]
-                  : null,
-              onTap: () {
-                print(Get.currentRoute);
-                Get.back();
-                Get.to(() => PersonalProfile());
-                Get.offNamed('/PersonalProfile');
-              },
-            ),
+
+            ///here from profileeee...............................
+            // ListTile(
+            //   //horizontalTitleGap: 2.h,
+            //   leading: Icon(
+            //     Icons.account_circle,
+            //     color: Colors.black,
+            //     size: 14.sp,
+            //   ),
+            //   trailing: Icon(
+            //     Icons.arrow_forward_ios_sharp,
+            //     size: 11.sp,
+            //     color: Colors.black,
+            //   ),
+            //   contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+            //   dense: true,
+            //   //visualDensity: VisualDensity(horizontal: 0, vertical: -1),
+            //   title: Text(
+            //     'Profile',
+            //     style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
+            //   ),
+            //   tileColor: Get.currentRoute == '/PersonalProfile'
+            //       ? Colors.grey[300]
+            //       : null,
+            //   onTap: () {
+            //     print(Get.currentRoute);
+            //     Get.back();
+            //     Get.to(() => PersonalProfile());
+            //     Get.offNamed('/PersonalProfile');
+            //   },
+            // ),
             ListTile(
               //horizontalTitleGap: 2.h,
               leading: Icon(

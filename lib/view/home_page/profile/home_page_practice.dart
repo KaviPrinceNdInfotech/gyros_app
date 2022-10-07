@@ -7,7 +7,6 @@ import 'package:gyros_app/models/all_product_model.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower.dart';
 import 'package:gyros_app/view/home_page/home_page_controller.dart';
-import 'package:gyros_app/view/home_page/search_screen.dart';
 import 'package:gyros_app/view/home_page/slider_crusial.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
@@ -209,19 +208,21 @@ class HomePagePractice extends StatelessWidget {
                   // ),
                 )),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3.w),
-            child: InkWell(
-              onTap: () {
-                Get.to(() => SearchPage());
-                //Get.to(() => ExploreView());
-              },
-              child: Icon(
-                Icons.search,
-                color: AppColors.themecolors,
-              ),
-            ),
-          ),
+
+          ///here search page for your identification.......
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 3.w),
+          //   child: InkWell(
+          //     onTap: () {
+          //       Get.to(() => SearchPage());
+          //       //Get.to(() => ExploreView());
+          //     },
+          //     child: Icon(
+          //       Icons.search,
+          //       color: AppColors.themecolors,
+          //     ),
+          //   ),
+          // ),
         ],
         // Text(
         //   'Gyrus',
@@ -425,14 +426,13 @@ class HomePagePractice extends StatelessWidget {
                               .getflashsellproduct!.result!.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 0.001, vertical: 0.001),
+                              padding: const EdgeInsets.all(1.0),
                               child: PhysicalModel(
                                 borderRadius: BorderRadius.circular(5),
                                 color: MyTheme.ThemeColors,
                                 elevation: 0.1,
                                 child: Container(
-                                  height: size.height * 0.04,
+                                  height: 26.h,
                                   width: size.width * 0.5,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
@@ -447,7 +447,7 @@ class HomePagePractice extends StatelessWidget {
                                           height: 3.1.h,
                                           width: 22.w,
                                           decoration: BoxDecoration(
-                                              color: Colors.blueGrey.shade400,
+                                              color: Colors.blueGrey.shade300,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
                                                 bottomRight:
@@ -652,13 +652,17 @@ class HomePagePractice extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                               ),
-                                              child: GestureDetector(
+                                              child: InkWell(
+                                                ///TODO: here we have to change the code add to cart..............prince
                                                 onTap: () {
+                                                  ///this is the thing to thing to you that how can you add the item to add to cart api send by the help of id
                                                   controller.addtocartApi(
                                                       _homePageController
                                                           .getflashsellproduct!
                                                           .result![index]
                                                           .id);
+
+                                                  ///
                                                 },
                                                 child: RaisedGradientButton(
                                                   //height: 3.3.h,
@@ -678,12 +682,15 @@ class HomePagePractice extends StatelessWidget {
                                                     ],
                                                   ),
                                                   onPressed: () {
-                                                    // controller.addtocartApi(
-                                                    //     _homePageController
-                                                    //         .getflashsellproduct!
-                                                    //         .result![index]
-                                                    //         .id);
-                                                    // print('Add To cart');
+                                                    // cartController.addProduct(
+                                                    //     Productss
+                                                    //         .products[index]);
+                                                    controller.addtocartApi(
+                                                        _homePageController
+                                                            .getflashsellproduct!
+                                                            .result![index]
+                                                            .id);
+                                                    print('Add To cart');
                                                   },
                                                 ),
                                               ),

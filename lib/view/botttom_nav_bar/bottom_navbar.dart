@@ -285,6 +285,7 @@ class NavBar extends StatelessWidget {
               children: [
                 //HomePage(),
                 HomePagePractice(),
+
                 AllProducts(),
                 // ExploreView(),
 //     //StudioPage(),
@@ -296,6 +297,7 @@ class NavBar extends StatelessWidget {
                 //Explorepage(),
                 GiftBox(),
                 //Cartproducts(),
+                //PaymentPage(),
                 BestDeal(),
                 ProfilePages(),
                 //Profile(),

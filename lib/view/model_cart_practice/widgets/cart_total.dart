@@ -6,6 +6,7 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/address_list_controller/address_list_controllers.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/home_page_controller.dart';
+import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/address_list/address_listss.dart';
 import 'package:neopop/utils/color_utils.dart';
 import 'package:neopop/utils/constants.dart';
@@ -22,6 +23,8 @@ class TotalPrice extends StatelessWidget {
   RozarPayController _rozarPayController = Get.find();
   AddressListController _addressListController =
       Get.put(AddressListController());
+  final CartController controller = Get.put(CartController());
+
   HomePageController _homePageController = Get.find();
 
   @override
@@ -364,7 +367,7 @@ class TotalPrice extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '₹ ${1300}',
+                          '₹ ${controller.cartListModel.totalPrice}',
                           style: TextStyle(
                             fontSize: 20,
                             color: Colors.red,

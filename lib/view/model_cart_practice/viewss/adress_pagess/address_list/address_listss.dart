@@ -9,6 +9,9 @@ import 'package:sizer/sizer.dart';
 
 class AddressList extends StatelessWidget {
   AddressList({Key? key}) : super(key: key);
+  _loaddata() async {
+    await Get.find<AddressListController>().addaddressModel;
+  }
 
   //final List<String> addresslist = ['1', '2', '3', '4', '5'];
   AddressListController _addressListController =
@@ -17,6 +20,8 @@ class AddressList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    _loaddata();
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -113,16 +118,17 @@ class AddressList extends StatelessWidget {
                                                           .value ==
                                                       index
                                                   ? MyTheme.gradient4
-                                                  : LinearGradient(
-                                                      begin:
-                                                          Alignment.centerLeft,
-                                                      end:
-                                                          Alignment.centerRight,
-                                                      colors: [
-                                                        Colors.grey.shade400,
-                                                        Colors.black87
-                                                      ],
-                                                    ),
+                                                  : MyTheme.gradient4,
+                                              // LinearGradient(
+                                              //         begin:
+                                              //             Alignment.centerLeft,
+                                              //         end:
+                                              //             Alignment.centerRight,
+                                              //         colors: [
+                                              //           Colors.grey.shade400,
+                                              //           Colors.black87
+                                              //         ],
+                                              //       ),
                                               //gradient: MyTheme.gradient4
 
                                               // color:
