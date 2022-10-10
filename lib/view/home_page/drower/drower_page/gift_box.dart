@@ -18,6 +18,8 @@ class GiftBox extends StatelessWidget {
 
   final RozarPayController _rozarPayController = Get.find();
   NavController _navController = Get.find();
+  final CartController controller = Get.put(CartController());
+
   GiftBoxController _giftBoxController = Get.put(GiftBoxController());
   final CartController cartController = Get.find();
 
@@ -256,11 +258,17 @@ class GiftBox extends StatelessWidget {
                                                         ),
                                                         child: InkWell(
                                                           onTap: () {
-                                                            cartController
-                                                                .addProduct(
-                                                                    Productss
-                                                                            .products[
-                                                                        index]);
+                                                            controller.addtocartApi(
+                                                                _giftBoxController
+                                                                    .giftcardModel!
+                                                                    .result![
+                                                                        index]
+                                                                    .id);
+                                                            // cartController
+                                                            //     .addProduct(
+                                                            //         Productss
+                                                            //                 .products[
+                                                            //             index]);
                                                           },
                                                           child:
                                                               RaisedGradientButton(
@@ -280,9 +288,13 @@ class GiftBox extends StatelessWidget {
                                                             gradient:
                                                                 LinearGradient(
                                                               colors: <Color>[
-                                                                Colors.green,
-                                                                Colors.cyan
-                                                                    .shade400
+                                                                Color(
+                                                                    0xff3a923b),
+                                                                Color(
+                                                                    0xffb5d047),
+                                                                // Colors.green,
+                                                                // Colors.cyan
+                                                                //     .shade400
                                                               ],
                                                             ),
                                                             onPressed: () {

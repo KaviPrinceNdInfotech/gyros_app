@@ -1,6 +1,8 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'package:gyros_app/models/all_product_model.dart';
@@ -171,41 +173,39 @@ class HomePagePractice extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 3.w),
+            padding: EdgeInsets.symmetric(horizontal: 2.w),
             child: InkWell(
                 onTap: () {
                   Get.to(() => Cartproducts());
                   //Get.to(() => ShopingBagsEmpty());
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(6.0),
-                  child: Icon(
-                    Icons.shopping_cart,
-                    color: AppColors.themecolors,
+                  padding: EdgeInsets.all(4.0),
+                  child: Badge(
+                    toAnimate: true,
+                    badgeColor: AppColors.themecolors,
+                    badgeContent: Obx(
+                      () => (controller.isLoading.value)
+                          ? Center(
+                              child: CircularProgressIndicator(
+                              color: Colors.lightGreenAccent,
+                              backgroundColor: Colors.white,
+                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
+                              strokeWidth: 3,
+                            ))
+                          : Text(
+                              controller.cartListModel.totalItem.toString(),
+                              style: GoogleFonts.alatsi(
+                                color: Colors.white,
+                                fontSize: 10.sp,
+                              ),
+                            ),
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.green,
+                    ),
                   ),
-
-                  // Obx(
-                  //   () => (controller.isLoading.value)
-                  //       ? Center(child: CircularProgressIndicator())
-                  //     //       :
-                  //     Badge(
-                  //   toAnimate: false,
-                  //   //badgeColor: AppColors.themecolors,
-                  //   // badgeContent: Text(
-                  //   //   //controller.NoOfcartitem!.result.toString(),
-                  //   //   // controller.NoOfcartitem!.result.toString(),
-                  //   //   controller.count.toString(),
-                  //   //   style: GoogleFonts.alatsi(
-                  //   //     color: Colors.white,
-                  //   //     fontSize: 10.sp,
-                  //   //   ),
-                  //   // ),
-                  //   child: Icon(
-                  //     Icons.shopping_cart,
-                  //     color: AppColors.themecolors,
-                  //   ),
-                  // ),
-                  // ),
                 )),
           ),
 
@@ -260,8 +260,8 @@ class HomePagePractice extends StatelessWidget {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 4,
                             childAspectRatio: 5 / 2,
-                            mainAxisExtent: size.height * 0.07,
-                            crossAxisSpacing: 0,
+                            mainAxisExtent: size.height * 0.09,
+                            crossAxisSpacing: 1,
                             mainAxisSpacing: 0),
                         itemCount:
                             _homePageController.getcatagartlist!.result!.length,
@@ -269,7 +269,9 @@ class HomePagePractice extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return Obx(
                             () => Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.005,
+                                  vertical: size.height * 0.002),
                               child: InkWell(
                                 onTap: () {
                                   _subCatByIdController.catid =
@@ -322,8 +324,10 @@ class HomePagePractice extends StatelessWidget {
                                   color:
                                       _homePageController.selectedIndex.value ==
                                               index
-                                          ? Color(0xffeff8f5)
-                                          : Color(0xffeff8f5),
+                                          ? MyTheme.containercolor7
+                                          : MyTheme.containercolor7,
+
+                                  //: Color(0xffeff8f5),
                                   elevation: 0.1,
                                   child: Container(
                                     height: 10.h,
@@ -354,7 +358,8 @@ class HomePagePractice extends StatelessWidget {
                                             );
                                           },
 
-                                          height: size.height * 0.04,
+                                          height: size.height * 0.056,
+                                          width: size.width * 0.15,
                                           // color: _homePageController
                                           //             .selectedIndex
                                           //             .value ==
@@ -373,14 +378,17 @@ class HomePagePractice extends StatelessWidget {
                                                   .categoryName
                                                   .toString(),
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 6.sp,
-                                                  color: _homePageController
-                                                              .selectedIndex
-                                                              .value ==
-                                                          index
-                                                      ? MyTheme.ThemeColors
-                                                      : MyTheme.ThemeColors),
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 8.sp,
+                                                  color: MyTheme
+                                                      .ContainerUnSelectedColor
+                                                  // _homePageController
+                                                  //             .selectedIndex
+                                                  //             .value ==
+                                                  //         index
+                                                  //     ? MyTheme.ThemeColors
+                                                  //     : MyTheme.ThemeColors
+                                                  ),
                                             ),
                                           ),
                                         )),
@@ -399,6 +407,7 @@ class HomePagePractice extends StatelessWidget {
                       height: size.height * 0.034,
                       width: double.infinity,
                       decoration: BoxDecoration(
+                        //color: MyTheme.containercolor15
                         gradient: MyTheme.gradient2,
                       ),
                       //color: MyTheme.loginPageBoxColor,
@@ -436,7 +445,8 @@ class HomePagePractice extends StatelessWidget {
                                   width: size.width * 0.5,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color: MyTheme.ContainerUnSelectedColor,
+                                    color: MyTheme.containercolor7,
+                                    //gradient: MyTheme.gradient12
                                   ),
                                   child: Column(
                                     //mainAxisAlignment: MainAxisAlignment.center,
@@ -447,7 +457,9 @@ class HomePagePractice extends StatelessWidget {
                                           height: 3.1.h,
                                           width: 22.w,
                                           decoration: BoxDecoration(
-                                              color: Colors.blueGrey.shade300,
+                                              color: MyTheme.containercolor16,
+
+                                              //Colors.blueGrey.shade300,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
                                                 bottomRight:
@@ -461,7 +473,7 @@ class HomePagePractice extends StatelessWidget {
                                                   .sellerOption
                                                   .toString(),
                                               style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 9.sp,
                                               ),
@@ -586,7 +598,7 @@ class HomePagePractice extends StatelessWidget {
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 9.sp,
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                 ),
                                               ),
                                             ),
@@ -595,7 +607,7 @@ class HomePagePractice extends StatelessWidget {
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 10.sp,
-                                                color: Colors.red.shade300,
+                                                color: Colors.yellow.shade500,
                                               ),
                                             ),
                                           ],
@@ -617,18 +629,19 @@ class HomePagePractice extends StatelessWidget {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    '₹${_homePageController.getflashsellproduct!.result![index].price}',
+                                                    '₹${_homePageController.getflashsellproduct!.result![index].price}' +
+                                                        "",
                                                     style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w500,
+                                                          FontWeight.w700,
                                                       fontSize: 10.sp,
                                                       color: MyTheme
-                                                          .loginbuttonColor,
+                                                          .ContainerUnSelectedColor,
                                                     ),
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsets.only(
-                                                        top: 0.3.h),
+                                                        top: 0.0.h),
                                                     child: Text(
                                                       '/${_homePageController.getflashsellproduct!.result![index].weight1} gm',
                                                       style: TextStyle(
@@ -636,7 +649,7 @@ class HomePagePractice extends StatelessWidget {
                                                             FontWeight.w400,
                                                         fontSize: 8.sp,
                                                         color: Colors
-                                                            .grey.shade700,
+                                                            .grey.shade200,
                                                       ),
                                                     ),
                                                   ),
@@ -670,15 +683,17 @@ class HomePagePractice extends StatelessWidget {
                                                   child: Text(
                                                     'Add To Cart',
                                                     style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: Colors.black,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                            FontWeight.w800,
                                                         fontSize: 8.sp),
                                                   ),
                                                   gradient: LinearGradient(
                                                     colors: <Color>[
-                                                      Colors.green,
-                                                      Colors.cyan.shade400
+                                                      Color(0xff3a923b),
+                                                      Color(0xffb5d047),
+                                                      //Colors.green,
+                                                      //Colors.cyan.shade400
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -841,7 +856,7 @@ class HomePagePractice extends StatelessWidget {
                               .getflashsellproduct!.result!.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
-                              padding: const EdgeInsets.all(2.0),
+                              padding: const EdgeInsets.all(1.0),
                               child: PhysicalModel(
                                 borderRadius: BorderRadius.circular(5),
                                 color: MyTheme.ThemeColors,
@@ -851,7 +866,8 @@ class HomePagePractice extends StatelessWidget {
                                   width: size.width * 0.5,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(5),
-                                    color: MyTheme.ContainerUnSelectedColor,
+                                    color: MyTheme.containercolor7,
+                                    //gradient: MyTheme.gradient12
                                   ),
                                   child: Column(
                                     //mainAxisAlignment: MainAxisAlignment.center,
@@ -862,7 +878,9 @@ class HomePagePractice extends StatelessWidget {
                                           height: 3.1.h,
                                           width: 22.w,
                                           decoration: BoxDecoration(
-                                              color: Colors.blueGrey.shade300,
+                                              color: MyTheme.containercolor16,
+
+                                              //Colors.blueGrey.shade300,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(5),
                                                 bottomRight:
@@ -876,7 +894,7 @@ class HomePagePractice extends StatelessWidget {
                                                   .sellerOption
                                                   .toString(),
                                               style: TextStyle(
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 9.sp,
                                               ),
@@ -1001,7 +1019,7 @@ class HomePagePractice extends StatelessWidget {
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 9.sp,
-                                                  color: Colors.black,
+                                                  color: Colors.white,
                                                 ),
                                               ),
                                             ),
@@ -1010,7 +1028,7 @@ class HomePagePractice extends StatelessWidget {
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 10.sp,
-                                                color: Colors.red.shade300,
+                                                color: Colors.yellow.shade500,
                                               ),
                                             ),
                                           ],
@@ -1032,18 +1050,19 @@ class HomePagePractice extends StatelessWidget {
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    '₹${_homePageController.getflashsellproduct!.result![index].price}',
+                                                    '₹${_homePageController.getflashsellproduct!.result![index].price}' +
+                                                        "",
                                                     style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w500,
+                                                          FontWeight.w700,
                                                       fontSize: 10.sp,
                                                       color: MyTheme
-                                                          .loginbuttonColor,
+                                                          .ContainerUnSelectedColor,
                                                     ),
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsets.only(
-                                                        top: 0.3.h),
+                                                        top: 0.0.h),
                                                     child: Text(
                                                       '/${_homePageController.getflashsellproduct!.result![index].weight1} gm',
                                                       style: TextStyle(
@@ -1051,7 +1070,7 @@ class HomePagePractice extends StatelessWidget {
                                                             FontWeight.w400,
                                                         fontSize: 8.sp,
                                                         color: Colors
-                                                            .grey.shade700,
+                                                            .grey.shade200,
                                                       ),
                                                     ),
                                                   ),
@@ -1085,15 +1104,17 @@ class HomePagePractice extends StatelessWidget {
                                                   child: Text(
                                                     'Add To Cart',
                                                     style: TextStyle(
-                                                        color: Colors.white,
+                                                        color: Colors.black,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                            FontWeight.w800,
                                                         fontSize: 8.sp),
                                                   ),
                                                   gradient: LinearGradient(
                                                     colors: <Color>[
-                                                      Colors.green,
-                                                      Colors.cyan.shade400
+                                                      Color(0xff3a923b),
+                                                      Color(0xffb5d047)
+                                                      //Colors.green,
+                                                      //Colors.cyan.shade400
                                                     ],
                                                   ),
                                                   onPressed: () {

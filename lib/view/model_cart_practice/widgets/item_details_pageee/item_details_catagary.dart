@@ -11,7 +11,6 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
-import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
 import 'package:sizer/sizer.dart';
 
@@ -21,10 +20,11 @@ class ItemDetailss extends StatelessWidget {
   final _sliderKey1 = GlobalKey();
   final CartController controller = Get.put(CartController());
   final RozarPayController _rozarPayController = Get.find();
+
   FlashProductByIdController _flashProductByIdController =
       Get.put(FlashProductByIdController());
   final cartController = Get.put(CartController());
-  bool enableAutoSlider = false;
+  //bool enableAutoSlider = false;
   //final int index;
   ItemDetailss({
     Key? key,
@@ -59,7 +59,8 @@ class ItemDetailss extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         //Productss.products[index].weight
-        backgroundColor: Color(0xffffdb61),
+        backgroundColor: AppColors.themecolors,
+        //Color(0xffffdb61),
         //     Color(int.parse(Productss.products[index].color.toString())),
         elevation: 0,
         title: Text(
@@ -76,21 +77,29 @@ class ItemDetailss extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(6.0),
-                  child: Obx(
-                    () => Badge(
-                      toAnimate: false,
-                      badgeColor: AppColors.themecolors,
-                      badgeContent: Text(
-                        controller.count.toString(),
-                        style: GoogleFonts.alatsi(
-                          color: Colors.white,
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                      child: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                      ),
+                  child: Badge(
+                    toAnimate: false,
+                    //badgeColor: AppColors.themecolors,
+                    badgeContent: Obx(
+                      () => (controller.isLoading.value)
+                          ? Center(
+                              child: CircularProgressIndicator(
+                              color: Colors.lightGreenAccent,
+                              backgroundColor: Colors.white,
+                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
+                              strokeWidth: 3,
+                            ))
+                          : Text(
+                              controller.cartListModel.totalItem.toString(),
+                              style: GoogleFonts.alatsi(
+                                color: Colors.white,
+                                fontSize: 10.sp,
+                              ),
+                            ),
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.white,
                     ),
                   ),
                 )),
@@ -229,7 +238,9 @@ class ItemDetailss extends StatelessWidget {
                                                           .productName
                                                           .toString(),
                                                       style: TextStyle(
-                                                        color: Colors.yellow,
+                                                        color: AppColors
+                                                            .themecolors,
+                                                        //Colors.yellow,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize: 22.sp,
@@ -493,7 +504,7 @@ class ItemDetailss extends StatelessWidget {
                                               .result![mainIndex]
                                               .multipleImage!
                                               .length,
-                                          enableAutoSlider: true,
+                                          enableAutoSlider: false,
                                         ),
                                       ),
 
@@ -532,9 +543,14 @@ class ItemDetailss extends StatelessWidget {
                                         children: [
                                           InkWell(
                                             onTap: () {
-                                              cartController.addProduct(
-                                                  Productss
-                                                      .products[mainIndex]);
+                                              controller.addtocartApi(
+                                                  _flashProductByIdController
+                                                      .flashproductbyid!
+                                                      .result![mainIndex]
+                                                      .id);
+                                              // cartController.addProduct(
+                                              //     Productss
+                                              //         .products[mainIndex]);
                                               //_cartNewController.addItemInCart(product);
                                               //_cartNewController.numOfItems.(product);
                                             },
@@ -544,17 +560,20 @@ class ItemDetailss extends StatelessWidget {
                                               height: 50,
                                               width: 50,
                                               decoration: BoxDecoration(
-                                                color: Color(int.parse(Productss
-                                                    .products[mainIndex].color
-                                                    .toString())),
+                                                color: AppColors.themecolors,
+                                                // Color(int.parse(Productss
+                                                //     .products[mainIndex].color
+                                                //     .toString())),
                                                 borderRadius:
                                                     BorderRadius.circular(20),
                                                 border: Border.all(
-                                                  color: Color(int.parse(
-                                                      Productss
-                                                          .products[mainIndex]
-                                                          .color
-                                                          .toString())),
+                                                  color: AppColors.themecolors,
+                                                  //Colors.blueAccent,
+                                                  // Color(int.parse(
+                                                  //     Productss
+                                                  //         .products[mainIndex]
+                                                  //         .color
+                                                  //         .toString())),
                                                 ),
                                               ),
                                               child: Padding(
@@ -588,11 +607,15 @@ class ItemDetailss extends StatelessWidget {
                                                   ),
                                                   backgroundColor:
                                                       MaterialStateProperty.all(
-                                                    Color(int.parse(Productss
-                                                        .products[mainIndex]
-                                                        .color
-                                                        .toString())),
-                                                  )),
+                                                          AppColors.themecolors
+                                                          // Color(
+                                                          //   int.parse(Colors.green).toString()
+                                                          //     // int.parse(Productss
+                                                          //     // .products[mainIndex]
+                                                          //     // .color
+                                                          //     // .toString())
+                                                          // ),
+                                                          )),
                                               child: Text(
                                                 'Buy Now'.toUpperCase(),
                                                 style: TextStyle(

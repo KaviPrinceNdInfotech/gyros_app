@@ -11,6 +11,27 @@ class MyTheme {
   static Color ContainerUnSelectedColor = Color(0xffeff8f5);
   static Color ThemeColors = Color(0xff27ae61);
   static double defaultPading = 15.0;
+  static Color containercolor1 = Color(0xff8cdba9);
+  static Color containercolor2 = Color(0xffa5f0c5);
+  static Color containercolor3 = Color(0xffd5f591);
+  static Color containercolor4 = Color(0xffffc06e);
+  static Color containercolor5 = Color(0xff019875);
+  static Color containercolor6 = Color(0xff596e5c);
+  static Color containercolor7 = Color(0xff002408);
+  static Color containercolor8 = Color(0xffa9c7ac);
+  static Color containercolor9 = Color(0xffd1aca5);
+  static Color containercolor10 = Color(0xffe2cfc9);
+  static Color containercolor11 = Color(0xff006400);
+
+  static Color containercolor12 = Color(0xff3a923b);
+  static Color containercolor13 = Color(0xffb5d047);
+  //184704
+
+  static Color containercolor14 = Color(0xff236706);
+
+  static Color containercolor15 = Color(0xff184704);
+  static Color containercolor16 = Color(0xffc9c702);
+  static Color containercolor17 = Color(0xff0b806b);
 
   static LinearGradient gradient1 = const LinearGradient(
     colors: <Color>[
@@ -87,6 +108,20 @@ class MyTheme {
       //Colors.blueGrey.shade500,
       const Color(0xff00B3CC)
     ],
+
+    // begin: const FractionalOffset(0.0, 0.0),
+    // end: const FractionalOffset(1.0, 0.0),
+    // stops: [0.0, 1.0],
+    // tileMode: TileMode.clamp,
+  );
+
+  static LinearGradient gradient12 = LinearGradient(
+    colors: [
+      const Color(0xff3a923b),
+      const Color(0xffb5d047),
+      //Colors.blueGrey.shade500,
+    ],
+
     // begin: const FractionalOffset(0.0, 0.0),
     // end: const FractionalOffset(1.0, 0.0),
     // stops: [0.0, 1.0],

@@ -82,7 +82,7 @@ class CartController extends GetxController {
       //   ),
       // );
 
-      ///
+      ///TODO: we can navigate directly this page through this navigation with add to cart with Id.
       Get.to(
         () => Cartproducts(), //next page class
         duration: Duration(
@@ -93,6 +93,7 @@ class CartController extends GetxController {
             //Transition.size
             Transition.zoom,
       );
+
       //CallLoader.hideLoader();
       //isLoading(false);
     }

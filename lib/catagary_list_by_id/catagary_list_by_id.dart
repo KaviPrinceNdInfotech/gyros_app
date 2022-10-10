@@ -9,12 +9,12 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:sizer/sizer.dart';
 
-import '../view/model_cart_practice/procucts_cart_modelss.dart';
 import '../view/model_cart_practice/widgets/gradient_button.dart';
 
 class CatagaryListSubcatagary extends StatelessWidget {
   CatagaryListSubcatagary({Key? key}) : super(key: key);
   NavController _navController = Get.find();
+  final CartController controller = Get.put(CartController());
   SubCatByIdController _catByIdController = Get.find();
   final CartController cartController = Get.find();
 
@@ -377,10 +377,15 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
-                                                        cartController
-                                                            .addProduct(Productss
-                                                                    .products[
-                                                                index]);
+                                                        controller.addtocartApi(
+                                                            _catByIdController
+                                                                .getcatbyid!
+                                                                .result![index]
+                                                                .id);
+                                                        // cartController
+                                                        //     .addProduct(Productss
+                                                        //             .products[
+                                                        //         index]);
                                                       },
                                                       child:
                                                           RaisedGradientButton(
@@ -404,10 +409,10 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                                           ],
                                                         ),
                                                         onPressed: () {
-                                                          cartController
-                                                              .addProduct(Productss
-                                                                      .products[
-                                                                  index]);
+                                                          // cartController
+                                                          //     .addProduct(Productss
+                                                          //             .products[
+                                                          //         index]);
                                                           print('Add To cart');
                                                         },
                                                       ),

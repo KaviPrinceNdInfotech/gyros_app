@@ -1,7 +1,9 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/best_seller_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
@@ -9,12 +11,13 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../model_cart_practice/procucts_cart_modelss.dart';
+import '../../model_cart_practice/widgets/cart_product2.dart';
 import '../../model_cart_practice/widgets/gradient_button.dart';
 
 class BestDeal extends StatelessWidget {
   BestDeal({Key? key}) : super(key: key);
   NavController _navController = Get.find();
+  final CartController controller = Get.put(CartController());
   BestSellerController _bestSellerController = Get.find();
   final CartController cartController = Get.find();
 
@@ -94,6 +97,44 @@ class BestDeal extends StatelessWidget {
               Icons.arrow_back_ios_outlined,
               color: AppColors.themecolors,
             )),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 3.w),
+            child: InkWell(
+                onTap: () {
+                  Get.to(() => Cartproducts());
+                  //Get.to(() => ShopingBagsEmpty());
+                },
+                child: Padding(
+                  padding: EdgeInsets.all(6.0),
+                  child: Badge(
+                    toAnimate: false,
+                    badgeColor: AppColors.themecolors,
+                    badgeContent: Obx(
+                      () => (controller.isLoading.value)
+                          ? Center(
+                              child: CircularProgressIndicator(
+                              color: Colors.lightGreenAccent,
+                              backgroundColor: Colors.white,
+                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
+                              strokeWidth: 3,
+                            ))
+                          : Text(
+                              controller.cartListModel.totalItem.toString(),
+                              style: GoogleFonts.alatsi(
+                                color: Colors.white,
+                                fontSize: 10.sp,
+                              ),
+                            ),
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.green,
+                    ),
+                  ),
+                )),
+          ),
+        ],
       ),
       body:
 
@@ -401,10 +442,15 @@ class BestDeal extends StatelessWidget {
                                                     ),
                                                     child: InkWell(
                                                       onTap: () {
-                                                        cartController
-                                                            .addProduct(Productss
-                                                                    .products[
-                                                                index]);
+                                                        controller.addtocartApi(
+                                                            _bestSellerController
+                                                                .bestsellermodel!
+                                                                .result![index]
+                                                                .id);
+                                                        // cartController
+                                                        //     .addProduct(Productss
+                                                        //             .products[
+                                                        //         index]
                                                       },
                                                       child:
                                                           RaisedGradientButton(
@@ -423,15 +469,17 @@ class BestDeal extends StatelessWidget {
                                                         gradient:
                                                             LinearGradient(
                                                           colors: <Color>[
-                                                            Colors.green,
-                                                            Colors.cyan.shade400
+                                                            Color(0xff3a923b),
+                                                            Color(0xffb5d047),
+                                                            // Colors.green,
+                                                            // Colors.cyan.shade400
                                                           ],
                                                         ),
                                                         onPressed: () {
-                                                          cartController
-                                                              .addProduct(Productss
-                                                                      .products[
-                                                                  index]);
+                                                          // cartController
+                                                          //     .addProduct(Productss
+                                                          //             .products[
+                                                          //         index]);
                                                           print('Add To cart');
                                                         },
                                                       ),
