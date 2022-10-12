@@ -94,7 +94,7 @@ class AllProducts extends StatelessWidget {
                               strokeWidth: 3,
                             ))
                           : Text(
-                              controller.cartListModel.totalItem.toString(),
+                              controller.cartListModel!.totalItem.toString(),
                               style: GoogleFonts.alatsi(
                                 color: Colors.white,
                                 fontSize: 10.sp,
@@ -113,6 +113,7 @@ class AllProducts extends StatelessWidget {
       body: Obx(
         () => (_allProductController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
+            //: _allProductController.allProductModel!.result != null
             : _allProductController.allProductModel!.result!.isEmpty
                 //_bestSellerController.bestsellermodel!.result!.isEmpty
                 ? Center(
@@ -380,14 +381,48 @@ class AllProducts extends StatelessWidget {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.end,
                                                 children: [
-                                                  Text(
-                                                    'Save ${_allProductController.allProductModel!.result![index].quentity}%',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 10.sp,
-                                                      color: Colors.white,
-                                                    ),
+                                                  Obx(
+                                                    () => (_allProductController
+                                                            .isLoading.value)
+                                                        ? Center(
+                                                            child:
+                                                                CircularProgressIndicator())
+                                                        : _allProductController
+                                                                    .allProductModel!
+                                                                    .result !=
+                                                                null
+                                                            //: _allProductController.allProductModel!.result!.isEmpty
+                                                            //_bestSellerController.bestsellermodel!.result!.isEmpty
+                                                            ? Center(
+                                                                child: Text(
+                                                                  'Save:'
+                                                                  'No data'
+                                                                  "%",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        10.sp,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : Text(
+                                                                'Save ${_allProductController.allProductModel!.result![index].quentity}%',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize:
+                                                                      10.sp,
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
+                                                              ),
                                                   ),
 
                                                   // Spacer(),

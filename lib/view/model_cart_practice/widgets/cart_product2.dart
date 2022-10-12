@@ -459,7 +459,7 @@ import 'package:neopop/utils/constants.dart';
 import 'package:neopop/widgets/buttons/neopop_button/neopop_button.dart';
 import 'package:sizer/sizer.dart';
 
-import 'cart_total.dart';
+import '../viewss/adress_pagess/address_list/address_listss.dart';
 
 class Cartproducts extends StatelessWidget {
   final CartController controller = Get.put(CartController());
@@ -504,7 +504,7 @@ class Cartproducts extends StatelessWidget {
         child: Obx(
           () => (controller.isLoading.value)
               ? Center(child: CircularProgressIndicator())
-              : controller.cartListModel.result!.isEmpty
+              : controller.cartListModel!.result!.isEmpty
                   ? Center(
                       child: ShopingBagsEmpty(),
                     )
@@ -636,7 +636,7 @@ class Cartproducts extends StatelessWidget {
                                             child: Center(
                                               child: Text(
                                                 controller
-                                                    .cartListModel.totalItem
+                                                    .cartListModel!.totalItem
                                                     .toString(),
                                                 // controller.NoOfcartitem!.result
                                                 //     .toString(),
@@ -668,7 +668,7 @@ class Cartproducts extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '₹${controller.cartListModel.totalPrice.toString()}',
+                                            '₹${controller.cartListModel!.totalPrice.toString()}',
                                             style: TextStyle(
                                               fontSize: 16.sp,
                                               color: Colors.red.shade400,
@@ -703,7 +703,8 @@ class Cartproducts extends StatelessWidget {
                                   depth: kButtonDepth,
                                   onTapUp: () {
                                     //Get.to(() => CheckOutPage());
-                                    Get.to(() => TotalPrice());
+                                    //Get.to(() => TotalPrice());
+                                    Get.to(() => AddressList());
                                   },
                                   border: Border.all(
                                     color: Colors.green,
@@ -767,19 +768,21 @@ class CartProductCard extends StatelessWidget {
     return SizedBox(
         height: size.height * 0.65,
         child: ListView.builder(
-            itemCount: controller.cartListModel.result!.length,
+            itemCount: controller.cartListModel!.result!.length,
             itemBuilder: (BuildContext context, int index) {
               return Obx(
                 () => (controller.isLoading.value)
                     ? Center(child: CircularProgressIndicator())
-                    : controller.cartListModel.result!.isEmpty
+                    : controller.cartListModel!.result!.isEmpty
                         ? Center(
                             child: Text('No List'),
                           )
                         : Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              color: Colors.green.shade700,
+                              color: MyTheme.containercolor7,
+
+                              //Colors.green.shade700,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 5),
@@ -805,7 +808,7 @@ class CartProductCard extends StatelessWidget {
                                           image: DecorationImage(
                                               image: NetworkImage(
                                                 base +
-                                                    '${controller.cartListModel.result![index].image!.toString()}',
+                                                    '${controller.cartListModel!.result![index].image!.toString()}',
                                               ),
                                               fit: BoxFit.cover),
                                         ),
@@ -828,7 +831,7 @@ class CartProductCard extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            controller.cartListModel
+                                            controller.cartListModel!
                                                 .result![index].productName
                                                 .toString(),
                                             style: GoogleFonts.anekBangla(
@@ -841,7 +844,7 @@ class CartProductCard extends StatelessWidget {
                                           Row(
                                             children: [
                                               Text(
-                                                "₹${controller.cartListModel.result![index].price.toString()
+                                                "₹${controller.cartListModel!.result![index].price.toString()
                                                 //product.price.toString()
                                                 }",
                                                 style: GoogleFonts.anekBangla(
@@ -906,7 +909,7 @@ class CartProductCard extends StatelessWidget {
                                                 //minuscartApi
                                                 // controller.removeProduct(product);
                                                 controller.minuscartApi(
-                                                    controller.cartListModel
+                                                    controller.cartListModel!
                                                         .result![index].id
                                                         .toString());
                                               },
@@ -940,7 +943,7 @@ class CartProductCard extends StatelessWidget {
                                                 child: Center(
                                                   child: Text(
                                                     //'1',
-                                                    controller.cartListModel
+                                                    controller.cartListModel!
                                                         .result![index].count
                                                         .toString(),
                                                     //'$quantity',
@@ -965,7 +968,7 @@ class CartProductCard extends StatelessWidget {
                                               depth: 2,
                                               onTapUp: () {
                                                 controller.pluscartApi(
-                                                    controller.cartListModel
+                                                    controller.cartListModel!
                                                         .result![index].id
                                                         .toString());
                                               },

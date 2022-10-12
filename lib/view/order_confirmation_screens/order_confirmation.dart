@@ -229,7 +229,7 @@ class OrderConfirmationPage extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 2.h,
+                          height: 1.h,
                         ),
                         Text(
                           'ORDER DETAILS:',
@@ -318,13 +318,13 @@ class OrderConfirmationPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    _navController.tabindex(0);
-                    Get.to(() => NavBar());
-                  },
+              InkWell(
+                onTap: () {
+                  _navController.tabindex(0);
+                  Get.to(() => NavBar());
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
                   child: Container(
                     height: size.height * 0.04,
                     width: size.width * 0.5,
@@ -334,7 +334,7 @@ class OrderConfirmationPage extends StatelessWidget {
                         'BACK TO SHOPPING',
                         style: TextStyle(
                             color: Colors.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w700,
                             fontSize: 11.sp),
                       ),
                     ),

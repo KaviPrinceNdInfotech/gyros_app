@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/address_list_controller/address_list_controllers.dart';
+import 'package:gyros_app/controllers/check_out_controller/check_out_controlles.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/model_cart_practice/viewss/adress_pagess/add_address_order.dart';
-import 'package:gyros_app/view/model_cart_practice/widgets/cart_total.dart';
 import 'package:sizer/sizer.dart';
 
 class AddressList extends StatelessWidget {
   AddressList({Key? key}) : super(key: key);
-  _loaddata() async {
-    await Get.find<AddressListController>().addaddressModel;
-  }
+  // _loaddata() async {
+  //   await Get.find<AddressListController>().addaddressModel;
+  // }
 
   //final List<String> addresslist = ['1', '2', '3', '4', '5'];
   AddressListController _addressListController =
       Get.put(AddressListController());
+  CheckoutController _checkoutController = Get.put(CheckoutController());
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    _loaddata();
+    //_loaddata();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -28,8 +29,8 @@ class AddressList extends StatelessWidget {
         elevation: 0,
         leading: InkWell(
           onTap: () {
-            Get.to(() => TotalPrice());
-            // Get.back();
+            //Get.to(() => TotalPrice());
+            Get.back();
           },
           child: Icon(
             Icons.arrow_back_ios_outlined,
@@ -82,6 +83,14 @@ class AddressList extends StatelessWidget {
                                     () => InkWell(
                                       child: InkWell(
                                         onTap: () {
+                                          _checkoutController.addressid =
+                                              _addressListController
+                                                  .addaddressModel!
+                                                  .result![index]
+                                                  .id
+                                                  .toString();
+                                          _checkoutController.addressidApi();
+
                                           //_addressListController.toggle(index);
 
                                           // if (index == 0) {
@@ -193,11 +202,37 @@ class AddressList extends StatelessWidget {
                                                         height: 0.5.h,
                                                       ),
                                                       Text(
-                                                        'State:',
+                                                        'Name:',
                                                         style: TextStyle(
                                                           color:
                                                               AppColors.white,
-                                                          fontSize: 10.sp,
+                                                          fontSize: 11.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 0.5.h,
+                                                      ),
+                                                      Text(
+                                                        'Mobile: ',
+                                                        style: TextStyle(
+                                                          color:
+                                                              AppColors.white,
+                                                          fontSize: 11.sp,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 0.5.h,
+                                                      ),
+                                                      Text(
+                                                        'State: ',
+                                                        style: TextStyle(
+                                                          color:
+                                                              AppColors.white,
+                                                          fontSize: 11.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -210,20 +245,7 @@ class AddressList extends StatelessWidget {
                                                         style: TextStyle(
                                                           color:
                                                               AppColors.white,
-                                                          fontSize: 10.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 0.5.h,
-                                                      ),
-                                                      Text(
-                                                        'Street: ',
-                                                        style: TextStyle(
-                                                          color:
-                                                              AppColors.white,
-                                                          fontSize: 10.sp,
+                                                          fontSize: 11.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -236,7 +258,7 @@ class AddressList extends StatelessWidget {
                                                         style: TextStyle(
                                                           color:
                                                               AppColors.white,
-                                                          fontSize: 10.sp,
+                                                          fontSize: 11.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -245,11 +267,11 @@ class AddressList extends StatelessWidget {
                                                         height: 0.5.h,
                                                       ),
                                                       Text(
-                                                        'Nearby: ',
+                                                        'Pin Code: ',
                                                         style: TextStyle(
                                                           color:
                                                               AppColors.white,
-                                                          fontSize: 10.sp,
+                                                          fontSize: 11.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -257,36 +279,13 @@ class AddressList extends StatelessWidget {
                                                       SizedBox(
                                                         height: 0.5.h,
                                                       ),
-                                                      Text(
-                                                        'Building No: ',
-                                                        style: TextStyle(
-                                                          color:
-                                                              AppColors.white,
-                                                          fontSize: 10.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
                                                       SizedBox(
-                                                        height: 0.5.h,
-                                                      ),
-                                                      Text(
-                                                        'Pin: ',
-                                                        style: TextStyle(
-                                                          color:
-                                                              AppColors.white,
-                                                          fontSize: 10.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 0.5.h,
+                                                        height: 0.79.h,
                                                       ),
                                                     ],
                                                   ),
                                                   SizedBox(
-                                                    width: 2.w,
+                                                    width: 5.w,
                                                   ),
                                                   Column(
                                                     mainAxisAlignment:
@@ -313,13 +312,13 @@ class AddressList extends StatelessWidget {
                                                         _addressListController
                                                             .addaddressModel!
                                                             .result![index]
-                                                            .state
+                                                            .name
                                                             .toString(),
                                                         //'delhi',
                                                         // _addressListController.addaddressModel!.result![index].city.toString(),
                                                         style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 9.sp,
+                                                          fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -331,11 +330,11 @@ class AddressList extends StatelessWidget {
                                                         _addressListController
                                                             .addaddressModel!
                                                             .result![index]
-                                                            .city
+                                                            .mobile
                                                             .toString(),
                                                         style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 9.sp,
+                                                          fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -347,12 +346,12 @@ class AddressList extends StatelessWidget {
                                                         _addressListController
                                                             .addaddressModel!
                                                             .result![index]
-                                                            .area
+                                                            .state
                                                             .toString(),
                                                         //'New Ashok Nagar',
                                                         style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 9.sp,
+                                                          fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -364,12 +363,12 @@ class AddressList extends StatelessWidget {
                                                         _addressListController
                                                             .addaddressModel!
                                                             .result![index]
-                                                            .area
+                                                            .city
                                                             .toString(),
                                                         //'New Ashok nagar Market',
                                                         style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 9.sp,
+                                                          fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -387,23 +386,7 @@ class AddressList extends StatelessWidget {
                                                         //'Noida Sector 15 Metro station',
                                                         style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 9.sp,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 0.9.h,
-                                                      ),
-                                                      Text(
-                                                        _addressListController
-                                                            .addaddressModel!
-                                                            .result![index]
-                                                            .name
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 9.sp,
+                                                          fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
@@ -417,16 +400,16 @@ class AddressList extends StatelessWidget {
                                                             .result![index]
                                                             .pinCode
                                                             .toString(),
-                                                        //'110096',
                                                         style: TextStyle(
                                                           color: Colors.black,
-                                                          fontSize: 9.sp,
+                                                          fontSize: 10.sp,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: 0.7.h,
+                                                        height:
+                                                            size.height * 0.02,
                                                       ),
                                                     ],
                                                   ),

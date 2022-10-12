@@ -90,7 +90,7 @@ class ItemDetailss extends StatelessWidget {
                               strokeWidth: 3,
                             ))
                           : Text(
-                              controller.cartListModel.totalItem.toString(),
+                              controller.cartListModel!.totalItem.toString(),
                               style: GoogleFonts.alatsi(
                                 color: Colors.white,
                                 fontSize: 10.sp,

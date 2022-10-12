@@ -19,13 +19,14 @@ import '../../model_cart_practice/widgets/gradient_button.dart';
 
 class HomePagePractice extends StatelessWidget {
   HomePagePractice({Key? key}) : super(key: key);
-  final CartController controller = Get.put(CartController());
-  HomePageController _homePageController = Get.find();
-  SubCatByIdController _subCatByIdController = Get.find();
+  CartController controller = Get.put(CartController());
+  HomePageController _homePageController = Get.put(HomePageController());
+  SubCatByIdController _subCatByIdController = Get.put(SubCatByIdController());
   FlashProductByIdController _flashProductByIdController =
       Get.put(FlashProductByIdController());
   final cartController = Get.put(CartController());
-  RxBool isLoading = true.obs;
+  //RxBool isLoading = false.obs;
+  ///here no need to put is loading value... if you are put in to the controller...
   var cartlistid = '';
   List<Result>? result;
 
@@ -186,20 +187,28 @@ class HomePagePractice extends StatelessWidget {
                     badgeColor: AppColors.themecolors,
                     badgeContent: Obx(
                       () => (controller.isLoading.value)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              color: Colors.lightGreenAccent,
-                              backgroundColor: Colors.white,
-                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
-                              strokeWidth: 3,
-                            ))
-                          : Text(
-                              controller.cartListModel.totalItem.toString(),
-                              style: GoogleFonts.alatsi(
-                                color: Colors.white,
-                                fontSize: 10.sp,
-                              ),
-                            ),
+                          ? Center(child: CircularProgressIndicator())
+                          : controller.cartListModel!.result!.isEmpty
+                              // ? Center(
+                              //     child: Text('0'),
+                              //   )
+                              // :
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                  color: Colors.lightGreenAccent,
+                                  backgroundColor: Colors.white,
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.yellow),
+                                  strokeWidth: 3,
+                                ))
+                              : Text(
+                                  controller.cartListModel!.totalItem
+                                      .toString(),
+                                  style: GoogleFonts.alatsi(
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
                     ),
                     child: Icon(
                       Icons.shopping_cart,
@@ -242,1046 +251,1253 @@ class HomePagePractice extends StatelessWidget {
             )),
       ),
       drawer: MainDrawer(),
-      body: Obx(() => (_homePageController.isLoading.value == false)
-          ? SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    height: size.height * 0.25,
-                    width: double.infinity,
-                    color: Colors.greenAccent,
-                    child: MySlider(),
-                  ),
-                  SizedBox(
-                    // height: 33.5.h,
-                    child: GridView.builder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 4,
-                            childAspectRatio: 5 / 2,
-                            mainAxisExtent: size.height * 0.09,
-                            crossAxisSpacing: 1,
-                            mainAxisSpacing: 0),
-                        itemCount:
-                            _homePageController.getcatagartlist!.result!.length,
-                        //items?.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Obx(
-                            () => Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.005,
-                                  vertical: size.height * 0.002),
-                              child: InkWell(
-                                onTap: () {
-                                  _subCatByIdController.catid =
-                                      _homePageController
-                                          .getcatagartlist!.result![index].id
-                                          .toString();
-                                  _subCatByIdController.subcatidApi();
-                                  // _homePageController.toggle(index);
-                                  // if (index == 0) {
-                                  //   Get.to(() => CatagaryListSubcatagary());
-                                  //   //Get.to(() => BestSeller());
-                                  //   //Get.to(() => WaterTracking());
-                                  // } else if (index == 1) {
-                                  //   Get.to(() => CatagaryListSubcatagary());
-                                  // }
-                                  // /*else if (index == 2) {
-                                  //       Get.to(() => CowGhee());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 3) {
-                                  //       Get.to(() => Oil());
-                                  //     } else if (index == 4) {
-                                  //       Get.to(() => Spices());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 5) {
-                                  //       Get.to(() => Honey());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 6) {
-                                  //       Get.to(() => Pulses());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 7) {
-                                  //       Get.to(() => Sattu());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 8) {
-                                  //       Get.to(() => CupponsPage());
-                                  //     } else if (index == 9) {
-                                  //       Get.to(() => GiftBox());
-                                  //
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 10) {
-                                  //       Get.to(() => Sweets());
-                                  //       //Get.to(() => BestSeller());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     } else if (index == 11) {
-                                  //       Get.to(() => Jeggary());
-                                  //       //Get.to(() => WalkTracking());
-                                  //     }*/
-                                },
-                                child: PhysicalModel(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color:
-                                      _homePageController.selectedIndex.value ==
-                                              index
-                                          ? MyTheme.containercolor7
-                                          : MyTheme.containercolor7,
-
-                                  //: Color(0xffeff8f5),
-                                  elevation: 0.1,
-                                  child: Container(
-                                    height: 10.h,
-                                    width: 20.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: _homePageController
-                                                  .selectedIndex.value ==
-                                              index
-                                          ? Colors.white12
-                                          : Colors.white12,
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.network(
-                                          base +
-                                              '${_homePageController.getcatagartlist!.result![index].imageName.toString()}',
-                                          fit: BoxFit.fill,
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            //if image not comming in catagary then we have to purchase
-
-                                            return Icon(
-                                              Icons.error,
-                                              color: Colors.grey,
-                                            );
-                                          },
-
-                                          height: size.height * 0.056,
-                                          width: size.width * 0.15,
-                                          // color: _homePageController
-                                          //             .selectedIndex
-                                          //             .value ==
-                                          //         index
-                                          //     ? Colors.white
-                                          //     : MyTheme.ThemeColors
-                                        ),
-                                        Center(
-                                            child: SizedBox(
-                                          width: size.width * 0.25,
-                                          child: Center(
-                                            child: Text(
-                                              _homePageController
-                                                  .getcatagartlist!
-                                                  .result![index]
-                                                  .categoryName
-                                                  .toString(),
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 8.sp,
-                                                  color: MyTheme
-                                                      .ContainerUnSelectedColor
-                                                  // _homePageController
-                                                  //             .selectedIndex
-                                                  //             .value ==
-                                                  //         index
-                                                  //     ? MyTheme.ThemeColors
-                                                  //     : MyTheme.ThemeColors
-                                                  ),
-                                            ),
-                                          ),
-                                        )),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      height: size.height * 0.034,
+      body: Obx(
+        () => (_homePageController.isLoading.value)
+            ? Center(child: CircularProgressIndicator())
+            // : controller.cartListModel!.result!.isEmpty
+            //     ? Center(
+            //         child: Text('No List'),
+            //       )
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      height: size.height * 0.25,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        //color: MyTheme.containercolor15
-                        gradient: MyTheme.gradient2,
-                      ),
-                      //color: MyTheme.loginPageBoxColor,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 2.w, vertical: 0.4.h),
-                        child: Text(
-                          'Flash Sale',
-                          style: TextStyle(
-                            color: Colors.white,
-
-                            //color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 11.sp,
-                          ),
-                        ),
-                      ),
+                      color: Colors.greenAccent,
+                      child: MySlider(),
                     ),
-                  ),
-                  SizedBox(
-                      height: size.height * 0.29,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: _homePageController
-                              .getflashsellproduct!.result!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(1.0),
-                              child: PhysicalModel(
-                                borderRadius: BorderRadius.circular(5),
-                                color: MyTheme.ThemeColors,
-                                elevation: 0.1,
-                                child: Container(
-                                  height: 26.h,
-                                  width: size.width * 0.5,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: MyTheme.containercolor7,
-                                    //gradient: MyTheme.gradient12
-                                  ),
-                                  child: Column(
-                                    //mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Container(
-                                          height: 3.1.h,
-                                          width: 22.w,
-                                          decoration: BoxDecoration(
-                                              color: MyTheme.containercolor16,
-
-                                              //Colors.blueGrey.shade300,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                              )),
-                                          child: Center(
-                                            child: Text(
-                                              _homePageController
-                                                  .getflashsellproduct!
-                                                  .result![index]
-                                                  .sellerOption
-                                                  .toString(),
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 9.sp,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 0.7.h,
-                                      ),
-                                      PhysicalModel(
-                                        shadowColor: Colors.green,
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.circular(5),
-                                        elevation: 5,
-                                        child: InkWell(
-                                          onTap: () {
-                                            _flashProductByIdController
-                                                    .productid =
-                                                _homePageController
-                                                    .getflashsellproduct!
-                                                    .result![index]
-                                                    .id
-                                                    .toString();
-                                            _flashProductByIdController
-                                                .flashproductbyIdApi();
-                                            //Navigator.of(context).push(_createRoute());
-
-                                            // Get.to(
-                                            //   () => ItemDetailss(
-                                            //     // name: Productss
-                                            //     //     .products[index].name,
-                                            //     // price: Productss
-                                            //     //     .products[index].price,
-                                            //     // weight: Productss
-                                            //     //     .products[index].weight,
-                                            //     // imageUrl: Productss
-                                            //     //     .products[index].imageUrl,
-                                            //     // description: Productss
-                                            //     //     .products[index].descriptions,
-                                            //     // color: Productss
-                                            //     //     .products[index].color,
-                                            //     // id: Productss.products[index].id,
-                                            //     //
-                                            //     index: index,
-                                            //
-                                            //     //cartController.products[index].toString(),
-                                            //
-                                            //     // product:pr,
-                                            //   ), //next page class
-                                            //   duration: Duration(
-                                            //       milliseconds:
-                                            //           500), //duration of transitions, default 1 sec
-                                            //   transition:
-                                            //       // Transition.leftToRight //transition effect
-                                            //       // Transition.fadeIn
-                                            //       //Transition.size
-                                            //       Transition.zoom,
-                                            // );
-                                          },
-                                          child: Container(
-                                            height: size.height * 0.17,
-                                            width: size.width * 0.36,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              // border: Border.all(
-                                              //     color: AppColors.themecolors),
-                                              // image: DecorationImage(
-                                              //     image: AssetImage(Productss
-                                              //         .products[index].imageUrl),
-                                              //     fit: BoxFit.cover),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(2.0),
-                                              child: Image.network(
-                                                base +
-                                                    '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
-                                                fit: BoxFit.fill,
-                                                errorBuilder: (context, error,
-                                                    stackTrace) {
-                                                  //if image not comming in catagary then we have to purchase
-
-                                                  return Icon(
-                                                    Icons.error,
-                                                    color: Colors.grey,
-                                                  );
-                                                },
-
-                                                height: size.height * 0.04,
-                                                // color: _homePageController
-                                                //             .selectedIndex
-                                                //             .value ==
-                                                //         index
-                                                //     ? Colors.white
-                                                //     : MyTheme.ThemeColors
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 0.6.h,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 1.7.w),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              width: size.width * 0.31,
-                                              child: Text(
-                                                _homePageController
-                                                    .getflashsellproduct!
-                                                    .result![index]
-                                                    .productName
-                                                    .toString(),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 9.sp,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              "Save${_homePageController.getflashsellproduct!.result![index].discount.toString()}%",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 10.sp,
-                                                color: Colors.yellow.shade500,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 1.8.w),
-                                        child: Row(
-                                          children: [
-                                            SizedBox(
-                                              //width: 21.w,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    '₹${_homePageController.getflashsellproduct!.result![index].price}' +
-                                                        "",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 10.sp,
-                                                      color: MyTheme
-                                                          .ContainerUnSelectedColor,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 0.0.h),
-                                                    child: Text(
-                                                      '/${_homePageController.getflashsellproduct!.result![index].weight1} gm',
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 8.sp,
-                                                        color: Colors
-                                                            .grey.shade200,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-
-                                            Spacer(),
-                                            Container(
-                                              height: size.height * 0.033,
-                                              width: 23.w,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                              child: InkWell(
-                                                ///TODO: here we have to change the code add to cart..............prince
-                                                onTap: () {
-                                                  ///this is the thing to thing to you that how can you add the item to add to cart api send by the help of id
-                                                  controller.addtocartApi(
-                                                      _homePageController
-                                                          .getflashsellproduct!
-                                                          .result![index]
-                                                          .id);
-
-                                                  ///
-                                                },
-                                                child: RaisedGradientButton(
-                                                  //height: 3.3.h,
-                                                  //width: 23.9.w,
-                                                  child: Text(
-                                                    'Add To Cart',
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w800,
-                                                        fontSize: 8.sp),
-                                                  ),
-                                                  gradient: LinearGradient(
-                                                    colors: <Color>[
-                                                      Color(0xff3a923b),
-                                                      Color(0xffb5d047),
-                                                      //Colors.green,
-                                                      //Colors.cyan.shade400
-                                                    ],
-                                                  ),
-                                                  onPressed: () {
-                                                    // cartController.addProduct(
-                                                    //     Productss
-                                                    //         .products[index]);
-                                                    controller.addtocartApi(
-                                                        _homePageController
-                                                            .getflashsellproduct!
-                                                            .result![index]
-                                                            .id);
-                                                    print('Add To cart');
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-
-                                            // InkWell(
-                                            //   onTap: () {
-                                            //     cartController.addProduct(Productss.products[index]);
-                                            //   },
-                                            //   child: Container(
-                                            //     height: 3.3.h,
-                                            //     width: 23.9.w,
-                                            //     decoration: BoxDecoration(
-                                            //         //color: MyTheme.loginbuttonColor,
-                                            //         gradient: MyTheme.gradient4,
-                                            //         borderRadius: BorderRadius.only(
-                                            //           bottomRight: Radius.circular(5),
-                                            //           bottomLeft: Radius.circular(5),
-                                            //         )),
-                                            //     child: Center(
-                                            //       child: Text(
-                                            //         'Add To Cart',
-                                            //         style: TextStyle(
-                                            //           color: Colors.white,
-                                            //           fontWeight: FontWeight.w500,
-                                            //           fontSize: 8.sp,
-                                            //         ),
-                                            //       ),
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  SizedBox(
-                    height: 00.h,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      height: size.height * 0.034,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: MyTheme.gradient2,
-                      ),
-                      //color: MyTheme.loginPageBoxColor,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 2.w, vertical: 0.4.h),
-                        child: Text(
-                          'Purchase your first product',
-                          style: TextStyle(
-                            color: Colors.white,
-
-                            //color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 11.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: size.height * 0.19,
-                      //width: double.infinity,
-                      child: ListView.builder(
+                    SizedBox(
+                      // height: 33.5.h,
+                      child: GridView.builder(
+                          shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 4,
+                                  childAspectRatio: 5 / 2,
+                                  mainAxisExtent: size.height * 0.09,
+                                  crossAxisSpacing: 1,
+                                  mainAxisSpacing: 0),
                           itemCount: _homePageController
-                              .getfirstorderbanner!.result.length,
-                          scrollDirection: Axis.horizontal,
+                              .getcatagartlist!.result!.length,
+                          //items?.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Obx(
-                              () => InkWell(
-                                onTap: () {
-                                  // _homePageController.toggle(index);
-                                  if (index == 0) {
-                                    //Get.to(() => ManPage());
-                                    //Get.to(() => BestSeller());
-                                    //Get.to(() => WaterTracking());
-                                  }
-                                },
-                                child: PhysicalModel(
-                                  borderRadius: BorderRadius.circular(0),
-                                  color:
-                                      _homePageController.selectedIndex.value ==
-                                              index
-                                          ? MyTheme.ThemeColors
-                                          : Color(0xffeff8f5),
-                                  elevation: 0.1,
-                                  child: Container(
-                                    height: 23.h,
-                                    width: 100.w, //size.width * 0.99,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(0),
-                                      color: MyTheme.ContainerUnSelectedColor,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          base +
-                                              '${_homePageController.getfirstorderbanner!.result[index].imagePath}',
-                                        ),
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
-                  SizedBox(
-                    height: 0.h,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      height: size.height * 0.034,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: MyTheme.gradient2,
-                      ),
-                      //color: MyTheme.loginPageBoxColor,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 2.w, vertical: 0.4.h),
-                        child: Text(
-                          'Our Products',
-                          style: TextStyle(
-                            color: Colors.white,
-
-                            //color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 11.sp,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                      height: size.height * 0.29,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: _homePageController
-                              .getflashsellproduct!.result!.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.all(1.0),
-                              child: PhysicalModel(
-                                borderRadius: BorderRadius.circular(5),
-                                color: MyTheme.ThemeColors,
-                                elevation: 0.1,
-                                child: Container(
-                                  height: 26.h,
-                                  width: size.width * 0.5,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: MyTheme.containercolor7,
-                                    //gradient: MyTheme.gradient12
-                                  ),
-                                  child: Column(
-                                    //mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Container(
-                                          height: 3.1.h,
-                                          width: 22.w,
-                                          decoration: BoxDecoration(
-                                              color: MyTheme.containercolor16,
-
-                                              //Colors.blueGrey.shade300,
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(5),
-                                                bottomRight:
-                                                    Radius.circular(20),
-                                              )),
-                                          child: Center(
-                                            child: Text(
-                                              _homePageController
-                                                  .getflashsellproduct!
-                                                  .result![index]
-                                                  .sellerOption
-                                                  .toString(),
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 9.sp,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 0.7.h,
-                                      ),
-                                      PhysicalModel(
-                                        shadowColor: Colors.green,
-                                        color: Colors.green,
-                                        borderRadius: BorderRadius.circular(5),
-                                        elevation: 5,
-                                        child: InkWell(
-                                          onTap: () {
-                                            _flashProductByIdController
-                                                    .productid =
-                                                _homePageController
-                                                    .getflashsellproduct!
-                                                    .result![index]
-                                                    .id
-                                                    .toString();
-                                            _flashProductByIdController
-                                                .flashproductbyIdApi();
-                                            //Navigator.of(context).push(_createRoute());
-
-                                            // Get.to(
-                                            //   () => ItemDetailss(
-                                            //     // name: Productss
-                                            //     //     .products[index].name,
-                                            //     // price: Productss
-                                            //     //     .products[index].price,
-                                            //     // weight: Productss
-                                            //     //     .products[index].weight,
-                                            //     // imageUrl: Productss
-                                            //     //     .products[index].imageUrl,
-                                            //     // description: Productss
-                                            //     //     .products[index].descriptions,
-                                            //     // color: Productss
-                                            //     //     .products[index].color,
-                                            //     // id: Productss.products[index].id,
-                                            //     //
-                                            //     index: index,
-                                            //
-                                            //     //cartController.products[index].toString(),
-                                            //
-                                            //     // product:pr,
-                                            //   ), //next page class
-                                            //   duration: Duration(
-                                            //       milliseconds:
-                                            //           500), //duration of transitions, default 1 sec
-                                            //   transition:
-                                            //       // Transition.leftToRight //transition effect
-                                            //       // Transition.fadeIn
-                                            //       //Transition.size
-                                            //       Transition.zoom,
-                                            // );
-                                          },
-                                          child: Container(
-                                            height: size.height * 0.17,
-                                            width: size.width * 0.36,
-                                            decoration: BoxDecoration(
+                              () => (_homePageController.isLoading.value)
+                                  ? Center(child: CircularProgressIndicator())
+                                  : _homePageController
+                                          .getcatagartlist!.result!.isEmpty
+                                      ? Center(
+                                          child: Text('No List'),
+                                        )
+                                      : Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.005,
+                                              vertical: size.height * 0.002),
+                                          child: InkWell(
+                                            onTap: () {
+                                              _subCatByIdController.catid =
+                                                  _homePageController
+                                                      .getcatagartlist!
+                                                      .result![index]
+                                                      .id
+                                                      .toString();
+                                              _subCatByIdController
+                                                  .subcatidApi();
+                                              // _homePageController.toggle(index);
+                                              // if (index == 0) {
+                                              //   Get.to(() => CatagaryListSubcatagary());
+                                              //   //Get.to(() => BestSeller());
+                                              //   //Get.to(() => WaterTracking());
+                                              // } else if (index == 1) {
+                                              //   Get.to(() => CatagaryListSubcatagary());
+                                              // }
+                                              // /*else if (index == 2) {
+                                              //       Get.to(() => CowGhee());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 3) {
+                                              //       Get.to(() => Oil());
+                                              //     } else if (index == 4) {
+                                              //       Get.to(() => Spices());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 5) {
+                                              //       Get.to(() => Honey());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 6) {
+                                              //       Get.to(() => Pulses());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 7) {
+                                              //       Get.to(() => Sattu());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 8) {
+                                              //       Get.to(() => CupponsPage());
+                                              //     } else if (index == 9) {
+                                              //       Get.to(() => GiftBox());
+                                              //
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 10) {
+                                              //       Get.to(() => Sweets());
+                                              //       //Get.to(() => BestSeller());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     } else if (index == 11) {
+                                              //       Get.to(() => Jeggary());
+                                              //       //Get.to(() => WalkTracking());
+                                              //     }*/
+                                            },
+                                            child: PhysicalModel(
                                               borderRadius:
                                                   BorderRadius.circular(5),
-                                              // border: Border.all(
-                                              //     color: AppColors.themecolors),
-                                              // image: DecorationImage(
-                                              //     image: AssetImage(Productss
-                                              //         .products[index].imageUrl),
-                                              //     fit: BoxFit.cover),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(2.0),
-                                              child: Image.network(
-                                                base +
-                                                    '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
-                                                fit: BoxFit.fill,
-                                                errorBuilder: (context, error,
-                                                    stackTrace) {
-                                                  //if image not comming in catagary then we have to purchase
+                                              color: _homePageController
+                                                          .selectedIndex
+                                                          .value ==
+                                                      index
+                                                  ? MyTheme.containercolor7
+                                                  : MyTheme.containercolor7,
 
-                                                  return Icon(
-                                                    Icons.error,
-                                                    color: Colors.grey,
-                                                  );
-                                                },
+                                              //: Color(0xffeff8f5),
+                                              elevation: 0.1,
+                                              child: Container(
+                                                height: 10.h,
+                                                width: 20.w,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: _homePageController
+                                                              .selectedIndex
+                                                              .value ==
+                                                          index
+                                                      ? Colors.white12
+                                                      : Colors.white12,
+                                                ),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Image.network(
+                                                      base +
+                                                          '${_homePageController.getcatagartlist!.result![index].imageName.toString()}',
+                                                      fit: BoxFit.fill,
+                                                      errorBuilder: (context,
+                                                          error, stackTrace) {
+                                                        //if image not comming in catagary then we have to purchase
 
-                                                height: size.height * 0.04,
-                                                // color: _homePageController
-                                                //             .selectedIndex
-                                                //             .value ==
-                                                //         index
-                                                //     ? Colors.white
-                                                //     : MyTheme.ThemeColors
+                                                        return Icon(
+                                                          Icons.error,
+                                                          color: Colors.grey,
+                                                        );
+                                                      },
+
+                                                      height:
+                                                          size.height * 0.056,
+                                                      width: size.width * 0.15,
+                                                      // color: _homePageController
+                                                      //             .selectedIndex
+                                                      //             .value ==
+                                                      //         index
+                                                      //     ? Colors.white
+                                                      //     : MyTheme.ThemeColors
+                                                    ),
+                                                    Center(
+                                                        child: SizedBox(
+                                                      width: size.width * 0.25,
+                                                      child: Center(
+                                                        child: Text(
+                                                          _homePageController
+                                                              .getcatagartlist!
+                                                              .result![index]
+                                                              .categoryName
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                              fontSize: 8.sp,
+                                                              color: MyTheme
+                                                                  .ContainerUnSelectedColor
+                                                              // _homePageController
+                                                              //             .selectedIndex
+                                                              //             .value ==
+                                                              //         index
+                                                              //     ? MyTheme.ThemeColors
+                                                              //     : MyTheme.ThemeColors
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    )),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 0.6.h,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 1.7.w),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            SizedBox(
-                                              width: size.width * 0.31,
-                                              child: Text(
-                                                _homePageController
-                                                    .getflashsellproduct!
-                                                    .result![index]
-                                                    .productName
-                                                    .toString(),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 9.sp,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              "Save${_homePageController.getflashsellproduct!.result![index].discount.toString()}%",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 10.sp,
-                                                color: Colors.yellow.shade500,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: size.height * 0.01,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 1.8.w),
-                                        child: Row(
-                                          children: [
-                                            SizedBox(
-                                              //width: 21.w,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    '₹${_homePageController.getflashsellproduct!.result![index].price}' +
-                                                        "",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 10.sp,
-                                                      color: MyTheme
-                                                          .ContainerUnSelectedColor,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 0.0.h),
-                                                    child: Text(
-                                                      '/${_homePageController.getflashsellproduct!.result![index].weight1} gm',
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 8.sp,
-                                                        color: Colors
-                                                            .grey.shade200,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-
-                                            Spacer(),
-                                            Container(
-                                              height: size.height * 0.033,
-                                              width: 23.w,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                              ),
-                                              child: InkWell(
-                                                ///TODO: here we have to change the code add to cart..............prince
-                                                onTap: () {
-                                                  ///this is the thing to thing to you that how can you add the item to add to cart api send by the help of id
-                                                  controller.addtocartApi(
-                                                      _homePageController
-                                                          .getflashsellproduct!
-                                                          .result![index]
-                                                          .id);
-
-                                                  ///
-                                                },
-                                                child: RaisedGradientButton(
-                                                  //height: 3.3.h,
-                                                  //width: 23.9.w,
-                                                  child: Text(
-                                                    'Add To Cart',
-                                                    style: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w800,
-                                                        fontSize: 8.sp),
-                                                  ),
-                                                  gradient: LinearGradient(
-                                                    colors: <Color>[
-                                                      Color(0xff3a923b),
-                                                      Color(0xffb5d047)
-                                                      //Colors.green,
-                                                      //Colors.cyan.shade400
-                                                    ],
-                                                  ),
-                                                  onPressed: () {
-                                                    // cartController.addProduct(
-                                                    //     Productss
-                                                    //         .products[index]);
-                                                    controller.addtocartApi(
-                                                        _homePageController
-                                                            .getflashsellproduct!
-                                                            .result![index]
-                                                            .id);
-                                                    print('Add To cart');
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-
-                                            // InkWell(
-                                            //   onTap: () {
-                                            //     cartController.addProduct(Productss.products[index]);
-                                            //   },
-                                            //   child: Container(
-                                            //     height: 3.3.h,
-                                            //     width: 23.9.w,
-                                            //     decoration: BoxDecoration(
-                                            //         //color: MyTheme.loginbuttonColor,
-                                            //         gradient: MyTheme.gradient4,
-                                            //         borderRadius: BorderRadius.only(
-                                            //           bottomRight: Radius.circular(5),
-                                            //           bottomLeft: Radius.circular(5),
-                                            //         )),
-                                            //     child: Center(
-                                            //       child: Text(
-                                            //         'Add To Cart',
-                                            //         style: TextStyle(
-                                            //           color: Colors.white,
-                                            //           fontWeight: FontWeight.w500,
-                                            //           fontSize: 8.sp,
-                                            //         ),
-                                            //       ),
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
                             );
-                          })),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      height: size.height * 0.034,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        gradient: MyTheme.gradient2,
-                      ),
-                      //color: MyTheme.loginPageBoxColor,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 2.w, vertical: 0.4.h),
-                        child: Text(
-                          'Our Offers',
-                          style: TextStyle(
-                            color: Colors.white,
-                            //color: Theme.of(context).colorScheme.onPrimary,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 11.sp,
+                          }),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: size.height * 0.034,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          //color: MyTheme.containercolor15
+                          gradient: MyTheme.gradient2,
+                        ),
+                        //color: MyTheme.loginPageBoxColor,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 2.w, vertical: 0.4.h),
+                          child: Text(
+                            'Flash Sale',
+                            style: TextStyle(
+                              color: Colors.white,
+
+                              //color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 11.sp,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                      height: size.height * 0.2,
-                      //width: double.infinity,
-                      child: ListView.builder(
-                          itemCount:
-                              _homePageController.getouroffer!.result!.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (BuildContext context, int index) {
-                            return InkWell(
-                              onTap: () {},
-                              child: PhysicalModel(
-                                borderRadius: BorderRadius.circular(0),
-                                color: Color(0xffeff8f5),
-                                elevation: 0.1,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
-                                  child: Container(
-                                    height: 15.h,
-                                    width: 95.w, //size.width * 0.99,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      // color: MyTheme.ContainerUnSelectedColor,
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          base +
-                                              '${_homePageController.getouroffer!.result![index].promotionalBannerPath}',
-                                        ),
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          })),
+                    SizedBox(
+                        height: size.height * 0.29,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _homePageController
+                                .getflashsellproduct!.result!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Obx(
+                                () => (_homePageController.isLoading.value)
+                                    ? Center(child: CircularProgressIndicator())
+                                    : _homePageController.getflashsellproduct!
+                                            .result!.isEmpty
+                                        ? Center(
+                                            child: Text('No List'),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.all(1.0),
+                                            child: PhysicalModel(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: MyTheme.ThemeColors,
+                                              elevation: 0.1,
+                                              child: Container(
+                                                height: 26.h,
+                                                width: size.width * 0.5,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color:
+                                                      MyTheme.containercolor7,
+                                                  //gradient: MyTheme.gradient12
+                                                ),
+                                                child: Column(
+                                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Container(
+                                                        height: 3.1.h,
+                                                        width: 22.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: MyTheme
+                                                                    .containercolor16,
 
-                  ///from here we can see the method of future builder.....................
-                  // FutureBuilder<List<ourOfferResult>>(
-                  //     future: ourOfferData(),
-                  //     builder: (context, snapshot) {
-                  //       if (snapshot.hasData) {
-                  //         var items = snapshot.data;
-                  //         var base = 'https://api.gyros.farm/Images/';
-                  //         return SizedBox(
-                  //             height: size.height * 0.2,
-                  //             //width: double.infinity,
-                  //             child: ListView.builder(
-                  //                 itemCount: items!.length,
-                  //                 scrollDirection: Axis.horizontal,
-                  //                 itemBuilder:
-                  //                     (BuildContext context, int index) {
-                  //                   return InkWell(
-                  //                     onTap: () {},
-                  //                     child: PhysicalModel(
-                  //                       borderRadius: BorderRadius.circular(0),
-                  //                       color: Color(0xffeff8f5),
-                  //                       elevation: 0.1,
-                  //                       child: Padding(
-                  //                         padding: const EdgeInsets.all(2.0),
-                  //                         child: Container(
-                  //                           height: 15.h,
-                  //                           width: 95.w, //size.width * 0.99,
-                  //                           decoration: BoxDecoration(
-                  //                             borderRadius:
-                  //                                 BorderRadius.circular(5),
-                  //                             // color: MyTheme.ContainerUnSelectedColor,
-                  //                             image: DecorationImage(
-                  //                               image: NetworkImage(
-                  //                                 base +
-                  //                                     '${items[index].promotionalBannerPath}',
-                  //                               ),
-                  //                               fit: BoxFit.fill,
-                  //                             ),
-                  //                           ),
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                   );
-                  //                 }));
-                  //       } else if (snapshot.hasError) {
-                  //         return Text("${snapshot.error}");
-                  //       }
-                  //       return Center(
-                  //           child: CircularProgressIndicator(
-                  //         color: Colors.white,
-                  //       ));
-                  //     })
-                ],
+                                                                //Colors.blueGrey.shade300,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          5),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                )),
+                                                        child: Center(
+                                                          child: Text(
+                                                            _homePageController
+                                                                .getflashsellproduct!
+                                                                .result![index]
+                                                                .sellerOption
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                              fontSize: 9.sp,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 0.7.h,
+                                                    ),
+                                                    PhysicalModel(
+                                                      shadowColor: Colors.green,
+                                                      color: Colors.green,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      elevation: 5,
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          _flashProductByIdController
+                                                                  .productid =
+                                                              _homePageController
+                                                                  .getflashsellproduct!
+                                                                  .result![
+                                                                      index]
+                                                                  .id
+                                                                  .toString();
+                                                          _flashProductByIdController
+                                                              .flashproductbyIdApi();
+                                                          //Navigator.of(context).push(_createRoute());
+
+                                                          // Get.to(
+                                                          //   () => ItemDetailss(
+                                                          //     // name: Productss
+                                                          //     //     .products[index].name,
+                                                          //     // price: Productss
+                                                          //     //     .products[index].price,
+                                                          //     // weight: Productss
+                                                          //     //     .products[index].weight,
+                                                          //     // imageUrl: Productss
+                                                          //     //     .products[index].imageUrl,
+                                                          //     // description: Productss
+                                                          //     //     .products[index].descriptions,
+                                                          //     // color: Productss
+                                                          //     //     .products[index].color,
+                                                          //     // id: Productss.products[index].id,
+                                                          //     //
+                                                          //     index: index,
+                                                          //
+                                                          //     //cartController.products[index].toString(),
+                                                          //
+                                                          //     // product:pr,
+                                                          //   ), //next page class
+                                                          //   duration: Duration(
+                                                          //       milliseconds:
+                                                          //           500), //duration of transitions, default 1 sec
+                                                          //   transition:
+                                                          //       // Transition.leftToRight //transition effect
+                                                          //       // Transition.fadeIn
+                                                          //       //Transition.size
+                                                          //       Transition.zoom,
+                                                          // );
+                                                        },
+                                                        child: Container(
+                                                          height: size.height *
+                                                              0.17,
+                                                          width:
+                                                              size.width * 0.36,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            // border: Border.all(
+                                                            //     color: AppColors.themecolors),
+                                                            // image: DecorationImage(
+                                                            //     image: AssetImage(Productss
+                                                            //         .products[index].imageUrl),
+                                                            //     fit: BoxFit.cover),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child:
+                                                                Image.network(
+                                                              base +
+                                                                  '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
+                                                              fit: BoxFit.fill,
+                                                              errorBuilder:
+                                                                  (context,
+                                                                      error,
+                                                                      stackTrace) {
+                                                                //if image not comming in catagary then we have to purchase
+
+                                                                return Icon(
+                                                                  Icons.error,
+                                                                  color: Colors
+                                                                      .grey,
+                                                                );
+                                                              },
+
+                                                              height:
+                                                                  size.height *
+                                                                      0.04,
+                                                              // color: _homePageController
+                                                              //             .selectedIndex
+                                                              //             .value ==
+                                                              //         index
+                                                              //     ? Colors.white
+                                                              //     : MyTheme.ThemeColors
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 0.6.h,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  1.7.w),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.31,
+                                                            child: Text(
+                                                              _homePageController
+                                                                  .getflashsellproduct!
+                                                                  .result![
+                                                                      index]
+                                                                  .productName
+                                                                  .toString(),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              maxLines: 1,
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                fontSize: 9.sp,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "Save${_homePageController.getflashsellproduct!.result![index].discount.toString()}%",
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 10.sp,
+                                                              color: Colors
+                                                                  .yellow
+                                                                  .shade500,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          size.height * 0.01,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  1.8.w),
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            //width: 21.w,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  '₹${_homePageController.getflashsellproduct!.result![index].price}' +
+                                                                      "",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        10.sp,
+                                                                    color: MyTheme
+                                                                        .ContainerUnSelectedColor,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          top: 0.0
+                                                                              .h),
+                                                                  child: Text(
+                                                                    '/${_homePageController.getflashsellproduct!.result![index].weight1} gm',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          8.sp,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade200,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+
+                                                          Spacer(),
+                                                          Container(
+                                                            height:
+                                                                size.height *
+                                                                    0.033,
+                                                            width: 23.w,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                            ),
+                                                            child: InkWell(
+                                                              ///TODO: here we have to change the code add to cart..............prince
+                                                              onTap: () {
+                                                                ///this is the thing to thing to you that how can you add the item to add to cart api send by the help of id
+                                                                controller.addtocartApi(
+                                                                    _homePageController
+                                                                        .getflashsellproduct!
+                                                                        .result![
+                                                                            index]
+                                                                        .id);
+
+                                                                ///
+                                                              },
+                                                              child:
+                                                                  RaisedGradientButton(
+                                                                //height: 3.3.h,
+                                                                //width: 23.9.w,
+                                                                child: Text(
+                                                                  'Add To Cart',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w800,
+                                                                      fontSize:
+                                                                          8.sp),
+                                                                ),
+                                                                gradient:
+                                                                    LinearGradient(
+                                                                  colors: <
+                                                                      Color>[
+                                                                    Color(
+                                                                        0xff3a923b),
+                                                                    Color(
+                                                                        0xffb5d047),
+                                                                    //Colors.green,
+                                                                    //Colors.cyan.shade400
+                                                                  ],
+                                                                ),
+                                                                onPressed: () {
+                                                                  // cartController.addProduct(
+                                                                  //     Productss
+                                                                  //         .products[index]);
+                                                                  controller.addtocartApi(_homePageController
+                                                                      .getflashsellproduct!
+                                                                      .result![
+                                                                          index]
+                                                                      .id);
+                                                                  print(
+                                                                      'Add To cart');
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ),
+
+                                                          // InkWell(
+                                                          //   onTap: () {
+                                                          //     cartController.addProduct(Productss.products[index]);
+                                                          //   },
+                                                          //   child: Container(
+                                                          //     height: 3.3.h,
+                                                          //     width: 23.9.w,
+                                                          //     decoration: BoxDecoration(
+                                                          //         //color: MyTheme.loginbuttonColor,
+                                                          //         gradient: MyTheme.gradient4,
+                                                          //         borderRadius: BorderRadius.only(
+                                                          //           bottomRight: Radius.circular(5),
+                                                          //           bottomLeft: Radius.circular(5),
+                                                          //         )),
+                                                          //     child: Center(
+                                                          //       child: Text(
+                                                          //         'Add To Cart',
+                                                          //         style: TextStyle(
+                                                          //           color: Colors.white,
+                                                          //           fontWeight: FontWeight.w500,
+                                                          //           fontSize: 8.sp,
+                                                          //         ),
+                                                          //       ),
+                                                          //     ),
+                                                          //   ),
+                                                          // ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                              );
+                            })),
+                    SizedBox(
+                      height: 00.h,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: size.height * 0.034,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: MyTheme.gradient2,
+                        ),
+                        //color: MyTheme.loginPageBoxColor,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 2.w, vertical: 0.4.h),
+                          child: Text(
+                            'Purchase your first product',
+                            style: TextStyle(
+                              color: Colors.white,
+
+                              //color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 11.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                        height: size.height * 0.19,
+                        //width: double.infinity,
+                        child: ListView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: _homePageController
+                                .getfirstorderbanner!.result.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Obx(
+                                () => (_homePageController.isLoading.value)
+                                    ? Center(child: CircularProgressIndicator())
+                                    : _homePageController
+                                            .getfirstorderbanner!.result.isEmpty
+                                        ? Center(
+                                            child: Text('No List'),
+                                          )
+                                        : InkWell(
+                                            onTap: () {
+                                              // _homePageController.toggle(index);
+                                              if (index == 0) {
+                                                //Get.to(() => ManPage());
+                                                //Get.to(() => BestSeller());
+                                                //Get.to(() => WaterTracking());
+                                              }
+                                            },
+                                            child: PhysicalModel(
+                                              borderRadius:
+                                                  BorderRadius.circular(0),
+                                              color: _homePageController
+                                                          .selectedIndex
+                                                          .value ==
+                                                      index
+                                                  ? MyTheme.ThemeColors
+                                                  : Color(0xffeff8f5),
+                                              elevation: 0.1,
+                                              child: Container(
+                                                height: 23.h,
+                                                width:
+                                                    100.w, //size.width * 0.99,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(0),
+                                                  color: MyTheme
+                                                      .ContainerUnSelectedColor,
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      base +
+                                                          '${_homePageController.getfirstorderbanner!.result[index].imagePath}',
+                                                    ),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                              );
+                            })),
+                    SizedBox(
+                      height: 0.h,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: size.height * 0.034,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: MyTheme.gradient2,
+                        ),
+                        //color: MyTheme.loginPageBoxColor,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 2.w, vertical: 0.4.h),
+                          child: Text(
+                            'Our Products',
+                            style: TextStyle(
+                              color: Colors.white,
+
+                              //color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 11.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                        height: size.height * 0.29,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _homePageController
+                                .getflashsellproduct!.result!.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Obx(
+                                () => (_homePageController.isLoading.value)
+                                    ? Center(child: CircularProgressIndicator())
+                                    : _homePageController.getflashsellproduct!
+                                            .result!.isEmpty
+                                        ? Center(
+                                            child: Text('No List'),
+                                          )
+                                        : Padding(
+                                            padding: const EdgeInsets.all(1.0),
+                                            child: PhysicalModel(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: MyTheme.ThemeColors,
+                                              elevation: 0.1,
+                                              child: Container(
+                                                height: 26.h,
+                                                width: size.width * 0.5,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color:
+                                                      MyTheme.containercolor7,
+                                                  //gradient: MyTheme.gradient12
+                                                ),
+                                                child: Column(
+                                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Container(
+                                                        height: 3.1.h,
+                                                        width: 22.w,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: MyTheme
+                                                                    .containercolor16,
+
+                                                                //Colors.blueGrey.shade300,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                          5),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                )),
+                                                        child: Center(
+                                                          child: Text(
+                                                            _homePageController
+                                                                .getflashsellproduct!
+                                                                .result![index]
+                                                                .sellerOption
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                              fontSize: 9.sp,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 0.7.h,
+                                                    ),
+                                                    PhysicalModel(
+                                                      shadowColor: Colors.green,
+                                                      color: Colors.green,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5),
+                                                      elevation: 5,
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          _flashProductByIdController
+                                                                  .productid =
+                                                              _homePageController
+                                                                  .getflashsellproduct!
+                                                                  .result![
+                                                                      index]
+                                                                  .id
+                                                                  .toString();
+                                                          _flashProductByIdController
+                                                              .flashproductbyIdApi();
+                                                          //Navigator.of(context).push(_createRoute());
+
+                                                          // Get.to(
+                                                          //   () => ItemDetailss(
+                                                          //     // name: Productss
+                                                          //     //     .products[index].name,
+                                                          //     // price: Productss
+                                                          //     //     .products[index].price,
+                                                          //     // weight: Productss
+                                                          //     //     .products[index].weight,
+                                                          //     // imageUrl: Productss
+                                                          //     //     .products[index].imageUrl,
+                                                          //     // description: Productss
+                                                          //     //     .products[index].descriptions,
+                                                          //     // color: Productss
+                                                          //     //     .products[index].color,
+                                                          //     // id: Productss.products[index].id,
+                                                          //     //
+                                                          //     index: index,
+                                                          //
+                                                          //     //cartController.products[index].toString(),
+                                                          //
+                                                          //     // product:pr,
+                                                          //   ), //next page class
+                                                          //   duration: Duration(
+                                                          //       milliseconds:
+                                                          //           500), //duration of transitions, default 1 sec
+                                                          //   transition:
+                                                          //       // Transition.leftToRight //transition effect
+                                                          //       // Transition.fadeIn
+                                                          //       //Transition.size
+                                                          //       Transition.zoom,
+                                                          // );
+                                                        },
+                                                        child: Container(
+                                                          height: size.height *
+                                                              0.17,
+                                                          width:
+                                                              size.width * 0.36,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        5),
+                                                            // border: Border.all(
+                                                            //     color: AppColors.themecolors),
+                                                            // image: DecorationImage(
+                                                            //     image: AssetImage(Productss
+                                                            //         .products[index].imageUrl),
+                                                            //     fit: BoxFit.cover),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    2.0),
+                                                            child:
+                                                                Image.network(
+                                                              base +
+                                                                  '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
+                                                              fit: BoxFit.fill,
+                                                              errorBuilder:
+                                                                  (context,
+                                                                      error,
+                                                                      stackTrace) {
+                                                                //if image not comming in catagary then we have to purchase
+
+                                                                return Icon(
+                                                                  Icons.error,
+                                                                  color: Colors
+                                                                      .grey,
+                                                                );
+                                                              },
+
+                                                              height:
+                                                                  size.height *
+                                                                      0.04,
+                                                              // color: _homePageController
+                                                              //             .selectedIndex
+                                                              //             .value ==
+                                                              //         index
+                                                              //     ? Colors.white
+                                                              //     : MyTheme.ThemeColors
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 0.6.h,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  1.7.w),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          SizedBox(
+                                                            width: size.width *
+                                                                0.31,
+                                                            child: Text(
+                                                              _homePageController
+                                                                  .getflashsellproduct!
+                                                                  .result![
+                                                                      index]
+                                                                  .productName
+                                                                  .toString(),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              maxLines: 1,
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700,
+                                                                fontSize: 9.sp,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "Save${_homePageController.getflashsellproduct!.result![index].discount.toString()}%",
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: 10.sp,
+                                                              color: Colors
+                                                                  .yellow
+                                                                  .shade500,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          size.height * 0.01,
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal:
+                                                                  1.8.w),
+                                                      child: Row(
+                                                        children: [
+                                                          SizedBox(
+                                                            //width: 21.w,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  '₹${_homePageController.getflashsellproduct!.result![index].price}' +
+                                                                      "",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        10.sp,
+                                                                    color: MyTheme
+                                                                        .ContainerUnSelectedColor,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          top: 0.0
+                                                                              .h),
+                                                                  child: Text(
+                                                                    '/${_homePageController.getflashsellproduct!.result![index].weight1} gm',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          8.sp,
+                                                                      color: Colors
+                                                                          .grey
+                                                                          .shade200,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+
+                                                          Spacer(),
+                                                          Container(
+                                                            height:
+                                                                size.height *
+                                                                    0.033,
+                                                            width: 23.w,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20),
+                                                            ),
+                                                            child: InkWell(
+                                                              ///TODO: here we have to change the code add to cart..............prince
+                                                              onTap: () {
+                                                                ///this is the thing to thing to you that how can you add the item to add to cart api send by the help of id
+                                                                controller.addtocartApi(
+                                                                    _homePageController
+                                                                        .getflashsellproduct!
+                                                                        .result![
+                                                                            index]
+                                                                        .id);
+
+                                                                ///
+                                                              },
+                                                              child:
+                                                                  RaisedGradientButton(
+                                                                //height: 3.3.h,
+                                                                //width: 23.9.w,
+                                                                child: Text(
+                                                                  'Add To Cart',
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .black,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w800,
+                                                                      fontSize:
+                                                                          8.sp),
+                                                                ),
+                                                                gradient:
+                                                                    LinearGradient(
+                                                                  colors: <
+                                                                      Color>[
+                                                                    Color(
+                                                                        0xff3a923b),
+                                                                    Color(
+                                                                        0xffb5d047)
+                                                                    //Colors.green,
+                                                                    //Colors.cyan.shade400
+                                                                  ],
+                                                                ),
+                                                                onPressed: () {
+                                                                  // cartController.addProduct(
+                                                                  //     Productss
+                                                                  //         .products[index]);
+                                                                  controller.addtocartApi(_homePageController
+                                                                      .getflashsellproduct!
+                                                                      .result![
+                                                                          index]
+                                                                      .id);
+                                                                  print(
+                                                                      'Add To cart');
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ),
+
+                                                          // InkWell(
+                                                          //   onTap: () {
+                                                          //     cartController.addProduct(Productss.products[index]);
+                                                          //   },
+                                                          //   child: Container(
+                                                          //     height: 3.3.h,
+                                                          //     width: 23.9.w,
+                                                          //     decoration: BoxDecoration(
+                                                          //         //color: MyTheme.loginbuttonColor,
+                                                          //         gradient: MyTheme.gradient4,
+                                                          //         borderRadius: BorderRadius.only(
+                                                          //           bottomRight: Radius.circular(5),
+                                                          //           bottomLeft: Radius.circular(5),
+                                                          //         )),
+                                                          //     child: Center(
+                                                          //       child: Text(
+                                                          //         'Add To Cart',
+                                                          //         style: TextStyle(
+                                                          //           color: Colors.white,
+                                                          //           fontWeight: FontWeight.w500,
+                                                          //           fontSize: 8.sp,
+                                                          //         ),
+                                                          //       ),
+                                                          //     ),
+                                                          //   ),
+                                                          // ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                              );
+                            })),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        height: size.height * 0.034,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          gradient: MyTheme.gradient2,
+                        ),
+                        //color: MyTheme.loginPageBoxColor,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 2.w, vertical: 0.4.h),
+                          child: Text(
+                            'Our Offers',
+                            style: TextStyle(
+                              color: Colors.white,
+                              //color: Theme.of(context).colorScheme.onPrimary,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 11.sp,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                        height: size.height * 0.2,
+                        //width: double.infinity,
+                        child: ListView.builder(
+                            itemCount:
+                                _homePageController.getouroffer!.result!.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Obx(
+                                () => (_homePageController.isLoading.value)
+                                    ? Center(child: CircularProgressIndicator())
+                                    : _homePageController
+                                            .getouroffer!.result!.isEmpty
+                                        ? Center(
+                                            child: Text('No List'),
+                                          )
+                                        : PhysicalModel(
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                            color: Color(0xffeff8f5),
+                                            elevation: 0.1,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(2.0),
+                                              child: Container(
+                                                height: 15.h,
+                                                width:
+                                                    95.w, //size.width * 0.99,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  // color: MyTheme.ContainerUnSelectedColor,
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      base +
+                                                          '${_homePageController.getouroffer!.result![index].promotionalBannerPath}',
+                                                    ),
+                                                    fit: BoxFit.fill,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                              );
+                            })),
+
+                    ///from here we can see the method of future builder.....................
+                    // FutureBuilder<List<ourOfferResult>>(
+                    //     future: ourOfferData(),
+                    //     builder: (context, snapshot) {
+                    //       if (snapshot.hasData) {
+                    //         var items = snapshot.data;
+                    //         var base = 'https://api.gyros.farm/Images/';
+                    //         return SizedBox(
+                    //             height: size.height * 0.2,
+                    //             //width: double.infinity,
+                    //             child: ListView.builder(
+                    //                 itemCount: items!.length,
+                    //                 scrollDirection: Axis.horizontal,
+                    //                 itemBuilder:
+                    //                     (BuildContext context, int index) {
+                    //                   return InkWell(
+                    //                     onTap: () {},
+                    //                     child: PhysicalModel(
+                    //                       borderRadius: BorderRadius.circular(0),
+                    //                       color: Color(0xffeff8f5),
+                    //                       elevation: 0.1,
+                    //                       child: Padding(
+                    //                         padding: const EdgeInsets.all(2.0),
+                    //                         child: Container(
+                    //                           height: 15.h,
+                    //                           width: 95.w, //size.width * 0.99,
+                    //                           decoration: BoxDecoration(
+                    //                             borderRadius:
+                    //                                 BorderRadius.circular(5),
+                    //                             // color: MyTheme.ContainerUnSelectedColor,
+                    //                             image: DecorationImage(
+                    //                               image: NetworkImage(
+                    //                                 base +
+                    //                                     '${items[index].promotionalBannerPath}',
+                    //                               ),
+                    //                               fit: BoxFit.fill,
+                    //                             ),
+                    //                           ),
+                    //                         ),
+                    //                       ),
+                    //                     ),
+                    //                   );
+                    //                 }));
+                    //       } else if (snapshot.hasError) {
+                    //         return Text("${snapshot.error}");
+                    //       }
+                    //       return Center(
+                    //           child: CircularProgressIndicator(
+                    //         color: Colors.white,
+                    //       ));
+                    //     })
+                  ],
+                ),
               ),
-            )
-          : Center(child: CircularProgressIndicator())),
+        //: Center(child: CircularProgressIndicator())
+      ),
     );
   }
 }

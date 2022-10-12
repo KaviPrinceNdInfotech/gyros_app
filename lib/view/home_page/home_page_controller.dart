@@ -21,6 +21,7 @@ class HomePageController extends GetxController {
   //all catagary list .........
 
   void categoryListssApi() async {
+    //isLoading(true);
     getcatagartlist = await ApiProvider.AllcatagaryApi();
     if (getcatagartlist!.result!.isNotEmpty) {
       isLoading(false);
@@ -30,6 +31,7 @@ class HomePageController extends GetxController {
   //crusial slider banner api..........
 
   void sliderBannerApi() async {
+    //isLoading(true);
     getsliderbaner = await ApiProvider.SliderBannerApi();
     if (getsliderbaner!.bannerImageList!.isNotEmpty) {
       isLoading(false);
@@ -39,6 +41,7 @@ class HomePageController extends GetxController {
   //my_offer_list.....................................
 
   void ourofferApi() async {
+    //isLoading(true);
     getouroffer = await ApiProvider.ourOfferApi();
     if (getouroffer!.result!.isNotEmpty) {
       isLoading(false);
@@ -48,6 +51,7 @@ class HomePageController extends GetxController {
   //first_order_banner.........................
 
   void firstorderApi() async {
+    //isLoading(true);
     getfirstorderbanner = await ApiProvider.FirstPurchaseApi();
     if (getfirstorderbanner!.result.isNotEmpty) {
       isLoading(false);
@@ -57,6 +61,7 @@ class HomePageController extends GetxController {
   //flash sale product.....list....
 
   void flashsellproductApi() async {
+    //isLoading(true);
     getflashsellproduct = await ApiProvider.FlashsellproduuctApi();
     if (getflashsellproduct!.result!.isNotEmpty) {
       isLoading(false);
@@ -65,12 +70,12 @@ class HomePageController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     categoryListssApi();
     sliderBannerApi();
     ourofferApi();
     firstorderApi();
     flashsellproductApi();
-    super.onInit();
   }
 
   @override

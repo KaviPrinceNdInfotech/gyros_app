@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gyros_app/controllers/get_profile/get_profile_controller.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/order_confirmation_screens/order_confirmation.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -9,6 +10,7 @@ class RozarPayController extends GetxController {
 
   RxBool isLoading = false.obs;
   final CartController controller = Get.put(CartController());
+  GetProfileController _getProfileController = Get.put(GetProfileController());
 
   @override
   void onInit() {
@@ -23,24 +25,29 @@ class RozarPayController extends GetxController {
 
   @override
   void dispose() {
-    super.dispose();
     _razorpay.clear();
+    super.dispose();
   }
 
   void openCheckout() async {
     var options = {
       'key': 'rzp_live_sTN4TNvGmEs3C1',
-      // 'key': 'rzp_test_aeRns0u8gPpOUK',
-      'amount':
-          //500 * 100,
-          controller.cartListModel.totalPrice,
+      //'key': 'rzp_test_aeRns0u8gPpOUK',
+      'amount': int.parse('${controller.cartListModel!.totalPrice}') * 100,
+      //var amc = int.parse('${controller.cartListModel!.totalPrice}');
+      //"${controller.cartListModel!.totalPrice }",
       // 'Order_id':orderId,
-      'name': 'Kumar Prince',
+      'name': _getProfileController.getprofileModel!.result!.name.toString(),
+      //'Kumar Prince',
       'timeout': 60 * 5,
       'description': 'Do Payment',
       'prefill': {
-        'contact': '970987889',
-        'email': 'kumarprince261299@gmail.com'
+        'contact':
+            _getProfileController.getprofileModel!.result!.mobileNo.toString(),
+        //'7019380053',
+        'email':
+            _getProfileController.getprofileModel!.result!.emailId.toString(),
+        //'kumarprince261299@gmail.com'
       },
       'external': {
         'wallets': ['paytm']
@@ -59,6 +66,7 @@ class RozarPayController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     Get.snackbar("SUCCESS", "ID: ${response.paymentId}");
+    print('payment sucess');
 
     Get.to(OrderConfirmationPage());
   }
@@ -66,6 +74,8 @@ class RozarPayController extends GetxController {
   void _handlePaymentError(PaymentFailureResponse response) {
     Get.snackbar(
         "ERROR", "CODE: ${response.code}  MESSAGE:${response.message}");
+
+    print('payment fail');
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {

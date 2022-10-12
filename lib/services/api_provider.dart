@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/models/all_product_model.dart';
 import 'package:gyros_app/models/blog_model.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
+import 'package:gyros_app/models/checkout_address_model.dart';
 import 'package:gyros_app/models/contact_us_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
@@ -19,6 +20,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/all_address_list_model.dart';
 import '../models/best_seller_models.dart';
+import '../models/get_profile_model.dart';
 import '../models/our_offer_permotion_model.dart';
 import '../models/our_story_model.dart';
 
@@ -33,6 +35,7 @@ class ApiProvider {
   static String Id = ''.toString();
   static String prodid = '';
   static String cartlistid = '';
+  static String addressid = '';
   //catagary list api gyros 1 api.....................
 
   static AllcatagaryApi() async {
@@ -535,6 +538,30 @@ class ApiProvider {
     }
   }
 
+  //sub_address_by_id  gyros api 41.....................................
+
+  static getaddressIdApi(var addressid) async {
+    var prefs = GetStorage();
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince1012:${Id}');
+    var url =
+        //'https://api.gyros.farm/api/AdminApi/GetByAddress/2';
+        baseUrl + 'api/AdminApi/GetByAddress/$addressid';
+    print('url');
+    //var headers = {'Authorization': 'Bearer $token'};
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        AdressbyidModel getaddressbyid = adressbyidModelFromJson(r.body);
+        return getaddressbyid;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
   ///...................
 
   // static GetCartApi() async {
@@ -634,6 +661,26 @@ class ApiProvider {
     } catch (e) {
       print('Error');
       print(e.toString());
+    }
+  }
+
+  //get address api..............api gyros  get profile api..........................
+
+  static GetProfileApi() async {
+    var prefs = GetStorage();
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince108profile:${Id}');
+    var url = baseUrl + 'api/AdminApi/UpdateProfile/$Id';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        GetprofileModel getprofileModel = getprofileModelFromJson(r.body);
+        return getprofileModel;
+      }
+    } catch (error) {
+      return;
     }
   }
   //ContactUsModel
