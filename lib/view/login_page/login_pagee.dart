@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/view/home_page/home_pages.dart';
 import 'package:gyros_app/view/login_page/login_with_email/login_email.dart';
-import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatelessWidget {
@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: size.height,
-          width: size.width,
+          width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                       //'https://images.wallpapersden.com/image/download/las-vegas-night-hotel_Zmxtbm6UmZqaraWkpJRmbmdlrWZlbWU.jpg'
                       //'https://i.pinimg.com/originals/01/96/c1/0196c1f3432b1a2ebac601dadb7b92cd.jpg'
                       ),
-                  fit: BoxFit.fill)),
+                  fit: BoxFit.fitHeight)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
                     color: Colors.white,
                     image: DecorationImage(
                       image: AssetImage('lib/assets/asset/guser_logo.png'),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ),
@@ -66,18 +66,8 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              // SizedBox(
-              //   height: 8.h,
-              // ),
-              // CustomButtom(
-              //   buttonColor: MyTheme.loginbuttonColor,
-              //   buttontext: 'LOGIN WITH MOBILE',
-              //   textColor: Colors.white,
-              //   //Theme.of(context).colorScheme.onPrimary,
-              //   handleButtonClick: loginButtonClickHandlerPhone,
-              // ),
               SizedBox(
-                height: 15,
+                height: 8.h,
               ),
 
               CustomButtom(
@@ -100,6 +90,21 @@ class LoginPage extends StatelessWidget {
                 // textColor: Theme.of(context).colorScheme.primary,
                 handleButtonClick: signupButtonClickHandler,
               ),
+
+              SizedBox(
+                height: 15,
+              ),
+
+              CustomButtom(
+                buttonColor: MyTheme.containercolor7,
+                buttontext: 'SKIP',
+                textColor: Colors.white,
+                //Theme.of(context).colorScheme.onPrimary,
+                handleButtonClick: loginButtonClickHandlerPhone,
+              ),
+              SizedBox(
+                height: 15,
+              ),
             ],
           ),
         ),
@@ -109,7 +114,7 @@ class LoginPage extends StatelessWidget {
 
   loginButtonClickHandlerPhone() {
     print("Login Phone Clicked");
-    //Get.to(() => Register());
+    Get.to(() => HomePage());
   }
 
   loginButtonClickHandler() {
@@ -122,6 +127,6 @@ class LoginPage extends StatelessWidget {
 
   signupButtonClickHandler() {
     print("Signup Button Clicked");
-    Get.to(SignUp());
+    Get.to(HomePage());
   }
 }

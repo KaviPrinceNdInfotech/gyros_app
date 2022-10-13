@@ -33,6 +33,7 @@ class ControllerBinding extends Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
+    //Get.put(IntroVideoBoxController());
 
     Get.put(CartNewController());
     Get.put(FavCounterController());

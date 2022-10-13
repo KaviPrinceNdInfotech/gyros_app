@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gyros_app/services/api_provider.dart';
-import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:http/http.dart' as http;
+
+import '../../botttom_nav_bar/bottom_navbar.dart';
 
 class LoginEmailController extends GetxController {
   var isVisible = true.obs;

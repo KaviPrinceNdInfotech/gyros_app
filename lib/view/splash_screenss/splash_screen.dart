@@ -16,29 +16,22 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  int splashtime = 5;
   @override
   void initState() {
+    super.initState();
     var prefs = GetStorage();
     String? checkToken = prefs.read('token');
     print(checkToken);
     if (checkToken != null) {
       token = checkToken;
     }
-    Future.delayed(Duration(seconds: splashtime), () async {
-      token != ''
-          ? () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NavBar(),
-                ),
-              )
-          : () => Navigator.pushReplacement(
-              //in this line you can write different page.....
-              context,
-              MaterialPageRoute(builder: (context) => LoginPage()));
-    });
-    super.initState();
+    Timer(
+        Duration(seconds: 2),
+        token != ''
+            ? () => Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => NavBar()))
+            : () => Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => LoginPage())));
   }
 
   @override

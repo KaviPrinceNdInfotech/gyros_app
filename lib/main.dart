@@ -9,7 +9,6 @@ import 'package:gyros_app/controllers/binding_controllers/binding_controllers.da
 import 'package:gyros_app/view/splash_screenss/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
-import 'controllers/cart_controllers.dart';
 import 'models/all_product_model.dart';
 import 'models/best_seller_models.dart';
 import 'models/gift_box_model.dart';
@@ -40,7 +39,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  late CartController controller = Get.put(CartController());
+  //late CartController controller = Get.put(CartController());
 
   // CartNewController _cartNewController = Get.put(CartNewController());
   // FavCounterController _favCounterController = Get.put(FavCounterController());
