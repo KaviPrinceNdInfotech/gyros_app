@@ -21,9 +21,11 @@ class HomePageController extends GetxController {
   //all catagary list .........
 
   void categoryListssApi() async {
-    //isLoading(true);
+    isLoading(true);
     getcatagartlist = await ApiProvider.AllcatagaryApi();
-    if (getcatagartlist!.result!.isNotEmpty) {
+    if (getcatagartlist != null
+        //getcatagartlist!.result!.isNotEmpty
+        ) {
       isLoading(false);
     }
   }
@@ -31,9 +33,11 @@ class HomePageController extends GetxController {
   //crusial slider banner api..........
 
   void sliderBannerApi() async {
-    //isLoading(true);
+    isLoading(true);
     getsliderbaner = await ApiProvider.SliderBannerApi();
-    if (getsliderbaner!.bannerImageList!.isNotEmpty) {
+    if (getsliderbaner != null
+        //getsliderbaner!.bannerImageList!.isNotEmpty
+        ) {
       isLoading(false);
     }
   }
@@ -41,9 +45,11 @@ class HomePageController extends GetxController {
   //my_offer_list.....................................
 
   void ourofferApi() async {
-    //isLoading(true);
+    isLoading(true);
     getouroffer = await ApiProvider.ourOfferApi();
-    if (getouroffer!.result!.isNotEmpty) {
+    if (getouroffer != null
+        //getouroffer!.result!.isNotEmpty
+        ) {
       isLoading(false);
     }
   }
@@ -51,9 +57,11 @@ class HomePageController extends GetxController {
   //first_order_banner.........................
 
   void firstorderApi() async {
-    //isLoading(true);
+    isLoading(true);
     getfirstorderbanner = await ApiProvider.FirstPurchaseApi();
-    if (getfirstorderbanner!.result.isNotEmpty) {
+    if (getfirstorderbanner != null
+        //getfirstorderbanner!.result.isNotEmpty
+        ) {
       isLoading(false);
     }
   }
@@ -61,9 +69,12 @@ class HomePageController extends GetxController {
   //flash sale product.....list....
 
   void flashsellproductApi() async {
-    //isLoading(true);
+    isLoading(true);
     getflashsellproduct = await ApiProvider.FlashsellproduuctApi();
-    if (getflashsellproduct!.result!.isNotEmpty) {
+    if (getflashsellproduct != null
+
+        //getflashsellproduct!.result!.isNotEmpty
+        ) {
       isLoading(false);
     }
   }

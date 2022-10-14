@@ -14,6 +14,9 @@ import 'package:gyros_app/models/flash_sall_list_product_model.dart';
 import 'package:gyros_app/models/gift_box_model.dart';
 import 'package:gyros_app/models/list_of_cart_model_api.dart';
 import 'package:gyros_app/models/no_of_cart_item_model.dart';
+import 'package:gyros_app/models/privecy_policy_model.dart';
+import 'package:gyros_app/models/refund_policy_model.dart';
+import 'package:gyros_app/models/shipping_policy_model.dart';
 import 'package:gyros_app/models/slider_banner_models.dart';
 import 'package:gyros_app/models/sub_cat_by_id_model.dart';
 import 'package:http/http.dart' as http;
@@ -36,6 +39,78 @@ class ApiProvider {
   static String prodid = '';
   static String cartlistid = '';
   static String addressid = '';
+
+  //sign up  Api gyros  gyros Api 6........................................................
+  static signUpApi(
+    var Name,
+    var Mobile_No,
+    var Email_Id,
+    var PassWord,
+    var ConfirmPassWord,
+  ) async {
+    try {
+      var url = baseUrl + 'api/AdminApi/Registration';
+
+      var body = {
+        "Name": Name,
+        "Mobile_No": Mobile_No,
+        "Email_Id": Email_Id,
+        "PassWord": PassWord,
+        "ConfirmPassWord": ConfirmPassWord,
+      };
+      print(body);
+      http.Response r = await http.post(
+        Uri.parse(url),
+        body: body,
+      );
+      print(r.body);
+      if (r.statusCode == 200) {
+        return r;
+      } else {
+        Get.snackbar('Error', 'SignUp Fail');
+        return r;
+      }
+    } catch (e) {
+      print('Error');
+      print(e.toString());
+    }
+  }
+
+  //login with email api gyros api 5..................................
+
+  static LoginEmailApi(
+    var Email,
+    var PassWord,
+  ) async {
+    var url = baseUrl + 'api/AdminApi/LoginWithEmail';
+
+    var body = {
+      "Email": Email,
+      "PassWord": PassWord,
+    };
+    print(body);
+    http.Response r = await http.post(
+      Uri.parse(url), body: body,
+      //headers: headers
+    );
+    print(r.body);
+    if (r.statusCode == 200) {
+      var prefs = GetStorage();
+      //saved id..........
+      prefs.write("Id".toString(), json.decode(r.body)['Id']);
+      Id = prefs.read("Id").toString();
+      print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+
+      //saved token.........
+      prefs.write("token".toString(), json.decode(r.body)['token']);
+      token = prefs.read("token").toString();
+      print(token);
+      return r;
+    } else {
+      Get.snackbar('Error', 'Login Failed');
+      return r;
+    }
+  }
   //catagary list api gyros 1 api.....................
 
   static AllcatagaryApi() async {
@@ -105,41 +180,6 @@ class ApiProvider {
     }
   }
 
-  //login with email api gyros api 5..................................
-
-  static LoginEmailApi(
-    var Email,
-    var PassWord,
-  ) async {
-    var url = baseUrl + 'api/AdminApi/LoginWithEmail';
-
-    var body = {
-      "Email": Email,
-      "PassWord": PassWord,
-    };
-    print(body);
-    http.Response r = await http.post(
-      Uri.parse(url), body: body,
-      //headers: headers
-    );
-    print(r.body);
-    if (r.statusCode == 200) {
-      var prefs = GetStorage();
-      //saved id..........
-      prefs.write("Id".toString(), json.decode(r.body)['Id']);
-      Id = prefs.read("Id").toString();
-      print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
-
-      //saved token.........
-      prefs.write("token".toString(), json.decode(r.body)['token']);
-      token = prefs.read("token").toString();
-      print(token);
-      return r;
-    } else {
-      Get.snackbar('Error', 'Login Failed');
-      return r;
-    }
-  }
   //here add address api...............gyros.....
 
   static PostAddressApi(
@@ -176,42 +216,6 @@ class ApiProvider {
         return r;
       } else {
         Get.snackbar('Error', 'Address not added');
-        return r;
-      }
-    } catch (e) {
-      print('Error');
-      print(e.toString());
-    }
-  }
-
-  //sign up  Api gyros  gyros Api 6........................................................
-  static signUpApi(
-    var Name,
-    var Mobile_No,
-    var Email_Id,
-    var PassWord,
-    var ConfirmPassWord,
-  ) async {
-    try {
-      var url = baseUrl + 'api/AdminApi/Registration';
-
-      var body = {
-        "Name": Name,
-        "Mobile_No": Mobile_No,
-        "Email_Id": Email_Id,
-        "PassWord": PassWord,
-        "ConfirmPassWord": ConfirmPassWord,
-      };
-      print(body);
-      http.Response r = await http.post(
-        Uri.parse(url),
-        body: body,
-      );
-      print(r.body);
-      if (r.statusCode == 200) {
-        return r;
-      } else {
-        Get.snackbar('Error', 'SignUp Fail');
         return r;
       }
     } catch (e) {
@@ -683,6 +687,56 @@ class ApiProvider {
       return;
     }
   }
+
+  // Our refund  policy  get Api gyros.......13........gyros............
+
+  static RefundPolicyApi() async {
+    var url = baseUrl + 'api/AdminApi/Refundpolicy';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        RefundpolicyModel refundpolicyModel = refundpolicyModelFromJson(r.body);
+        return refundpolicyModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // Our privecy  policy  get Api gyros.......13........gyros............
+
+  static PrivecyPolicyApi() async {
+    var url = baseUrl + 'api/AdminApi/Privacypolicy';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        PrivecypolicyModel privecypolicyModel =
+            privecypolicyModelFromJson(r.body);
+        return privecypolicyModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  // Our shipping  policy  get Api gyros.......13........gyros............
+
+  static ShippingPolicyApi() async {
+    var url = baseUrl + 'api/AdminApi/Shippingpolicy';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        ShippingpolicyModel shippingpolicyModel =
+            shippingpolicyModelFromJson(r.body);
+        return shippingpolicyModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
   //ContactUsModel
   ///
   //post address api gyros api 5..................................
@@ -724,7 +778,7 @@ class ApiProvider {
   //   }
   // }
 
-  ///till gyros...........................
+  ///till gyros..................................gyros.........gyros.......gyros
 
   ///
   ///

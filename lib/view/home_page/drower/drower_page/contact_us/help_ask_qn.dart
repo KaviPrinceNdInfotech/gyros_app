@@ -18,7 +18,7 @@ class HelpQuestion extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      key: _postQueryController.postqueryform,
+      key: _postQueryController.postqueryforms,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(

@@ -9,7 +9,7 @@ class ContactUsController extends GetxController {
   ContactUsModel? contactUsModel;
 
   void contactusApi() async {
-    isLoading(false);
+    isLoading(true);
 
     contactUsModel = await ApiProvider.ContactUsApi();
     if (contactUsModel != null) {

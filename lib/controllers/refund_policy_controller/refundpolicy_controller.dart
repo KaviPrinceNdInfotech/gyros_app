@@ -1,17 +1,16 @@
 import 'package:get/get.dart';
-import 'package:gyros_app/models/blog_model.dart';
+import 'package:gyros_app/models/refund_policy_model.dart';
 import 'package:gyros_app/services/api_provider.dart';
 
-class BlogListController extends GetxController {
+class RefundPolicyController extends GetxController {
   RxBool isLoading = true.obs;
+  RefundpolicyModel? refundpolicyModels;
 
-  BlogModel? blogmodel;
-
-  void BlogApi() async {
+  void RefundApi() async {
     isLoading(true);
 
-    blogmodel = await ApiProvider.BlogPostApi();
-    if (blogmodel != null) {
+    refundpolicyModels = await ApiProvider.RefundPolicyApi();
+    if (refundpolicyModels != null) {
       //Get.to(() => ItemDetailss());
       isLoading(false);
 
@@ -21,20 +20,20 @@ class BlogListController extends GetxController {
 
   @override
   void onInit() {
-    BlogApi();
+    RefundApi();
     //subcatidApi();
     super.onInit();
   }
 
   @override
   void onClose() {
-    blogmodel = null;
+    refundpolicyModels = null;
     super.onClose();
   }
 
   @override
   void dispose() {
-    blogmodel = null;
+    refundpolicyModels = null;
     super.dispose();
   }
 }

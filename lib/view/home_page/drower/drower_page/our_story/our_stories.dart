@@ -72,7 +72,7 @@ class OurStory extends StatelessWidget {
       body: Obx(
         () => (_ourStoryController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
-            : _ourStoryController.ourStoryModel!.result!.isEmpty
+            : _ourStoryController.ourStoryModel == null
                 ? Center(
                     child: Text('No data'),
                   )

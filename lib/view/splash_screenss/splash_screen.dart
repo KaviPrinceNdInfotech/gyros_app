@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
+import 'package:gyros_app/widgets/circular_loader.dart';
 
-import '../../widgets/circular_loader.dart';
 import '../botttom_nav_bar/bottom_navbar.dart';
 import '../intro_screen/intro_video/intro_video_view.dart';
 
@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       token = checkToken;
     }
     Timer(
-        Duration(seconds: 2),
+        Duration(seconds: 6),
         token != ''
             ? () => Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => NavBar()))
@@ -39,3 +39,6 @@ class _SplashScreenState extends State<SplashScreen> {
     return IntroVideo();
   }
 }
+
+// String? emailStore = '';
+// String? token = '';

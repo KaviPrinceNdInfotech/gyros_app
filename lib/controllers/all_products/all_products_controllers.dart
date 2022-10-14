@@ -9,7 +9,7 @@ class AllProductController extends GetxController {
   AllProductModel? allProductModel;
 
   void productsApi() async {
-    isLoading(false);
+    isLoading(true);
 
     allProductModel = await ApiProvider.AllProductApi();
     if (allProductModel != null) {

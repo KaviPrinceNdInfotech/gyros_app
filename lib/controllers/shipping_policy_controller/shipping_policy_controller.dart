@@ -1,17 +1,16 @@
 import 'package:get/get.dart';
-import 'package:gyros_app/models/blog_model.dart';
+import 'package:gyros_app/models/shipping_policy_model.dart';
 import 'package:gyros_app/services/api_provider.dart';
 
-class BlogListController extends GetxController {
+class ShippingPolicyController extends GetxController {
   RxBool isLoading = true.obs;
+  ShippingpolicyModel? shippingpolicyModel;
 
-  BlogModel? blogmodel;
-
-  void BlogApi() async {
+  void ShippingpolicyApi() async {
     isLoading(true);
 
-    blogmodel = await ApiProvider.BlogPostApi();
-    if (blogmodel != null) {
+    shippingpolicyModel = await ApiProvider.ShippingPolicyApi();
+    if (shippingpolicyModel != null) {
       //Get.to(() => ItemDetailss());
       isLoading(false);
 
@@ -21,20 +20,20 @@ class BlogListController extends GetxController {
 
   @override
   void onInit() {
-    BlogApi();
+    ShippingpolicyApi();
     //subcatidApi();
     super.onInit();
   }
 
   @override
   void onClose() {
-    blogmodel = null;
+    shippingpolicyModel = null;
     super.onClose();
   }
 
   @override
   void dispose() {
-    blogmodel = null;
+    shippingpolicyModel = null;
     super.dispose();
   }
 }

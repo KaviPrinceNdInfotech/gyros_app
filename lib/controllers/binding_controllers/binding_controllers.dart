@@ -13,6 +13,7 @@ import 'package:gyros_app/controllers/home_controllers/catagary_list_controller.
 import 'package:gyros_app/controllers/login_controllerss/login_controllerssss.dart';
 import 'package:gyros_app/controllers/phone_login_controllerr/phone_login_controllers.dart';
 import 'package:gyros_app/controllers/post_query_controller/post_querry_controllerss.dart';
+import 'package:gyros_app/controllers/refund_policy_controller/refundpolicy_controller.dart';
 import 'package:gyros_app/controllers/reset_password/reset_ps_email_controllers.dart';
 import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/controllers/set_new_password/set_new_pswd_controller.dart';
@@ -28,6 +29,7 @@ import '../address_list_controller/address_list_controllers.dart';
 import '../best_seller_controller.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
 import '../our_story_controller.dart';
+import '../shipping_policy_controller/shipping_policy_controller.dart';
 
 class ControllerBinding extends Bindings {
   @override
@@ -62,6 +64,9 @@ class ControllerBinding extends Bindings {
     Get.put(AddressListController());
     Get.put(CheckoutController());
     Get.put(GetProfileController());
+    Get.put(RefundPolicyController());
+    Get.put(RefundPolicyController());
+    Get.put(ShippingPolicyController());
 
     //Get.put(CatagaryByIdController());
   }

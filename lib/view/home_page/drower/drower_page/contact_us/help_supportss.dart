@@ -43,7 +43,8 @@ class HelpSuport extends StatelessWidget {
       body: Obx(
         () => (_contactUsController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
-            : _contactUsController.contactUsModel.toString().isEmpty
+            : _contactUsController.contactUsModel!.result == null
+                //_contactUsController.contactUsModel.toString().isEmpty
                 ? Center(
                     child: Text('No data'),
                   )

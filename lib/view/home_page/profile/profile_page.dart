@@ -16,7 +16,7 @@ import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
 
-import 'orders/my_orders.dart';
+import '../../order_confirmation_screens/order_confirmation.dart';
 
 //import 'main_screen_details.dart';
 
@@ -371,7 +371,8 @@ class ProfilePages extends StatelessWidget {
                   color: Colors.black,
                 ),
                 onTap: () {
-                  Get.to(() => OrderPage());
+                  Get.to(() => OrderConfirmationPage());
+                  //OrderPage());
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (context) => Wollet()));
                 }, //PersonalDetails

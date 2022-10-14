@@ -1,17 +1,19 @@
+//PrivecyPolicyApi
+
 import 'package:get/get.dart';
-import 'package:gyros_app/models/blog_model.dart';
+import 'package:gyros_app/models/privecy_policy_model.dart';
 import 'package:gyros_app/services/api_provider.dart';
 
-class BlogListController extends GetxController {
+class PrivecyPolicyController extends GetxController {
   RxBool isLoading = true.obs;
 
-  BlogModel? blogmodel;
+  PrivecypolicyModel? privecypolicyModel;
 
-  void BlogApi() async {
+  void PrivecyPolicyApi() async {
     isLoading(true);
 
-    blogmodel = await ApiProvider.BlogPostApi();
-    if (blogmodel != null) {
+    privecypolicyModel = await ApiProvider.PrivecyPolicyApi();
+    if (privecypolicyModel != null) {
       //Get.to(() => ItemDetailss());
       isLoading(false);
 
@@ -21,20 +23,20 @@ class BlogListController extends GetxController {
 
   @override
   void onInit() {
-    BlogApi();
+    PrivecyPolicyApi();
     //subcatidApi();
     super.onInit();
   }
 
   @override
   void onClose() {
-    blogmodel = null;
+    privecypolicyModel = null;
     super.onClose();
   }
 
   @override
   void dispose() {
-    blogmodel = null;
+    privecypolicyModel = null;
     super.dispose();
   }
 }

@@ -6,16 +6,18 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:http/http.dart' as http;
 
+import '../../widgets/circular_loader.dart';
+
 class PostQueryController extends GetxController {
   RxBool isLoading = true.obs;
-  GlobalKey<FormState> postqueryform = GlobalKey(debugLabel: "postqueryform");
+  GlobalKey<FormState> postqueryforms = GlobalKey(debugLabel: "postqueryforms");
   NavController _navController = Get.put(NavController());
 
   OtpTimerController _timeController = Get.put(OtpTimerController());
 
   void postqueryApi() async {
     isLoading(true);
-    //CallLoader.loader();
+    CallLoader.loader();
     print(Name.text);
     http.Response r = await ApiProvider.PostQueryApi(
       Name.text,
@@ -26,13 +28,13 @@ class PostQueryController extends GetxController {
     if (r.statusCode == 200) {
       //Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
       //Get.to(()=> LoginPage());
-      //CallLoader.hideLoader();
+      CallLoader.hideLoader();
       isLoading(false);
       _navController.tabindex(0);
       Get.to(() => NavBar());
 
-      _timeController.email = Email.text;
-      _timeController.phoneNumber = OrderNo.text;
+      //_timeController.email = Email.text;
+      //_timeController.phoneNumber = OrderNo.text;
     }
   }
 
@@ -91,15 +93,15 @@ class PostQueryController extends GetxController {
 
   String? validateMessage(String value) {
     if (value.length < 2) {
-      return "password should be 6 character";
+      return "password should be 5 character";
     }
     return null;
   }
 
   void checkPostQuery() {
-    if (postqueryform.currentState!.validate()) {
+    if (postqueryforms.currentState!.validate()) {
       postqueryApi();
     }
-    postqueryform.currentState!.save();
+    postqueryforms.currentState!.save();
   }
 }

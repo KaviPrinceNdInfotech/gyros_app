@@ -8,6 +8,7 @@ import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/home_pages.dart';
 import 'package:gyros_app/view/login_page/login_with_email/login_email.dart';
+import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
 class LoginPage extends StatelessWidget {
@@ -127,6 +128,6 @@ class LoginPage extends StatelessWidget {
 
   signupButtonClickHandler() {
     print("Signup Button Clicked");
-    Get.to(HomePage());
+    Get.to(SignUp());
   }
 }

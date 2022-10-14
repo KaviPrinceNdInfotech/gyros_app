@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/shipping_policy_controller/shipping_policy_controller.dart';
 import 'package:sizer/sizer.dart';
 
 class ShippingPolicy extends StatelessWidget {
-  const ShippingPolicy({Key? key}) : super(key: key);
+  ShippingPolicy({Key? key}) : super(key: key);
+
+  ShippingPolicyController _shippingPolicyController =
+      Get.put(ShippingPolicyController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,34 +35,45 @@ class ShippingPolicy extends StatelessWidget {
               color: AppColors.themecolors,
             )),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: size.height,
-            width: size.width,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    """Gyros collaborate with multiple courier partners for shipping across india. we only have standard  shipping available at the moments .Depending on the location , it takes 2-9 days to be delivered. we a.\n\nGyros reverse the right to cancel an order  within 48 hours from the times of order.""",
-                    style: GoogleFonts.raleway(
-                      fontSize: 10.sp,
+      body: Obx(
+        () => _shippingPolicyController.isLoading.value
+            ? Center(child: CircularProgressIndicator())
+            : _shippingPolicyController.shippingpolicyModel == null
+                ? Center(
+                    child: Text('No Data'),
+                  )
+                : SafeArea(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        height: size.height,
+                        width: size.width,
+                        color: Colors.white,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 3.w),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              Text(
+                                _shippingPolicyController
+                                    .shippingpolicyModel!.result!.shipping
+                                    .toString(),
+                                // """Gyros collaborate with multiple courier partners for shipping across india. we only have standard  shipping available at the moments .Depending on the location , it takes 2-9 days to be delivered. we a.\n\nGyros reverse the right to cancel an order  within 48 hours from the times of order.""",
+                                style: GoogleFonts.raleway(
+                                  fontSize: 10.sp,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

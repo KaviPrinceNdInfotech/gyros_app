@@ -10,7 +10,7 @@ class BestSellerController extends GetxController {
   BestSellerModel? bestsellermodel;
 
   void giftboxApi() async {
-    isLoading(false);
+    isLoading(true);
 
     bestsellermodel = await ApiProvider.BestSellerApi();
     if (bestsellermodel != null) {

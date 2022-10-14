@@ -18,11 +18,11 @@ import '../../../model_cart_practice/controllers/cart_controllersss.dart';
 
 class AllProducts extends StatelessWidget {
   AllProducts({Key? key}) : super(key: key);
-  NavController _navController = Get.find();
+  NavController _navController = Get.put(NavController());
   final CartController controller = Get.put(CartController());
   HomePageController _homePageController = Get.find();
   SubCatByIdController _subCatByIdController = Get.find();
-  final CartController cartController = Get.find();
+  final CartController cartController = Get.put(CartController());
   AllProductController _allProductController = Get.put(AllProductController());
 
   @override
@@ -93,13 +93,20 @@ class AllProducts extends StatelessWidget {
                               valueColor: AlwaysStoppedAnimation(Colors.yellow),
                               strokeWidth: 3,
                             ))
-                          : Text(
-                              controller.cartListModel!.totalItem.toString(),
-                              style: GoogleFonts.alatsi(
-                                color: Colors.white,
-                                fontSize: 10.sp,
-                              ),
-                            ),
+                          : controller.cartListModel!.totalItem == null
+                              //: _allProductController.allProductModel!.result!.isEmpty
+                              //_bestSellerController.bestsellermodel!.result!.isEmpty
+                              ? Center(
+                                  child: Text('No data'),
+                                )
+                              : Text(
+                                  controller.cartListModel!.totalItem
+                                      .toString(),
+                                  style: GoogleFonts.alatsi(
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
                     ),
                     child: Icon(
                       Icons.shopping_cart,
@@ -114,7 +121,8 @@ class AllProducts extends StatelessWidget {
         () => (_allProductController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
             //: _allProductController.allProductModel!.result != null
-            : _allProductController.allProductModel!.result!.isEmpty
+            : _allProductController.allProductModel!.result == null
+                //: _allProductController.allProductModel!.result!.isEmpty
                 //_bestSellerController.bestsellermodel!.result!.isEmpty
                 ? Center(
                     child: Text('No data'),

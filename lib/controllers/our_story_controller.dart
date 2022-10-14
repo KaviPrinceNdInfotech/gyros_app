@@ -10,7 +10,7 @@ class OurStoryController extends GetxController {
   OurStoryModel? ourStoryModel;
 
   void ourstoryApi() async {
-    isLoading(false);
+    isLoading(true);
 
     ourStoryModel = await ApiProvider.OurStoryApi();
     if (ourStoryModel != null) {

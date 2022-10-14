@@ -17,7 +17,7 @@ class GiftBox extends StatelessWidget {
   GiftBox({Key? key}) : super(key: key);
 
   final RozarPayController _rozarPayController = Get.find();
-  NavController _navController = Get.find();
+  NavController _navController = Get.put(NavController());
   final CartController controller = Get.put(CartController());
 
   GiftBoxController _giftBoxController = Get.put(GiftBoxController());
@@ -88,7 +88,9 @@ class GiftBox extends StatelessWidget {
       body: Obx(
         () => (_giftBoxController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
-            : _giftBoxController.giftcardModel!.result!.isEmpty
+            //: _allProductController.allProductModel!.result != null
+            : _giftBoxController.giftcardModel!.result == null
+                //: _giftBoxController.giftcardModel!.result!.isEmpty
                 ? Center(
                     child: Text('No data'),
                   )

@@ -5,10 +5,38 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:gyros_app/controllers/binding_controllers/binding_controllers.dart';
+import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:gyros_app/view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
+import 'package:gyros_app/view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
+import 'package:gyros_app/view/home_page/home_page_controller.dart';
+import 'package:gyros_app/view/login_page/login_with_email/login_email_controller.dart';
 import 'package:gyros_app/view/splash_screenss/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
+import 'controllers/add_address_cotroller/add_adress_controller.dart';
+import 'controllers/address_list_controller/address_list_controllers.dart';
+import 'controllers/all_products/all_products_controllers.dart';
+import 'controllers/best_seller_controller.dart';
+import 'controllers/blog_list_controller.dart';
+import 'controllers/cart_controllers.dart';
+import 'controllers/check_out_controller/check_out_controlles.dart';
+import 'controllers/contact_us_controller/contact_us_controller.dart';
+import 'controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
+import 'controllers/get_profile/get_profile_controller.dart';
+import 'controllers/gift_box_controller.dart';
+import 'controllers/home_controllers/catagary_list_controller.dart';
+import 'controllers/login_controllerss/login_controllerssss.dart';
+import 'controllers/otp_timer_controller/otp_timer_controllerss.dart';
+import 'controllers/our_story_controller.dart';
+import 'controllers/phone_login_controllerr/phone_login_controllers.dart';
+import 'controllers/post_query_controller/post_querry_controllerss.dart';
+import 'controllers/refund_policy_controller/refundpolicy_controller.dart';
+import 'controllers/reset_password/reset_ps_email_controllers.dart';
+import 'controllers/rozar_pay_controller/rozar_pay_controller.dart';
+import 'controllers/set_new_password/set_new_pswd_controller.dart';
+import 'controllers/shipping_policy_controller/shipping_policy_controller.dart';
+import 'controllers/sign_up_controller/sign_up_controllers.dart';
+import 'controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'models/all_product_model.dart';
 import 'models/best_seller_models.dart';
 import 'models/gift_box_model.dart';
@@ -21,6 +49,37 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => GiftcardModel());
     Get.lazyPut(() => BestSellerModel());
     Get.lazyPut(() => CartListModel());
+    Get.lazyPut(() => CartNewController());
+    Get.lazyPut(() => FavCounterController());
+    Get.lazyPut(() => NavController());
+    Get.lazyPut(() => RozarPayController());
+    Get.lazyPut(() => LoginPageController());
+    Get.lazyPut(() => SignUpPageController());
+    Get.lazyPut(() => LoginMobileController());
+    Get.lazyPut(() => AddAdressController());
+    Get.lazyPut(() => ResetEmailController());
+    Get.lazyPut(() => ForgotCodeController());
+    Get.lazyPut(() => SetPasswordController());
+    Get.lazyPut(() => CatagaryController());
+    Get.lazyPut(() => HomePageController());
+    Get.lazyPut(() => SubCatByIdController());
+    Get.lazyPut(() => SubCatByIdController());
+    Get.lazyPut(() => LoginEmailController());
+    Get.lazyPut(() => OtpTimerController());
+    Get.lazyPut(() => BlogListController());
+    Get.lazyPut(() => GiftBoxController());
+    Get.lazyPut(() => BestSellerController());
+    Get.lazyPut(() => OurStoryController());
+    Get.lazyPut(() => AllProductController());
+    Get.lazyPut(() => ContactUsController());
+    Get.lazyPut(() => PostQueryController());
+    Get.lazyPut(() => AddressListController());
+    Get.lazyPut(() => CheckoutController());
+    Get.lazyPut(() => GetProfileController());
+    Get.lazyPut(() => CartController());
+    Get.lazyPut(() => RefundPolicyController());
+    Get.lazyPut(() => RefundPolicyController());
+    Get.lazyPut(() => ShippingPolicyController());
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
@@ -64,7 +123,8 @@ class MyApp extends StatelessWidget {
     // );
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
-        initialBinding: ControllerBinding(),
+        ///this is the remove part because binding is not working..
+        //initialBinding: ControllerBinding(),
         //getPages: AppPages.routs,
         //initialRoute: Routs.INITIAL,
         debugShowCheckedModeBanner: false,
@@ -76,7 +136,9 @@ class MyApp extends StatelessWidget {
 
         //theme: MyTheme.lightTheme(context),
         //darkTheme: MyTheme.darkTheme(context),
-        home: SplashScreen(),
+        home:
+            //SplashView(),
+            SplashScreen(),
       );
     });
   }

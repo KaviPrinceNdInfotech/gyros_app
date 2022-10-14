@@ -16,10 +16,10 @@ import '../../model_cart_practice/widgets/gradient_button.dart';
 
 class BestDeal extends StatelessWidget {
   BestDeal({Key? key}) : super(key: key);
-  NavController _navController = Get.find();
+  NavController _navController = Get.put(NavController());
   final CartController controller = Get.put(CartController());
-  BestSellerController _bestSellerController = Get.find();
-  final CartController cartController = Get.find();
+  BestSellerController _bestSellerController = Get.put(BestSellerController());
+  final CartController cartController = Get.put(CartController());
 
   ///rahul old api api best deal oldd
 
@@ -119,13 +119,22 @@ class BestDeal extends StatelessWidget {
                               valueColor: AlwaysStoppedAnimation(Colors.yellow),
                               strokeWidth: 3,
                             ))
-                          : Text(
-                              controller.cartListModel!.totalItem.toString(),
-                              style: GoogleFonts.alatsi(
-                                color: Colors.white,
-                                fontSize: 10.sp,
-                              ),
-                            ),
+
+                          //: _allProductController.allProductModel!.result != null
+                          : controller.cartListModel!.totalItem == null
+                              //: _allProductController.allProductModel!.result!.isEmpty
+                              //_bestSellerController.bestsellermodel!.result!.isEmpty
+                              ? Center(
+                                  child: Text('No data'),
+                                )
+                              : Text(
+                                  controller.cartListModel!.totalItem
+                                      .toString(),
+                                  style: GoogleFonts.alatsi(
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
                     ),
                     child: Icon(
                       Icons.shopping_cart,
@@ -137,7 +146,6 @@ class BestDeal extends StatelessWidget {
         ],
       ),
       body:
-
           // FutureBuilder<List<CategoryResult>>(
           //   future: getSubCategoryData(),
           //   builder: (context, snapshot) {
@@ -149,7 +157,8 @@ class BestDeal extends StatelessWidget {
           Obx(
         () => (_bestSellerController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
-            : _bestSellerController.bestsellermodel!.result!.isEmpty
+            //: _bestSellerController.bestsellermodel!.result!.isEmpty
+            : _bestSellerController.bestsellermodel!.result == null
                 ? Center(
                     child: Text('No data'),
                   )
