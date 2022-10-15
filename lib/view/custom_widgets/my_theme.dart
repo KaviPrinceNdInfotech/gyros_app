@@ -33,6 +33,8 @@ class MyTheme {
   static Color containercolor16 = Color(0xffc9c702);
   static Color containercolor17 = Color(0xff0b806b);
 
+  static Color containercolor18 = Color(0xffd11a2a);
+
   static LinearGradient gradient1 = const LinearGradient(
     colors: <Color>[
       Color(0xff2cc487),

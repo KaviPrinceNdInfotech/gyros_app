@@ -81,6 +81,7 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => RefundPolicyController());
     Get.lazyPut(() => RefundPolicyController());
     Get.lazyPut(() => ShippingPolicyController());
+    Get.lazyPut(() => PostQueryController());
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;

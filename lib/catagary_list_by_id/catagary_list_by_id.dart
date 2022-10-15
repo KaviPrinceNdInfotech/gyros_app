@@ -6,9 +6,11 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
+import 'package:gyros_app/view/home_page/home_page_controller.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:sizer/sizer.dart';
 
+import '../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
 import '../view/model_cart_practice/widgets/gradient_button.dart';
 
 class CatagaryListSubcatagary extends StatelessWidget {
@@ -17,6 +19,11 @@ class CatagaryListSubcatagary extends StatelessWidget {
   final CartController controller = Get.put(CartController());
   SubCatByIdController _catByIdController = Get.find();
   final CartController cartController = Get.find();
+
+  HomePageController _homePageController = Get.put(HomePageController());
+  SubCatByIdController _subCatByIdController = Get.put(SubCatByIdController());
+  FlashProductByIdController _flashProductByIdController =
+      Get.put(FlashProductByIdController());
 
   ///rhl old method..........
 
@@ -115,15 +122,26 @@ class CatagaryListSubcatagary extends StatelessWidget {
                                         child: PhysicalModel(
                                           color: Colors.red,
                                           elevation: 10,
-                                          child: Container(
-                                            height: size.height * 0.38,
-                                            //color: Colors.red,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              image: DecorationImage(
-                                                  image: NetworkImage(base +
-                                                      '${_catByIdController.getcatbyid!.result![index].productImage.toString()}'),
-                                                  fit: BoxFit.fill),
+                                          child: InkWell(
+                                            onTap: () {
+                                              _flashProductByIdController
+                                                      .productid =
+                                                  _catByIdController.getcatbyid!
+                                                      .result![index].id
+                                                      .toString();
+                                              _flashProductByIdController
+                                                  .flashproductbyIdApi();
+                                            },
+                                            child: Container(
+                                              height: size.height * 0.38,
+                                              //color: Colors.red,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(base +
+                                                        '${_catByIdController.getcatbyid!.result![index].productImage.toString()}'),
+                                                    fit: BoxFit.fill),
+                                              ),
                                             ),
                                           ),
                                         ),

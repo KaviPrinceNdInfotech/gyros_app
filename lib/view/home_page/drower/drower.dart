@@ -12,9 +12,9 @@ import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:gyros_app/view/order_confirmation_screens/order_confirmation.dart';
-import 'package:gyros_app/view/wave_view_page/wave_view_page.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../wave_view_tracking/wave_views_trackings.dart';
 import 'drower_page/all_products.dart';
 import 'drower_page/blogs/my_blogs.dart';
 import 'drower_page/profile_page_personal/personal_profile_page.dart';
@@ -251,15 +251,16 @@ class MainDrawer extends StatelessWidget {
                 'Traceability',
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
               ),
-              tileColor: Get.currentRoute == '/WaveViewHomePage'
+              tileColor: Get.currentRoute == '/WebViewTracking'
                   ? Colors.grey[300]
                   : null,
               onTap: () {
                 print(Get.currentRoute);
                 Get.back();
-                Get.to(() => WaveViewHomePage(title: appName));
+                Get.to(() => WebViewTracking());
+                //WaveViewHomePage(title: appName));
                 //Tracking());
-                Get.offNamed('/WaveViewHomePage');
+                Get.offNamed('/WebViewTracking');
               },
             ),
 

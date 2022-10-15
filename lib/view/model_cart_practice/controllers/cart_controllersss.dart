@@ -43,7 +43,7 @@ class CartController extends GetxController {
   ///implement through Api in cart list get.........
 
   CartListModel? cartListModel;
-  //late CartListModel cartListModel;
+  //late final CartListModel cartListModel;
 
   void CartListgApi() async {
     isLoading(true);

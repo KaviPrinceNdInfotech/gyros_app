@@ -14,6 +14,7 @@ import 'package:gyros_app/view/model_cart_practice/widgets/cart_product2.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
 import '../../../model_cart_practice/controllers/cart_controllersss.dart';
 
 class AllProducts extends StatelessWidget {
@@ -24,6 +25,8 @@ class AllProducts extends StatelessWidget {
   SubCatByIdController _subCatByIdController = Get.find();
   final CartController cartController = Get.put(CartController());
   AllProductController _allProductController = Get.put(AllProductController());
+  FlashProductByIdController _flashProductByIdController =
+      Get.put(FlashProductByIdController());
 
   @override
   Widget build(BuildContext context) {
@@ -154,15 +157,28 @@ class AllProducts extends StatelessWidget {
                                         child: PhysicalModel(
                                           color: Colors.red,
                                           elevation: 10,
-                                          child: Container(
-                                            height: size.height * 0.38,
-                                            //color: Colors.red,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              image: DecorationImage(
-                                                  image: NetworkImage(base +
-                                                      '${_allProductController.allProductModel!.result![index].productImage.toString()}'),
-                                                  fit: BoxFit.fill),
+                                          child: InkWell(
+                                            onTap: () {
+                                              _flashProductByIdController
+                                                      .productid =
+                                                  _allProductController
+                                                      .allProductModel!
+                                                      .result![index]
+                                                      .id
+                                                      .toString();
+                                              _flashProductByIdController
+                                                  .flashproductbyIdApi();
+                                            },
+                                            child: Container(
+                                              height: size.height * 0.38,
+                                              //color: Colors.red,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(base +
+                                                        '${_allProductController.allProductModel!.result![index].productImage.toString()}'),
+                                                    fit: BoxFit.fill),
+                                              ),
                                             ),
                                           ),
                                         ),

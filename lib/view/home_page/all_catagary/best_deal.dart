@@ -11,6 +11,7 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
 import '../../model_cart_practice/widgets/cart_product2.dart';
 import '../../model_cart_practice/widgets/gradient_button.dart';
 
@@ -20,6 +21,8 @@ class BestDeal extends StatelessWidget {
   final CartController controller = Get.put(CartController());
   BestSellerController _bestSellerController = Get.put(BestSellerController());
   final CartController cartController = Get.put(CartController());
+  FlashProductByIdController _flashProductByIdController =
+      Get.put(FlashProductByIdController());
 
   ///rahul old api api best deal oldd
 
@@ -189,15 +192,28 @@ class BestDeal extends StatelessWidget {
                                         child: PhysicalModel(
                                           color: Colors.red,
                                           elevation: 10,
-                                          child: Container(
-                                            height: size.height * 0.38,
-                                            //color: Colors.red,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              image: DecorationImage(
-                                                  image: NetworkImage(base +
-                                                      '${_bestSellerController.bestsellermodel!.result![index].productImage.toString()}'),
-                                                  fit: BoxFit.fill),
+                                          child: InkWell(
+                                            onTap: () {
+                                              _flashProductByIdController
+                                                      .productid =
+                                                  _bestSellerController
+                                                      .bestsellermodel!
+                                                      .result![index]
+                                                      .id
+                                                      .toString();
+                                              _flashProductByIdController
+                                                  .flashproductbyIdApi();
+                                            },
+                                            child: Container(
+                                              height: size.height * 0.38,
+                                              //color: Colors.red,
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(base +
+                                                        '${_bestSellerController.bestsellermodel!.result![index].productImage.toString()}'),
+                                                    fit: BoxFit.fill),
+                                              ),
                                             ),
                                           ),
                                         ),

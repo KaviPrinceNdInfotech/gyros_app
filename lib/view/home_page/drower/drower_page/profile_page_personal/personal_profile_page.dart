@@ -6,8 +6,6 @@ import 'package:gyros_app/controllers/get_profile/get_profile_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:sizer/sizer.dart';
 
-import 'edit_profile/edit_profiles.dart';
-
 class PersonalProfile extends StatelessWidget {
   PersonalProfile({Key? key}) : super(key: key);
   GetProfileController _getProfileController = Get.put(GetProfileController());
@@ -213,24 +211,40 @@ class PersonalProfile extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.to(() => EditProfiless());
+                        Get.defaultDialog(
+                          title: "Welcome To Gyros",
+                          middleText: "You content goes here...",
+                          content: getContent(),
+                          barrierDismissible: true,
+                          radius: 20.0,
+                          confirm: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: confirmBtn(),
+                          ),
+                          cancel: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: cancelBtn(),
+                          ),
+                        );
+                        //Get.to(() => EditProfiless());
                       },
                       child: Container(
                         height: 4.5.h,
                         width: size.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: MyTheme.loginbuttonColor
+                            color: MyTheme.containercolor18
                             //gradient: MyTheme.gradient3,
                             ),
                         child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 3.w),
                             child: Center(
                               child: Text(
-                                'EDIT PROFILE',
+                                'DELETE PROFILE',
                                 style: GoogleFonts.fanwoodText(
                                   color: Colors.black,
                                   fontSize: 12.sp,
+                                  letterSpacing: 1,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -241,6 +255,54 @@ class PersonalProfile extends StatelessWidget {
                 ),
               ),
       ),
+    );
+  }
+
+  Widget confirmBtn() {
+    return ElevatedButton(
+        onPressed: () {
+          Get.back();
+        },
+        style: ElevatedButton.styleFrom(
+            primary: Colors.red,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+        child: Text("Confirm"));
+  }
+
+  Widget cancelBtn() {
+    return ElevatedButton(
+        onPressed: () {
+          Get.back();
+        },
+        style: ElevatedButton.styleFrom(
+            primary: Colors.green,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.bold)),
+        child: Text("Cancel"));
+  }
+
+  Widget getContent() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "If Yow want to remove your account,",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+        Text(
+          "Then you please click confirm button",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+        Text(
+          "Your data will erase if you press confirm.",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+        Text(
+          "If you don't want to delete press cancel",
+          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+        ),
+      ],
     );
   }
 }

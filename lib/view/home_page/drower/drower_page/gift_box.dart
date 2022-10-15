@@ -11,6 +11,7 @@ import 'package:gyros_app/view/model_cart_practice/procucts_cart_modelss.dart';
 import 'package:gyros_app/view/model_cart_practice/widgets/gradient_button.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../controllers/flash_sale_product_by_id_controllers/flash_product_by_id_controller.dart';
 import '../../../botttom_nav_bar/bottom_nav_bar_controller.dart';
 
 class GiftBox extends StatelessWidget {
@@ -21,7 +22,9 @@ class GiftBox extends StatelessWidget {
   final CartController controller = Get.put(CartController());
 
   GiftBoxController _giftBoxController = Get.put(GiftBoxController());
-  final CartController cartController = Get.find();
+  final CartController cartController = Get.put(CartController());
+  FlashProductByIdController _flashProductByIdController =
+      Get.put(FlashProductByIdController());
 
   var height, width;
 
@@ -136,15 +139,28 @@ class GiftBox extends StatelessWidget {
                                             child: PhysicalModel(
                                               color: Colors.red,
                                               elevation: 10,
-                                              child: Container(
-                                                height: size.height * 0.38,
-                                                //color: Colors.red,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.grey,
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(base +
-                                                          '${_giftBoxController.giftcardModel!.result![index].imageName.toString()}'),
-                                                      fit: BoxFit.fill),
+                                              child: InkWell(
+                                                onTap: () {
+                                                  _flashProductByIdController
+                                                          .productid =
+                                                      _giftBoxController
+                                                          .giftcardModel!
+                                                          .result![index]
+                                                          .id
+                                                          .toString();
+                                                  _flashProductByIdController
+                                                      .flashproductbyIdApi();
+                                                },
+                                                child: Container(
+                                                  height: size.height * 0.38,
+                                                  //color: Colors.red,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey,
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(base +
+                                                            '${_giftBoxController.giftcardModel!.result![index].imageName.toString()}'),
+                                                        fit: BoxFit.fill),
+                                                  ),
                                                 ),
                                               ),
                                             ),
