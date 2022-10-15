@@ -45,6 +45,8 @@ class IntroVideo extends StatelessWidget {
                       child: Obx(() {
                         if (_introVideoBoxController.isLoader.value == false &&
                             _introVideoBoxController.controller != null &&
+
+                            //_introVideoBoxController.controller.setVolume(0)
                             _introVideoBoxController
                                 .controller!.value.isInitialized) {
                           return VideoPlayer(

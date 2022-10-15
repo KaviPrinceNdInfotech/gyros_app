@@ -9,6 +9,7 @@ class IntroVideoBoxController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    controller?.setVolume(0.0);
     Get.delete<VideoPlayerController>();
 
     controller =
@@ -20,6 +21,7 @@ class IntroVideoBoxController extends GetxController {
           ..initialize().then((_) {
             controller!.play();
             update();
+
             isLoader.value = false;
           });
 
@@ -27,6 +29,7 @@ class IntroVideoBoxController extends GetxController {
     void dispose() {
       // Get.delete<controller>();
       super.dispose();
+      controller?.setVolume(0.0);
       controller?.dispose();
     }
     // @override

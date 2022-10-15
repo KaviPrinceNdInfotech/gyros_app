@@ -17,6 +17,7 @@ import 'controllers/add_address_cotroller/add_adress_controller.dart';
 import 'controllers/address_list_controller/address_list_controllers.dart';
 import 'controllers/all_products/all_products_controllers.dart';
 import 'controllers/best_seller_controller.dart';
+import 'controllers/binding_controllers/binding_controllers.dart';
 import 'controllers/blog_list_controller.dart';
 import 'controllers/cart_controllers.dart';
 import 'controllers/check_out_controller/check_out_controlles.dart';
@@ -124,7 +125,7 @@ class MyApp extends StatelessWidget {
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
         ///this is the remove part because binding is not working..
-        //initialBinding: ControllerBinding(),
+        initialBinding: ControllerBinding(),
         //getPages: AppPages.routs,
         //initialRoute: Routs.INITIAL,
         debugShowCheckedModeBanner: false,

@@ -1,6 +1,8 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'package:gyros_app/models/all_product_model.dart';
@@ -172,50 +174,50 @@ class HomePagePractice extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w),
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
             child: InkWell(
                 onTap: () {
                   Get.to(() => Cartproducts());
                   //Get.to(() => ShopingBagsEmpty());
                 },
                 child: Padding(
-                  padding: EdgeInsets.all(4.0),
-                  child: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.green,
+                  padding: EdgeInsets.all(6.0),
+                  child: Badge(
+                    toAnimate: true,
+                    badgeColor: AppColors.themecolors,
+                    badgeContent: Obx(
+                      () => (controller.isLoading.value)
+                          ? Center(child: CircularProgressIndicator())
+                          : controller.cartListModel!.result!.isEmpty
+                              // ? Center(
+                              //     child: Text('0'),
+                              //   )
+                              // :
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                  color: Colors.lightGreenAccent,
+                                  backgroundColor: Colors.white,
+                                  valueColor:
+                                      AlwaysStoppedAnimation(Colors.yellow),
+                                  strokeWidth: 3,
+                                ))
+                              : Text(
+                                  controller.cartListModel!.totalItem
+                                      .toString(),
+                                  style: GoogleFonts.alatsi(
+                                    color: Colors.white,
+                                    fontSize: 10.sp,
+                                  ),
+                                ),
+                    ),
+                    child: Icon(
+                      Icons.shopping_cart,
+                      color: Colors.green,
+                    ),
                   ),
-                  // Badge(
-                  //   toAnimate: true,
-                  //   badgeColor: AppColors.themecolors,
-                  //   badgeContent: Obx(
-                  //     () => (controller.isLoading.value)
-                  //         ? Center(child: CircularProgressIndicator())
-                  //         : controller.cartListModel!.result!.isEmpty
-                  //             // ? Center(
-                  //             //     child: Text('0'),
-                  //             //   )
-                  //             // :
-                  //             ? Center(
-                  //                 child: CircularProgressIndicator(
-                  //                 color: Colors.lightGreenAccent,
-                  //                 backgroundColor: Colors.white,
-                  //                 valueColor:
-                  //                     AlwaysStoppedAnimation(Colors.yellow),
-                  //                 strokeWidth: 3,
-                  //               ))
-                  //             : Text(
-                  //                 controller.cartListModel!.totalItem
-                  //                     .toString(),
-                  //                 style: GoogleFonts.alatsi(
-                  //                   color: Colors.white,
-                  //                   fontSize: 10.sp,
-                  //                 ),
-                  //               ),
-                  //   ),
-                  //   child: Icon(
-                  //     Icons.shopping_cart,
-                  //     color: Colors.green,
-                  //   ),
+                  // Icon(
+                  //   Icons.shopping_cart,
+                  //   color: Colors.green,
                   // ),
                 )),
           ),
