@@ -7,11 +7,11 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../home_page/drower/drower_page/trackingss/tracking.dart';
+import '../wave_view_tracking/wave_views_trackings.dart';
 
-final Uri _url = Uri.parse('https://www.instagram.com/anveshan.farms/');
-final Uri _url2 = Uri.parse('https://www.facebook.com/anveshan.farm/');
-final Uri _url3 = Uri.parse('https://twitter.com/Anveshan_farms');
+final Uri _url = Uri.parse('https://www.instagram.com/');
+final Uri _url2 = Uri.parse('https://www.facebook.com/');
+final Uri _url3 = Uri.parse('https://twitter.com/');
 
 class WhatsAppTrackOrder extends StatelessWidget {
   const WhatsAppTrackOrder({Key? key}) : super(key: key);
@@ -256,8 +256,9 @@ class WhatsAppTrackOrder extends StatelessWidget {
                             onTap: () {
                               print(Get.currentRoute);
                               Get.back();
-                              Get.to(() => Tracking());
-                              Get.offNamed('/Tracking');
+                              Get.to(() => WebViewTracking());
+                              //Tracking());
+                              Get.offNamed('/WebViewTracking');
                             },
                             child: Container(
                               height: 5.5.h,

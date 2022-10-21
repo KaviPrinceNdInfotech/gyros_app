@@ -63,6 +63,7 @@ class MySlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var base = 'https://api.gyros.farm/Images/';
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Obx(
         () => (_homePageController.isLoading.value)
@@ -76,38 +77,57 @@ class MySlider extends StatelessWidget {
                   )
                 : SizedBox(
                     height: 26.h,
-                    child: Container(
-                      height: 26.h,
-                      child: CarouselSlider.builder(
-                        //scrollPhysics: NeverScrollableScrollPhysics(),
-                        key: _sliderKey,
-                        unlimitedMode: true,
-                        autoSliderTransitionTime: Duration(seconds: 2),
-                        //autoSliderDelay: Duration(seconds: 5),
-                        slideBuilder: (index) {
-                          return Container(
-                            height: 26.h,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(base +
-                                      '${_homePageController.getsliderbaner!.bannerImageList![index]}'),
-                                  fit: BoxFit.fill),
+                    child: CarouselSlider.builder(
+                      //scrollPhysics: NeverScrollableScrollPhysics(),
+                      key: _sliderKey,
+                      unlimitedMode: true,
+                      autoSliderTransitionTime: Duration(seconds: 2),
+                      //autoSliderDelay: Duration(seconds: 5),
+                      slideBuilder: (index) {
+                        return Container(
+                          height: 26.h,
+                          alignment: Alignment.center,
+                          // decoration: BoxDecoration(
+                          //   image: DecorationImage(
+                          //       image: NetworkImage(base +
+                          //           '${_homePageController.getsliderbaner!.bannerImageList![index]}'),
+                          //
+                          //   fit: BoxFit.fill),
+
+                          child: Container(
+                            height: size.height * 0.38,
+                            width: size.width,
+                            // height: 26.h,
+                            child: Image.network(
+                              base +
+                                  '${_homePageController.getsliderbaner!.bannerImageList![index].toString()}',
+                              fit: BoxFit.fill,
+                              errorBuilder: (context, error, stackTrace) {
+                                //if image not comming in catagary then we have to purchase
+
+                                return Text(
+                                  'No Image',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12.sp,
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                        slideTransform: ZoomOutSlideTransform(),
-                        slideIndicator: CircularSlideIndicator(
-                          indicatorBorderWidth: 2,
-                          indicatorRadius: 4,
-                          itemSpacing: 15,
-                          currentIndicatorColor: Colors.white,
-                          padding: EdgeInsets.only(bottom: 6),
-                        ),
-                        itemCount: _homePageController
-                            .getsliderbaner!.bannerImageList!.length,
-                        enableAutoSlider: true,
+                          ),
+                        );
+                      },
+                      slideTransform: ZoomOutSlideTransform(),
+                      slideIndicator: CircularSlideIndicator(
+                        indicatorBorderWidth: 2,
+                        indicatorRadius: 4,
+                        itemSpacing: 15,
+                        currentIndicatorColor: Colors.white,
+                        padding: EdgeInsets.only(bottom: 6),
                       ),
+                      itemCount: _homePageController
+                          .getsliderbaner!.bannerImageList!.length,
+                      enableAutoSlider: true,
                     ),
 
                     // FutureBuilder<List<String>>(

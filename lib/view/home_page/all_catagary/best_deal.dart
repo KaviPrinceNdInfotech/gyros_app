@@ -122,13 +122,12 @@ class BestDeal extends StatelessWidget {
                               valueColor: AlwaysStoppedAnimation(Colors.yellow),
                               strokeWidth: 3,
                             ))
-
-                          //: _allProductController.allProductModel!.result != null
-                          : controller.cartListModel!.totalItem == null
+                          : controller.cartListModel!.totalItem != null
+                              //: controller.cartListModel!.totalItem == null
                               //: _allProductController.allProductModel!.result!.isEmpty
                               //_bestSellerController.bestsellermodel!.result!.isEmpty
                               ? Center(
-                                  child: Text('No data'),
+                                  child: Text('0'),
                                 )
                               : Text(
                                   controller.cartListModel!.totalItem

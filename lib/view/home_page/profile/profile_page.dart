@@ -11,7 +11,6 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/contact_us/help_supportss.dart';
-import 'package:gyros_app/view/home_page/profile/cuppons_page.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
 import 'package:gyros_app/view/refund_policy/refund_policy.dart';
 import 'package:sizer/sizer.dart';
@@ -422,33 +421,35 @@ class ProfilePages extends StatelessWidget {
                 }, //PersonalDetails
               ),
 
-              ListTile(
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 0.5, horizontal: 10),
-                dense: true,
-                visualDensity: VisualDensity(horizontal: 0, vertical: 3),
-                leading: Padding(
-                  padding: EdgeInsets.all(9.0),
-                  child: Icon(Icons.local_offer_rounded),
-                ),
-                title: Text(
-                  'Cuppons',
-                  style: GoogleFonts.raleway(
-                      color: Colors.black,
-                      fontSize: 10.sp,
-                      fontWeight: FontWeight.bold),
-                ),
-                trailing: Icon(
-                  Icons.arrow_forward_ios_sharp,
-                  size: 9.sp,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  Get.to(() => CupponsPage());
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => Wollet()));
-                }, //PersonalDetails
-              ),
+              ///TODO: cuppon.......
+
+              // ListTile(
+              //   contentPadding:
+              //       EdgeInsets.symmetric(vertical: 0.5, horizontal: 10),
+              //   dense: true,
+              //   visualDensity: VisualDensity(horizontal: 0, vertical: 3),
+              //   leading: Padding(
+              //     padding: EdgeInsets.all(9.0),
+              //     child: Icon(Icons.local_offer_rounded),
+              //   ),
+              //   title: Text(
+              //     'Cuppons',
+              //     style: GoogleFonts.raleway(
+              //         color: Colors.black,
+              //         fontSize: 10.sp,
+              //         fontWeight: FontWeight.bold),
+              //   ),
+              //   trailing: Icon(
+              //     Icons.arrow_forward_ios_sharp,
+              //     size: 9.sp,
+              //     color: Colors.black,
+              //   ),
+              //   onTap: () {
+              //     Get.to(() => CupponsPage());
+              //     // Navigator.push(context,
+              //     //     MaterialPageRoute(builder: (context) => Wollet()));
+              //   }, //PersonalDetails
+              // ),
 
               ListTile(
                 contentPadding:

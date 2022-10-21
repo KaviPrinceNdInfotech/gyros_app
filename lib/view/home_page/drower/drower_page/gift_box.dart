@@ -98,250 +98,201 @@ class GiftBox extends StatelessWidget {
                     child: Text('No data'),
                   )
                 : SizedBox(
-                    height: size.height,
+                    height: size.height * 0.93,
                     width: size.width,
                     // color: Colors.red,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: size.height * 0.03,
-                          width: size.width,
-                          color: Colors.green,
-                          child: Center(
-                            child: Text(
-                              'Buy from range of premium and healthy gift Box',
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: _giftBoxController
-                                .giftcardModel!.result!.length,
-                            itemBuilder: (BuildContext contextr, int index) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: size.height * 0.003),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      height: size.height * 0.520,
-                                      width: size.width,
-                                      decoration: BoxDecoration(
-                                          color: Colors.blueGrey,
-                                          border: Border.all(
-                                              color: Colors.green, width: 0)),
-                                      child: Column(
+                    child: ListView.builder(
+                        // shrinkWrap: true,
+                        itemCount:
+                            _giftBoxController.giftcardModel!.result!.length,
+                        itemBuilder: (BuildContext contextr, int index) {
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: size.height * 0.003),
+                            child: Container(
+                              height: size.height * 0.520,
+                              width: size.width,
+                              decoration: BoxDecoration(
+                                  color: Colors.blueGrey,
+                                  border: Border.all(
+                                      color: Colors.green, width: 0)),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(6.5),
+                                    child: PhysicalModel(
+                                      color: Colors.red,
+                                      elevation: 10,
+                                      child: InkWell(
+                                        onTap: () {
+                                          _flashProductByIdController
+                                                  .productid =
+                                              _giftBoxController.giftcardModel!
+                                                  .result![index].id
+                                                  .toString();
+                                          _flashProductByIdController
+                                              .flashproductbyIdApi();
+                                        },
+                                        child: Container(
+                                          height: size.height * 0.38,
+                                          //color: Colors.red,
+                                          decoration: BoxDecoration(
+                                            color: Colors.grey,
+                                            image: DecorationImage(
+                                                image: NetworkImage(base +
+                                                    '${_giftBoxController.giftcardModel!.result![index].imageName.toString()}'),
+                                                fit: BoxFit.fill),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: size.height * 0.12,
+                                    //color: Color(0xff023020),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff023020),
+                                        border: Border.all(
+                                            color: Colors.blueGrey, width: 2)),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
-                                          Padding(
-                                            padding: EdgeInsets.all(6.5),
-                                            child: PhysicalModel(
-                                              color: Colors.red,
-                                              elevation: 10,
-                                              child: InkWell(
-                                                onTap: () {
-                                                  _flashProductByIdController
-                                                          .productid =
-                                                      _giftBoxController
-                                                          .giftcardModel!
-                                                          .result![index]
-                                                          .id
-                                                          .toString();
-                                                  _flashProductByIdController
-                                                      .flashproductbyIdApi();
-                                                },
-                                                child: Container(
-                                                  height: size.height * 0.38,
-                                                  //color: Colors.red,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.grey,
-                                                    image: DecorationImage(
-                                                        image: NetworkImage(base +
-                                                            '${_giftBoxController.giftcardModel!.result![index].imageName.toString()}'),
-                                                        fit: BoxFit.fill),
-                                                  ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                _giftBoxController
+                                                    .giftcardModel!
+                                                    .result![index]
+                                                    .name
+                                                    .toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 3,
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 13.sp,
+                                                  color: Colors.yellow,
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                          Container(
-                                            height: size.height * 0.12,
-                                            //color: Color(0xff023020),
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff023020),
-                                                border: Border.all(
-                                                    color: Colors.blueGrey,
-                                                    width: 2)),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal:
-                                                      size.width * 0.02),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
+                                              SizedBox(
+                                                height: size.height * 0.02,
+                                              ),
+                                              Row(
                                                 children: [
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        _giftBoxController
-                                                            .giftcardModel!
-                                                            .result![index]
-                                                            .name
-                                                            .toString(),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        maxLines: 3,
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize: 15.sp,
-                                                          color: Colors.yellow,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height:
-                                                            size.height * 0.02,
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            '₹${_giftBoxController.giftcardModel!.result![index].price.toString()}',
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w900,
-                                                              fontSize: 13.sp,
-                                                              color: Colors
-                                                                  .yellowAccent,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            '/500 gm',
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                              fontSize: 10.sp,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
+                                                  Text(
+                                                    '₹${_giftBoxController.giftcardModel!.result![index].price.toString()}',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w900,
+                                                      fontSize: 12.sp,
+                                                      color:
+                                                          Colors.yellowAccent,
+                                                    ),
                                                   ),
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      Text(
-                                                        'Save 30%',
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize: 10.sp,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-
-                                                      // Spacer(),
-                                                      // SizedBox(
-                                                      //   width: 4.w,
-                                                      // ),
-                                                      SizedBox(
-                                                        height:
-                                                            size.height * 0.02,
-                                                      ),
-                                                      Container(
-                                                        height: 4.5.h,
-                                                        width: 33.5.w,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(20),
-                                                        ),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            controller.addtocartApi(
-                                                                _giftBoxController
-                                                                    .giftcardModel!
-                                                                    .result![
-                                                                        index]
-                                                                    .id);
-                                                            // cartController
-                                                            //     .addProduct(
-                                                            //         Productss
-                                                            //                 .products[
-                                                            //             index]);
-                                                          },
-                                                          child:
-                                                              RaisedGradientButton(
-                                                            //height: 3.3.h,
-                                                            //width: 23.9.w,
-                                                            child: Text(
-                                                              'Add To Cart',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  fontSize:
-                                                                      10.sp),
-                                                            ),
-                                                            gradient:
-                                                                LinearGradient(
-                                                              colors: <Color>[
-                                                                Color(
-                                                                    0xff3a923b),
-                                                                Color(
-                                                                    0xffb5d047),
-                                                                // Colors.green,
-                                                                // Colors.cyan
-                                                                //     .shade400
-                                                              ],
-                                                            ),
-                                                            onPressed: () {
-                                                              cartController
-                                                                  .addProduct(
-                                                                      Productss
-                                                                              .products[
-                                                                          index]);
-                                                              print(
-                                                                  'Add To cart');
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                  Text(
+                                                    '/500 gm',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 9.sp,
+                                                      color: Colors.white,
+                                                    ),
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                          )
+                                            ],
+                                          ),
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                'Save 30%',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 9.sp,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+
+                                              // Spacer(),
+                                              // SizedBox(
+                                              //   width: 4.w,
+                                              // ),
+                                              SizedBox(
+                                                height: size.height * 0.02,
+                                              ),
+                                              Container(
+                                                height: 4.5.h,
+                                                width: 33.5.w,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                ),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    controller.addtocartApi(
+                                                        _giftBoxController
+                                                            .giftcardModel!
+                                                            .result![index]
+                                                            .id);
+                                                    // cartController
+                                                    //     .addProduct(
+                                                    //         Productss
+                                                    //                 .products[
+                                                    //             index]);
+                                                  },
+                                                  child: RaisedGradientButton(
+                                                    //height: 3.3.h,
+                                                    //width: 23.9.w,
+                                                    child: Text(
+                                                      'Add To Cart',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize: 10.sp),
+                                                    ),
+                                                    gradient: LinearGradient(
+                                                      colors: <Color>[
+                                                        Color(0xff3a923b),
+                                                        Color(0xffb5d047),
+                                                        // Colors.green,
+                                                        // Colors.cyan
+                                                        //     .shade400
+                                                      ],
+                                                    ),
+                                                    onPressed: () {
+                                                      cartController.addProduct(
+                                                          Productss
+                                                              .products[index]);
+                                                      print('Add To cart');
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              );
-                            }),
-                      ],
-                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
                   ),
 
         // Container(

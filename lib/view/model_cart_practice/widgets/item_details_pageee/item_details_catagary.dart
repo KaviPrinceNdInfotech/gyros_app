@@ -303,7 +303,7 @@ class ItemDetailss extends StatelessWidget {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        width: 2.w,
+                                                        width: 1.w,
                                                       ),
 
                                                       ///weight................
@@ -435,17 +435,20 @@ class ItemDetailss extends StatelessWidget {
                                               SizedBox(
                                                 height: 0.5.h,
                                               ),
-                                              Text(
-                                                _flashProductByIdController
-                                                    .flashproductbyid!
-                                                    .result![mainIndex]
-                                                    .productDescription
-                                                    .toString(),
-                                                //'This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once. This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.',
-                                                style: TextStyle(
-                                                  fontSize: 9.sp,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w400,
+                                              SizedBox(
+                                                height: size.height * 0.196,
+                                                child: Text(
+                                                  _flashProductByIdController
+                                                      .flashproductbyid!
+                                                      .result![mainIndex]
+                                                      .productDescription
+                                                      .toString(),
+                                                  //'This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once. This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.',
+                                                  style: TextStyle(
+                                                    fontSize: 9.sp,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
                                                 ),
                                               ),
                                             ],
@@ -463,7 +466,6 @@ class ItemDetailss extends StatelessWidget {
                                       child: Container(
                                         height: size.height * 0.38,
                                         width: size.width,
-                                        decoration: BoxDecoration(),
                                         child: CarouselSlider.builder(
                                           //enableAutoSlider= off;
                                           //scrollPhysics: NeverScrollableScrollPhysics(),
@@ -479,13 +481,28 @@ class ItemDetailss extends StatelessWidget {
                                           //Duration autoSliderTransitionTime = const Duration(seconds: 2),
                                           slideBuilder: (index) {
                                             return Container(
-                                              height: 26.h,
                                               alignment: Alignment.center,
                                               decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                                    image: NetworkImage(base +
-                                                        '${_flashProductByIdController.flashproductbyid!.result![mainIndex].multipleImage![index].toString()}'),
-                                                    fit: BoxFit.fill),
+                                                  // image: DecorationImage(
+                                                  //     image: NetworkImage(base +
+                                                  //         '${_flashProductByIdController.flashproductbyid!.result![mainIndex].multipleImage![index].toString()}'),
+                                                  //     fit: BoxFit.fill),
+                                                  ),
+                                              child: Container(
+                                                height: size.height * 0.38,
+                                                width: size.width,
+                                                child: Image.network(
+                                                  base +
+                                                      '${_flashProductByIdController.flashproductbyid!.result![mainIndex].multipleImage![index].toString()}',
+                                                  fit: BoxFit.fill,
+                                                  errorBuilder: (context, error,
+                                                      stackTrace) {
+                                                    //if image not comming in catagary then we have to purchase
+
+                                                    return Image.network(base +
+                                                        '${_flashProductByIdController.flashproductbyid!.result![mainIndex].productImage.toString()}');
+                                                  },
+                                                ),
                                               ),
                                             );
                                           },

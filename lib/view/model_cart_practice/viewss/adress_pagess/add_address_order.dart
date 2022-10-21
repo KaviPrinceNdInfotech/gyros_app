@@ -3,14 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
-import 'package:gyros_app/constants/buttons/customs_buttons.dart';
 import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
+import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../../../controllers/address_list_controller/address_list_controllers.dart';
 
 class AddAddress extends StatelessWidget {
   AddAddress({Key? key}) : super(key: key);
   AddAdressController _addAdressController = Get.put(AddAdressController());
+  AddressListController _addressListController = Get.find();
 
   //AddAddressController _addAddressController = Get.put(AddAddressController());
 
@@ -60,13 +63,13 @@ class AddAddress extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              //mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 1.h,
+                  height: 6.h,
                 ),
 
-                ///todo from here name....
+                ///todo from here name.............................
 
                 Container(
                   width: size.width * 0.8,
@@ -78,6 +81,7 @@ class AddAddress extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextFormField(
+                    controller: _addAdressController.Name,
                     style: TextStyle(
                       color: MyTheme.ThemeColors,
                     ),
@@ -114,7 +118,6 @@ class AddAddress extends StatelessWidget {
                       hintStyle: TextStyle(color: MyTheme.ThemeColors),
                     ),
                     //keyboardType: TextInputType.emailAddress,
-                    controller: _addAdressController.Name,
 
                     validator: (value) {
                       return _addAdressController.validateFullname(value!);
@@ -182,7 +185,7 @@ class AddAddress extends StatelessWidget {
                   ),
                 ),
 
-                ///todo from here state....
+                ///todo from here state........
 
                 Container(
                   width: size.width * 0.8,
@@ -967,23 +970,53 @@ class AddAddress extends StatelessWidget {
                 SizedBox(
                   height: 0.h,
                 ),
-                CustomButtom(
-                  buttonColor: MyTheme.loginbuttonColor,
-                  buttontext: 'Add',
-                  textColor: Theme.of(context).colorScheme.onPrimary,
-                  handleButtonClick: () {
-                    //CallLoader.loader();
+
+                InkWell(
+                  onTap: () {
+                    CallLoader.loader();
+                    _addAdressController.update();
                     _addAdressController.checkaddAdress();
-                    // if (_formKey.currentState!.validate()) {
-                    //   register(
-                    //       _nameController.text.toString(),
-                    //       _emailController.text.toString(),
-                    //       _passsController.text.toString(),
-                    //       _passsController.text.toString(),
-                    //       _confirmController.text.toString());
-                    // }
+                    _addressListController.update();
                   },
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      height: size.height * 0.05,
+                      width: size.width * 0.8,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: MyTheme.loginbuttonColor,
+                      ),
+                      child: Center(
+                          child: Text(
+                        'Add Address',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )),
+                    ),
+                  ),
                 ),
+                // CustomButtom(
+                //   buttonColor: MyTheme.loginbuttonColor,
+                //   buttontext: 'Add Address',
+                //   textColor: Theme.of(context).colorScheme.onPrimary,
+                //   handleButtonClick: () {
+                //     CallLoader.loader();
+                //     _addAdressController.checkaddAdress();
+                //     // if (_formKey.currentState!.validate()) {
+                //     //   register(
+                //     //       _nameController.text.toString(),
+                //     //       _emailController.text.toString(),
+                //     //       _passsController.text.toString(),
+                //     //       _passsController.text.toString(),
+                //     //       _confirmController.text.toString());
+                //     // }
+                //   },
+                // ),
                 // Container(
                 //   width: size.width * 0.7,
                 //   decoration: BoxDecoration(

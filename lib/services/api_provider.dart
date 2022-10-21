@@ -7,6 +7,7 @@ import 'package:gyros_app/models/all_product_model.dart';
 import 'package:gyros_app/models/blog_model.dart';
 import 'package:gyros_app/models/catagary_list_model.dart';
 import 'package:gyros_app/models/checkout_address_model.dart';
+import 'package:gyros_app/models/checkout_model.dart';
 import 'package:gyros_app/models/contact_us_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
@@ -14,6 +15,7 @@ import 'package:gyros_app/models/flash_sall_list_product_model.dart';
 import 'package:gyros_app/models/gift_box_model.dart';
 import 'package:gyros_app/models/list_of_cart_model_api.dart';
 import 'package:gyros_app/models/no_of_cart_item_model.dart';
+import 'package:gyros_app/models/order_history_model.dart';
 import 'package:gyros_app/models/privecy_policy_model.dart';
 import 'package:gyros_app/models/refund_policy_model.dart';
 import 'package:gyros_app/models/shipping_policy_model.dart';
@@ -39,8 +41,11 @@ class ApiProvider {
   static String prodid = '';
   static String cartlistid = '';
   static String addressid = '';
+  static String Message = "";
 
-  //sign up  Api gyros  gyros Api 6........................................................
+  ///TODO: here we have to add different api in this page...........
+
+  //sign up  Api gyros  gyros Api 1........................................................
   static signUpApi(
     var Name,
     var Mobile_No,
@@ -76,7 +81,7 @@ class ApiProvider {
     }
   }
 
-  //login with email api gyros api 5..................................
+  //login with email api gyros api 2..................................
 
   static LoginEmailApi(
     var Email,
@@ -106,12 +111,25 @@ class ApiProvider {
       token = prefs.read("token").toString();
       print(token);
       return r;
+    } else if (r.statusCode == 401) {
+      Get.snackbar('message', r.body);
     } else {
-      Get.snackbar('Error', 'Login Failed');
+      Get.snackbar('Error', r.body);
       return r;
     }
   }
-  //catagary list api gyros 1 api.....................
+
+  /// refresh login token...........
+
+  // else if(response.statusCode == 401){
+  // //refresh token and call getUser again
+  // final response = http.post(Uri.https(BASE_URL, '/api/[YourAuthorizationEndpoint]'),
+  // headers: {'grant_type': 'refresh_token', 'refresh_token': '$refresh_token'});
+  // token = jsonDecode(response.body)['token'];
+  // refresh_token = jsonDecode(response.body)['refresh_token'];
+  // return getUser();
+  // }
+  //catagary list api gyros  api 3.....................
 
   static AllcatagaryApi() async {
     var url = baseUrl + 'api/AdminApi/ProductList';
@@ -127,7 +145,7 @@ class ApiProvider {
     }
   }
 
-  //slider banner Api gyros 2.........
+  //slider banner Api gyros 4.........
 
   static SliderBannerApi() async {
     var url = baseUrl + 'api/AdminApi/BannerImage';
@@ -143,7 +161,7 @@ class ApiProvider {
     }
   }
 
-  //our offer banner Api gyros 3...................................................
+  //our offer banner Api gyros 5...................................................
 
   static ourOfferApi() async {
     var url = baseUrl + 'api/AdminApi/PromotionImage';
@@ -160,12 +178,9 @@ class ApiProvider {
     }
   }
 
-  //sub_cat_by_id  gyros api 4.....................................
+  //sub_cat_by_id  gyros api 6.....................................
 
   static getsubcatIdApi(var catid) async {
-    // var prefs = GetStorage();
-    // categoryid = prefs.read('id');
-    //   print("userid  $categoryid");
     var url = baseUrl + 'api/AdminApi/SubcategoryList/$catid';
     //var headers = {'Authorization': 'Bearer $token'};
     try {
@@ -180,7 +195,7 @@ class ApiProvider {
     }
   }
 
-  //here add address api...............gyros.....
+  //here add address api...............gyros api 7.....
 
   static PostAddressApi(
     var Name,
@@ -224,7 +239,7 @@ class ApiProvider {
     }
   }
 
-  //First Purchase banner gyros  api gyros 7 api.....................
+  //First Purchase banner gyros  api gyros 8 api.....................
 
   static FirstPurchaseApi() async {
     var url = baseUrl + 'api/AdminApi/Specialoffer';
@@ -240,7 +255,7 @@ class ApiProvider {
     }
   }
 
-  // flash sell product list gyros.. 8 Api ..............FlashSellListProduct
+  // flash sell product list gyros..9 Api ..............FlashSellListProduct
 
   static FlashsellproduuctApi() async {
     var url = baseUrl + 'api/AdminApi/FlashSale';
@@ -257,14 +272,11 @@ class ApiProvider {
     }
   }
 
-  //sub flash sale product_by_id  gyros api 9.....................................
+  //sub flash sale product_by_id  gyros api 10.....................................
 
   static getproductdetails(var productid) async {
-    // var prefs = GetStorage();
-    // categoryid = prefs.read('id');
-    //   print("userid  $categoryid");
     var url = baseUrl + 'api/AdminApi/FlaseSaleSubList/$productid';
-    //var headers = {'Authorization': 'Bearer $token'};
+
     try {
       http.Response r = await http.get(Uri.parse(url));
       print(r.body.toString());
@@ -277,7 +289,8 @@ class ApiProvider {
       return;
     }
   }
-  //blog post Api gyros.......10........
+
+  //blog post Api gyros.......11...................
 
   static BlogPostApi() async {
     var url = baseUrl + 'api/AdminApi/Blog';
@@ -293,7 +306,7 @@ class ApiProvider {
     }
   }
 
-  // get Gift Api gyros.......11........
+  // get Gift Api gyros.......12........
 
   static GiftBoxApi() async {
     var url = baseUrl + 'api/AdminApi/Gift';
@@ -309,7 +322,7 @@ class ApiProvider {
     }
   }
 
-  // Best seller Api gyros.......12........
+  // Best seller Api gyros.......13........
 
   static BestSellerApi() async {
     var url = baseUrl + 'api/AdminApi/BestSale';
@@ -325,7 +338,7 @@ class ApiProvider {
     }
   }
 
-  // Best seller Api gyros.......11...................address neww
+  // Best seller Api gyros.......14...................address neww
 
   static AddressListApi() async {
     var prefs = GetStorage();
@@ -337,6 +350,7 @@ class ApiProvider {
       http.Response r = await http.get(Uri.parse(url));
       print(r.body.toString());
       if (r.statusCode == 200) {
+        //update();
         AddaddressModel allAddressModel = addaddressModelFromJson(r.body);
         return allAddressModel;
       }
@@ -345,7 +359,7 @@ class ApiProvider {
     }
   }
 
-  // Our Story  get Api gyros.......13........
+  // Our Story  get Api gyros.......15........
 
   static OurStoryApi() async {
     var url = baseUrl + 'api/AdminApi/OurStories';
@@ -361,25 +375,20 @@ class ApiProvider {
     }
   }
 
-  ///get_cart_list api.....gyros........14...........abhi bhaiya....when id passs in body in get api...
-
+  ///get_cart_list api.....gyros........16...........abhi bhaiya....when id passs in body in get api...
   static GetCartApi() async {
     var prefs = GetStorage();
     //read id..........
     Id = prefs.read("Id").toString();
     print('&&&&&&&&&&&&&&&&&&prince55:${Id}');
-
     //read token.........
-
     token =
         //'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzMWVjY2NjYi03Yjc5LTQyZjUtYjVkNC1mNGMxODc2ZGI0NzMiLCJJZCI6IjEiLCJ1c2VyaWQiOiIxIiwibmFtZSI6Inh5eiIsImV4cCI6MTY2NDUxNTI5MCwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNjYiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDM2NiJ9.vSL6mzm_RFgWi3aLkmTOYiyMb3P0oHhZ_w1dddx7nao';
         //"Bearer $token";
         //'$token';
         // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlOWNmMjg0ZC0yMGZhLTQ1ZTgtYmUxZC0wOTc1MmJmOGJmMzkiLCJJZCI6IjEiLCJ1c2VyaWQiOiIxIiwibmFtZSI6Inh5eiIsImV4cCI6MTY2NDQ0OTA4MSwiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzNjYiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDM2NiJ9.ACMtaKjLrauPfyU0MKR67gwXANAC3A5yvNaFNgdLEjU';
         prefs.read("token").toString();
-
     final body = {"Id": "$Id"};
-
     final request = http.StreamedRequest('GET',
         Uri.parse("https://api.gyros.farm/api/ProductApi/AddToCartList"));
     request.headers["Authorization"] = "Bearer $token";
@@ -399,7 +408,7 @@ class ApiProvider {
     }
   }
 
-  ///add to cart api....gyros....16.............wronfggggggg.........
+  ///add to cart api....gyros....17............wronfggggggg.........
 
   static AddToCartApi(
     var productId,
@@ -434,7 +443,7 @@ class ApiProvider {
     }
   }
 
-  ///total no of item in cart...........api 15
+  ///total no of item in cart...........api 18.........
   //NoOfCartModel
 
   static NoOfCartApi() async {
@@ -467,8 +476,7 @@ class ApiProvider {
     }
   }
 
-  //
-  //login with plus cart api gyros api 5..................................
+  //login with plus cart api gyros api 19.....................................
 
   static cartplusApi(
     var productId,
@@ -501,8 +509,7 @@ class ApiProvider {
     }
   }
 
-  //login with decrease cart api gyros api 5..................................
-  //api/ProductApi/DeleteAddToCart/$data
+  //login with decrease cart api gyros api 20..................................
 
   static cartminusApi(
     var productId,
@@ -542,7 +549,7 @@ class ApiProvider {
     }
   }
 
-  //sub_address_by_id  gyros api 41.....................................
+  //sub_address_by_id  gyros api 21.....................................
 
   static getaddressIdApi(var addressid) async {
     var prefs = GetStorage();
@@ -602,7 +609,7 @@ class ApiProvider {
   //   }
   // }
   ///
-  // get all product  get Api gyros.......15........
+  // get all product  get Api gyros.......22........
 
   static AllProductApi() async {
     var url = baseUrl + 'api/AdminApi/AllSubcategory';
@@ -618,7 +625,7 @@ class ApiProvider {
     }
   }
 
-  // get about us  get Api gyros.......16........
+  // get about us  get Api gyros.......23........
 
   static ContactUsApi() async {
     var url = baseUrl + 'api/AdminApi/ContactUs';
@@ -634,7 +641,7 @@ class ApiProvider {
     }
   }
 
-  //sign up  Api gyros  gyros Api 17........................................................
+  //sign up  Api gyros  gyros Api 24........................................................
   static PostQueryApi(
     var Name,
     var Email,
@@ -668,7 +675,7 @@ class ApiProvider {
     }
   }
 
-  //get address api..............api gyros  get profile api..........................
+  //get address api..............api gyros  get profile api...25..........................
 
   static GetProfileApi() async {
     var prefs = GetStorage();
@@ -688,7 +695,7 @@ class ApiProvider {
     }
   }
 
-  // Our refund  policy  get Api gyros.......13........gyros............
+  // Our refund  policy  get Api gyros.......26........gyros............
 
   static RefundPolicyApi() async {
     var url = baseUrl + 'api/AdminApi/Refundpolicy';
@@ -704,7 +711,7 @@ class ApiProvider {
     }
   }
 
-  // Our privecy  policy  get Api gyros.......13........gyros............
+  // Our privecy  policy  get Api gyros.......27........gyros............
 
   static PrivecyPolicyApi() async {
     var url = baseUrl + 'api/AdminApi/Privacypolicy';
@@ -721,7 +728,7 @@ class ApiProvider {
     }
   }
 
-  // Our shipping  policy  get Api gyros.......13........gyros............
+  // Our shipping  policy  get Api gyros.......28........gyros............
 
   static ShippingPolicyApi() async {
     var url = baseUrl + 'api/AdminApi/Shippingpolicy';
@@ -737,6 +744,77 @@ class ApiProvider {
       return;
     }
   }
+
+  //get checkout api..............api gyros  get profile api...29..........................
+
+  static GetCheckoutApi() async {
+    var prefs = GetStorage();
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince108profile:${Id}');
+    var url = baseUrl + 'api/ProductApi/Checkout/$Id';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        CheckoutModel checkoutModel = checkoutModelFromJson(r.body);
+        return checkoutModel;
+      }
+    } catch (error) {
+      return;
+    }
+  }
+
+  //get orderhistory api..............api gyros  get profile api...30..........................
+
+  static GetHistoryApi() async {
+    var prefs = GetStorage();
+    //read id..........
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&prince108profile:${Id}');
+    var url = baseUrl + 'api/Order/OrderHistory/$Id';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        OrderHistoryModel orderHistoryModel = orderHistoryModelFromJson(r.body);
+        return orderHistoryModel;
+      }
+    } catch (error) {
+      print('errror with model ${error}');
+      return;
+    }
+  }
+
+  //login with email api gyros api 2..................................
+
+  static PostOrderApi() async {
+    var prefs = GetStorage();
+    Id = prefs.read("Id").toString();
+    print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+    //saved token.........
+    token = prefs.read("token").toString();
+    final headers = {"Authorization": "Bearer $token"};
+
+    var url = baseUrl + 'api/Order/Orders/$Id';
+    print(token);
+
+    http.Response r = await http.post(
+      Uri.parse(url), headers: headers,
+      //headers: headers
+    );
+
+    if (r.statusCode == 200) {
+      print(token);
+      return r;
+    } else if (r.statusCode == 401) {
+      Get.snackbar('message', r.body);
+    } else {
+      Get.snackbar('Error', r.body);
+      return r;
+    }
+  }
+
   //ContactUsModel
   ///
   //post address api gyros api 5..................................
@@ -780,17 +858,6 @@ class ApiProvider {
 
   ///till gyros..................................gyros.........gyros.......gyros
 
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
-  /// ///
-  ///
-  ///
-  ///
-  ///
   ///
   ///......................old code.........
 

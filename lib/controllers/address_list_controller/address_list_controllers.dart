@@ -12,7 +12,8 @@ class AddressListController extends GetxController {
   AddaddressModel? addaddressModel;
 
   void addresListApi() async {
-    isLoading(false);
+    isLoading(true);
+    //CallLoader.loader();
 
     addaddressModel = await ApiProvider.AddressListApi();
     if (addaddressModel != null) {
@@ -27,6 +28,7 @@ class AddressListController extends GetxController {
       //       Transition.zoom,
       // );
       isLoading(false);
+      update();
 
       //Get.to(()=>Container());
     }

@@ -4,9 +4,8 @@ import 'package:gyros_app/controllers/otp_timer_controller/otp_timer_controllers
 import 'package:gyros_app/services/api_provider.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
+import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:http/http.dart' as http;
-
-import '../../widgets/circular_loader.dart';
 
 class PostQueryController extends GetxController {
   RxBool isLoading = true.obs;
@@ -14,9 +13,10 @@ class PostQueryController extends GetxController {
   NavController _navController = Get.put(NavController());
 
   OtpTimerController _timeController = Get.put(OtpTimerController());
+  var Id = '';
 
   void postqueryApi() async {
-    isLoading(true);
+    //isLoading(true);
     CallLoader.loader();
     print(Name.text);
     http.Response r = await ApiProvider.PostQueryApi(
@@ -53,7 +53,7 @@ class PostQueryController extends GetxController {
     Email;
     OrderNo;
     Message;
-    postqueryApi();
+    //postqueryApi();
   }
 
   @override

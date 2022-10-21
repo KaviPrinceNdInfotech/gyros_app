@@ -10,6 +10,7 @@ import '../../botttom_nav_bar/bottom_navbar.dart';
 
 class LoginEmailController extends GetxController {
   var isVisible = true.obs;
+  RxBool isLoading = true.obs;
   final GlobalKey<FormState> loginEmailFormKey = GlobalKey();
 
   //  var email = '';

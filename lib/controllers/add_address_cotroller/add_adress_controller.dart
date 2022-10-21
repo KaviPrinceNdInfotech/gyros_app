@@ -20,7 +20,7 @@ class AddAdressController extends GetxController {
   void postaddresssApi() async {
     isLoading(true);
     //CallLoader.loader();
-    print(Name.text);
+    //print(Name.text);
     http.Response r = await ApiProvider.PostAddressApi(
       Name.text,
       Mobile.text,
@@ -54,6 +54,8 @@ class AddAdressController extends GetxController {
       _timeController.email = Email.text;
       _timeController.phoneNumber = OrderNo.text;
     }
+
+    isLoading(false);
   }
 
   TextEditingController Name = TextEditingController();

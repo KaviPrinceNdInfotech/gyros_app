@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gyros_app/controllers/check_out_controller/check_out_controlles.dart';
 import 'package:gyros_app/controllers/get_profile/get_profile_controller.dart';
 import 'package:gyros_app/view/model_cart_practice/controllers/cart_controllersss.dart';
 import 'package:gyros_app/view/order_confirmation_screens/order_confirmation.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+import '../post_order_controller/post_order_controller.dart';
 
 class RozarPayController extends GetxController {
   //get isLoading => null;
@@ -11,6 +14,8 @@ class RozarPayController extends GetxController {
   RxBool isLoading = false.obs;
   final CartController controller = Get.put(CartController());
   GetProfileController _getProfileController = Get.put(GetProfileController());
+  CheckoutController _checkoutController = Get.put(CheckoutController());
+  PostOrderController _postOrderController = Get.put(PostOrderController());
 
   @override
   void onInit() {
@@ -31,9 +36,11 @@ class RozarPayController extends GetxController {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_live_sTN4TNvGmEs3C1',
-      //'key': 'rzp_test_aeRns0u8gPpOUK',
-      'amount': int.parse('${controller.cartListModel!.totalPrice}') * 100,
+      //'key': 'rzp_live_sTN4TNvGmEs3C1',
+      'key': 'rzp_test_aeRns0u8gPpOUK',
+      'amount': int.parse(
+              '${_checkoutController.checkoutModel!.result!.totalCost.toString()}') *
+          100,
       //var amc = int.parse('${controller.cartListModel!.totalPrice}');
       //"${controller.cartListModel!.totalPrice }",
       // 'Order_id':orderId,
@@ -68,7 +75,15 @@ class RozarPayController extends GetxController {
     Get.snackbar("SUCCESS", "ID: ${response.paymentId}");
     print('payment sucess');
 
-    Get.to(OrderConfirmationPage());
+    // Get.to(OrderConfirmationPage());
+
+    _postOrderController.postOrderApi().then((statusCode) {
+      if (statusCode == 200) {
+        Get.to(OrderConfirmationPage());
+      } else {
+        // SHow
+      }
+    });
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {

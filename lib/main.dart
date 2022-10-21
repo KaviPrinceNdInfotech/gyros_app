@@ -27,9 +27,11 @@ import 'controllers/get_profile/get_profile_controller.dart';
 import 'controllers/gift_box_controller.dart';
 import 'controllers/home_controllers/catagary_list_controller.dart';
 import 'controllers/login_controllerss/login_controllerssss.dart';
+import 'controllers/order_history_controller/order_history_controllers.dart';
 import 'controllers/otp_timer_controller/otp_timer_controllerss.dart';
 import 'controllers/our_story_controller.dart';
 import 'controllers/phone_login_controllerr/phone_login_controllers.dart';
+import 'controllers/post_order_controller/post_order_controller.dart';
 import 'controllers/post_query_controller/post_querry_controllerss.dart';
 import 'controllers/refund_policy_controller/refundpolicy_controller.dart';
 import 'controllers/reset_password/reset_ps_email_controllers.dart';
@@ -82,6 +84,8 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => RefundPolicyController());
     Get.lazyPut(() => ShippingPolicyController());
     Get.lazyPut(() => PostQueryController());
+    Get.lazyPut(() => OrderHistoryController());
+    Get.lazyPut(() => PostOrderController());
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;

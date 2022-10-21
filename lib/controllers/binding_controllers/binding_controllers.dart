@@ -27,8 +27,10 @@ import '../../view/cart_new_section/product_details/product_detail_controllerss/
 import '../../view/home_page/home_page_controller.dart';
 import '../address_list_controller/address_list_controllers.dart';
 import '../best_seller_controller.dart';
+import '../order_history_controller/order_history_controllers.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
 import '../our_story_controller.dart';
+import '../post_order_controller/post_order_controller.dart';
 import '../shipping_policy_controller/shipping_policy_controller.dart';
 
 class ControllerBinding extends Bindings {
@@ -67,6 +69,8 @@ class ControllerBinding extends Bindings {
     Get.put(RefundPolicyController());
     Get.put(RefundPolicyController());
     Get.put(ShippingPolicyController());
+    Get.put(OrderHistoryController());
+    Get.put(PostOrderController());
 
     //Get.put(CatagaryByIdController());
   }

@@ -36,224 +36,224 @@ class PersonalProfile extends StatelessWidget {
       body: Obx(
         () => (_getProfileController.isLoading.value)
             ? Center(child: CircularProgressIndicator())
-            // : _getProfileController.getprofileModel != null
-            //     ? Center(
-            //         child: Text('No List'),
-            //       )
-            : Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 4.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 4.h,
+            : _getProfileController.getprofileModel == null
+                ? Center(
+                    child: Text('No List'),
+                  )
+                : Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 4.w,
                     ),
-                    Container(
-                      height: 15.h,
-                      width: 30.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black),
-                        image: DecorationImage(
-                            image:
-                                AssetImage('lib/assets/asset/guser_logo.png'),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    Container(
-                      height: 4.5.h,
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 3.w),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.account_circle,
-                              size: 15.sp,
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              _getProfileController
-                                  .getprofileModel!.result!.name
-                                  .toString(),
-                              // 'Vineet Mishra',
-                              style: GoogleFonts.roboto(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                              ),
-                            )
-                          ],
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 4.h,
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Container(
-                      height: 4.5.h,
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 3.w),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.email_rounded,
-                              size: 15.sp,
-                            ),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            Text(
-                              _getProfileController
-                                  .getprofileModel!.result!.emailId
-                                  .toString(),
-                              style: GoogleFonts.roboto(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Container(
-                      height: 4.5.h,
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 3.w),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.phone,
-                              size: 15.sp,
-                            ),
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            Text(
-                              '+91 ${_getProfileController.getprofileModel!.result!.mobileNo.toString()}',
-                              style: GoogleFonts.roboto(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Container(
-                      height: 10.5.h,
-                      width: size.width,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.grey.shade300,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 3.w),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 2.w,
-                            ),
-                            Text(
-                              'New Ashok Nagar',
-                              style: GoogleFonts.fanwoodText(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                              ),
-                            ),
-                            Text(
-                              'Delhi',
-                              style: GoogleFonts.fanwoodText(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                              ),
-                            ),
-                            Text(
-                              'India 110096',
-                              style: GoogleFonts.fanwoodText(
-                                color: Colors.black,
-                                fontSize: 12.sp,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 8.h,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.defaultDialog(
-                          title: "Welcome To Gyros",
-                          middleText: "You content goes here...",
-                          content: getContent(),
-                          barrierDismissible: true,
-                          radius: 20.0,
-                          confirm: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: confirmBtn(),
+                        Container(
+                          height: 15.h,
+                          width: 30.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.black),
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    'lib/assets/asset/guser_logo.png'),
+                                fit: BoxFit.cover),
                           ),
-                          cancel: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: cancelBtn(),
-                          ),
-                        );
-                        //Get.to(() => EditProfiless());
-                      },
-                      child: Container(
-                        height: 4.5.h,
-                        width: size.width,
-                        decoration: BoxDecoration(
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        Container(
+                          height: 4.5.h,
+                          width: size.width,
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: MyTheme.containercolor18
-                            //gradient: MyTheme.gradient3,
-                            ),
-                        child: Padding(
+                            color: Colors.grey.shade300,
+                          ),
+                          child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 3.w),
-                            child: Center(
-                              child: Text(
-                                'DELETE PROFILE',
-                                style: GoogleFonts.fanwoodText(
-                                  color: Colors.black,
-                                  fontSize: 12.sp,
-                                  letterSpacing: 1,
-                                  fontWeight: FontWeight.bold,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.account_circle,
+                                  size: 15.sp,
                                 ),
+                                SizedBox(
+                                  width: 3.w,
+                                ),
+                                Text(
+                                  _getProfileController
+                                      .getprofileModel!.result!.name
+                                      .toString(),
+                                  // 'Vineet Mishra',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Container(
+                          height: 4.5.h,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.grey.shade300,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.email_rounded,
+                                  size: 15.sp,
+                                ),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                Text(
+                                  _getProfileController
+                                      .getprofileModel!.result!.emailId
+                                      .toString(),
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Container(
+                          height: 4.5.h,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.grey.shade300,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.phone,
+                                  size: 15.sp,
+                                ),
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                Text(
+                                  '+91 ${_getProfileController.getprofileModel!.result!.mobileNo.toString()}',
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Container(
+                          height: 10.5.h,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.grey.shade300,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 2.w,
+                                ),
+                                Text(
+                                  'New Ashok Nagar',
+                                  style: GoogleFonts.fanwoodText(
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                Text(
+                                  'Delhi',
+                                  style: GoogleFonts.fanwoodText(
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                                Text(
+                                  'India 110096',
+                                  style: GoogleFonts.fanwoodText(
+                                    color: Colors.black,
+                                    fontSize: 12.sp,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.defaultDialog(
+                              title: "Welcome To Gyros",
+                              middleText: "You content goes here...",
+                              content: getContent(),
+                              barrierDismissible: true,
+                              radius: 20.0,
+                              confirm: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: confirmBtn(),
                               ),
-                            )),
-                      ),
+                              cancel: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: cancelBtn(),
+                              ),
+                            );
+                            //Get.to(() => EditProfiless());
+                          },
+                          child: Container(
+                            height: 4.5.h,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: MyTheme.containercolor18
+                                //gradient: MyTheme.gradient3,
+                                ),
+                            child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                child: Center(
+                                  child: Text(
+                                    'DELETE PROFILE',
+                                    style: GoogleFonts.fanwoodText(
+                                      color: Colors.black,
+                                      fontSize: 12.sp,
+                                      letterSpacing: 1,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                )),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
       ),
     );
   }

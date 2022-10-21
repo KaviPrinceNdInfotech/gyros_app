@@ -703,7 +703,7 @@ class Cartproducts extends StatelessWidget {
                                   depth: kButtonDepth,
                                   onTapUp: () {
                                     //Get.to(() => CheckOutPage());
-                                    //Get.to(() => TotalPrice());
+                                    // Get.to(() => TotalPrice());
                                     Get.to(() => AddressList());
                                   },
                                   border: Border.all(
