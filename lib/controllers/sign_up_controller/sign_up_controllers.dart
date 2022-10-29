@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gyros_app/controllers/otp_timer_controller/otp_timer_controllerss.dart';
 import 'package:gyros_app/services/api_provider.dart';
-import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:http/http.dart' as http;
+
+import '../../view/login_page/login_pagee.dart';
 
 // class SignUpPageController extends GetxController {
 //   var isVisible = true.obs;
@@ -130,10 +131,11 @@ class SignUpPageController extends GetxController {
       //Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
       //Get.to(()=> LoginPage());
       CallLoader.hideLoader();
-      Get.to(() => NavBar());
+      //Get.to(() => NavBar());
+      Get.to(() => LoginPage());
 
-      _timeController.email = Email_Id.text;
-      _timeController.phoneNumber = Mobile_No.text;
+      // _timeController.email = Email_Id.text;
+      // _timeController.phoneNumber = Mobile_No.text;
     }
   }
 

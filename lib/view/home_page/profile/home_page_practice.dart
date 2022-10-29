@@ -1,8 +1,6 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
 import 'package:gyros_app/models/all_product_model.dart';
@@ -182,43 +180,45 @@ class HomePagePractice extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(6.0),
-                  child: Badge(
-                    toAnimate: true,
-                    badgeColor: AppColors.themecolors,
-                    badgeContent: Obx(
-                      () => (controller.isLoading.value)
-                          ? Center(child: CircularProgressIndicator())
-                          : controller.cartListModel!.result! == null
-                              // ? Center(
-                              //     child: Text('0'),
-                              //   )
-                              // :
-                              ? Center(
-                                  child: CircularProgressIndicator(
-                                  color: Colors.lightGreenAccent,
-                                  backgroundColor: Colors.white,
-                                  valueColor:
-                                      AlwaysStoppedAnimation(Colors.yellow),
-                                  strokeWidth: 3,
-                                ))
-                              : Text(
-                                  controller.cartListModel!.totalItem
-                                      .toString(),
-                                  style: GoogleFonts.alatsi(
-                                    color: Colors.white,
-                                    fontSize: 10.sp,
-                                  ),
-                                ),
-                    ),
-                    child: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.green,
-                    ),
+                  child:
+                      // Badge(
+                      //   toAnimate: true,
+                      //   badgeColor: AppColors.themecolors,
+                      //   badgeContent: Obx(
+                      //     () => (controller.isLoading.value)
+                      //         ? Center(child: CircularProgressIndicator())
+                      //         : controller.cartListModel!.result! == null
+                      //             // ? Center(
+                      //             //     child: Text('0'),
+                      //             //   )
+                      //             // :
+                      //             ? Center(
+                      //                 child: CircularProgressIndicator(
+                      //                 color: Colors.lightGreenAccent,
+                      //                 backgroundColor: Colors.white,
+                      //                 valueColor:
+                      //                     AlwaysStoppedAnimation(Colors.yellow),
+                      //                 strokeWidth: 3,
+                      //               ))
+                      //             : Text(
+                      //                 controller.cartListModel!.totalItem
+                      //                     .toString(),
+                      //                 style: GoogleFonts.alatsi(
+                      //                   color: Colors.white,
+                      //                   fontSize: 10.sp,
+                      //                 ),
+                      //               ),
+                      //   ),
+                      //   child: Icon(
+                      //     Icons.shopping_cart,
+                      //     color: Colors.green,
+                      //   ),
+                      // ),
+                      Icon(
+                    Icons.shopping_cart,
+                    size: size.height * 0.035,
+                    color: Colors.green,
                   ),
-                  // Icon(
-                  //   Icons.shopping_cart,
-                  //   color: Colors.green,
-                  // ),
                 )),
           ),
 

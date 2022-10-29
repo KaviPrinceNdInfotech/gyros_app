@@ -30,7 +30,7 @@ class LoginMobileController extends GetxController {
       //   MaterialPageRoute(
       //       builder: (context) => Otp()),
       // );
-      Get.to(() => Otp());
+      Get.to(() => Otp(MobileOrEmail: MobileOrEmail));
 
       // _timeController.email = MobileOrEmail.text;
       // _timeController.phoneNumber = MobileOrEmail.text;

@@ -51,8 +51,8 @@ class AddAdressController extends GetxController {
 
       //Get.to(() => AddressList());
 
-      _timeController.email = Email.text;
-      _timeController.phoneNumber = OrderNo.text;
+      // _timeController.email = Email.text;
+      // _timeController.phoneNumber = OrderNo.text;
     }
 
     isLoading(false);

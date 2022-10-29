@@ -75,7 +75,7 @@ class LoginPage extends StatelessWidget {
 
               CustomButtom(
                 buttonColor: MyTheme.loginbuttonColor,
-                buttontext: 'LOGIN WITH EMAIL',
+                buttontext: 'SIGN IN',
 
                 textColor: Colors.white,
                 //Theme.of(context).colorScheme.onPrimary,

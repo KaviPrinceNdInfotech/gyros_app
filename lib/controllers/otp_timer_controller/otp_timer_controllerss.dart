@@ -14,10 +14,7 @@ class OtpTimerController extends GetxController {
   NavController _navController = Get.find();
   RxString elapsedTime = '02:00'.obs;
   int _start = 120;
-  String phoneNumber = '';
-  String email = '';
-  String phoneOtpString = '';
-  String emailOtpString = '';
+
   String result = '';
 
   // void VerifyotpApi() async {
@@ -58,30 +55,16 @@ class OtpTimerController extends GetxController {
     }
   }
 
-  checkValidation() {
-    final isValidaton = otpKey.currentState!.validate();
+  checkValidation(String MobileOrEmail) {
+    //final isValidaton = otpKey.currentState!.validate();
 
-    if (!isValidaton) {
-      return;
-    } else {
-      //Get.to(()=> CardVerifications1());
-      //Get.to(()=>MyDashBoard());
-      //Get.to(()=>LoginScreen());
-      // VerifyotpApi(phone);
-
-      //VerifyotpApi(email,phone_number );
+    if (result.length == 4) {
+      VerifyotpApi(MobileOrEmail);
     }
   }
 
   GlobalKey<FormState> otpKey = GlobalKey<FormState>();
   List<TextEditingController> otp = [
-    TextEditingController(),
-    TextEditingController(),
-    TextEditingController(),
-    TextEditingController(),
-  ];
-
-  List<TextEditingController> emailotp = [
     TextEditingController(),
     TextEditingController(),
     TextEditingController(),
@@ -121,12 +104,6 @@ class OtpTimerController extends GetxController {
     result = '';
     for (int i = 0; i < 4; i++) result += otp[i].text;
     print(result);
-  }
-
-  void otpdigits2() {
-    emailOtpString = '';
-    for (int i = 0; i < 4; i++) emailOtpString += emailotp[i].text;
-    print(emailOtpString);
   }
 
   void startTimer() {

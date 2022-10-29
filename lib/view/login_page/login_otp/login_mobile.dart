@@ -95,10 +95,10 @@ class LoginPhoneEmail extends StatelessWidget {
                               height: 10,
                             ),
                             Text(
-                              "Add your phone number. we'll send you a verification code so we know you're real",
-                              style: GoogleFonts.actor(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
+                              "Enter your phone or Email we'll send you a verification code so we know you're real",
+                              style: GoogleFonts.alatsi(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                               textAlign: TextAlign.center,
@@ -193,7 +193,7 @@ class LoginPhoneEmail extends StatelessWidget {
                                           Icons.perm_device_info_sharp,
                                           color: MyTheme.ThemeColors,
                                         ),
-                                        hintText: 'Enter Your Identifier',
+                                        hintText: 'Enter Phone / Email',
                                         hintStyle: TextStyle(
                                             color: MyTheme.ThemeColors),
                                       ),
