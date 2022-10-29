@@ -13,7 +13,7 @@ class CheckoutController extends GetxController {
   CheckoutModel? checkoutModel;
 
   void addressidApi() async {
-    isLoading(false);
+    isLoading(true);
 
     getaddressbyid = await ApiProvider.getaddressIdApi(addressid.toString());
     if (getaddressbyid != null) {
@@ -41,7 +41,7 @@ class CheckoutController extends GetxController {
   @override
   void onInit() {
     getcheckoutApi();
-    // addressidApi();
+    addressidApi();
     super.onInit();
   }
 

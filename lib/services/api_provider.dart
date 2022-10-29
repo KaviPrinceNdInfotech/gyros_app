@@ -81,6 +81,44 @@ class ApiProvider {
     }
   }
 
+  ///
+
+  static PhoneEmailApi(
+    var MobileOrEmail,
+  ) async {
+    var url = baseUrl + 'api/AdminApi/LoginMobileOrEmail';
+
+    var body = {
+      "MobileOrEmail": MobileOrEmail,
+    };
+    print(body);
+    http.Response r = await http.post(
+      Uri.parse(url), body: body,
+      //headers: headers
+    );
+    print(r.body);
+    if (r.statusCode == 200) {
+      // var prefs = GetStorage();
+      // //saved id..........
+      // prefs.write("Id".toString(), json.decode(r.body)['Id']);
+      // Id = prefs.read("Id").toString();
+      // print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+
+      //saved token.........
+      // prefs.write("token".toString(), json.decode(r.body)['token']);
+      // token = prefs.read("token").toString();
+      // print(token);
+      return r;
+    } else if (r.statusCode == 401) {
+      Get.snackbar('message', r.body);
+    } else {
+      Get.snackbar('Error', r.body);
+      return r;
+    }
+  }
+
+  ///
+  ///
   //login with email api gyros api 2..................................
 
   static LoginEmailApi(
@@ -119,6 +157,38 @@ class ApiProvider {
     }
   }
 
+  //login with email api gyros api 3..................................
+
+  static OtpApi(var Otp, var MobileOrEmail) async {
+    var url = baseUrl + 'api/AdminApi/MobileOrEmailOtpVerify';
+
+    var body = {"Otp": "$Otp", MobileOrEmail: "$MobileOrEmail"};
+    print(body);
+    http.Response r = await http.post(
+      Uri.parse(url), body: body,
+      //headers: headers
+    );
+    print(r.body);
+    if (r.statusCode == 200) {
+      var prefs = GetStorage();
+      //saved id..........
+      prefs.write("Id".toString(), json.decode(r.body)['Id']);
+      Id = prefs.read("Id").toString();
+      print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+
+      //saved token.........
+      prefs.write("token".toString(), json.decode(r.body)['token']);
+      token = prefs.read("token").toString();
+      print(token);
+      return r;
+    } else if (r.statusCode == 401) {
+      Get.snackbar('message', r.body);
+    } else {
+      Get.snackbar('Error', r.body);
+      return r;
+    }
+  }
+
   /// refresh login token...........
 
   // else if(response.statusCode == 401){
@@ -130,6 +200,46 @@ class ApiProvider {
   // return getUser();
   // }
   //catagary list api gyros  api 3.....................
+
+  ///TODO: phone email verification.............
+  ///
+  //login with email api gyros api 2..................................
+
+  // static PhoneEmailApi(
+  //   var MobileOrEmail,
+  // ) async {
+  //   var url = baseUrl + 'api/AdminApi/LoginMobileOrEmail';
+  //
+  //   var body = {
+  //     "MobileOrEmail": MobileOrEmail,
+  //   };
+  //   print(body);
+  //   http.Response r = await http.post(
+  //     Uri.parse(url), body: body,
+  //     //headers: headers
+  //   );
+  //   print(r.body);
+  //   if (r.statusCode == 200) {
+  //     var prefs = GetStorage();
+  //     //saved id..........
+  //     prefs.write("Id".toString(), json.decode(r.body)['Id']);
+  //     Id = prefs.read("Id").toString();
+  //     print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+  //
+  //     //saved token.........
+  //     // prefs.write("token".toString(), json.decode(r.body)['token']);
+  //     // token = prefs.read("token").toString();
+  //     // print(token);
+  //     return r;
+  //   } else if (r.statusCode == 401) {
+  //     Get.snackbar('message', r.body);
+  //   } else {
+  //     Get.snackbar('Error', r.body);
+  //     return r;
+  //   }
+  // }
+
+  //
 
   static AllcatagaryApi() async {
     var url = baseUrl + 'api/AdminApi/ProductList';

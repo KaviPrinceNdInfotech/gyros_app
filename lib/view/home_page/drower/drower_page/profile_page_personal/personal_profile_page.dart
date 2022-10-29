@@ -165,47 +165,47 @@ class PersonalProfile extends StatelessWidget {
                         SizedBox(
                           height: 2.h,
                         ),
-                        Container(
-                          height: 10.5.h,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.grey.shade300,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 3.w),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: 2.w,
-                                ),
-                                Text(
-                                  'New Ashok Nagar',
-                                  style: GoogleFonts.fanwoodText(
-                                    color: Colors.black,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                                Text(
-                                  'Delhi',
-                                  style: GoogleFonts.fanwoodText(
-                                    color: Colors.black,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                                Text(
-                                  'India 110096',
-                                  style: GoogleFonts.fanwoodText(
-                                    color: Colors.black,
-                                    fontSize: 12.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        // Container(
+                        //   height: 10.5.h,
+                        //   width: size.width,
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(5),
+                        //     color: Colors.grey.shade300,
+                        //   ),
+                        //   child: Padding(
+                        //     padding: EdgeInsets.symmetric(horizontal: 3.w),
+                        //     child: Column(
+                        //       mainAxisAlignment: MainAxisAlignment.center,
+                        //       crossAxisAlignment: CrossAxisAlignment.start,
+                        //       children: [
+                        //         SizedBox(
+                        //           width: 2.w,
+                        //         ),
+                        //         Text(
+                        //           'New Ashok Nagar',
+                        //           style: GoogleFonts.fanwoodText(
+                        //             color: Colors.black,
+                        //             fontSize: 12.sp,
+                        //           ),
+                        //         ),
+                        //         Text(
+                        //           'Delhi',
+                        //           style: GoogleFonts.fanwoodText(
+                        //             color: Colors.black,
+                        //             fontSize: 12.sp,
+                        //           ),
+                        //         ),
+                        //         Text(
+                        //           'India 110096',
+                        //           style: GoogleFonts.fanwoodText(
+                        //             color: Colors.black,
+                        //             fontSize: 12.sp,
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(
                           height: 8.h,
                         ),

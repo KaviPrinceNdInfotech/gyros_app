@@ -413,7 +413,7 @@ class AllProducts extends StatelessWidget {
                                                                 CircularProgressIndicator())
                                                         : _allProductController
                                                                     .allProductModel!
-                                                                    .result !=
+                                                                    .result ==
                                                                 null
                                                             //: _allProductController.allProductModel!.result!.isEmpty
                                                             //_bestSellerController.bestsellermodel!.result!.isEmpty

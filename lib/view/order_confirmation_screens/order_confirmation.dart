@@ -11,6 +11,7 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/get_profile/get_profile_controller.dart';
 import '../botttom_nav_bar/bottom_navbar.dart';
 import '../custom_widgets/my_theme.dart';
+import '../invoice_views/page/pdf_page.dart';
 import '../wave_view_tracking/wave_views_trackings.dart';
 
 class OrderConfirmationPage extends StatelessWidget {
@@ -253,12 +254,30 @@ class OrderConfirmationPage extends StatelessWidget {
                                 SizedBox(
                                   height: 1.h,
                                 ),
-                                Text(
-                                  'ORDER DETAILS:',
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'ORDER DETAILS:',
+                                      style: TextStyle(
+                                        fontSize: 10.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Get.to(() => PdfPage());
+                                      },
+                                      child: Text(
+                                        'Invoice',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
                                 Divider(),
                                 SizedBox(
@@ -275,7 +294,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                               child: Text('No List'),
                                             )
                                           : SizedBox(
-                                              height: size.height * 0.41,
+                                              height: size.height * 0.42,
                                               child: ListView.builder(
                                                   shrinkWrap: true,
                                                   scrollDirection:
@@ -305,22 +324,25 @@ class OrderConfirmationPage extends StatelessWidget {
                                                               1.0),
                                                       child: Container(
                                                         height:
-                                                            size.height * 0.25,
+                                                            size.height * 0.27,
                                                         color: MyTheme
                                                             .containercolor7,
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(8.0),
+                                                                  .all(6.0),
                                                           child: Row(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
                                                               SizedBox(
                                                                 height:
                                                                     size.height *
-                                                                        0.2,
+                                                                        0.25,
                                                                 width:
                                                                     size.width *
-                                                                        0.3,
+                                                                        0.30,
                                                                 child: Column(
                                                                   crossAxisAlignment:
                                                                       CrossAxisAlignment
@@ -335,7 +357,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Mobile:',
@@ -343,7 +365,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Email:',
@@ -351,7 +373,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Product Name:',
@@ -359,7 +381,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Total Item:',
@@ -367,7 +389,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Price:',
@@ -375,7 +397,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Date:',
@@ -383,7 +405,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                     Text(
                                                                       'Order Id:',
@@ -391,7 +413,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           color: Colors
                                                                               .white,
                                                                           fontWeight:
-                                                                              FontWeight.w600),
+                                                                              FontWeight.w700),
                                                                     ),
                                                                   ],
                                                                 ),
@@ -402,10 +424,10 @@ class OrderConfirmationPage extends StatelessWidget {
                                                               SizedBox(
                                                                 height:
                                                                     size.height *
-                                                                        0.2,
+                                                                        0.25,
                                                                 width:
                                                                     size.width *
-                                                                        0.42,
+                                                                        0.45,
                                                                 child: Column(
                                                                   crossAxisAlignment:
                                                                       CrossAxisAlignment
@@ -422,9 +444,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                               index]
                                                                           .name!
                                                                           .toString(),
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -436,9 +458,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .mobile!
                                                                           .toString(),
                                                                       //'Mobile',
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -450,9 +472,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .email!
                                                                           .toString(),
                                                                       //'Email',
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -464,9 +486,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .productName!
                                                                           .toString(),
                                                                       // 'Product Name',
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -478,9 +500,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .totalItem
                                                                           .toString(),
                                                                       // 'Total Item,
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -493,9 +515,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .toString(),
 
                                                                       //'Price',
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -507,9 +529,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .date!
                                                                           .toString(),
                                                                       //'Date',
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -521,9 +543,9 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                           .id
                                                                           .toString(),
                                                                       //'Order Id',
-                                                                      style: GoogleFonts.raleway(
+                                                                      style: GoogleFonts.poppins(
                                                                           color: Colors
-                                                                              .white,
+                                                                              .yellow,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),

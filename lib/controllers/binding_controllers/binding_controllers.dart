@@ -25,6 +25,7 @@ import 'package:gyros_app/view/login_page/login_with_email/login_email_controlle
 import '../../view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
 import '../../view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
 import '../../view/home_page/home_page_controller.dart';
+import '../../view/login_page/login_otp/login_otp_timer_phone_email_controller.dart';
 import '../address_list_controller/address_list_controllers.dart';
 import '../best_seller_controller.dart';
 import '../order_history_controller/order_history_controllers.dart';
@@ -71,11 +72,13 @@ class ControllerBinding extends Bindings {
     Get.put(ShippingPolicyController());
     Get.put(OrderHistoryController());
     Get.put(PostOrderController());
+    Get.put(LoginMobileController());
+    Get.put(OtpTimerController1());
 
     //Get.put(CatagaryByIdController());
   }
 
-  // CartNewController _cartNewController = Get.put(CartNewController());
-  // FavCounterController _favCounterController = Get.put(FavCounterController());
+// CartNewController _cartNewController = Get.put(CartNewController());
+// FavCounterController _favCounterController = Get.put(FavCounterController());
 
 }

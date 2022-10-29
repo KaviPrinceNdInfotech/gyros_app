@@ -9,6 +9,7 @@ import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
 import 'package:gyros_app/view/home_page/home_page_controller.dart';
+import 'package:gyros_app/view/login_page/login_otp/login_otp_timer_phone_email_controller.dart';
 import 'package:gyros_app/view/login_page/login_with_email/login_email_controller.dart';
 import 'package:gyros_app/view/splash_screenss/splash_screen.dart';
 import 'package:sizer/sizer.dart';
@@ -86,6 +87,8 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => PostQueryController());
     Get.lazyPut(() => OrderHistoryController());
     Get.lazyPut(() => PostOrderController());
+    Get.lazyPut(() => LoginMobileController());
+    Get.lazyPut(() => OtpTimerController1());
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
@@ -104,6 +107,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  static final String title = 'Invoice';
+
   //late CartController controller = Get.put(CartController());
 
   // CartNewController _cartNewController = Get.put(CartNewController());

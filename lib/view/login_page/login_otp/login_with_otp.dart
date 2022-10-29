@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/otp_timer_controller/otp_timer_controllerss.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
-import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
+import 'package:sizer/sizer.dart';
 
 class Otp extends StatefulWidget {
   const Otp({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class Otp extends StatefulWidget {
 
 class _OtpState extends State<Otp> {
   NavController _navController = Get.find();
+  OtpTimerController _otpTimerController = Get.put(OtpTimerController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -107,18 +109,27 @@ class _OtpState extends State<Otp> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(2.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              _textFieldOTP(first: true, last: false),
-                              _textFieldOTP(first: false, last: false),
-                              _textFieldOTP(first: false, last: false),
-                              _textFieldOTP(first: false, last: true),
-                            ],
+                          SizedBox(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                for (int i = 0; i < 4; i++)
+                                  OtpInput(
+                                      controller: _otpTimerController.otp[i],
+                                      autoFocus: i == 0 ? true : false,
+                                      validator:
+                                          _otpTimerController.otpValidator)
+
+                                // _textFieldOTP(first: true, last: false),
+                                // _textFieldOTP(first: false, last: false),
+                                // _textFieldOTP(first: false, last: false),
+                                // _textFieldOTP(first: false, last: true),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: 22,
@@ -127,8 +138,11 @@ class _OtpState extends State<Otp> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                _navController.tabindex(0);
-                                Get.to(() => NavBar());
+                                // _navController.tabindex(0);
+                                // Get.to(() => NavBar());
+
+                                _otpTimerController.otpdigits();
+                                _otpTimerController.checkValidation();
                               },
                               style: ButtonStyle(
                                 foregroundColor:
@@ -195,7 +209,8 @@ class _OtpState extends State<Otp> {
     );
   }
 
-  Widget _textFieldOTP({required bool first, last}) {
+  Widget _textFieldOTP(
+      {required bool first, last, controller, autoFocus, validator}) {
     return Container(
       //color: Colors.white38,
       height: 65,
@@ -214,6 +229,7 @@ class _OtpState extends State<Otp> {
           },
           showCursor: false,
           readOnly: false,
+
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 24,
@@ -229,6 +245,76 @@ class _OtpState extends State<Otp> {
             focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.lightGreen),
                 borderRadius: BorderRadius.circular(12)),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OtpInput extends StatelessWidget {
+  const OtpInput(
+      {Key? key,
+      required this.controller,
+      required this.autoFocus,
+      required this.validator})
+      : super(key: key);
+  final bool autoFocus;
+  final TextEditingController controller;
+  final String? Function(String?) validator;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: SizedBox(
+        height: 60,
+        width: 15.w,
+        child: PhysicalModel(
+          color: Color(0xfff5f5f5),
+          shape: BoxShape.circle,
+          elevation: 2,
+          child: Container(
+            height: 12.h,
+            width: 18.w,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.green, width: 3),
+              shape: BoxShape.circle,
+              color: Color(0xfff5f5f5),
+
+              //borderRadius: BorderRadius.circular(5)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.sp,
+                ),
+                decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 11, horizontal: 1.w),
+                  border: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  hintText: '',
+                  hintStyle: TextStyle(fontSize: 20.0, color: Colors.grey),
+                  counterText: '',
+                  focusColor: Colors.black,
+                ),
+                autofocus: autoFocus,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                controller: controller,
+                validator: validator,
+                maxLength: 1,
+                onChanged: (value) {
+                  if (value.length == 1) {
+                    FocusScope.of(context).nextFocus();
+                  }
+                },
+              ),
+            ),
           ),
         ),
       ),

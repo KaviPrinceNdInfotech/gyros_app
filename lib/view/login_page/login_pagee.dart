@@ -11,6 +11,8 @@ import 'package:gyros_app/view/login_page/login_with_email/login_email.dart';
 import 'package:gyros_app/view/signup/signup_page.dart';
 import 'package:sizer/sizer.dart';
 
+import 'login_otp/login_mobile.dart';
+
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
   @override
@@ -81,6 +83,19 @@ class LoginPage extends StatelessWidget {
               ),
 
               SizedBox(
+                height: 2.h,
+              ),
+
+              CustomButtom(
+                buttonColor: MyTheme.loginbuttonColor,
+                buttontext: 'LOGIN WITH OTP',
+
+                textColor: Colors.white,
+                //Theme.of(context).colorScheme.onPrimary,
+                handleButtonClick: loginButtonClickHandlerOTP,
+              ),
+
+              SizedBox(
                 height: 15,
               ),
 
@@ -121,6 +136,14 @@ class LoginPage extends StatelessWidget {
   loginButtonClickHandler() {
     print("Login Clicked");
     Get.to(() => LoginEmailPage());
+
+    ///login main page api with future builder below page........
+    //Get.to(LoginMainPage());
+  }
+
+  loginButtonClickHandlerOTP() {
+    print("Login Clicked");
+    Get.to(() => LoginPhoneEmail());
 
     ///login main page api with future builder below page........
     //Get.to(LoginMainPage());

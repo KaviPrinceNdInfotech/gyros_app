@@ -2,29 +2,48 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gyros_app/widgets/circular_loader.dart';
 import 'package:http/http.dart' as http;
 
 //import '../card_verification/aadhar_varification/card_verify1.dart';
 import '../../services/api_provider.dart';
+import '../../view/botttom_nav_bar/bottom_nav_bar_controller.dart';
+import '../../view/botttom_nav_bar/bottom_navbar.dart';
 
 class OtpTimerController extends GetxController {
+  NavController _navController = Get.find();
   RxString elapsedTime = '02:00'.obs;
   int _start = 120;
   String phoneNumber = '';
   String email = '';
   String phoneOtpString = '';
   String emailOtpString = '';
+  String result = '';
 
-  void VerifyotpApi() async {
-    http.Response r = await ApiProvider.verifyotpApi(
-        emailOtpString, phoneOtpString, email, phoneNumber);
-    print('parameters');
-    print(email);
-    print(phoneNumber);
-    print(phoneOtpString);
-    print(emailOtpString);
+  // void VerifyotpApi() async {
+  //   http.Response r = await ApiProvider.verifyotpApi(
+  //       emailOtpString, phoneOtpString, email, phoneNumber);
+  //   print('parameters');
+  //   print(email);
+  //   print(phoneNumber);
+  //   print(phoneOtpString);
+  //   print(emailOtpString);
+  //   if (r.statusCode == 200) {
+  //     //Get.to(() => CardVerifications1());
+  //     //Get.to(()=>CreateNewPassword());
+  //     //Get.offAll(()=>VerifyOtp());
+  //     //Get.offAll(()=> BottomBarScreen(i: 0,));
+  //   }
+  // }
+
+  void VerifyotpApi(var MobileOrEmail) async {
+    http.Response r = await ApiProvider.OtpApi(MobileOrEmail, result);
+    print(MobileOrEmail);
+    print(result);
     if (r.statusCode == 200) {
-      //Get.to(() => CardVerifications1());
+      CallLoader.hideLoader();
+      _navController.tabindex(0);
+      Get.to(() => NavBar());
       //Get.to(()=>CreateNewPassword());
       //Get.offAll(()=>VerifyOtp());
       //Get.offAll(()=> BottomBarScreen(i: 0,));
@@ -55,7 +74,7 @@ class OtpTimerController extends GetxController {
   }
 
   GlobalKey<FormState> otpKey = GlobalKey<FormState>();
-  List<TextEditingController> phoneotp = [
+  List<TextEditingController> otp = [
     TextEditingController(),
     TextEditingController(),
     TextEditingController(),
@@ -99,9 +118,9 @@ class OtpTimerController extends GetxController {
   }
 
   void otpdigits() {
-    phoneOtpString = '';
-    for (int i = 0; i < 4; i++) phoneOtpString += phoneotp[i].text;
-    print(phoneOtpString);
+    result = '';
+    for (int i = 0; i < 4; i++) result += otp[i].text;
+    print(result);
   }
 
   void otpdigits2() {
