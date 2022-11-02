@@ -3,9 +3,9 @@ import 'package:gyros_app/models/all_address_list_model.dart';
 import 'package:gyros_app/services/api_provider.dart';
 
 class AddressListController extends GetxController {
-  RxInt selectedIndex = 0.obs;
+  //RxInt selectedIndex = 0.obs;
 
-  void toggle(int index) => selectedIndex.value = index;
+  //void toggle(int index) => selectedIndex.value = index;
 
   RxBool isLoading = true.obs;
 

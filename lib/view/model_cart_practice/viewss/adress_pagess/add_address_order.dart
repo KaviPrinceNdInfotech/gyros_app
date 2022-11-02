@@ -13,7 +13,8 @@ import '../../../../controllers/address_list_controller/address_list_controllers
 class AddAddress extends StatelessWidget {
   AddAddress({Key? key}) : super(key: key);
   AddAdressController _addAdressController = Get.put(AddAdressController());
-  AddressListController _addressListController = Get.find();
+  AddressListController _addressListController =
+      Get.put(AddressListController());
 
   //AddAddressController _addAddressController = Get.put(AddAddressController());
 

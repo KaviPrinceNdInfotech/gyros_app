@@ -11,7 +11,9 @@ class MyTheme {
   static Color ContainerUnSelectedColor = Color(0xffeff8f5);
   static Color ThemeColors = Color(0xff27ae61);
   static double defaultPading = 15.0;
+  static Color containergradient = Color(0xffF6F7DD);
   static Color containercolor1 = Color(0xff8cdba9);
+  static Color containercolor01 = Color(0xff425F57);
   static Color containercolor2 = Color(0xffa5f0c5);
   static Color containercolor3 = Color(0xffd5f591);
   static Color containercolor4 = Color(0xffffc06e);

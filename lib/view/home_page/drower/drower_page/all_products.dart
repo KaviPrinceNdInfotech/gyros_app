@@ -147,6 +147,7 @@ class AllProducts extends StatelessWidget {
                                   height: size.height * 0.520,
                                   width: size.width,
                                   decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
                                       color: Colors.blueGrey,
                                       border: Border.all(
                                           color: Colors.green, width: 0)),
@@ -155,7 +156,7 @@ class AllProducts extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.all(6.5),
                                         child: PhysicalModel(
-                                          color: Colors.red,
+                                          color: Colors.transparent,
                                           elevation: 10,
                                           child: InkWell(
                                             onTap: () {
@@ -173,6 +174,8 @@ class AllProducts extends StatelessWidget {
                                               height: size.height * 0.38,
                                               //color: Colors.red,
                                               decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                                 color: Colors.grey,
                                                 image: DecorationImage(
                                                     image: NetworkImage(base +
@@ -207,6 +210,18 @@ class AllProducts extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
+                                                    '500 gm',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 10.sp,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.007,
+                                                  ),
+                                                  Text(
                                                     _allProductController
                                                         .allProductModel!
                                                         .result![index]
@@ -223,7 +238,7 @@ class AllProducts extends StatelessWidget {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    height: size.height * 0.02,
+                                                    height: size.height * 0.01,
                                                   ),
                                                   Row(
                                                     children: [
@@ -237,9 +252,23 @@ class AllProducts extends StatelessWidget {
                                                               .yellowAccent,
                                                         ),
                                                       ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.009,
+                                                      ),
                                                       Text(
-                                                        '/500 gm',
+                                                        '₹${_allProductController.allProductModel!.result![index].price.toString()}',
                                                         style: TextStyle(
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                          // decorationStyle:
+                                                          //     TextDecorationStyle.wavy,
+                                                          decorationColor:
+                                                              Colors
+                                                                  .red.shade900,
+                                                          decorationThickness:
+                                                              2.85,
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           fontSize: 10.sp,
