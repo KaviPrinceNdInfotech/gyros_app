@@ -694,7 +694,7 @@ class HomePagePractice extends StatelessWidget {
                                                             width: size.width *
                                                                 0.2,
                                                             child: Text(
-                                                              "Save:${_homePageController.getflashsellproduct!.result![index].discount.toString()}",
+                                                              "Save:${_homePageController.getflashsellproduct!.result![index].discountPercentage.toString()}%",
                                                               style: TextStyle(
                                                                 overflow:
                                                                     TextOverflow
@@ -702,7 +702,7 @@ class HomePagePractice extends StatelessWidget {
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
-                                                                fontSize: 8.sp,
+                                                                fontSize: 9.sp,
                                                                 color: Colors
                                                                     .green
                                                                     .shade900,
@@ -724,7 +724,7 @@ class HomePagePractice extends StatelessWidget {
                                                       child: Row(
                                                         children: [
                                                           SizedBox(
-                                                            //width: 21.w,
+                                                            width: 21.w,
                                                             child: Column(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -738,33 +738,42 @@ class HomePagePractice extends StatelessWidget {
                                                                       .only(
                                                                           top: 0.0
                                                                               .h),
-                                                                  child: Text(
-                                                                    _homePageController
-                                                                        .getflashsellproduct!
-                                                                        .result![
-                                                                            index]
-                                                                        .productName
-                                                                        .toString(),
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    maxLines: 1,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize:
-                                                                          9.sp,
-                                                                      color: Colors
-                                                                          .black,
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: size
+                                                                            .width *
+                                                                        0.18,
+                                                                    height: size
+                                                                            .height *
+                                                                        0.02,
+                                                                    child: Text(
+                                                                      _homePageController
+                                                                          .getflashsellproduct!
+                                                                          .result![
+                                                                              index]
+                                                                          .productName
+                                                                          .toString(),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                      maxLines:
+                                                                          1,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.w700,
+                                                                        fontSize:
+                                                                            9.sp,
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 Row(
                                                                   children: [
                                                                     Text(
-                                                                      '₹${_homePageController.getflashsellproduct!.result![index].price}'
+                                                                      '₹${_homePageController.getflashsellproduct!.result![index].finalPrice}'
                                                                       " ",
                                                                       style:
                                                                           TextStyle(
@@ -1269,7 +1278,7 @@ class HomePagePractice extends StatelessWidget {
                                                             width: size.width *
                                                                 0.2,
                                                             child: Text(
-                                                              "Save:${_homePageController.getflashsellproduct!.result![index].discount.toString()}",
+                                                              "Save:${_homePageController.getflashsellproduct!.result![index].discountPercentage.toString()}%",
                                                               style: TextStyle(
                                                                 overflow:
                                                                     TextOverflow
@@ -1277,7 +1286,7 @@ class HomePagePractice extends StatelessWidget {
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w500,
-                                                                fontSize: 8.sp,
+                                                                fontSize: 9.sp,
                                                                 color: Colors
                                                                     .green
                                                                     .shade900,
@@ -1299,7 +1308,7 @@ class HomePagePractice extends StatelessWidget {
                                                       child: Row(
                                                         children: [
                                                           SizedBox(
-                                                            //width: 21.w,
+                                                            width: 21.w,
                                                             child: Column(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -1313,33 +1322,42 @@ class HomePagePractice extends StatelessWidget {
                                                                       .only(
                                                                           top: 0.0
                                                                               .h),
-                                                                  child: Text(
-                                                                    _homePageController
-                                                                        .getflashsellproduct!
-                                                                        .result![
-                                                                            index]
-                                                                        .productName
-                                                                        .toString(),
-                                                                    overflow:
-                                                                        TextOverflow
-                                                                            .ellipsis,
-                                                                    maxLines: 1,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize:
-                                                                          9.sp,
-                                                                      color: Colors
-                                                                          .black,
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: size
+                                                                            .width *
+                                                                        0.18,
+                                                                    height: size
+                                                                            .height *
+                                                                        0.02,
+                                                                    child: Text(
+                                                                      _homePageController
+                                                                          .getflashsellproduct!
+                                                                          .result![
+                                                                              index]
+                                                                          .productName
+                                                                          .toString(),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                      maxLines:
+                                                                          1,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.w700,
+                                                                        fontSize:
+                                                                            9.sp,
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
                                                                 Row(
                                                                   children: [
                                                                     Text(
-                                                                      '₹${_homePageController.getflashsellproduct!.result![index].price}'
+                                                                      '₹${_homePageController.getflashsellproduct!.result![index].finalPrice}'
                                                                       " ",
                                                                       style:
                                                                           TextStyle(
