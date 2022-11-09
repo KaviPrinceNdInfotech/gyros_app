@@ -1,9 +1,7 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/best_seller_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
@@ -83,6 +81,7 @@ class BestDeal extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
         title: Text(
           'Best Deal',
           style: TextStyle(
@@ -110,40 +109,84 @@ class BestDeal extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(6.0),
-                  child: Badge(
-                    toAnimate: false,
-                    badgeColor: AppColors.themecolors,
-                    badgeContent: Obx(
-                      () => (controller.isLoading.value)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              color: Colors.lightGreenAccent,
-                              backgroundColor: Colors.white,
-                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
-                              strokeWidth: 3,
-                            ))
-                          : controller.cartListModel!.totalItem != null
-                              //: controller.cartListModel!.totalItem == null
-                              //: _allProductController.allProductModel!.result!.isEmpty
-                              //_bestSellerController.bestsellermodel!.result!.isEmpty
-                              ? Center(
-                                  child: Text('0'),
-                                )
-                              : Text(
-                                  controller.cartListModel!.totalItem
-                                      .toString(),
-                                  style: GoogleFonts.alatsi(
-                                    color: Colors.white,
-                                    fontSize: 10.sp,
-                                  ),
-                                ),
-                    ),
-                    child: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.green,
-                    ),
+                  child:
+                      // Badge(
+                      //   toAnimate: true,
+                      //   badgeColor: AppColors.themecolors,
+                      //   badgeContent: Obx(
+                      //     () => (controller.isLoading.value)
+                      //         ? Center(child: CircularProgressIndicator())
+                      //         : controller.cartListModel!.result! == null
+                      //             // ? Center(
+                      //             //     child: Text('0'),
+                      //             //   )
+                      //             // :
+                      //             ? Center(
+                      //                 child: CircularProgressIndicator(
+                      //                 color: Colors.lightGreenAccent,
+                      //                 backgroundColor: Colors.white,
+                      //                 valueColor:
+                      //                     AlwaysStoppedAnimation(Colors.yellow),
+                      //                 strokeWidth: 3,
+                      //               ))
+                      //             : Text(
+                      //                 controller.cartListModel!.totalItem
+                      //                     .toString(),
+                      //                 style: GoogleFonts.alatsi(
+                      //                   color: Colors.white,
+                      //                   fontSize: 10.sp,
+                      //                 ),
+                      //               ),
+                      //   ),
+                      //   child: Icon(
+                      //     Icons.shopping_cart,
+                      //     color: Colors.green,
+                      //   ),
+                      // ),
+                      Icon(
+                    Icons.shopping_cart,
+                    size: size.height * 0.035,
+                    color: Colors.green,
                   ),
-                )),
+                )
+
+                // Padding(
+                //   padding: EdgeInsets.all(6.0),
+                //   child: Badge(
+                //     toAnimate: false,
+                //     badgeColor: AppColors.themecolors,
+                //     badgeContent: Obx(
+                //       () => (controller.isLoading.value)
+                //           ? Center(
+                //               child: CircularProgressIndicator(
+                //               color: Colors.lightGreenAccent,
+                //               backgroundColor: Colors.white,
+                //               valueColor: AlwaysStoppedAnimation(Colors.yellow),
+                //               strokeWidth: 3,
+                //             ))
+                //           : controller.cartListModel!.totalItem == null
+                //               //: controller.cartListModel!.totalItem == null
+                //               //: _allProductController.allProductModel!.result!.isEmpty
+                //               //_bestSellerController.bestsellermodel!.result!.isEmpty
+                //               ? Center(
+                //                   child: Text('0'),
+                //                 )
+                //               : Text(
+                //                   controller.cartListModel!.totalItem
+                //                       .toString(),
+                //                   style: GoogleFonts.alatsi(
+                //                     color: Colors.white,
+                //                     fontSize: 10.sp,
+                //                   ),
+                //                 ),
+                //     ),
+                //     child: Icon(
+                //       Icons.shopping_cart,
+                //       color: Colors.green,
+                //     ),
+                //   ),
+                // )
+                ),
           ),
         ],
       ),
@@ -173,6 +216,454 @@ class BestDeal extends StatelessWidget {
                             .bestsellermodel!.result!.length,
                         itemBuilder: (BuildContext contextr, int index) {
                           return Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: size.height * 0.003),
+                            child: Column(
+                              children: [
+                                Container(
+                                  height: size.height * 0.520,
+                                  width: size.width,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Colors.blueGrey,
+                                      border: Border.all(
+                                          color: Colors.green, width: 0)),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.all(6.5),
+                                        child: PhysicalModel(
+                                          color: Colors.transparent,
+                                          elevation: 10,
+                                          child: InkWell(
+                                            onTap: () {
+                                              _flashProductByIdController
+                                                      .productid =
+                                                  _bestSellerController
+                                                      .bestsellermodel!
+                                                      .result![index]
+                                                      .id
+                                                      .toString();
+                                              _flashProductByIdController
+                                                  .flashproductbyIdApi();
+                                            },
+                                            child: Container(
+                                              height: size.height * 0.38,
+                                              //color: Colors.red,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.grey,
+                                                image: DecorationImage(
+                                                    image: NetworkImage(base +
+                                                        '${_bestSellerController.bestsellermodel!.result![index].productImage.toString()}'),
+                                                    fit: BoxFit.fill),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        height: size.height * 0.12,
+                                        //color: Color(0xff023020),
+                                        decoration: BoxDecoration(
+                                            color: Color(0xff023020),
+                                            border: Border.all(
+                                                color: Colors.blueGrey,
+                                                width: 2)),
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.02),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    '${_bestSellerController.bestsellermodel!.result![index].quentity.toString()} gm',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 10.sp,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.007,
+                                                  ),
+
+                                                  // SizedBox(
+                                                  //   width: size
+                                                  //       .width *
+                                                  //       0.18,
+                                                  //   height: size
+                                                  //       .height *
+                                                  //       0.02,
+                                                  //   child: Text(
+                                                  //     _homePageController
+                                                  //         .getflashsellproduct!
+                                                  //         .result![
+                                                  //     index]
+                                                  //         .productName
+                                                  //         .toString(),
+                                                  //     overflow:
+                                                  //     TextOverflow
+                                                  //         .ellipsis,
+                                                  //     maxLines:
+                                                  //     1,
+                                                  //     style:
+                                                  //     TextStyle(
+                                                  //       fontWeight:
+                                                  //       FontWeight.w700,
+                                                  //       fontSize:
+                                                  //       9.sp,
+                                                  //       color: Colors
+                                                  //           .black,
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
+                                                  SizedBox(
+                                                    width: size.width * 0.48,
+                                                    height: size.height * 0.03,
+                                                    child: Text(
+                                                      _bestSellerController
+                                                          .bestsellermodel!
+                                                          .result![index]
+                                                          .productName
+                                                          .toString(),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 15.sp,
+                                                        color: Colors.yellow,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: size.height * 0.01,
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        '₹${_bestSellerController.bestsellermodel!.result![index].finalPrice.toString()}',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w900,
+                                                          fontSize: 13.sp,
+                                                          color: Colors
+                                                              .yellowAccent,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width:
+                                                            size.width * 0.009,
+                                                      ),
+                                                      Text(
+                                                        '₹${_bestSellerController.bestsellermodel!.result![index].price.toString()}',
+                                                        style: TextStyle(
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                          // decorationStyle:
+                                                          //     TextDecorationStyle.wavy,
+                                                          decorationColor:
+                                                              Colors
+                                                                  .red.shade900,
+                                                          decorationThickness:
+                                                              2.85,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          fontSize: 10.sp,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  // Padding(
+                                                  //   padding: EdgeInsets.symmetric(
+                                                  //       horizontal: 0.5.w),
+                                                  //   child: Row(
+                                                  //     mainAxisAlignment:
+                                                  //         MainAxisAlignment
+                                                  //             .spaceBetween,
+                                                  //     children: [
+                                                  //       SizedBox(
+                                                  //         width: size.width * 0.50,
+                                                  //         height:
+                                                  //             size.height * 0.025,
+                                                  //         child: Text(
+                                                  //           _catByIdController
+                                                  //               .getcatbyid!
+                                                  //               .result![index]
+                                                  //               .productName
+                                                  //               .toString(),
+                                                  //           overflow: TextOverflow
+                                                  //               .ellipsis,
+                                                  //           maxLines: 3,
+                                                  //           style: TextStyle(
+                                                  //             fontWeight:
+                                                  //                 FontWeight.w700,
+                                                  //             fontSize: 15.sp,
+                                                  //             color: Colors.yellow,
+                                                  //           ),
+                                                  //         ),
+                                                  //       ),
+                                                  //       Text(
+                                                  //         'Save 30%',
+                                                  //         style: TextStyle(
+                                                  //           fontWeight:
+                                                  //               FontWeight.w500,
+                                                  //           fontSize: 13.sp,
+                                                  //           color: Colors.white,
+                                                  //         ),
+                                                  //       ),
+                                                  //     ],
+                                                  //   ),
+                                                  // ),
+                                                  // Padding(
+                                                  //   padding: EdgeInsets.symmetric(
+                                                  //       horizontal: 0.5.w),
+                                                  //   child: Row(
+                                                  //     children: [
+                                                  //       SizedBox(
+                                                  //         width: size.width,
+                                                  //         //width: 23.w,
+                                                  //         child: Padding(
+                                                  //           padding: EdgeInsets
+                                                  //               .symmetric(
+                                                  //                   horizontal:
+                                                  //                       size.width *
+                                                  //                           0.00),
+                                                  //           child: Row(
+                                                  //             // mainAxisAlignment:
+                                                  //             //     MainAxisAlignment
+                                                  //             //         .spaceBetween,
+                                                  //             children: [
+                                                  //               Text(
+                                                  //                 '₹${_catByIdController.getcatbyid!.result![index].price.toString()}',
+                                                  //                 style: TextStyle(
+                                                  //                   fontWeight:
+                                                  //                       FontWeight
+                                                  //                           .w900,
+                                                  //                   fontSize: 13.sp,
+                                                  //                   color: Colors
+                                                  //                       .yellowAccent,
+                                                  //                 ),
+                                                  //               ),
+                                                  //               Text(
+                                                  //                 '/500 gm',
+                                                  //                 style: TextStyle(
+                                                  //                   fontWeight:
+                                                  //                       FontWeight
+                                                  //                           .w700,
+                                                  //                   fontSize: 10.sp,
+                                                  //                   color: Colors
+                                                  //                       .white,
+                                                  //                 ),
+                                                  //               ),
+                                                  //
+                                                  //               // Spacer(),
+                                                  //               // SizedBox(
+                                                  //               //   width: 4.w,
+                                                  //               // ),
+                                                  //               Container(
+                                                  //                 height: 4.5.h,
+                                                  //                 width: 33.5.w,
+                                                  //                 decoration:
+                                                  //                     BoxDecoration(
+                                                  //                   borderRadius:
+                                                  //                       BorderRadius
+                                                  //                           .circular(
+                                                  //                               20),
+                                                  //                 ),
+                                                  //                 child: InkWell(
+                                                  //                   onTap: () {
+                                                  //                     cartController
+                                                  //                         .addProduct(
+                                                  //                             Productss
+                                                  //                                 .products[index]);
+                                                  //                   },
+                                                  //                   child:
+                                                  //                       RaisedGradientButton(
+                                                  //                     //height: 3.3.h,
+                                                  //                     //width: 23.9.w,
+                                                  //                     child: Text(
+                                                  //                       'Add To Cart',
+                                                  //                       style: TextStyle(
+                                                  //                           color: Colors
+                                                  //                               .white,
+                                                  //                           fontWeight:
+                                                  //                               FontWeight
+                                                  //                                   .w600,
+                                                  //                           fontSize:
+                                                  //                               10.sp),
+                                                  //                     ),
+                                                  //                     gradient:
+                                                  //                         LinearGradient(
+                                                  //                       colors: <
+                                                  //                           Color>[
+                                                  //                         Colors
+                                                  //                             .green,
+                                                  //                         Colors
+                                                  //                             .cyan
+                                                  //                             .shade400
+                                                  //                       ],
+                                                  //                     ),
+                                                  //                     onPressed:
+                                                  //                         () {
+                                                  //                       cartController
+                                                  //                           .addProduct(
+                                                  //                               Productss.products[index]);
+                                                  //                       print(
+                                                  //                           'Add To cart');
+                                                  //                     },
+                                                  //                   ),
+                                                  //                 ),
+                                                  //               ),
+                                                  //             ],
+                                                  //           ),
+                                                  //         ),
+                                                  //       ),
+                                                  //     ],
+                                                  //   ),
+                                                  // ),
+                                                ],
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Obx(
+                                                    () => (_bestSellerController
+                                                            .isLoading.value)
+                                                        ? Center(
+                                                            child:
+                                                                CircularProgressIndicator())
+                                                        : _bestSellerController
+                                                                    .bestsellermodel!
+                                                                    .result! ==
+                                                                null
+                                                            //: _allProductController.allProductModel!.result!.isEmpty
+                                                            //_bestSellerController.bestsellermodel!.result!.isEmpty
+                                                            ? Center(
+                                                                child: Text(
+                                                                  'Save:'
+                                                                  'No data'
+                                                                  "%",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        10.sp,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            : Text(
+                                                                'Save ${_bestSellerController.bestsellermodel!.result![index].discountPercentage}%',
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize:
+                                                                      10.sp,
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
+                                                              ),
+                                                  ),
+
+                                                  // Spacer(),
+                                                  // SizedBox(
+                                                  //   width: 4.w,
+                                                  // ),
+                                                  SizedBox(
+                                                    height: size.height * 0.02,
+                                                  ),
+                                                  Container(
+                                                    height: 4.5.h,
+                                                    width: 33.5.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                    ),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        controller.addtocartApi(
+                                                            _bestSellerController
+                                                                .bestsellermodel!
+                                                                .result![index]
+                                                                .id);
+                                                        // cartController
+                                                        //     .addProduct(Productss
+                                                        //             .products[
+                                                        //         index]);
+                                                      },
+                                                      child:
+                                                          RaisedGradientButton(
+                                                        //height: 3.3.h,
+                                                        //width: 23.9.w,
+                                                        child: Text(
+                                                          'Add To Cart',
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 10.sp),
+                                                        ),
+                                                        gradient:
+                                                            LinearGradient(
+                                                          colors: <Color>[
+                                                            Color(0xff3a923b),
+                                                            Color(0xffb5d047),
+                                                            // Colors.green,
+                                                            // Colors.cyan.shade400
+                                                          ],
+                                                        ),
+                                                        onPressed: () {
+                                                          // cartController
+                                                          //     .addProduct(Productss
+                                                          //             .products[
+                                                          //         index]);
+                                                          print('Add To cart');
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+
+                          Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: size.height * 0.003),
                             child: Column(
@@ -440,7 +931,7 @@ class BestDeal extends StatelessWidget {
                                                     CrossAxisAlignment.end,
                                                 children: [
                                                   Text(
-                                                    'Save ${_bestSellerController.bestsellermodel!.result![index].discount}%',
+                                                    'Save ${_bestSellerController.bestsellermodel!.result![index].discountPercentage}%',
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,

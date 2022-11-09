@@ -15,7 +15,6 @@ import 'package:gyros_app/view/order_confirmation_screens/order_confirmation.dar
 import 'package:sizer/sizer.dart';
 
 import '../../wave_view_tracking/wave_views_trackings.dart';
-import 'drower_page/all_products.dart';
 import 'drower_page/blogs/my_blogs.dart';
 import 'drower_page/profile_page_personal/personal_profile_page.dart';
 
@@ -81,7 +80,10 @@ class MainDrawer extends StatelessWidget {
                 print(Get.currentRoute);
                 Get.back();
 
-                Get.to(() => AllProducts());
+                _navController.tabindex(1);
+                Get.to(() => NavBar());
+
+                //Get.to(() => AllProducts());
                 Get.offNamed('/AllProducts');
               },
             ),

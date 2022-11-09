@@ -1,9 +1,7 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/all_products/all_products_controllers.dart';
 import 'package:gyros_app/controllers/sub_catagary_controllers/sub_cat_id_controllers.dart';
@@ -57,6 +55,7 @@ class AllProducts extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
         title: Text(
           'All Products',
           style: TextStyle(
@@ -78,45 +77,97 @@ class AllProducts extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: InkWell(
-                onTap: () {
-                  Get.to(() => Cartproducts());
-                  //Get.to(() => ShopingBagsEmpty());
-                },
-                child: Padding(
-                  padding: EdgeInsets.all(6.0),
-                  child: Badge(
-                    toAnimate: false,
-                    badgeColor: AppColors.themecolors,
-                    badgeContent: Obx(
-                      () => (controller.isLoading.value)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              color: Colors.lightGreenAccent,
-                              backgroundColor: Colors.white,
-                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
-                              strokeWidth: 3,
-                            ))
-                          : controller.cartListModel!.totalItem == null
-                              //: _allProductController.allProductModel!.result!.isEmpty
-                              //_bestSellerController.bestsellermodel!.result!.isEmpty
-                              ? Center(
-                                  child: Text('No data'),
-                                )
-                              : Text(
-                                  controller.cartListModel!.totalItem
-                                      .toString(),
-                                  style: GoogleFonts.alatsi(
-                                    color: Colors.white,
-                                    fontSize: 10.sp,
-                                  ),
-                                ),
-                    ),
-                    child: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.green,
-                    ),
-                  ),
-                )),
+              onTap: () {
+                Get.to(() => Cartproducts());
+                //Get.to(() => ShopingBagsEmpty());
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 4.w),
+                child: InkWell(
+                    onTap: () {
+                      Get.to(() => Cartproducts());
+                      //Get.to(() => ShopingBagsEmpty());
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.all(6.0),
+                      child:
+                          // Badge(
+                          //   toAnimate: true,
+                          //   badgeColor: AppColors.themecolors,
+                          //   badgeContent: Obx(
+                          //     () => (controller.isLoading.value)
+                          //         ? Center(child: CircularProgressIndicator())
+                          //         : controller.cartListModel!.result! == null
+                          //             // ? Center(
+                          //             //     child: Text('0'),
+                          //             //   )
+                          //             // :
+                          //             ? Center(
+                          //                 child: CircularProgressIndicator(
+                          //                 color: Colors.lightGreenAccent,
+                          //                 backgroundColor: Colors.white,
+                          //                 valueColor:
+                          //                     AlwaysStoppedAnimation(Colors.yellow),
+                          //                 strokeWidth: 3,
+                          //               ))
+                          //             : Text(
+                          //                 controller.cartListModel!.totalItem
+                          //                     .toString(),
+                          //                 style: GoogleFonts.alatsi(
+                          //                   color: Colors.white,
+                          //                   fontSize: 10.sp,
+                          //                 ),
+                          //               ),
+                          //   ),
+                          //   child: Icon(
+                          //     Icons.shopping_cart,
+                          //     color: Colors.green,
+                          //   ),
+                          // ),
+                          Icon(
+                        Icons.shopping_cart,
+                        size: size.height * 0.035,
+                        color: Colors.green,
+                      ),
+                    )),
+              ),
+              // Padding(
+              //   padding: EdgeInsets.all(6.0),
+              //   child:
+              //   Badge(
+              //     toAnimate: false,
+              //     badgeColor: AppColors.themecolors,
+              //     badgeContent: Obx(
+              //       () => (controller.isLoading.value)
+              //           ? Center(
+              //               child: CircularProgressIndicator(
+              //               color: Colors.lightGreenAccent,
+              //               backgroundColor: Colors.white,
+              //               valueColor: AlwaysStoppedAnimation(Colors.yellow),
+              //               strokeWidth: 3,
+              //             ))
+              //           : controller.cartListModel!.totalItem == null
+              //               //: _allProductController.allProductModel!.result!.isEmpty
+              //               //_bestSellerController.bestsellermodel!.result!.isEmpty
+              //               ? Center(
+              //                   child: Text('No data'),
+              //                 )
+              //               : Text(
+              //                   controller.cartListModel!.totalItem
+              //                       .toString(),
+              //                   style: GoogleFonts.alatsi(
+              //                     color: Colors.white,
+              //                     fontSize: 10.sp,
+              //                   ),
+              //                 ),
+              //     ),
+              //     child: Icon(
+              //       Icons.shopping_cart,
+              //       color: Colors.green,
+              //     ),
+              //   ),
+              // )
+            ),
           ),
         ],
       ),
@@ -210,7 +261,7 @@ class AllProducts extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    '500 gm',
+                                                    '${_allProductController.allProductModel!.result![index].quentity.toString()} gm',
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -221,20 +272,55 @@ class AllProducts extends StatelessWidget {
                                                   SizedBox(
                                                     height: size.height * 0.007,
                                                   ),
-                                                  Text(
-                                                    _allProductController
-                                                        .allProductModel!
-                                                        .result![index]
-                                                        .productName
-                                                        .toString(),
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    maxLines: 3,
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 15.sp,
-                                                      color: Colors.yellow,
+
+                                                  // SizedBox(
+                                                  //   width: size
+                                                  //       .width *
+                                                  //       0.18,
+                                                  //   height: size
+                                                  //       .height *
+                                                  //       0.02,
+                                                  //   child: Text(
+                                                  //     _homePageController
+                                                  //         .getflashsellproduct!
+                                                  //         .result![
+                                                  //     index]
+                                                  //         .productName
+                                                  //         .toString(),
+                                                  //     overflow:
+                                                  //     TextOverflow
+                                                  //         .ellipsis,
+                                                  //     maxLines:
+                                                  //     1,
+                                                  //     style:
+                                                  //     TextStyle(
+                                                  //       fontWeight:
+                                                  //       FontWeight.w700,
+                                                  //       fontSize:
+                                                  //       9.sp,
+                                                  //       color: Colors
+                                                  //           .black,
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
+                                                  SizedBox(
+                                                    width: size.width * 0.48,
+                                                    height: size.height * 0.03,
+                                                    child: Text(
+                                                      _allProductController
+                                                          .allProductModel!
+                                                          .result![index]
+                                                          .productName
+                                                          .toString(),
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 15.sp,
+                                                        color: Colors.yellow,
+                                                      ),
                                                     ),
                                                   ),
                                                   SizedBox(
@@ -243,7 +329,7 @@ class AllProducts extends StatelessWidget {
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        '₹${_allProductController.allProductModel!.result![index].price.toString()}',
+                                                        '₹${_allProductController.allProductModel!.result![index].finalPrice.toString()}',
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w900,
@@ -464,7 +550,7 @@ class AllProducts extends StatelessWidget {
                                                                 ),
                                                               )
                                                             : Text(
-                                                                'Save ${_allProductController.allProductModel!.result![index].quentity}%',
+                                                                'Save ${_allProductController.allProductModel!.result![index].discountPercentage}%',
                                                                 style:
                                                                     TextStyle(
                                                                   fontWeight:

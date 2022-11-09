@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_carousel_slider/carousel_slider_indicators.dart';
 import 'package:flutter_carousel_slider/carousel_slider_transforms.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/controllers/rozar_pay_controller/rozar_pay_controller.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
@@ -77,33 +75,121 @@ class ItemDetailss extends StatelessWidget {
                 },
                 child: Padding(
                   padding: EdgeInsets.all(6.0),
-                  child: Badge(
-                    toAnimate: false,
-                    //badgeColor: AppColors.themecolors,
-                    badgeContent: Obx(
-                      () => (controller.isLoading.value)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              color: Colors.lightGreenAccent,
-                              backgroundColor: Colors.white,
-                              valueColor: AlwaysStoppedAnimation(Colors.yellow),
-                              strokeWidth: 3,
-                            ))
-                          : Text(
-                              controller.cartListModel!.totalItem.toString(),
-                              style: GoogleFonts.alatsi(
-                                color: Colors.white,
-                                fontSize: 10.sp,
-                              ),
-                            ),
-                    ),
-                    child: Icon(
-                      Icons.shopping_cart,
-                      color: Colors.white,
-                    ),
+                  child:
+                      // Badge(
+                      //   toAnimate: true,
+                      //   badgeColor: AppColors.themecolors,
+                      //   badgeContent: Obx(
+                      //     () => (controller.isLoading.value)
+                      //         ? Center(child: CircularProgressIndicator())
+                      //         : controller.cartListModel!.result! == null
+                      //             // ? Center(
+                      //             //     child: Text('0'),
+                      //             //   )
+                      //             // :
+                      //             ? Center(
+                      //                 child: CircularProgressIndicator(
+                      //                 color: Colors.lightGreenAccent,
+                      //                 backgroundColor: Colors.white,
+                      //                 valueColor:
+                      //                     AlwaysStoppedAnimation(Colors.yellow),
+                      //                 strokeWidth: 3,
+                      //               ))
+                      //             : Text(
+                      //                 controller.cartListModel!.totalItem
+                      //                     .toString(),
+                      //                 style: GoogleFonts.alatsi(
+                      //                   color: Colors.white,
+                      //                   fontSize: 10.sp,
+                      //                 ),
+                      //               ),
+                      //   ),
+                      //   child: Icon(
+                      //     Icons.shopping_cart,
+                      //     color: Colors.green,
+                      //   ),
+                      // ),
+                      Icon(
+                    Icons.shopping_cart,
+                    size: size.height * 0.035,
+                    color: Colors.white,
                   ),
-                )),
+                )
+
+                // Padding(
+                //   padding: EdgeInsets.all(6.0),
+                //   child: Badge(
+                //     toAnimate: false,
+                //     badgeColor: AppColors.themecolors,
+                //     badgeContent: Obx(
+                //       () => (controller.isLoading.value)
+                //           ? Center(
+                //               child: CircularProgressIndicator(
+                //               color: Colors.lightGreenAccent,
+                //               backgroundColor: Colors.white,
+                //               valueColor: AlwaysStoppedAnimation(Colors.yellow),
+                //               strokeWidth: 3,
+                //             ))
+                //           : controller.cartListModel!.totalItem == null
+                //               //: controller.cartListModel!.totalItem == null
+                //               //: _allProductController.allProductModel!.result!.isEmpty
+                //               //_bestSellerController.bestsellermodel!.result!.isEmpty
+                //               ? Center(
+                //                   child: Text('0'),
+                //                 )
+                //               : Text(
+                //                   controller.cartListModel!.totalItem
+                //                       .toString(),
+                //                   style: GoogleFonts.alatsi(
+                //                     color: Colors.white,
+                //                     fontSize: 10.sp,
+                //                   ),
+                //                 ),
+                //     ),
+                //     child: Icon(
+                //       Icons.shopping_cart,
+                //       color: Colors.green,
+                //     ),
+                //   ),
+                // )
+                ),
           ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 3.w),
+          //   child: InkWell(
+          //       onTap: () {
+          //         Get.to(() => Cartproducts());
+          //         //Get.to(() => ShopingBagsEmpty());
+          //       },
+          //       child: Padding(
+          //         padding: EdgeInsets.all(6.0),
+          //         child: Badge(
+          //           toAnimate: false,
+          //           //badgeColor: AppColors.themecolors,
+          //           badgeContent: Obx(
+          //             () => (controller.isLoading.value)
+          //                 ? Center(
+          //                     child: CircularProgressIndicator(
+          //                     color: Colors.lightGreenAccent,
+          //                     backgroundColor: Colors.white,
+          //                     valueColor: AlwaysStoppedAnimation(Colors.yellow),
+          //                     strokeWidth: 3,
+          //                   ))
+          //                 : Text(
+          //                     controller.cartListModel!.totalItem.toString(),
+          //                     style: GoogleFonts.alatsi(
+          //                       color: Colors.white,
+          //                       fontSize: 10.sp,
+          //                     ),
+          //                   ),
+          //           ),
+          //           child: Icon(
+          //             Icons.shopping_cart,
+          //             color: Colors.white,
+          //           ),
+          //         ),
+          //       )),
+          // ),
         ],
         leading: InkWell(
             onTap: () {
@@ -248,11 +334,51 @@ class ItemDetailss extends StatelessWidget {
                                                     ),
                                                   ),
 
+                                                  ///weight...............
+                                                  Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 1.h,
+                                                                horizontal:
+                                                                    0.w),
+                                                        child: Text(
+                                                          'Weight:',
+                                                          style: TextStyle(
+                                                            fontSize: 11.sp,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        width: 1.w,
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            '${_flashProductByIdController.flashproductbyid!.result![mainIndex].weight1}  ${_flashProductByIdController.flashproductbyid!.result![mainIndex].pkt1}',
+                                                            style: TextStyle(
+                                                              fontSize: 18.sp,
+                                                              color:
+                                                                  Colors.black,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+
                                                   ///price..............
                                                   Padding(
                                                     padding:
                                                         EdgeInsets.symmetric(
-                                                            vertical: 2.h,
+                                                            vertical: 1.1.h,
                                                             horizontal: 0.w),
                                                     child: Column(
                                                       crossAxisAlignment:
@@ -276,7 +402,7 @@ class ItemDetailss extends StatelessWidget {
                                                               width: 5.w,
                                                             ),
                                                             Text(
-                                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![mainIndex].price.toString()}',
+                                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![mainIndex].finalPrice.toString()}',
                                                               style: TextStyle(
                                                                 color: Colors
                                                                     .black,
@@ -286,49 +412,41 @@ class ItemDetailss extends StatelessWidget {
                                                                 fontSize: 18.sp,
                                                               ),
                                                             ),
+                                                            SizedBox(
+                                                              width: 2.w,
+                                                            ),
+                                                            Text(
+                                                              '₹ ${_flashProductByIdController.flashproductbyid!.result![mainIndex].price.toString()}',
+                                                              style: TextStyle(
+                                                                color:
+                                                                    Colors.red,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+
+                                                                fontSize: 18.sp,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .lineThrough,
+                                                                // decorationStyle:
+                                                                //     TextDecorationStyle.wavy,
+                                                                decorationColor:
+                                                                    Colors
+                                                                        .black,
+                                                                decorationThickness:
+                                                                    2.85,
+                                                              ),
+                                                            ),
                                                           ],
                                                         ),
                                                       ],
                                                     ),
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        'Weight:',
-                                                        style: TextStyle(
-                                                          fontSize: 11.sp,
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        width: 1.w,
-                                                      ),
-
-                                                      ///weight................
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            '${_flashProductByIdController.flashproductbyid!.result![mainIndex].weight1}  ${_flashProductByIdController.flashproductbyid!.result![mainIndex].pkt1}',
-                                                            style: TextStyle(
-                                                              fontSize: 18.sp,
-                                                              color:
-                                                                  Colors.black,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
                                                 ],
                                               ),
 
                                               SizedBox(
-                                                height: 1.h,
+                                                height: 0.1.h,
 
                                                 ///TODO: here we have rating view............
                                                 // child: Row(
@@ -443,6 +561,10 @@ class ItemDetailss extends StatelessWidget {
                                                       .result![mainIndex]
                                                       .productDescription
                                                       .toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  maxLines: 9,
+
                                                   //'This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once. This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.This is the Gyros product it will be fine for you if you want to purchase food through online mood and it is so fresh product and you can try it once.',
                                                   style: TextStyle(
                                                     fontSize: 9.sp,

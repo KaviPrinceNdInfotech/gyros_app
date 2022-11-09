@@ -271,35 +271,40 @@ class OtpInput extends StatelessWidget {
   final String? Function(String?) validator;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: size.width * 0.014),
       child: SizedBox(
-        height: 60,
-        width: 15.w,
+        height: size.height * 0.075,
+        width: size.width * 0.148,
         child: PhysicalModel(
           color: Color(0xfff5f5f5),
           shape: BoxShape.circle,
           elevation: 2,
           child: Container(
-            height: 12.h,
-            width: 18.w,
+            height: size.height * 0.075,
+            width: size.width * 0.148,
             decoration: BoxDecoration(
-              border: Border.all(color: Colors.green, width: 3),
+              border: Border.all(color: Colors.green, width: 4),
               shape: BoxShape.circle,
               color: Color(0xfff5f5f5),
 
               //borderRadius: BorderRadius.circular(5)
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(6.0),
               child: TextFormField(
+                cursorColor: AppColors.golden,
+                cursorHeight: size.height * 0.04,
+                cursorWidth: size.width * 0.007,
                 style: TextStyle(
+                  color: Colors.green,
                   fontWeight: FontWeight.bold,
                   fontSize: 18.sp,
                 ),
                 decoration: InputDecoration(
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 11, horizontal: -10.w),
+                      EdgeInsets.symmetric(vertical: 11, horizontal: -11.w),
                   border: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,

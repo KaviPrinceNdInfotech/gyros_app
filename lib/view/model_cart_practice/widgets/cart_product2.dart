@@ -830,16 +830,35 @@ class CartProductCard extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            controller.cartListModel!
-                                                .result![index].productName
-                                                .toString(),
-                                            style: GoogleFonts.anekBangla(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                              letterSpacing: 1,
-                                              fontSize: 13.sp,
+                                          SizedBox(
+                                            width: size.width * 0.55,
+                                            height: size.height * 0.07,
+                                            child: Text(
+                                              controller.cartListModel!
+                                                  .result![index].productName
+                                                  .toString(),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              style: GoogleFonts.anekBangla(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 12.sp,
+                                                color: Colors.yellow,
+                                              ),
                                             ),
+                                          ),
+                                          // Text(
+                                          //   controller.cartListModel!
+                                          //       .result![index].productName
+                                          //       .toString(),
+                                          //   style: GoogleFonts.anekBangla(
+                                          //     fontWeight: FontWeight.bold,
+                                          //     color: Colors.white,
+                                          //     letterSpacing: 1,
+                                          //     fontSize: 13.sp,
+                                          //   ),
+                                          // ),
+                                          SizedBox(
+                                            height: size.height * 0.02,
                                           ),
                                           Row(
                                             children: [
@@ -850,7 +869,7 @@ class CartProductCard extends StatelessWidget {
                                                 style: GoogleFonts.anekBangla(
                                                   color: Colors
                                                       .yellowAccent.shade100,
-                                                  fontSize: 11.sp,
+                                                  fontSize: 10.sp,
                                                   letterSpacing: 1,
                                                   fontWeight: FontWeight.bold,
                                                 ),
