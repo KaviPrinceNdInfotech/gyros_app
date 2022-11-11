@@ -461,7 +461,7 @@ class HomePagePractice extends StatelessWidget {
                       ),
                     ),
                     Container(
-                        height: size.height * 0.29,
+                        height: size.height * 0.295,
                         decoration: BoxDecoration(color: Color(0xffE8F9FD)
                             //Color(0xffEDDFB3),
                             // image: DecorationImage(
@@ -1045,7 +1045,7 @@ class HomePagePractice extends StatelessWidget {
                       ),
                     ),
                     Container(
-                        height: size.height * 0.29,
+                        height: size.height * 0.295,
                         decoration: BoxDecoration(color: Color(0xffE8F9FD)
                             //Color(0xffEDDFB3),
                             // image: DecorationImage(
