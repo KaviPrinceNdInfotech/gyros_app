@@ -274,6 +274,8 @@ class HomePagePractice extends StatelessWidget {
                     ),
 
                     /// TODO: here we heve catagary product.........
+                    ///
+
                     // GridView.builder(
                     //     shrinkWrap: true,
                     //     physics: NeverScrollableScrollPhysics(),
@@ -433,6 +435,7 @@ class HomePagePractice extends StatelessWidget {
                     //                   ),
                     //       );
                     //     }),
+
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Container(

@@ -117,8 +117,54 @@ class ApiProvider {
     }
   }
 
+  ///TODO: otp new section.................................
   ///
-  ///
+  // from here verify otp.........................................
+
+  static verifyOTP(var MobileOrEmail, var Otp) async {
+    var url = baseUrl + 'api/AdminApi/MobileOrEmailOtpVerify';
+    var body = {
+      'number': "$MobileOrEmail",
+      'otp': "$Otp",
+    };
+    print(body);
+    http.Response r = await http.post(
+      Uri.parse(url), body: body,
+      //headers: headers
+    );
+    print(r.body);
+    if (r.statusCode == 200) {
+      var prefs = GetStorage();
+      //saved id..........
+      prefs.write("Id".toString(), json.decode(r.body)['Id']);
+      Id = prefs.read("Id").toString();
+      print('&&&&&&&&&&&&&&&&&&&&&&:${Id}');
+
+      //saved token.........
+      prefs.write("token".toString(), json.decode(r.body)['token']);
+      token = prefs.read("token").toString();
+      print(token);
+      return r;
+    } else if (r.statusCode == 401) {
+      Get.snackbar('message', r.body);
+    } else {
+      Get.snackbar('Error', r.body);
+      return r;
+    }
+    // http.Response r = await http.post(Uri.parse(url), body: body);
+    // print(r.body);
+    // if (r.statusCode == 200) {
+    //   var data = json.decode(r.body)['message'];
+    //   var prefs = GetStorage();
+    //   prefs.write("token", json.decode(r.body)['token']);
+    //   token = prefs.read("token");
+    //   return r;
+    // } else {
+    //   Get.snackbar('Error', 'Wrong Otp');
+    //   return null;
+    // }
+  }
+
   //login with email api gyros api 2..................................
 
   static LoginEmailApi(
@@ -162,7 +208,7 @@ class ApiProvider {
   static OtpApi(var Otp, var MobileOrEmail) async {
     var url = baseUrl + 'api/AdminApi/MobileOrEmailOtpVerify';
 
-    var body = {"Otp": "$Otp", MobileOrEmail: "$MobileOrEmail"};
+    var body = {"Otp": "$Otp", "MobileOrEmail": "$MobileOrEmail"};
     print(body);
     http.Response r = await http.post(
       Uri.parse(url), body: body,
@@ -240,6 +286,51 @@ class ApiProvider {
   // }
 
   //
+
+  //login with mobile api new 3..................
+
+  // static userloginApi(var userIdentifier) async {
+  //   var url = baseUrl + 'user/login';
+  //
+  //   var body = {
+  //     "userIdentifier": userIdentifier,
+  //   };
+  //   http.Response r = await http.post(Uri.parse(url), body: body,);
+  //   print(r.body);
+  //   if (r.statusCode == 200) {
+  //     return r;
+  //   }
+  //   else {
+  //     Get.snackbar('Error', 'Details');
+  //     return r;
+  //   }
+  // }
+  //
+  // //from login mobile otp. new 4.................
+  ///....................................................
+  // static verifyphoneotp(var userIdentifier, var otp) async {
+  //   var url = baseUrl + 'user/login-otp-verification';
+  //
+  //   var body = {
+  //     "userIdentifier": "$userIdentifier",
+  //     "otp": "$otp",
+  //   };
+  //   print(body);
+  //   http.Response r = await http.post(Uri.parse(url), body: body,);
+  //   print(r.body);
+  //   if (r.statusCode == 200) {
+  //     var prefs = GetStorage();
+  //     prefs.write(
+  //         "token", json.decode(r.body)['data']['loginToken']);
+  //     token = prefs.read("token");
+  //     print(token);
+  //     return r;
+  //   }
+  //   else {
+  //     Get.snackbar('Error', 'OTP');
+  //     return r;
+  //   }
+  // }
 
   static AllcatagaryApi() async {
     var url = baseUrl + 'api/AdminApi/ProductList';
@@ -1822,3 +1913,32 @@ class ApiProvider {
   // }
   // }
 }
+
+///TODO.... If you are using only http not https then you have to call like below commented api c
+// static verifyOallTP(var MobileNo, var Otp) async {
+//   var url = "http://jkroshini.com/api/Registration/OtpVerify";
+//   // var body = {
+//   //   'MobileNo': "$MobileNo",
+//   //   'Otp': "$Otp",
+//   // };
+//   http.Response r = await http.post(Uri.parse(url),
+//       headers: {
+//         "content-type" : "application/json",
+//         "accept" : "application/json",
+//       },
+//       body:jsonEncode({
+//         'MobileNo': "$MobileNo",
+//         'Otp': "$Otp",
+//       }));
+//   print(r.body);
+//   if (r.statusCode == 200) {
+//     /*  var data = json.decode(r.body)['message'];
+//     var prefs = GetStorage();
+//     prefs.write("token", json.decode(r.body)['token']);
+//     token = prefs.read("token");*/
+//     return r;
+//   } else {
+//     Get.snackbar('Error', 'Wrong Otp');
+//     return null;
+//   }
+// }

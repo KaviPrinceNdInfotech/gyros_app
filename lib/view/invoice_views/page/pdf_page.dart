@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:invoice1/api/pdf_api.dart';
 // import 'package:invoice1/api/pdf_invoice_api.dart';
 // import 'package:invoice1/main.dart';
@@ -61,7 +62,12 @@ class _PdfPageState extends State<PdfPage> {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text(MyApp.title),
+          title: Text(
+            MyApp.title,
+            style: GoogleFonts.roboto(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           centerTitle: true,
         ),
         body: Container(
@@ -170,7 +176,12 @@ class _PdfPageState extends State<PdfPage> {
                         },
                       );
                     } else if (snapshot.hasError) {
-                      return Text("${snapshot.error}");
+                      return Text(
+                        "${snapshot.error}",
+                        style: GoogleFonts.roboto(
+                          fontWeight: FontWeight.w300,
+                        ),
+                      );
                     }
                     return Center(child: CircularProgressIndicator());
                   })

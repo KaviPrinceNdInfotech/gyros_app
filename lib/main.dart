@@ -14,8 +14,6 @@ import 'package:gyros_app/view/login_page/login_with_email/login_email_controlle
 import 'package:gyros_app/view/splash_screenss/splash_screen.dart';
 import 'package:sizer/sizer.dart';
 
-import 'controllers/add_address_cotroller/add_adress_controller.dart';
-import 'controllers/address_list_controller/address_list_controllers.dart';
 import 'controllers/all_products/all_products_controllers.dart';
 import 'controllers/best_seller_controller.dart';
 import 'controllers/binding_controllers/binding_controllers.dart';
@@ -60,7 +58,7 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => LoginPageController());
     Get.lazyPut(() => SignUpPageController());
     Get.lazyPut(() => LoginMobileController());
-    Get.lazyPut(() => AddAdressController());
+    // Get.lazyPut(() => AddAdressController());
     Get.lazyPut(() => ResetEmailController());
     Get.lazyPut(() => ForgotCodeController());
     Get.lazyPut(() => SetPasswordController());
@@ -77,7 +75,7 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => AllProductController());
     Get.lazyPut(() => ContactUsController());
     Get.lazyPut(() => PostQueryController());
-    Get.lazyPut(() => AddressListController());
+    // Get.lazyPut(() => AddressListController());
     Get.lazyPut(() => CheckoutController());
     Get.lazyPut(() => GetProfileController());
     Get.lazyPut(() => CartController());

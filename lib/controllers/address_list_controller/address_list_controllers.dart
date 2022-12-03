@@ -28,7 +28,10 @@ class AddressListController extends GetxController {
       //       Transition.zoom,
       // );
       isLoading(false);
-      update();
+      //update();
+
+      ///Todo: here changed...........nov 11
+      //Get.off(AddAddress());
 
       //Get.to(()=>Container());
     }

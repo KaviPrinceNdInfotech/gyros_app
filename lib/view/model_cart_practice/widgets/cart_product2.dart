@@ -832,7 +832,7 @@ class CartProductCard extends StatelessWidget {
                                         children: [
                                           SizedBox(
                                             width: size.width * 0.55,
-                                            height: size.height * 0.07,
+                                            height: size.height * 0.09,
                                             child: Text(
                                               controller.cartListModel!
                                                   .result![index].productName

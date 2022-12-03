@@ -39,15 +39,15 @@ class LoginPhoneEmail extends StatelessWidget {
                 key: _loginMobileController.MobileLoginFormKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: SafeArea(
-                  child: Container(
-                    height: size.height,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                'https://images.unsplash.com/photo-1564417947365-8dbc9d0e718e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fG9yZ2FuaWMlMjBmYXJtaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60'),
-                            fit: BoxFit.fill)),
-                    child: SingleChildScrollView(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      height: size.height,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://images.unsplash.com/photo-1564417947365-8dbc9d0e718e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fG9yZ2FuaWMlMjBmYXJtaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1400&q=60'),
+                              fit: BoxFit.fill)),
                       child: Padding(
                         padding:
                             EdgeInsets.symmetric(vertical: 24, horizontal: 32),
@@ -68,7 +68,7 @@ class LoginPhoneEmail extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: 18,
+                              height: 0,
                             ),
                             Container(
                               width: 170,

@@ -79,6 +79,11 @@ class RozarPayController extends GetxController {
 
     _postOrderController.postOrderApi().then((statusCode) {
       if (statusCode == 200) {
+        ///This is the main thing to provide updated list history...
+        _getProfileController.OrderHistoryApi();
+        _getProfileController.update();
+
+        ///nov 14....................................
         Get.to(OrderConfirmationPage());
       } else {
         // SHow

@@ -142,10 +142,14 @@ class _OtpState extends State<Otp> {
                                 onPressed: () {
                                   // _navController.tabindex(0);
                                   // Get.to(() => NavBar());
-
+                                  ///here we have thing to changed..................................
+                                  // _otpTimerController.otpdigits();
+                                  // _otpTimerController.checkValidation(
+                                  //     MobileOrEmail().toString());
+                                  ///TODO: changed 2 december..............
                                   _otpTimerController.otpdigits();
                                   _otpTimerController.checkValidation(
-                                      MobileOrEmail().toString());
+                                      MobileOrEmail!.toString());
                                 },
                                 style: ButtonStyle(
                                   foregroundColor:

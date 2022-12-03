@@ -43,8 +43,9 @@ class AddAdressController extends GetxController {
             // Transition.fadeIn
             //Transition.size
             Transition.zoom,
-      )!
-          .then((value) => Get.delete<AddAdressController>());
+      );
+      // !
+      //     .then((value) => Get.delete<AddAdressController>());
 
       // Get.to(() => AddressList())!
       //     .then((value) => Get.delete<AddAdressController>());
@@ -85,6 +86,8 @@ class AddAdressController extends GetxController {
 
   @override
   void onInit() {
+    ///TODO: here address list................
+    // _addressListController.addresListApi();
     super.onInit();
     Name;
     Mobile;
@@ -111,6 +114,20 @@ class AddAdressController extends GetxController {
 
   @override
   void onClose() {
+    // Name.dispose();
+    // Mobile.dispose();
+    // State.dispose();
+    // City.dispose();
+    // Area.dispose();
+    // PinCode.dispose();
+    // Email.dispose();
+    // OrderNo.dispose();
+  }
+
+  @override
+  void dispose() {
+    //Get.delete<AddAdressController>();
+    super.dispose();
     Name.dispose();
     Mobile.dispose();
     State.dispose();
@@ -119,12 +136,7 @@ class AddAdressController extends GetxController {
     PinCode.dispose();
     Email.dispose();
     OrderNo.dispose();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    //AddAdressController();
+    AddAdressController();
   }
 
   String? validateFullname(String value) {
@@ -180,6 +192,9 @@ class AddAdressController extends GetxController {
     //final isValid = AddressFormKey.currentState!.validate();
     if (AddressFormKey.currentState!.validate()) {
       postaddresssApi();
+
+      ///TODO: here calling address liust..........
+      // _addressListController.addresListApi();
     }
     AddressFormKey.currentState!.save();
   }

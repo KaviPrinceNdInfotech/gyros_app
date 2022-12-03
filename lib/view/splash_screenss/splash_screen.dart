@@ -35,6 +35,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 context, MaterialPageRoute(builder: (context) => LoginPage())));
   }
 
+  ///TODO: _navController.tabindex(0);
+  ///this is the problem we are using main thing in indexing loosing .
+
   @override
   Widget build(BuildContext context) {
     return IntroVideo();

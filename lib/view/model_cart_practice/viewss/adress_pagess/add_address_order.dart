@@ -975,9 +975,11 @@ class AddAddress extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     CallLoader.loader();
-                    _addAdressController.update();
+
                     _addAdressController.checkaddAdress();
+                    //_addAdressController.update();
                     _addressListController.update();
+                    _addressListController.addresListApi();
                   },
                   child: Material(
                     elevation: 2,

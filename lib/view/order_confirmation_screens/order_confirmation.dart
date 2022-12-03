@@ -269,11 +269,28 @@ class OrderConfirmationPage extends StatelessWidget {
                                       onTap: () {
                                         Get.to(() => PdfPage());
                                       },
-                                      child: Text(
-                                        'Invoice',
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.bold,
+                                      child: Material(
+                                        elevation: 2,
+                                        child: Container(
+                                          height: size.height * 0.04,
+                                          width: size.width * 0.2,
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue,
+                                          ),
+                                          child: Center(
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.sticky_note_2),
+                                                Text(
+                                                  'Invoice',
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     )
@@ -281,7 +298,7 @@ class OrderConfirmationPage extends StatelessWidget {
                                 ),
                                 Divider(),
                                 SizedBox(
-                                  height: 1.h,
+                                  height: 0.5.h,
                                 ),
                                 Obx(
                                   () => (_getProfileController.isLoading.value)
@@ -293,8 +310,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                           ? Center(
                                               child: Text('No List'),
                                             )
-                                          : SizedBox(
-                                              height: size.height * 0.42,
+                                          : Expanded(
+                                              //height: size.height * 0.46,
                                               child: ListView.builder(
                                                   shrinkWrap: true,
                                                   scrollDirection:
@@ -323,14 +340,14 @@ class OrderConfirmationPage extends StatelessWidget {
                                                           const EdgeInsets.all(
                                                               1.0),
                                                       child: Container(
-                                                        height:
-                                                            size.height * 0.27,
+                                                        // height:
+                                                        //     size.height * 0.27,
                                                         color: MyTheme
                                                             .containercolor7,
                                                         child: Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                  .all(6.0),
+                                                                  .all(3.0),
                                                           child: Row(
                                                             crossAxisAlignment:
                                                                 CrossAxisAlignment
@@ -339,10 +356,10 @@ class OrderConfirmationPage extends StatelessWidget {
                                                               SizedBox(
                                                                 height:
                                                                     size.height *
-                                                                        0.25,
+                                                                        0.27,
                                                                 width:
                                                                     size.width *
-                                                                        0.30,
+                                                                        0.22,
                                                                 child: Column(
                                                                   crossAxisAlignment:
                                                                       CrossAxisAlignment
@@ -356,6 +373,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -364,6 +383,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -372,6 +393,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -380,6 +403,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -388,6 +413,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -396,6 +423,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -404,6 +433,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -412,6 +443,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .white,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -419,15 +452,15 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                width: 2.w,
+                                                                width: 1.w,
                                                               ),
                                                               SizedBox(
                                                                 height:
                                                                     size.height *
-                                                                        0.25,
+                                                                        0.27,
                                                                 width:
                                                                     size.width *
-                                                                        0.45,
+                                                                        0.59,
                                                                 child: Column(
                                                                   crossAxisAlignment:
                                                                       CrossAxisAlignment
@@ -447,6 +480,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -461,6 +496,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -475,6 +512,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -489,6 +528,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -503,6 +544,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -518,6 +561,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -532,6 +577,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),
@@ -546,6 +593,8 @@ class OrderConfirmationPage extends StatelessWidget {
                                                                       style: GoogleFonts.poppins(
                                                                           color: Colors
                                                                               .yellow,
+                                                                          fontSize: size.height *
+                                                                              0.017,
                                                                           fontWeight:
                                                                               FontWeight.w700),
                                                                     ),

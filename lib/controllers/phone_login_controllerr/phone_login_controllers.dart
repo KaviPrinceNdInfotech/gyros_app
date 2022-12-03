@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gyros_app/view/otp_new_section/otp_new_part.dart';
 import 'package:http/http.dart' as http;
 
 import '../../services/api_provider.dart';
-import '../../view/login_page/login_otp/login_with_otp.dart';
 import '../../widgets/circular_loader.dart';
 import '../otp_timer_controller/otp_timer_controllerss.dart';
 
@@ -11,6 +11,7 @@ class LoginMobileController extends GetxController {
   RxBool isLoading = false.obs;
   final GlobalKey<FormState> MobileLoginFormKey =
       GlobalKey(debugLabel: "MobileLoginFormKey");
+  TextEditingController MobileOrEmail = TextEditingController();
 
   OtpTimerController _timeController = Get.put(OtpTimerController());
 
@@ -26,18 +27,17 @@ class LoginMobileController extends GetxController {
       // var data = jsonDecode(r.body);
 
       CallLoader.hideLoader();
+      Get.to(() => OtpVerification());
       // Navigator.of(context).push(
       //   MaterialPageRoute(
       //       builder: (context) => Otp()),
       // );
-      Get.to(() => Otp(MobileOrEmail: MobileOrEmail));
+      //Get.to(() => Otp(MobileOrEmail: MobileOrEmail));
 
       // _timeController.email = MobileOrEmail.text;
       // _timeController.phoneNumber = MobileOrEmail.text;
     }
   }
-
-  TextEditingController MobileOrEmail = TextEditingController();
 
   @override
   void onInit() {
@@ -54,20 +54,26 @@ class LoginMobileController extends GetxController {
 
   @override
   void onClose() {
-    MobileOrEmail.dispose();
+    //MobileOrEmail.dispose();
   }
 
   String? validatePhone(String value) {
     if (value.length < 1) {
-      return "provide valid Id";
+      return "provide valid Mobile / Email";
     }
     return null;
   }
 
-  void checkMobileLogin() {
-    if (MobileLoginFormKey.currentState!.validate()) {
+  checkMobileLogin() async {
+    var isValidate = MobileLoginFormKey.currentState!.validate();
+    if (!isValidate) {
+      return;
+    } else {
       phoneemailApi();
     }
+    // {
+    //   phoneemailApi();
+    // }
     MobileLoginFormKey.currentState!.save();
   }
 }

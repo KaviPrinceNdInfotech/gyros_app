@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gyros_app/constants/app_colors.dart';
+import 'package:gyros_app/controllers/add_address_cotroller/add_adress_controller.dart';
 import 'package:gyros_app/controllers/address_list_controller/address_list_controllers.dart';
 import 'package:gyros_app/controllers/check_out_controller/check_out_controlles.dart';
 import 'package:gyros_app/view/custom_widgets/my_theme.dart';
@@ -17,6 +18,7 @@ class AddressList extends StatefulWidget {
 class _AddressListState extends State<AddressList> {
   AddressListController _addressListController =
       Get.put(AddressListController());
+  AddAdressController _addAdressController = Get.put(AddAdressController());
   _loaddata() async {
     await Get.find<AddressListController>().addaddressModel;
   }
@@ -38,6 +40,9 @@ class _AddressListState extends State<AddressList> {
           elevation: 0,
           leading: InkWell(
             onTap: () {
+              ///nov 11.........
+              //Navigator.pop(context);
+              //Get.to(() => Cartproducts());
               //Get.to(() => TotalPrice());
               Get.back();
             },
@@ -458,6 +463,10 @@ class _AddressListState extends State<AddressList> {
                             //key: _formkeyphones,
 
                             onPressed: () {
+                              ///TODO: here change will be on 14 nov.......
+                              ///
+                              //_addAdressController.postaddresssApi();
+                              ///till here...............................
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                     builder: (context) => AddAddress()),

@@ -32,7 +32,7 @@ class OtpTimerController extends GetxController {
   //     //Get.offAll(()=> BottomBarScreen(i: 0,));
   //   }
   // }
-
+  ///todo...
   void VerifyotpApi(var MobileOrEmail) async {
     http.Response r = await ApiProvider.OtpApi(MobileOrEmail, result);
     print(MobileOrEmail);

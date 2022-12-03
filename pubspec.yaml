@@ -65,7 +65,9 @@ dependencies:
   wave: ^0.2.2
   webview_flutter: ^3.0.4
   shimmer: ^2.0.0
-    # create pdf document
+  flutter_otp_text_field: ^1.1.1
+
+  # create pdf document
   pdf: ^3.8.4
     # save file
   path_provider: ^2.0.1
@@ -139,6 +141,13 @@ flutter:
     - family: Helvetica
       fonts:
         - asset: lib/assets/fonts/Helvetica-Bold.ttf
+    - family: Montserrat
+      fonts:
+        - asset: lib/assets/fonts/OpenSans-Regular.ttf
+        - asset: lib/assets/fonts/OpenSans-Bold.ttf
+        - asset: lib/assets/fonts/OpenSans-LightItalic.ttf
+        - asset: lib/assets/fonts/OpenSans-BoldItalic.ttf
+        - asset: lib/assets/fonts/OpenSans-Italic.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

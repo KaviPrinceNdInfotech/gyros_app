@@ -15,13 +15,23 @@ class PdfInvoiceApi {
   static Future<File> generate(
     Invoice invoice,
   ) async {
-    final pdf = Document();
-    final font = await rootBundle.load("lib/assets/fonts/Helvetica-Bold.ttf");
+    ///here changed 29 nov 22
+    //final pdf = Document();
+    ///here changed 29 nov 22
+
+    //final font = await PdfGoogleFonts.nunitoExtraLight();
+    final font = await rootBundle.load("lib/assets/fonts/OpenSans-Bold.ttf");
     final ttf = Font.ttf(font);
     final iconImage =
         (await rootBundle.load('icons/guser_logo2.png')).buffer.asUint8List();
 
+    ///here changed 29 nov 22
+    final pdf = pw.Document();
+
+    ///here changed 29 nov 22
+
     pdf.addPage(pw.MultiPage(
+      pageFormat: PdfPageFormat.a4,
       build: (context) => [
         buildHeader(invoice, iconImage, ttf),
         /* SizedBox(height: 3 * PdfPageFormat.cm),
