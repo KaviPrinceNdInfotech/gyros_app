@@ -717,17 +717,17 @@ class HomePagePractice extends StatelessWidget {
                                                     ),
                                                     SizedBox(
                                                       height:
-                                                          size.height * 0.005,
+                                                          size.height * 0.001,
                                                     ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
                                                               horizontal:
-                                                                  1.8.w),
+                                                                  1.7.w),
                                                       child: Row(
                                                         children: [
                                                           SizedBox(
-                                                            width: 21.w,
+                                                            width: 23.w,
                                                             child: Column(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -745,10 +745,10 @@ class HomePagePractice extends StatelessWidget {
                                                                       SizedBox(
                                                                     width: size
                                                                             .width *
-                                                                        0.18,
+                                                                        0.23,
                                                                     height: size
                                                                             .height *
-                                                                        0.02,
+                                                                        0.029,
                                                                     child: Text(
                                                                       _homePageController
                                                                           .getflashsellproduct!
@@ -760,15 +760,15 @@ class HomePagePractice extends StatelessWidget {
                                                                           TextOverflow
                                                                               .ellipsis,
                                                                       maxLines:
-                                                                          1,
+                                                                          2,
                                                                       style:
                                                                           TextStyle(
                                                                         fontWeight:
                                                                             FontWeight.w700,
                                                                         fontSize:
-                                                                            9.sp,
+                                                                            8.sp,
                                                                         color: Colors
-                                                                            .black,
+                                                                            .green,
                                                                       ),
                                                                     ),
                                                                   ),
@@ -783,7 +783,7 @@ class HomePagePractice extends StatelessWidget {
                                                                         fontWeight:
                                                                             FontWeight.w700,
                                                                         fontSize:
-                                                                            9.sp,
+                                                                            8.sp,
                                                                         color: Colors
                                                                             .red,
                                                                         //.ContainerUnSelectedColor,
@@ -805,7 +805,7 @@ class HomePagePractice extends StatelessWidget {
                                                                         fontWeight:
                                                                             FontWeight.w600,
                                                                         fontSize:
-                                                                            9.sp,
+                                                                            8.sp,
                                                                         color: Colors
                                                                             .grey
                                                                             .shade600,
@@ -1301,17 +1301,17 @@ class HomePagePractice extends StatelessWidget {
                                                     ),
                                                     SizedBox(
                                                       height:
-                                                          size.height * 0.005,
+                                                          size.height * 0.001,
                                                     ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
                                                               horizontal:
-                                                                  1.8.w),
+                                                                  1.7.w),
                                                       child: Row(
                                                         children: [
                                                           SizedBox(
-                                                            width: 21.w,
+                                                            width: 23.w,
                                                             child: Column(
                                                               mainAxisAlignment:
                                                                   MainAxisAlignment
@@ -1329,10 +1329,10 @@ class HomePagePractice extends StatelessWidget {
                                                                       SizedBox(
                                                                     width: size
                                                                             .width *
-                                                                        0.18,
+                                                                        0.23,
                                                                     height: size
                                                                             .height *
-                                                                        0.02,
+                                                                        0.029,
                                                                     child: Text(
                                                                       _homePageController
                                                                           .getflashsellproduct!
@@ -1344,15 +1344,15 @@ class HomePagePractice extends StatelessWidget {
                                                                           TextOverflow
                                                                               .ellipsis,
                                                                       maxLines:
-                                                                          1,
+                                                                          2,
                                                                       style:
                                                                           TextStyle(
                                                                         fontWeight:
                                                                             FontWeight.w700,
                                                                         fontSize:
-                                                                            9.sp,
+                                                                            8.sp,
                                                                         color: Colors
-                                                                            .black,
+                                                                            .green,
                                                                       ),
                                                                     ),
                                                                   ),
@@ -1367,7 +1367,7 @@ class HomePagePractice extends StatelessWidget {
                                                                         fontWeight:
                                                                             FontWeight.w700,
                                                                         fontSize:
-                                                                            9.sp,
+                                                                            8.sp,
                                                                         color: Colors
                                                                             .red,
                                                                         //.ContainerUnSelectedColor,
@@ -1389,7 +1389,7 @@ class HomePagePractice extends StatelessWidget {
                                                                         fontWeight:
                                                                             FontWeight.w600,
                                                                         fontSize:
-                                                                            9.sp,
+                                                                            8.sp,
                                                                         color: Colors
                                                                             .grey
                                                                             .shade600,
@@ -1507,6 +1507,440 @@ class HomePagePractice extends StatelessWidget {
                                               ),
                                             ),
                                           ),
+                                // Padding(
+                                //             padding: const EdgeInsets.all(5.0),
+                                //             child: PhysicalModel(
+                                //               borderRadius:
+                                //                   BorderRadius.circular(5),
+                                //               color: MyTheme.ThemeColors,
+                                //               elevation: 0.1,
+                                //               child: Container(
+                                //                 height: 26.h,
+                                //                 width: size.width * 0.5,
+                                //                 decoration: BoxDecoration(
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(5),
+                                //                   color: Colors.white,
+                                //                   //Color(0xff876445)
+                                //                   // MyTheme.containercolor01,
+                                //                   //containercolor7,
+                                //                   //gradient: MyTheme.gradient12
+                                //                 ),
+                                //                 child: Column(
+                                //                   //mainAxisAlignment: MainAxisAlignment.center,
+                                //                   children: [
+                                //                     Align(
+                                //                       alignment:
+                                //                           Alignment.centerLeft,
+                                //                       child: Container(
+                                //                         height: 3.1.h,
+                                //                         width: 22.w,
+                                //                         decoration:
+                                //                             BoxDecoration(
+                                //                                 // color: MyTheme
+                                //                                 //     .containercolor16,
+                                //
+                                //                                 color: Color(
+                                //                                     0xffDBC6EB),
+                                //                                 borderRadius:
+                                //                                     BorderRadius
+                                //                                         .only(
+                                //                                   topLeft: Radius
+                                //                                       .circular(
+                                //                                           5),
+                                //                                   bottomRight: Radius
+                                //                                       .circular(
+                                //                                           20),
+                                //                                 )),
+                                //                         child: Center(
+                                //                           child: Text(
+                                //                             _homePageController
+                                //                                 .getflashsellproduct!
+                                //                                 .result![index]
+                                //                                 .sellerOption
+                                //                                 .toString(),
+                                //                             style: TextStyle(
+                                //                               color:
+                                //                                   Colors.black,
+                                //                               fontWeight:
+                                //                                   FontWeight
+                                //                                       .w700,
+                                //                               fontSize: 9.sp,
+                                //                             ),
+                                //                           ),
+                                //                         ),
+                                //                       ),
+                                //                     ),
+                                //                     SizedBox(
+                                //                       height: 0.7.h,
+                                //                     ),
+                                //                     PhysicalModel(
+                                //                       //shadowColor: Colors.green,
+                                //                       color: Colors.transparent,
+                                //                       borderRadius:
+                                //                           BorderRadius.circular(
+                                //                               5),
+                                //                       elevation: 7,
+                                //                       child: InkWell(
+                                //                         onTap: () {
+                                //                           _flashProductByIdController
+                                //                                   .productid =
+                                //                               _homePageController
+                                //                                   .getflashsellproduct!
+                                //                                   .result![
+                                //                                       index]
+                                //                                   .id
+                                //                                   .toString();
+                                //                           _flashProductByIdController
+                                //                               .flashproductbyIdApi();
+                                //                           //Navigator.of(context).push(_createRoute());
+                                //
+                                //                           // Get.to(
+                                //                           //   () => ItemDetailss(
+                                //                           //     // name: Productss
+                                //                           //     //     .products[index].name,
+                                //                           //     // price: Productss
+                                //                           //     //     .products[index].price,
+                                //                           //     // weight: Productss
+                                //                           //     //     .products[index].weight,
+                                //                           //     // imageUrl: Productss
+                                //                           //     //     .products[index].imageUrl,
+                                //                           //     // description: Productss
+                                //                           //     //     .products[index].descriptions,
+                                //                           //     // color: Productss
+                                //                           //     //     .products[index].color,
+                                //                           //     // id: Productss.products[index].id,
+                                //                           //     //
+                                //                           //     index: index,
+                                //                           //
+                                //                           //     //cartController.products[index].toString(),
+                                //                           //
+                                //                           //     // product:pr,
+                                //                           //   ), //next page class
+                                //                           //   duration: Duration(
+                                //                           //       milliseconds:
+                                //                           //           500), //duration of transitions, default 1 sec
+                                //                           //   transition:
+                                //                           //       // Transition.leftToRight //transition effect
+                                //                           //       // Transition.fadeIn
+                                //                           //       //Transition.size
+                                //                           //       Transition.zoom,
+                                //                           // );
+                                //                         },
+                                //                         child: Container(
+                                //                           height: size.height *
+                                //                               0.17,
+                                //                           width:
+                                //                               size.width * 0.36,
+                                //                           decoration:
+                                //                               BoxDecoration(
+                                //                             borderRadius:
+                                //                                 BorderRadius
+                                //                                     .circular(
+                                //                                         5),
+                                //                             // border: Border.all(
+                                //                             //     color: AppColors.themecolors),
+                                //                             // image: DecorationImage(
+                                //                             //     image: AssetImage(Productss
+                                //                             //         .products[index].imageUrl),
+                                //                             //     fit: BoxFit.cover),
+                                //                           ),
+                                //                           child: Padding(
+                                //                             padding:
+                                //                                 EdgeInsets.all(
+                                //                                     2.0),
+                                //                             child:
+                                //                                 Image.network(
+                                //                               base +
+                                //                                   '${_homePageController.getflashsellproduct!.result![index].productImage.toString()}',
+                                //                               fit: BoxFit.fill,
+                                //                               errorBuilder:
+                                //                                   (context,
+                                //                                       error,
+                                //                                       stackTrace) {
+                                //                                 //if image not comming in catagary then we have to purchase
+                                //
+                                //                                 return Icon(
+                                //                                   Icons.error,
+                                //                                   color: Colors
+                                //                                       .grey,
+                                //                                 );
+                                //                               },
+                                //
+                                //                               height:
+                                //                                   size.height *
+                                //                                       0.04,
+                                //                               // color: _homePageController
+                                //                               //             .selectedIndex
+                                //                               //             .value ==
+                                //                               //         index
+                                //                               //     ? Colors.white
+                                //                               //     : MyTheme.ThemeColors
+                                //                             ),
+                                //                           ),
+                                //                         ),
+                                //                       ),
+                                //                     ),
+                                //                     SizedBox(
+                                //                       height: 0.6.h,
+                                //                     ),
+                                //                     Padding(
+                                //                       padding:
+                                //                           EdgeInsets.symmetric(
+                                //                               horizontal:
+                                //                                   1.7.w),
+                                //                       child: Row(
+                                //                         mainAxisAlignment:
+                                //                             MainAxisAlignment
+                                //                                 .spaceBetween,
+                                //                         children: [
+                                //                           SizedBox(
+                                //                             width: size.width *
+                                //                                 0.26,
+                                //                             child: Text(
+                                //                               '${_homePageController.getflashsellproduct!.result![index].weight1} gm',
+                                //                               style: TextStyle(
+                                //                                 fontWeight:
+                                //                                     FontWeight
+                                //                                         .w500,
+                                //                                 fontSize: 9.sp,
+                                //                                 color: Colors
+                                //                                     .black,
+                                //                                 // .grey
+                                //                                 // .shade100,
+                                //                               ),
+                                //                             ),
+                                //                           ),
+                                //                           SizedBox(
+                                //                             width: size.width *
+                                //                                 0.2,
+                                //                             child: Text(
+                                //                               "Save:${_homePageController.getflashsellproduct!.result![index].discountPercentage.toString()}%",
+                                //                               style: TextStyle(
+                                //                                 overflow:
+                                //                                     TextOverflow
+                                //                                         .ellipsis,
+                                //                                 fontWeight:
+                                //                                     FontWeight
+                                //                                         .w500,
+                                //                                 fontSize: 9.sp,
+                                //                                 color: Colors
+                                //                                     .green
+                                //                                     .shade900,
+                                //                               ),
+                                //                             ),
+                                //                           ),
+                                //                         ],
+                                //                       ),
+                                //                     ),
+                                //                     SizedBox(
+                                //                       height:
+                                //                           size.height * 0.005,
+                                //                     ),
+                                //                     Padding(
+                                //                       padding:
+                                //                           EdgeInsets.symmetric(
+                                //                               horizontal:
+                                //                                   1.8.w),
+                                //                       child: Row(
+                                //                         children: [
+                                //                           SizedBox(
+                                //                             width: 21.w,
+                                //                             child: Column(
+                                //                               mainAxisAlignment:
+                                //                                   MainAxisAlignment
+                                //                                       .spaceBetween,
+                                //                               crossAxisAlignment:
+                                //                                   CrossAxisAlignment
+                                //                                       .start,
+                                //                               children: [
+                                //                                 Padding(
+                                //                                   padding: EdgeInsets
+                                //                                       .only(
+                                //                                           top: 0.0
+                                //                                               .h),
+                                //                                   child:
+                                //                                       SizedBox(
+                                //                                     width: size
+                                //                                             .width *
+                                //                                         0.18,
+                                //                                     height: size
+                                //                                             .height *
+                                //                                         0.02,
+                                //                                     child: Text(
+                                //                                       _homePageController
+                                //                                           .getflashsellproduct!
+                                //                                           .result![
+                                //                                               index]
+                                //                                           .productName
+                                //                                           .toString(),
+                                //                                       overflow:
+                                //                                           TextOverflow
+                                //                                               .ellipsis,
+                                //                                       maxLines:
+                                //                                           1,
+                                //                                       style:
+                                //                                           TextStyle(
+                                //                                         fontWeight:
+                                //                                             FontWeight.w700,
+                                //                                         fontSize:
+                                //                                             9.sp,
+                                //                                         color: Colors
+                                //                                             .black,
+                                //                                       ),
+                                //                                     ),
+                                //                                   ),
+                                //                                 ),
+                                //                                 Row(
+                                //                                   children: [
+                                //                                     Text(
+                                //                                       '₹${_homePageController.getflashsellproduct!.result![index].finalPrice}'
+                                //                                       " ",
+                                //                                       style:
+                                //                                           TextStyle(
+                                //                                         fontWeight:
+                                //                                             FontWeight.w700,
+                                //                                         fontSize:
+                                //                                             9.sp,
+                                //                                         color: Colors
+                                //                                             .red,
+                                //                                         //.ContainerUnSelectedColor,
+                                //                                       ),
+                                //                                     ),
+                                //                                     Text(
+                                //                                       ' ₹${_homePageController.getflashsellproduct!.result![index].price}',
+                                //                                       style:
+                                //                                           TextStyle(
+                                //                                         decoration:
+                                //                                             TextDecoration.lineThrough,
+                                //                                         // decorationStyle:
+                                //                                         //     TextDecorationStyle.wavy,
+                                //                                         decorationColor: Colors
+                                //                                             .indigo
+                                //                                             .shade900,
+                                //                                         decorationThickness:
+                                //                                             2.85,
+                                //                                         fontWeight:
+                                //                                             FontWeight.w600,
+                                //                                         fontSize:
+                                //                                             9.sp,
+                                //                                         color: Colors
+                                //                                             .grey
+                                //                                             .shade600,
+                                //                                         // MyTheme
+                                //                                         //     .containercolor10,
+                                //                                         //.ContainerUnSelectedColor,
+                                //                                       ),
+                                //                                     ),
+                                //                                   ],
+                                //                                 ),
+                                //                               ],
+                                //                             ),
+                                //                           ),
+                                //
+                                //                           Spacer(),
+                                //                           Container(
+                                //                             height:
+                                //                                 size.height *
+                                //                                     0.033,
+                                //                             width: 23.w,
+                                //                             decoration:
+                                //                                 BoxDecoration(
+                                //                               borderRadius:
+                                //                                   BorderRadius
+                                //                                       .circular(
+                                //                                           20),
+                                //                             ),
+                                //                             child: InkWell(
+                                //                               ///TODO: here we have to change the code add to cart..............prince
+                                //                               onTap: () {
+                                //                                 ///this is the thing to thing to you that how can you add the item to add to cart api send by the help of id
+                                //                                 controller.addtocartApi(
+                                //                                     _homePageController
+                                //                                         .getflashsellproduct!
+                                //                                         .result![
+                                //                                             index]
+                                //                                         .id);
+                                //
+                                //                                 ///
+                                //                               },
+                                //                               child:
+                                //                                   RaisedGradientButton(
+                                //                                 //height: 3.3.h,
+                                //                                 //width: 23.9.w,
+                                //                                 child: Text(
+                                //                                   'Add To Cart',
+                                //                                   style: TextStyle(
+                                //                                       color: Colors
+                                //                                           .black,
+                                //                                       fontWeight:
+                                //                                           FontWeight
+                                //                                               .w800,
+                                //                                       fontSize:
+                                //                                           8.sp),
+                                //                                 ),
+                                //                                 gradient:
+                                //                                     LinearGradient(
+                                //                                   colors: <
+                                //                                       Color>[
+                                //                                     Color(
+                                //                                         0xff3a923b),
+                                //                                     Color(
+                                //                                         0xffb5d047),
+                                //                                     //Colors.green,
+                                //                                     //Colors.cyan.shade400
+                                //                                   ],
+                                //                                 ),
+                                //                                 onPressed: () {
+                                //                                   // cartController.addProduct(
+                                //                                   //     Productss
+                                //                                   //         .products[index]);
+                                //                                   // controller.addtocartApi(_homePageController
+                                //                                   //     .getflashsellproduct!
+                                //                                   //     .result![
+                                //                                   //         index]
+                                //                                   //     .id);
+                                //                                   print(
+                                //                                       'Add To cart');
+                                //                                 },
+                                //                               ),
+                                //                             ),
+                                //                           ),
+                                //
+                                //                           // InkWell(
+                                //                           //   onTap: () {
+                                //                           //     cartController.addProduct(Productss.products[index]);
+                                //                           //   },
+                                //                           //   child: Container(
+                                //                           //     height: 3.3.h,
+                                //                           //     width: 23.9.w,
+                                //                           //     decoration: BoxDecoration(
+                                //                           //         //color: MyTheme.loginbuttonColor,
+                                //                           //         gradient: MyTheme.gradient4,
+                                //                           //         borderRadius: BorderRadius.only(
+                                //                           //           bottomRight: Radius.circular(5),
+                                //                           //           bottomLeft: Radius.circular(5),
+                                //                           //         )),
+                                //                           //     child: Center(
+                                //                           //       child: Text(
+                                //                           //         'Add To Cart',
+                                //                           //         style: TextStyle(
+                                //                           //           color: Colors.white,
+                                //                           //           fontWeight: FontWeight.w500,
+                                //                           //           fontSize: 8.sp,
+                                //                           //         ),
+                                //                           //       ),
+                                //                           //     ),
+                                //                           //   ),
+                                //                           // ),
+                                //                         ],
+                                //                       ),
+                                //                     ),
+                                //                   ],
+                                //                 ),
+                                //               ),
+                                //             ),
+                                //           ),
                               );
                             })),
 
