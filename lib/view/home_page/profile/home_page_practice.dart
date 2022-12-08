@@ -679,18 +679,47 @@ class HomePagePractice extends StatelessWidget {
                                                           SizedBox(
                                                             width: size.width *
                                                                 0.26,
-                                                            child: Text(
-                                                              '${_homePageController.getflashsellproduct!.result![index].weight1} gm',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize: 9.sp,
-                                                                color: Colors
-                                                                    .black,
-                                                                // .grey
-                                                                // .shade100,
-                                                              ),
+                                                            child: Row(
+                                                              children: [
+                                                                Text(
+                                                                  '${_homePageController.getflashsellproduct!.result![index].weight1}',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontSize:
+                                                                        9.sp,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    // .grey
+                                                                    // .shade100,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  width:
+                                                                      size.width *
+                                                                          0.2,
+                                                                  height:
+                                                                      size.height *
+                                                                          0.015,
+                                                                  child: Text(
+                                                                    '${_homePageController.getflashsellproduct!.result![index].pkt1}',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontSize:
+                                                                          9.sp,
+                                                                      color: Colors
+                                                                          .blueGrey,
+                                                                      // .grey
+                                                                      // .shade100,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                           SizedBox(
