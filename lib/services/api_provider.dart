@@ -9,6 +9,7 @@ import 'package:gyros_app/models/catagary_list_model.dart';
 import 'package:gyros_app/models/checkout_address_model.dart';
 import 'package:gyros_app/models/checkout_model.dart';
 import 'package:gyros_app/models/contact_us_model.dart';
+import 'package:gyros_app/models/cuppons/cuppon_list_model.dart';
 import 'package:gyros_app/models/first_purchase_banner_home_model.dart';
 import 'package:gyros_app/models/flash_product_descriptions_model.dart';
 import 'package:gyros_app/models/flash_sall_list_product_model.dart';
@@ -384,6 +385,7 @@ class ApiProvider {
   static getsubcatIdApi(var catid) async {
     var url = baseUrl + 'api/AdminApi/SubcategoryList/$catid';
     //var headers = {'Authorization': 'Bearer $token'};
+
     try {
       http.Response r = await http.get(Uri.parse(url));
       print(r.body.toString());
@@ -1013,6 +1015,24 @@ class ApiProvider {
     } else {
       Get.snackbar('Error', r.body);
       return r;
+    }
+  }
+
+  ///cuppon gyros...........
+
+  // get all cuppon  get Api gyros.......227................................
+
+  static CupponListApi() async {
+    var url = baseUrl + 'api/Adminapi/CouponList';
+    try {
+      http.Response r = await http.get(Uri.parse(url));
+      print(r.body.toString());
+      if (r.statusCode == 200) {
+        CupponModel allcupponModel = cupponModelFromJson(r.body);
+        return allcupponModel;
+      }
+    } catch (error) {
+      return;
     }
   }
 

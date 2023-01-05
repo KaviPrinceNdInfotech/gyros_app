@@ -23,6 +23,7 @@ class AllProductController extends GetxController {
       //       //Transition.size
       //       Transition.zoom,
       // );
+
       isLoading(false);
 
       //Get.to(()=>Container());

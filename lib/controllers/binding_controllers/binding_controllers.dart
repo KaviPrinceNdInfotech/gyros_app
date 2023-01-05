@@ -6,6 +6,7 @@ import 'package:gyros_app/controllers/all_products/all_products_controllers.dart
 import 'package:gyros_app/controllers/blog_list_controller.dart';
 import 'package:gyros_app/controllers/check_out_controller/check_out_controlles.dart';
 import 'package:gyros_app/controllers/contact_us_controller/contact_us_controller.dart';
+import 'package:gyros_app/controllers/cuppons_controller/cuppon_list_controller.dart';
 import 'package:gyros_app/controllers/forgot_email_code_controllers/forgot_email_cd_controllers.dart';
 import 'package:gyros_app/controllers/get_profile/get_profile_controller.dart';
 import 'package:gyros_app/controllers/gift_box_controller.dart';
@@ -74,6 +75,7 @@ class ControllerBinding extends Bindings {
     Get.put(PostOrderController());
     Get.put(LoginMobileController());
     Get.put(OtpTimerController1());
+    Get.put(CupponListController());
 
     //Get.put(CatagaryByIdController());
   }

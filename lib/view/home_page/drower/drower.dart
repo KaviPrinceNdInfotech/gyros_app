@@ -8,6 +8,7 @@ import 'package:gyros_app/constants/app_colors.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_navbar.dart';
 import 'package:gyros_app/view/botttom_nav_bar/whats_app_tracking_page.dart';
+import 'package:gyros_app/view/cuppon_section_view/cuppon_section_viewss.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/gift_box.dart';
 import 'package:gyros_app/view/home_page/drower/drower_page/our_story/our_stories.dart';
 import 'package:gyros_app/view/login_page/login_pagee.dart';
@@ -15,7 +16,6 @@ import 'package:gyros_app/view/order_confirmation_screens/order_confirmation.dar
 import 'package:sizer/sizer.dart';
 
 import '../../wave_view_tracking/wave_views_trackings.dart';
-import 'drower_page/blogs/my_blogs.dart';
 import 'drower_page/profile_page_personal/personal_profile_page.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -196,12 +196,13 @@ class MainDrawer extends StatelessWidget {
                 style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w600),
               ),
               tileColor:
-                  Get.currentRoute == '/Blogss' ? Colors.grey[300] : null,
+                  Get.currentRoute == '/CupponList' ? Colors.grey[300] : null,
               onTap: () {
                 print(Get.currentRoute);
                 //Get.back();
-                Get.to(() => Blogss());
-                Get.offNamed('/Blogss');
+                Get.to(() => CupponList());
+                //Get.to(() => Blogss());
+                Get.offNamed('/CupponList');
               },
               //
             ),

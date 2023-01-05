@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:gyros_app/controllers/cuppons_controller/cuppon_list_controller.dart';
 import 'package:gyros_app/view/botttom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detail_controllerss/cart_new_controler.dart';
 import 'package:gyros_app/view/cart_new_section/product_details/product_detail_controllerss/fav_counter_controller.dart';
@@ -86,6 +87,7 @@ class MyHttpOverrides extends HttpOverrides {
     Get.lazyPut(() => OrderHistoryController());
     Get.lazyPut(() => PostOrderController());
     Get.lazyPut(() => LoginMobileController());
+    Get.lazyPut(() => CupponListController());
     Get.lazyPut(() => OtpTimerController1());
     return super.createHttpClient(context)
       ..badCertificateCallback =
